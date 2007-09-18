@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE KDevPrjSession>
+<KDevPrjSession>
+ <DocsAndViews NumberOfDocuments="0" />
+ <pluginList>
+  <kdevdebugger>
+   <breakpointList>
+    <breakpoint0 location="/local/CWorks/adaboostgabortraining/src/cvgaborfeaturepairpool.cpp:177" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint0>
+    <breakpoint1 location="testIdx" type="2" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint1>
+    <breakpoint2 location="/local/CWorks/adaboostgabortraining/src/cvgabadafeatureselect.cpp:490" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint2>
+    <breakpoint3 location="/local/CWorks/adaboostgabortraining/src/makingfeaturedata.cpp:109" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint3>
+    <breakpoint4 location="/local/CWorks/adaboostgabortraining/src/cvgaborfeature.cpp:537" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint4>
+    <breakpoint5 location="/local/CWorks/adaboostgabortraining/src/prepare.cpp:49" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint5>
+   </breakpointList>
+  </kdevdebugger>
+  <kdevbookmarks>
+   <bookmarks>
+    <bookmark url="/local/CWorks/adaboostgabortraining/src/MutInformation.cpp" >
+     <mark line="23" />
+    </bookmark>
+   </bookmarks>
+  </kdevbookmarks>
+  <kdevsubversion>
+   <subversion recurseresolve="1" recurserelocate="1" recursemerge="1" recursecommit="1" base="" recursepropget="1" recurseswitch="1" recurseupdate="1" recursepropset="1" recursediff="1" recurserevert="1" forcemove="1" recursecheckout="1" forceremove="1" recurseadd="1" recurseproplist="1" forcemerge="1" />
+  </kdevsubversion>
+  <kdevvalgrind>
+   <executable path="" params="" />
+   <valgrind path="/usr/bin/valgrind" params="--tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --leak-check=yes" />
+   <calltree path="calltree" params="" />
+   <kcachegrind path="/opt/kde3/bin/kcachegrind" />
+  </kdevvalgrind>
+ </pluginList>
+</KDevPrjSession>
