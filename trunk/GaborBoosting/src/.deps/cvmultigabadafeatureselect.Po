@@ -1,0 +1,4 @@
+cvmultigabadafeatureselect.o cvmultigabadafeatureselect.o:  \
+ cvmultigabadafeatureselect.cpp cvmultigabadafeatureselect.h
+
+cvmultigabadafeatureselect.h:

@@ -1,0 +1,187 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE KDevPrjSession>
+<KDevPrjSession>
+ <DocsAndViews NumberOfDocuments="38" >
+  <Doc0 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvmultigabadafsm1.h" >
+   <View0 Type="Source" />
+  </Doc0>
+  <Doc1 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvmultigabadafsm1.cpp" >
+   <View0 Type="Source" />
+  </Doc1>
+  <Doc2 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/adaboostgabor.M1.cpp" >
+   <View0 Type="Source" />
+  </Doc2>
+  <Doc3 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/MatUsage.cpp" >
+   <View0 Type="Source" />
+  </Doc3>
+  <Doc4 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/adaboostgabortraining.cpp" >
+   <View0 Type="Source" />
+  </Doc4>
+  <Doc5 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/MutInformation.cpp" >
+   <View0 Type="Source" />
+  </Doc5>
+  <Doc6 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/adaboostgabortesting.cpp" >
+   <View0 Type="Source" />
+  </Doc6>
+  <Doc7 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/MultiClassification/allfeaturetraining.cpp" >
+   <View0 Type="Source" />
+  </Doc7>
+  <Doc8 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvgaborfeaturepool.cpp" >
+   <View0 Type="Source" />
+  </Doc8>
+  <Doc9 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvgaborfeaturepairselect.cpp" >
+   <View0 Type="Source" />
+  </Doc9>
+  <Doc10 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvgaborfeaturepairpool.cpp" >
+   <View0 Type="Source" />
+  </Doc10>
+  <Doc11 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvgaborfeaturepool.h" >
+   <View0 Type="Source" />
+  </Doc11>
+  <Doc12 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/MatUsage.h" >
+   <View0 Type="Source" />
+  </Doc12>
+  <Doc13 NumberOfViews="1" URL="file:///local/opencv-1.0.0/cxcore/src/cxerror.cpp" >
+   <View0 Type="Source" />
+  </Doc13>
+  <Doc14 NumberOfViews="1" URL="file:///local/opencv-1.0.0/cv/src/cvtemplmatch.cpp" >
+   <View0 Type="Source" />
+  </Doc14>
+  <Doc15 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/MultiClassification/minandupdate.cpp" >
+   <View0 Type="Source" />
+  </Doc15>
+  <Doc16 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvgaborfeature.cpp" >
+   <View0 Type="Source" />
+  </Doc16>
+  <Doc17 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvmweaklearner.cpp" >
+   <View0 Type="Source" />
+  </Doc17>
+  <Doc18 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvgaborfeaturepairselect.h" >
+   <View0 Type="Source" />
+  </Doc18>
+  <Doc19 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/PoolPartition.cpp" >
+   <View0 Type="Source" />
+  </Doc19>
+  <Doc20 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/makingfeaturedata.cpp" >
+   <View0 Type="Source" />
+  </Doc20>
+  <Doc21 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvxm2vts.cpp" >
+   <View0 Type="Source" />
+  </Doc21>
+  <Doc22 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/prepare.cpp" >
+   <View0 Type="Source" />
+  </Doc22>
+  <Doc23 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/sign2weaks.cpp" >
+   <View0 Type="Source" />
+  </Doc23>
+  <Doc24 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvxm2vts.h" >
+   <View0 Type="Source" />
+  </Doc24>
+  <Doc25 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvferet.h" >
+   <View0 line="63" Type="Source" />
+  </Doc25>
+  <Doc26 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvsubject.h" >
+   <View0 Type="Source" />
+  </Doc26>
+  <Doc27 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvsubject.cpp" >
+   <View0 Type="Source" />
+  </Doc27>
+  <Doc28 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvferet.cpp" >
+   <View0 line="496" Type="Source" />
+  </Doc28>
+  <Doc29 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/DataGen.cpp" >
+   <View0 line="69" Type="Source" />
+  </Doc29>
+  <Doc30 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/makingfeaturedata.h" >
+   <View0 Type="Source" />
+  </Doc30>
+  <Doc31 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvgaborfeature.h" >
+   <View0 Type="Source" />
+  </Doc31>
+  <Doc32 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/Segmentation/FaceSeg.cpp" >
+   <View0 Type="Source" />
+  </Doc32>
+  <Doc33 NumberOfViews="1" URL="file:///usr/include/c%2B%2B/4.1.2/iostream" >
+   <View0 Type="Source" />
+  </Doc33>
+  <Doc34 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvgabor.cpp" >
+   <View0 Type="Source" />
+  </Doc34>
+  <Doc35 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/cvgabor.h" >
+   <View0 line="64" Type="Source" />
+  </Doc35>
+  <Doc36 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/Segmentation/resize.cpp" >
+   <View0 line="36" Type="Source" />
+  </Doc36>
+  <Doc37 NumberOfViews="1" URL="file:///local/CWorks/GaborBoosting/src/GaborTest.cpp" >
+   <View0 line="0" Type="Source" />
+  </Doc37>
+ </DocsAndViews>
+ <pluginList>
+  <kdevdebugger>
+   <breakpointList>
+    <breakpoint0 location="/local/CWorks/adaboostgabortraining/src/cvgaborfeaturepairpool.cpp:177" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint0>
+    <breakpoint1 location="testIdx" type="2" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint1>
+    <breakpoint2 location="/local/CWorks/adaboostgabortraining/src/cvgabadafeatureselect.cpp:490" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint2>
+    <breakpoint3 location="/local/CWorks/adaboostgabortraining/src/makingfeaturedata.cpp:109" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint3>
+    <breakpoint4 location="/local/CWorks/adaboostgabortraining/src/cvgaborfeature.cpp:537" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint4>
+    <breakpoint5 location="/local/CWorks/adaboostgabortraining/src/prepare.cpp:49" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint5>
+    <breakpoint6 location="/local/CWorks/GaborBoosting/src/adaboostgabor.M1.cpp:102" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint6>
+    <breakpoint7 location="/local/CWorks/GaborBoosting/src/MultiClassification/allfeaturetraining.cpp:106" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint7>
+    <breakpoint8 location="/local/CWorks/GaborBoosting/src/MultiClassification/minandupdate.cpp:91" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint8>
+    <breakpoint9 location="/local/CWorks/GaborBoosting/src/MultiClassification/minandupdate.cpp:109" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint9>
+    <breakpoint10 location="/local/CWorks/GaborBoosting/src/cvmweaklearner.cpp:96" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint10>
+    <breakpoint11 location="/local/CWorks/GaborBoosting/src/PoolPartition.cpp:57" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint11>
+    <breakpoint12 location="/local/CWorks/GaborBoosting/src/DataGen.cpp:56" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint12>
+    <breakpoint13 location="/local/CWorks/GaborBoosting/src/cvferet.cpp:178" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint13>
+    <breakpoint14 location="/local/CWorks/GaborBoosting/src/cvferet.cpp:371" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint14>
+   </breakpointList>
+  </kdevdebugger>
+  <kdevbookmarks>
+   <bookmarks>
+    <bookmark url="/local/CWorks/adaboostgabortraining/src/MutInformation.cpp" >
+     <mark line="23" />
+    </bookmark>
+   </bookmarks>
+  </kdevbookmarks>
+  <kdevsubversion>
+   <subversion recurseresolve="1" recurserelocate="1" recursemerge="1" recursecommit="1" base="" recursepropget="1" recurseswitch="1" recurseupdate="1" recursepropset="1" recursediff="1" recurserevert="1" forcemove="1" recursecheckout="1" forceremove="1" recurseadd="1" recurseproplist="1" forcemerge="1" />
+  </kdevsubversion>
+  <kdevvalgrind>
+   <executable path="" params="" />
+   <valgrind path="/usr/bin/valgrind" params="--tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --tool=memcheck --leak-check=yes" />
+   <calltree path="calltree" params="" />
+   <kcachegrind path="/opt/kde3/bin/kcachegrind" />
+  </kdevvalgrind>
+ </pluginList>
+</KDevPrjSession>
