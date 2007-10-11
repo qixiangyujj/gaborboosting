@@ -14,6 +14,7 @@
 
 
 
+
 srcdir = .
 top_srcdir = ../..
 
@@ -36,9 +37,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = i686-pc-linux-gnu
 host_triplet = i686-pc-linux-gnu
-bin_PROGRAMS = FaceSegment$(EXEEXT)
+bin_PROGRAMS = FaceSegment$(EXEEXT) resizeferet$(EXEEXT)
 subdir = src/Segmentation
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -49,9 +51,12 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_FaceSegment_OBJECTS = FaceSeg.$(OBJEXT)
+am_FaceSegment_OBJECTS = cvfacesegment.$(OBJEXT) FaceSeg.$(OBJEXT)
 FaceSegment_OBJECTS = $(am_FaceSegment_OBJECTS)
-FaceSegment_LDADD = $(LDADD)
+FaceSegment_DEPENDENCIES =
+am_resizeferet_OBJECTS = resize.$(OBJEXT)
+resizeferet_OBJECTS = $(am_resizeferet_OBJECTS)
+resizeferet_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -63,19 +68,20 @@ LTCXXCOMPILE = $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) \
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(FaceSegment_SOURCES)
-DIST_SOURCES = $(FaceSegment_SOURCES)
+SOURCES = $(FaceSegment_SOURCES) $(resizeferet_SOURCES)
+DIST_SOURCES = $(FaceSegment_SOURCES) $(resizeferet_SOURCES)
+HEADERS = $(noinst_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /local/CWorks/GaborBoosting/missing --run aclocal-1.9
+ACLOCAL = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run aclocal-1.9
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /local/CWorks/GaborBoosting/missing --run tar
+AMTAR = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /local/CWorks/GaborBoosting/missing --run automake-1.9
+AUTOCONF = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run automake-1.9
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -108,7 +114,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /local/CWorks/GaborBoosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run makeinfo
 OBJEXT = o
 PACKAGE = adaboostgabortraining
 PACKAGE_BUGREPORT = 
@@ -153,7 +159,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = /local/CWorks/GaborBoosting/install-sh
+install_sh = /local/CWorks/test/trunk/GaborBoosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -169,9 +175,17 @@ sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 sysconfdir = ${prefix}/etc
 target_alias = 
-INCLUDES = -I/usr/local/include/opencv $(all_includes)
+INCLUDES = -I$(top_srcdir)/src -I$(top_srcdir)/src/Segmentation \
+	-I/usr/local/include/opencv $(all_includes)
+
 METASOURCES = AUTO
-FaceSegment_SOURCES = FaceSeg.cpp
+FaceSegment_SOURCES = cvfacesegment.cpp FaceSeg.cpp
+FaceSegment_LDADD = -L/usr/local/lib -lhighgui -lcv -lcxcore
+noinst_HEADERS = cvfacesegment.h
+resizeferet_SOURCES = resize.cpp
+resizeferet_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui \
+	-L/usr/local/lib -lcxcore -lcv
+
 all: all-am
 
 .SUFFIXES:
@@ -236,6 +250,9 @@ clean-binPROGRAMS:
 FaceSegment$(EXEEXT): $(FaceSegment_OBJECTS) $(FaceSegment_DEPENDENCIES) 
 	@rm -f FaceSegment$(EXEEXT)
 	$(CXXLINK) $(FaceSegment_LDFLAGS) $(FaceSegment_OBJECTS) $(FaceSegment_LDADD) $(LIBS)
+resizeferet$(EXEEXT): $(resizeferet_OBJECTS) $(resizeferet_DEPENDENCIES) 
+	@rm -f resizeferet$(EXEEXT)
+	$(CXXLINK) $(resizeferet_LDFLAGS) $(resizeferet_OBJECTS) $(resizeferet_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -244,6 +261,8 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/FaceSeg.Po
+include ./$(DEPDIR)/cvfacesegment.Po
+include ./$(DEPDIR)/resize.Po
 
 .cpp.o:
 	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -353,7 +372,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS)
+all-am: Makefile $(PROGRAMS) $(HEADERS)
 installdirs:
 	for dir in "$(DESTDIR)$(bindir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \

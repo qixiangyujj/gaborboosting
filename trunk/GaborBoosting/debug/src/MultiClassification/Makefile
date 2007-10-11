@@ -14,9 +14,9 @@
 
 
 
-srcdir = /local/CWorks/GaborBoosting/src/MultiClassification
-top_srcdir = /local/CWorks/GaborBoosting
-VPATH = /local/CWorks/GaborBoosting/src/MultiClassification
+srcdir = /local/CWorks/test/trunk/GaborBoosting/src/MultiClassification
+top_srcdir = /local/CWorks/test/trunk/GaborBoosting
+VPATH = /local/CWorks/test/trunk/GaborBoosting/src/MultiClassification
 pkgdatadir = $(datadir)/adaboostgabortraining
 pkglibdir = $(libdir)/adaboostgabortraining
 pkgincludedir = $(includedir)/adaboostgabortraining
@@ -36,7 +36,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = i686-pc-linux-gnu
 host_triplet = i686-pc-linux-gnu
-bin_PROGRAMS = allfeaturetraining$(EXEEXT) update$(EXEEXT)
+bin_PROGRAMS = allfeaturetraining$(EXEEXT) update$(EXEEXT) \
+	Recognition$(EXEEXT)
 subdir = src/MultiClassification
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -49,6 +50,9 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_Recognition_OBJECTS = FaceRecog.$(OBJEXT)
+Recognition_OBJECTS = $(am_Recognition_OBJECTS)
+Recognition_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 am_allfeaturetraining_OBJECTS = allfeaturetraining.$(OBJEXT)
 allfeaturetraining_OBJECTS = $(am_allfeaturetraining_OBJECTS)
 allfeaturetraining_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
@@ -66,19 +70,21 @@ LTCXXCOMPILE = $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) \
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(allfeaturetraining_SOURCES) $(update_SOURCES)
-DIST_SOURCES = $(allfeaturetraining_SOURCES) $(update_SOURCES)
+SOURCES = $(Recognition_SOURCES) $(allfeaturetraining_SOURCES) \
+	$(update_SOURCES)
+DIST_SOURCES = $(Recognition_SOURCES) $(allfeaturetraining_SOURCES) \
+	$(update_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /local/CWorks/GaborBoosting/missing --run aclocal-1.9
+ACLOCAL = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run aclocal-1.9
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /local/CWorks/GaborBoosting/missing --run tar
+AMTAR = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /local/CWorks/GaborBoosting/missing --run automake-1.9
+AUTOCONF = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run automake-1.9
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -111,7 +117,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /local/CWorks/GaborBoosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run makeinfo
 OBJEXT = o
 PACKAGE = adaboostgabortraining
 PACKAGE_BUGREPORT = 
@@ -156,7 +162,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = /local/CWorks/GaborBoosting/install-sh
+install_sh = /local/CWorks/test/trunk/GaborBoosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -182,8 +188,10 @@ update_SOURCES = minandupdate.cpp
 update_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml -lcxcore \
 	-lcv
 
-allfeaturetraining_LDFLAGS = -all-static
-update_LDFLAGS = -all-static
+Recognition_SOURCES = FaceRecog.cpp
+Recognition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml \
+	-lcv -lcxcore
+
 all: all-am
 
 .SUFFIXES:
@@ -245,6 +253,9 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
+Recognition$(EXEEXT): $(Recognition_OBJECTS) $(Recognition_DEPENDENCIES) 
+	@rm -f Recognition$(EXEEXT)
+	$(CXXLINK) $(Recognition_LDFLAGS) $(Recognition_OBJECTS) $(Recognition_LDADD) $(LIBS)
 allfeaturetraining$(EXEEXT): $(allfeaturetraining_OBJECTS) $(allfeaturetraining_DEPENDENCIES) 
 	@rm -f allfeaturetraining$(EXEEXT)
 	$(CXXLINK) $(allfeaturetraining_LDFLAGS) $(allfeaturetraining_OBJECTS) $(allfeaturetraining_LDADD) $(LIBS)
@@ -258,6 +269,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/FaceRecog.Po
 include ./$(DEPDIR)/allfeaturetraining.Po
 include ./$(DEPDIR)/minandupdate.Po
 

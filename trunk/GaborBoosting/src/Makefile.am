@@ -43,7 +43,7 @@ sign2weaks_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml\
 	-lhighgui -lcxcore -lcv
 
 
-MutInf_LDFLAGS = -all-static
+
 PairPoolPartition_SOURCES = PoolPartition.cpp
 adaboostgabortraining_M1_SOURCES = adaboostgabor.M1.cpp
 adaboostgabortraining_M1_LDADD = $(top_builddir)/src/libAdaGabor.a \

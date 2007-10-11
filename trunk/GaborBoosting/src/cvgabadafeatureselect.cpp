@@ -630,7 +630,7 @@ void CvGabAdaFeatureSelect::weaknode2tree(CvFileNode *node, CvFileStorage *fs, C
 
 
 /*!
-\fn CvGabAdaFeatureSelect::predict(IplImage *img, int nweaks)
+    \fn CvGabAdaFeatureSelect::predict(IplImage *img, int nweaks)
  */
 double CvGabAdaFeatureSelect::predict(IplImage *img, int nweaks)
 {
@@ -698,7 +698,7 @@ double CvGabAdaFeatureSelect::predict(IplImage *img)
 
 
 /*!
-\fn CvGabAdaFeatureSelect::predict(const char *filename, int nweaks)
+    \fn CvGabAdaFeatureSelect::predict(const char *filename, int nweaks)
  */
 double CvGabAdaFeatureSelect::predict(const char *filename, int nweaks)
 {

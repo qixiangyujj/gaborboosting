@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
   CvFeret feret( "/windows/D/Data/oferet/", "/local/FaceDB/FERET/fa/PPMS/" );
   printf( "Number of images: %d/%d\n", feret.getNum(), feret.getSub() );
   //feret.make("/windows/D/Data/oferet/");
-  MakingFeatureData featuremaking( &poolParam, "", "/windows/D/Data/feret/");
+  MakingFeatureData featuremaking( &poolParam, "", "/windows/D/Data/feret/" );
   //featuremaking.preparefile( &feret );
   featuremaking.runferet( &feret, &poolParam );
   //featuremaking.run(&feret);

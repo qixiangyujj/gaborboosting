@@ -14,9 +14,9 @@
 
 
 
-srcdir = /local/CWorks/GaborBoosting/src/MultiClassification
-top_srcdir = /local/CWorks/GaborBoosting
-VPATH = /local/CWorks/GaborBoosting/src/MultiClassification
+srcdir = /local/CWorks/test/trunk/GaborBoosting/src/MultiClassification
+top_srcdir = /local/CWorks/test/trunk/GaborBoosting
+VPATH = /local/CWorks/test/trunk/GaborBoosting/src/MultiClassification
 pkgdatadir = $(datadir)/adaboostgabortraining
 pkglibdir = $(libdir)/adaboostgabortraining
 pkgincludedir = $(includedir)/adaboostgabortraining
@@ -71,14 +71,14 @@ DIST_SOURCES = $(allfeaturetraining_SOURCES) $(update_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /local/CWorks/GaborBoosting/missing --run aclocal-1.9
+ACLOCAL = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run aclocal-1.9
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /local/CWorks/GaborBoosting/missing --run tar
+AMTAR = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /local/CWorks/GaborBoosting/missing --run automake-1.9
+AUTOCONF = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run automake-1.9
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -111,7 +111,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /local/CWorks/GaborBoosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run makeinfo
 OBJEXT = o
 PACKAGE = adaboostgabortraining
 PACKAGE_BUGREPORT = 
@@ -156,7 +156,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = /local/CWorks/GaborBoosting/install-sh
+install_sh = /local/CWorks/test/trunk/GaborBoosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -182,8 +182,6 @@ update_SOURCES = minandupdate.cpp
 update_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml -lcxcore \
 	-lcv
 
-allfeaturetraining_LDFLAGS = -all-static
-update_LDFLAGS = -all-static
 all: all-am
 
 .SUFFIXES:

@@ -16,9 +16,9 @@
 
 
 
-srcdir = /local/CWorks/GaborBoosting/src
-top_srcdir = /local/CWorks/GaborBoosting
-VPATH = /local/CWorks/GaborBoosting/src
+srcdir = /local/CWorks/test/trunk/GaborBoosting/src
+top_srcdir = /local/CWorks/test/trunk/GaborBoosting
+VPATH = /local/CWorks/test/trunk/GaborBoosting/src
 pkgdatadir = $(datadir)/adaboostgabortraining
 pkglibdir = $(libdir)/adaboostgabortraining
 pkgincludedir = $(includedir)/adaboostgabortraining
@@ -147,14 +147,14 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /local/CWorks/GaborBoosting/missing --run aclocal-1.9
+ACLOCAL = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run aclocal-1.9
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /local/CWorks/GaborBoosting/missing --run tar
+AMTAR = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /local/CWorks/GaborBoosting/missing --run automake-1.9
+AUTOCONF = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run automake-1.9
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -187,7 +187,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /local/CWorks/GaborBoosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run makeinfo
 OBJEXT = o
 PACKAGE = adaboostgabortraining
 PACKAGE_BUGREPORT = 
@@ -232,7 +232,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = /local/CWorks/GaborBoosting/install-sh
+install_sh = /local/CWorks/test/trunk/GaborBoosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -294,7 +294,6 @@ sign2weaks_SOURCES = sign2weaks.cpp
 sign2weaks_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml\
 	-lhighgui -lcxcore -lcv
 
-MutInf_LDFLAGS = -all-static
 PairPoolPartition_SOURCES = PoolPartition.cpp
 adaboostgabortraining_M1_SOURCES = adaboostgabor.M1.cpp
 adaboostgabortraining_M1_LDADD = $(top_builddir)/src/libAdaGabor.a \

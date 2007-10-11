@@ -41,7 +41,8 @@ host_triplet = i686-pc-linux-gnu
 bin_PROGRAMS = adaboostgabortraining$(EXEEXT) MutInf$(EXEEXT) \
 	GaborProcess$(EXEEXT) adaboostgabortesting$(EXEEXT) \
 	prepare$(EXEEXT) sign2weaks$(EXEEXT) \
-	PairPoolPartition$(EXEEXT) adaboostgabortraining.M1$(EXEEXT)
+	PairPoolPartition$(EXEEXT) adaboostgabortraining.M1$(EXEEXT) \
+	GaborTesting$(EXEEXT)
 subdir = src
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
@@ -85,6 +86,9 @@ PROGRAMS = $(bin_PROGRAMS)
 am_GaborProcess_OBJECTS = DataGen.$(OBJEXT)
 GaborProcess_OBJECTS = $(am_GaborProcess_OBJECTS)
 GaborProcess_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
+am_GaborTesting_OBJECTS = GaborTest.$(OBJEXT)
+GaborTesting_OBJECTS = $(am_GaborTesting_OBJECTS)
+GaborTesting_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 am_MutInf_OBJECTS = MutInformation.$(OBJEXT)
 MutInf_OBJECTS = $(am_MutInf_OBJECTS)
 MutInf_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
@@ -121,14 +125,14 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libAdaGabor_a_SOURCES) $(GaborProcess_SOURCES) \
-	$(MutInf_SOURCES) $(PairPoolPartition_SOURCES) \
-	$(adaboostgabortesting_SOURCES) \
+	$(GaborTesting_SOURCES) $(MutInf_SOURCES) \
+	$(PairPoolPartition_SOURCES) $(adaboostgabortesting_SOURCES) \
 	$(adaboostgabortraining_SOURCES) \
 	$(adaboostgabortraining_M1_SOURCES) $(prepare_SOURCES) \
 	$(sign2weaks_SOURCES)
 DIST_SOURCES = $(libAdaGabor_a_SOURCES) $(GaborProcess_SOURCES) \
-	$(MutInf_SOURCES) $(PairPoolPartition_SOURCES) \
-	$(adaboostgabortesting_SOURCES) \
+	$(GaborTesting_SOURCES) $(MutInf_SOURCES) \
+	$(PairPoolPartition_SOURCES) $(adaboostgabortesting_SOURCES) \
 	$(adaboostgabortraining_SOURCES) \
 	$(adaboostgabortraining_M1_SOURCES) $(prepare_SOURCES) \
 	$(sign2weaks_SOURCES)
@@ -143,14 +147,14 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /local/CWorks/GaborBoosting/missing --run aclocal-1.9
+ACLOCAL = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run aclocal-1.9
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /local/CWorks/GaborBoosting/missing --run tar
+AMTAR = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /local/CWorks/GaborBoosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /local/CWorks/GaborBoosting/missing --run automake-1.9
+AUTOCONF = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run automake-1.9
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -183,7 +187,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /local/CWorks/GaborBoosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /local/CWorks/test/trunk/GaborBoosting/missing --run makeinfo
 OBJEXT = o
 PACKAGE = adaboostgabortraining
 PACKAGE_BUGREPORT = 
@@ -228,7 +232,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = /local/CWorks/GaborBoosting/install-sh
+install_sh = /local/CWorks/test/trunk/GaborBoosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -290,14 +294,19 @@ sign2weaks_SOURCES = sign2weaks.cpp
 sign2weaks_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml\
 	-lhighgui -lcxcore -lcv
 
-MutInf_LDFLAGS = -all-static
 PairPoolPartition_SOURCES = PoolPartition.cpp
 adaboostgabortraining_M1_SOURCES = adaboostgabor.M1.cpp
 adaboostgabortraining_M1_LDADD = $(top_builddir)/src/libAdaGabor.a \
 	-L/usr/local/lib -lcv -lml -lcxcore
 
 SUBDIRS = MultiClassification Segmentation
-PairPoolPartition_LDADD = $(top_builddir)/src/libAdaGabor.a
+PairPoolPartition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
+	-lhighgui -lcxcore -lcv
+
+GaborTesting_SOURCES = GaborTest.cpp
+GaborTesting_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lcv \
+	-lhighgui -lcxcore
+
 all: all-recursive
 
 .SUFFIXES:
@@ -395,6 +404,9 @@ clean-binPROGRAMS:
 GaborProcess$(EXEEXT): $(GaborProcess_OBJECTS) $(GaborProcess_DEPENDENCIES) 
 	@rm -f GaborProcess$(EXEEXT)
 	$(CXXLINK) $(GaborProcess_LDFLAGS) $(GaborProcess_OBJECTS) $(GaborProcess_LDADD) $(LIBS)
+GaborTesting$(EXEEXT): $(GaborTesting_OBJECTS) $(GaborTesting_DEPENDENCIES) 
+	@rm -f GaborTesting$(EXEEXT)
+	$(CXXLINK) $(GaborTesting_LDFLAGS) $(GaborTesting_OBJECTS) $(GaborTesting_LDADD) $(LIBS)
 MutInf$(EXEEXT): $(MutInf_OBJECTS) $(MutInf_DEPENDENCIES) 
 	@rm -f MutInf$(EXEEXT)
 	$(CXXLINK) $(MutInf_LDFLAGS) $(MutInf_OBJECTS) $(MutInf_LDADD) $(LIBS)
@@ -424,6 +436,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/DataGen.Po
+include ./$(DEPDIR)/GaborTest.Po
 include ./$(DEPDIR)/MatUsage.Po
 include ./$(DEPDIR)/MutInformation.Po
 include ./$(DEPDIR)/PoolPartition.Po

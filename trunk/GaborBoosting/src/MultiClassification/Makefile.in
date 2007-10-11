@@ -36,7 +36,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = allfeaturetraining$(EXEEXT) update$(EXEEXT)
+bin_PROGRAMS = allfeaturetraining$(EXEEXT) update$(EXEEXT) \
+	Recognition$(EXEEXT)
 subdir = src/MultiClassification
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -49,6 +50,9 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_Recognition_OBJECTS = FaceRecog.$(OBJEXT)
+Recognition_OBJECTS = $(am_Recognition_OBJECTS)
+Recognition_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 am_allfeaturetraining_OBJECTS = allfeaturetraining.$(OBJEXT)
 allfeaturetraining_OBJECTS = $(am_allfeaturetraining_OBJECTS)
 allfeaturetraining_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
@@ -66,8 +70,10 @@ LTCXXCOMPILE = $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) \
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(allfeaturetraining_SOURCES) $(update_SOURCES)
-DIST_SOURCES = $(allfeaturetraining_SOURCES) $(update_SOURCES)
+SOURCES = $(Recognition_SOURCES) $(allfeaturetraining_SOURCES) \
+	$(update_SOURCES)
+DIST_SOURCES = $(Recognition_SOURCES) $(allfeaturetraining_SOURCES) \
+	$(update_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -182,8 +188,10 @@ update_SOURCES = minandupdate.cpp
 update_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml -lcxcore \
 	-lcv
 
-allfeaturetraining_LDFLAGS = -all-static
-update_LDFLAGS = -all-static
+Recognition_SOURCES = FaceRecog.cpp
+Recognition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml \
+	-lcv -lcxcore
+
 all: all-am
 
 .SUFFIXES:
@@ -245,6 +253,9 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
+Recognition$(EXEEXT): $(Recognition_OBJECTS) $(Recognition_DEPENDENCIES) 
+	@rm -f Recognition$(EXEEXT)
+	$(CXXLINK) $(Recognition_LDFLAGS) $(Recognition_OBJECTS) $(Recognition_LDADD) $(LIBS)
 allfeaturetraining$(EXEEXT): $(allfeaturetraining_OBJECTS) $(allfeaturetraining_DEPENDENCIES) 
 	@rm -f allfeaturetraining$(EXEEXT)
 	$(CXXLINK) $(allfeaturetraining_LDFLAGS) $(allfeaturetraining_OBJECTS) $(allfeaturetraining_LDADD) $(LIBS)
@@ -258,6 +269,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FaceRecog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/allfeaturetraining.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/minandupdate.Po@am__quote@
 

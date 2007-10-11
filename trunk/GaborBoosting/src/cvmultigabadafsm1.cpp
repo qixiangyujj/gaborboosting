@@ -36,9 +36,9 @@ CvMultiGabAdaFSM1::~CvMultiGabAdaFSM1()
 
 
 /*!
-\fn MultiAdaGabor::CvMultiGabAdaFSM1::CvMultiGabAdaFSM1(CvFaceDB* facedb, CvPoolParams params)
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::CvMultiGabAdaFSM1(CvFaceDB* facedb, CvPoolParams* params)
  */
-MultiAdaGabor::CvMultiGabAdaFSM1::CvMultiGabAdaFSM1(CvFaceDB* facedb, CvPoolParams* params)
+ MultiAdaGabor::CvMultiGabAdaFSM1::CvMultiGabAdaFSM1(CvFaceDB* facedb, CvPoolParams* params)
 {
   setDB( facedb );
   setPool( params );
@@ -564,7 +564,28 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::loadsign(const char* filename)
 
   new_pool = new CvGaborFeaturePool;
   new_pool->load( filename );
+  nselecfeatures = new_pool->getSize();
   
+  // load alpha
+  FILE * file;
+  if ((file=fopen(filename,"r")) == NULL)
+  {
+    perror(filename);
+    exit(1);
+  }
+  int x,y,Mu,Nu;
+  float merror,alpha;
+  while (!feof(file))
+  {
+    if (fscanf(file, " %d", &x) == EOF) break;
+    if (fscanf(file, " %d", &y) == EOF) break;
+    if (fscanf(file, " %d", &Nu) == EOF) break;
+    if (fscanf(file, " %d", &Mu) == EOF) break;
+    if (fscanf(file, " %f", &merror) == EOF) break;
+    if (fscanf(file, " %f\n", &alpha) == EOF) break;
+    alphas.push_back(alpha);
+  }
+  fclose(file);
 }
 
 
@@ -603,4 +624,65 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::update()
     normalise( weights );
     delete data;
   }
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::getNumFeatures()
+ */
+int  MultiAdaGabor::CvMultiGabAdaFSM1::getNumFeatures()
+{
+  return new_pool->getSize();
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::setCurrentIter(int c)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::setCurrentIter(int c)
+{
+  current = c;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::getCurrentIter()
+ */
+int MultiAdaGabor::CvMultiGabAdaFSM1::getCurrentIter()
+{
+  return current;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
+ */
+double MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
+{
+  if( nweaks > mweaks.size() )
+  {
+    perror("Number of weak learners exceeds the maximal!\n");
+    exit(-1);
+  }
+  double vfeature, label, criterion = 0.0, flabel=0.0, alpha;
+  for (int i = 0; i < nweaks; i++)
+  {
+      /* load feature value */
+    
+    CvGaborFeature *feature;
+    feature = newpool->getfeature(i);
+    vfeature = feature->val( img );
+    
+      /* get label from weak learner*/
+    label = mweaks[i].predict( vfeature );
+      //printf("The label that Weak Learner No.%d predicted is %d.\n", i, (int)label);
+      //printf("\n");
+    label = -1*(label - 2);
+    alpha = alphas[i];
+    flabel = flabel + label*alpha;
+    criterion = criterion + alpha;            //features.begin()
+  }
+  criterion = criterion / 2;
+  if ( flabel >= criterion ) return 1.0;
+  else return 2.0;
 }

@@ -34,6 +34,7 @@ namespace MultiAdaGabor {
 class CvMultiGabAdaFSM1{
 public:
     CvMultiGabAdaFSM1();
+    CvMultiGabAdaFSM1(CvFaceDB* facedb, CvGaborFeaturePool* pool);
     CvMultiGabAdaFSM1(CvFaceDB* facedb, CvPoolParams* params);
     ~CvMultiGabAdaFSM1();
     void setPool(CvPoolParams *param);
@@ -52,13 +53,16 @@ public:
     void resume();
     void resume(int n);
     void continue_training(int no, int current);
-     CvMultiGabAdaFSM1(CvFaceDB* facedb, CvGaborFeaturePool* pool);
     void loadweights(const char* filename);
     void trainingsub(int job, int iter);
     void resumesub(int job, int iter);
     double findmin();
     void loadsign(const char* filename);
     void update();
+    int  getNumFeatures();
+    void setCurrentIter(int c);
+    int getCurrentIter();
+    double predict(IplImage *img, int nweaks);
     
 
 protected:
