@@ -62,7 +62,13 @@ public:
     int  getNumFeatures();
     void setCurrentIter(int c);
     int getCurrentIter();
-    double predict(IplImage *img, int nweaks);
+    CvMat* predict(IplImage *img, int nweaks);
+    CvMat* predict(const char *filename, int nweaks);
+    CvMat* predict(IplImage *img);
+    CvMat* predict(const char *filename);
+    void testing(const char* filelist, const char* resultfile, int nofeatures);
+    void testing(const char* filelist, const char* resultfile);
+
     
 
 protected:

@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
   fsm1.loadsign( significantfile );
   
   int nfeatures = fsm1.getNumFeatures();
-  
+  //nfeatures = 1;
   for(int i = 0 ; i < nfeatures; i++)
   {
     printf("Weaklearner %d ........\n", i);
@@ -52,8 +52,16 @@ int main(int argc, char *argv[])
     }
     fsm1.update();
     printf("\n");
+    
+    
+   
+    
   }
+  const char * inputname = "/local/FaceDB/XM2VTS/imglist.txt";
+  const char * outputname = "testingresults.txt";
   
+  
+  fsm1.testing( inputname, outputname );
   
   return 0;
 }

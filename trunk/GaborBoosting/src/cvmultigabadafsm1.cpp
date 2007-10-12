@@ -657,7 +657,7 @@ int MultiAdaGabor::CvMultiGabAdaFSM1::getCurrentIter()
 /*!
     \fn MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
  */
-double MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
+CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
 {
   if( nweaks > mweaks.size() )
   {
@@ -665,24 +665,126 @@ double MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
     exit(-1);
   }
   double vfeature, label, criterion = 0.0, flabel=0.0, alpha;
+  CvMat *rank = cvCreateMat(1, nClass, CV_32FC1);
   for (int i = 0; i < nweaks; i++)
   {
       /* load feature value */
     
     CvGaborFeature *feature;
-    feature = newpool->getfeature(i);
+    feature = new_pool->getfeature(i);
     vfeature = feature->val( img );
     
       /* get label from weak learner*/
-    label = mweaks[i].predict( vfeature );
-      //printf("The label that Weak Learner No.%d predicted is %d.\n", i, (int)label);
-      //printf("\n");
-    label = -1*(label - 2);
+    CvMat *resultMat = mweaks[i].mpredict( vfeature );
+    CvMat *tmpMat = cvCreateMat( 1, nClass, CV_32FC1 ); 
+    cvSetZero( tmpMat );
+    CvSize size = cvGetSize( resultMat );
+    int nCls = size.width;
+    for(int j = 0; j < nCls; j++)
+    {
+      double c = cvGetReal1D( resultMat, j );
+      cvSetReal1D( tmpMat, (int)(c-1), 1.0 );
+    }
     alpha = alphas[i];
-    flabel = flabel + label*alpha;
-    criterion = criterion + alpha;            //features.begin()
+    cvConvertScale( tmpMat, tmpMat, alpha, 0.0 );
+    cvAdd( rank, tmpMat, rank, NULL );
+    cvReleaseMat( &resultMat );
+    cvReleaseMat( &tmpMat );
   }
-  criterion = criterion / 2;
-  if ( flabel >= criterion ) return 1.0;
-  else return 2.0;
+  
+  
+  double min_val, max_val;
+  CvPoint min_loc, max_loc;
+  cvMinMaxLoc( rank, &min_val, &max_val, &min_loc, &max_loc, NULL );
+  
+  CvMat *cls = cvCreateMat(1, nClass, CV_32FC1);
+  for(int i = 0; i < nClass; i++)
+  {
+    if(cvGetReal1D(rank, i) == max_val) cvSetReal1D(cls, i, 1.0);
+    else cvSetReal1D(cls, i, 0.0);
+  }
+  
+  
+  cvReleaseMat( &rank );
+  
+  
+  
+  
+  
+  
+  
+  return cls;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::predict(const char *filename, int nweaks)
+ */
+CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(const char *filename, int nweaks)
+{
+  IplImage *img = cvLoadImage( filename, CV_LOAD_IMAGE_GRAYSCALE);
+  CvMat *cls = predict(img, nweaks);
+  return cls;
+}
+
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img)
+ */
+CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img)
+{
+  return predict( img, mweaks.size());
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::predict(const char *filename)
+ */
+CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(const char *filename)
+{
+  return predict( filename, mweaks.size());
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::testing(const char* filelist, const char* resultfile, int nofeatures)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::testing(const char* filelist, const char* resultfile, int nofeatures)
+{
+  printf("Start testing from %s ... ... \n", filelist);
+  char *imgname = new char[50];
+  FILE *fs = fopen(filelist, "r");
+  assert(fs);
+  FILE *file = fopen(resultfile,"w");
+  assert(file);
+
+  while(feof(fs) == 0)
+  {
+    if (fscanf(fs, "%s", imgname) == EOF) break;
+    CvMat *cls = predict( imgname, nofeatures );
+    fprintf( file, "%s ", imgname);
+    printf( "%s is Class ", imgname);
+    for(int i = 0; i < nClass; i++)
+    {
+      if(cvGetReal1D(cls, i) == 1.0)
+      {
+        fprintf( file, " %d ", i+1);
+        printf( " %d ", i+1);
+      }
+    }
+    cvReleaseMat(&cls);
+  }
+  delete [] imgname;
+  fclose(file);
+  fclose(fs);
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::testing(const char* filelist, const char* resultfile)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::testing(const char* filelist, const char* resultfile)
+{
+  testing(filelist, resultfile, mweaks.size());
 }
