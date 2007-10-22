@@ -1,0 +1,123 @@
+/***************************************************************************
+ *   Copyright (C) 2007 by Mian Zhou   *
+ *   M.Zhou@reading.ac.uk   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
+#include "cvpoolparams.h"
+#include "cvgaborfeaturepool.h"
+#include "cvgaborfeaturepairselect.h"
+
+
+using namespace AdaGabor;
+void findMinMax(int job, const char* jobpath, double *min, double *max);
+
+
+int main(int argc, char *argv[])
+{
+  
+ 
+      //fprintf (file, "%d %f\n", i, v);
+  const char* jobpath = "/windows/D/mutinf/";
+  for(int job = 103; job <= 120; job++)
+  {
+    FILE * file;
+    file = fopen("mutmaxmin.txt", "a");
+    assert( file );
+  
+  
+    double min, max;
+    findMinMax(job, jobpath, &min, &max);
+  
+    fprintf(file, "%d %f %f\n",job, min, max);
+    fclose( file );
+  }
+ 
+  return 0; 
+}
+
+
+
+void findMinMax(int job, const char* jobpath, double *min, double *max)
+{
+  char * jobfile = new char[30];
+  sprintf(jobfile, "%s/job%d.txt", jobpath, job);
+  
+  int width = 51, height = 55, minscale = -1, maxscale = 3, norientations = 8, interval = 0, bound = 0;
+  bool reduce = true;
+  CvPoolParams param( height, width, minscale, maxscale, norientations, interval, bound, reduce );
+  CvGaborFeaturePool *pool = new CvGaborFeaturePool;
+  pool->Init( &param );
+  //find the parts
+  int N = pool->getSize();
+  int numParts = 120;
+  
+  int total = N*(N-1)/2;
+  int size_part = total/numParts;
+  int *nums = new int[numParts];
+  
+  int n = 0;
+  int sum = 0;
+  for(int i = 0; i < N; i++)
+  {
+    sum = sum + (N-i-1);
+    if(sum > size_part)  
+    {
+      i--;
+      nums[n] = i;
+      sum = 0;
+        //printf("%d\n", nums[n]);
+      n++;
+    }
+  }
+  
+  int istart, iend;
+  if(job == 0)
+  {
+    istart = 0;
+    iend = nums[job];
+  }
+  else if (job == numParts)
+  {
+    istart = nums[job-1]+1;
+    iend = N-2;
+  }
+  else
+  {
+    istart = nums[job-1]+1;
+    iend = nums[job];
+  }
+  
+  
+  
+  CvXm2vts xm2vts( "/mnt/export/rexm2vts/" );  
+  xm2vts.setPicIndex( 1 );
+  
+  CvGaborFeature *fstart = pool->getfeature( istart );
+  CvGaborFeature *fend = pool->getfeature( iend );
+  
+  
+  CvGaborFeaturePairPool pairpool(&param, fstart, fend );
+  pairpool.loadMutFile( jobfile );
+  
+  pairpool.MinMax( min, max );
+  
+  
+  delete pool;
+  delete [] jobfile;
+}
+
+

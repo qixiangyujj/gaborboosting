@@ -1150,8 +1150,8 @@ double CvGaborFeature::FERETdata(const char *pathname, int subject, const char* 
   
   double ve;
   int scale = iNu;
-  ve = val(filename, scale);
-  
+  ve = val(filename, -1);
+ 
   delete [] filename;
   
   

@@ -177,14 +177,16 @@ void AdaGabor::CvGaborFeaturePairSelect::clear()
  */
 void AdaGabor::CvGaborFeaturePairSelect::resume()
 {
+  printf("%s\n", mutfile);
   FILE * file;
     //file = fopen (filename,"r");
-  
+  printf("hello\n");
   if ((file=fopen( mutfile, "r" )) == NULL)
   {
-    printf("Cannot read file %s.\n", mutfile);
+    perror(mutfile);
     exit(1);
   }
+  
   printf("Loading pairs from the log file %s", mutfile);
   int x1,y1,Mu1,Nu1,x2,y2,Mu2,Nu2;
   float mutinf;
@@ -274,4 +276,5 @@ void AdaGabor::CvGaborFeaturePairSelect::setMutFile(const char* filename)
   //if(mutfile != NULL) delete [] mutfile;
   mutfile = new char[30];
   strcpy( mutfile, filename);
+  
 }

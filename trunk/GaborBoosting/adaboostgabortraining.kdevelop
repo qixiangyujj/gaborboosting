@@ -18,16 +18,16 @@
   </general>
   <kdevautoproject>
     <general>
-      <activetarget>src/MultiClassification/Recognition</activetarget>
-      <useconfiguration>debug</useconfiguration>
+      <activetarget>src/FindMutInf</activetarget>
+      <useconfiguration>optimized</useconfiguration>
     </general>
     <run>
-      <mainprogram/>
+      <mainprogram></mainprogram>
       <terminal>true</terminal>
       <directoryradio>build</directoryradio>
       <runarguments>
         <adaboostgabortraining/>
-        <MutInf>-src /mnt/export/rexm2vts/ -job 1 -o er234</MutInf>
+        <MutInf>-src /mnt/export/rexm2vts/ -job 103 -o /home/sir/sir02mz/local/D/mutinf/job103.txt</MutInf>
         <GaborProcess/>
         <adaboostgabortesting/>
         <prepare/>
@@ -41,7 +41,7 @@
         <Recognition></Recognition>
       </runarguments>
       <customdirectory>/home/sir/sir02mz/local/EXP/M1/</customdirectory>
-      <programargs/>
+      <programargs>-src /mnt/export/rexm2vts/ -job 103 -o /local/job103.txt</programargs>
       <autocompile>true</autocompile>
       <envvars/>
     </run>

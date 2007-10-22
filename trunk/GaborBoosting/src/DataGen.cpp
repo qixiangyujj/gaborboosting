@@ -36,9 +36,7 @@ int main(int argc, char *argv[])
   int sub = 4;
   int nfeatures = 200;
   const char *xm2vtspath= "/mnt/export/xm2vts_feature/";
-  
-  
-  
+
   
   /* The image properties*/
   
@@ -48,7 +46,7 @@ int main(int argc, char *argv[])
   int interval = 0;
   
   int norientations = 8;
-  int minscale = -1;
+  int minscale = 0;
   int maxscale = 3;
   int nScale = maxscale - minscale + 1;
   bool reduced = true;
@@ -94,7 +92,6 @@ int main(int argc, char *argv[])
   }
   */
 
-  
   return EXIT_SUCCESS;
 }
 

@@ -89,6 +89,9 @@ protected:
  
 };
 
+static int cmp_func( const void* _a, const void* _b, void* userdata );
+
+
 }
 
 #endif

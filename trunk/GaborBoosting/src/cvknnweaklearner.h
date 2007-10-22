@@ -17,54 +17,39 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "cvmultigabadafsm1.h"
+#ifndef MULTIADAGABORCVKNNWEAKLEARNER_H
+#define MULTIADAGABORCVKNNWEAKLEARNER_H
+#include <ml.h>
+#include "cvfacedb.h"
+#include "cvtrainingdata.h"
 #include "cvxm2vts.h"
-using namespace MultiAdaGabor;
 
-int main(int argc, char *argv[])
-{
-  
-  const char* srcpath = "/mnt/export/rexm2vts/";
-  const char* significantfile = "/home/sir/sir02mz/local/EXP/M1TEST/signficant.txt";
-  CvXm2vts xm2vts( srcpath );
-  xm2vts.setNumSub( 200 );
-  xm2vts.setNumPic( 4 );
-  
-  int height =55, width = 51, minscale=-1, maxscale=3,norientations=8,interval=0,bound=0,reduce=true;
-  CvPoolParams param( height, width, minscale, maxscale, norientations, interval, bound, reduce );
-  
-  
-  CvMultiGabAdaFSM1 fsm1(&xm2vts, &param);
-  fsm1.loadsign( significantfile );
-  
-  int nfeatures = fsm1.getNumFeatures();
-  //nfeatures = 10;
-  for(int i = 0 ; i < nfeatures; i++)
-  {
-    printf("Weaklearner %d ........\n", i);
-    fsm1.setCurrentIter( i );
-    if(i > 0)
-    {
-      char * weightname = new char[50];
-      sprintf(weightname, "/home/sir/sir02mz/local/EXP/M1TEST/weight_%d.xml", i-1);
-      fsm1.loadweights( weightname );
-      delete [] weightname;
-    }
-    fsm1.update();
-    printf("\n");
+namespace MultiAdaGabor {
+
+/**
+	@author Mian Zhou <M.Zhou@reading.ac.uk>
+*/
+class CvKNNWeakLearner{
+public:
+    CvKNNWeakLearner();
+
+    ~CvKNNWeakLearner();
+     CvKNNWeakLearner(CvFaceDB* db);
+    void train(CvTrainingData *data);
+    void clear();
+    double predicterror(int k, CvMat* data, CvMat* weights, CvMat* classes);
+
+protected:
+    double error;
+    int nClass;
+    int nelement;
+    int totalsamples;
+    CvKNearest* knn;
+    int nsamples;
+    int k;
     
-    
-   
-    
-  }
-  const char * inputname = "/local/FaceDB/XM2VTS/imglist.txt";
-  const char * outputname = "testingresults_1.txt";
-  
-  
-  fsm1.testing( inputname, outputname );
-  
-  return 0;
+};
+
 }
 
-
-
+#endif

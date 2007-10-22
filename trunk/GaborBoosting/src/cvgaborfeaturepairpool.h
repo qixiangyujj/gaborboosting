@@ -50,6 +50,10 @@ public:
     void build(CvGaborFeaturePool* pool, CvGaborFeature* start_feature, CvGaborFeature* end_feature);
     void build(CvGaborFeaturePool* pool);
      CvGaborFeaturePairPool(CvPoolParams *param, CvGaborFeature* start_feature, CvGaborFeature *end_feature);
+    void loadMutFile(const char* filename);
+    void MinMax(double *min, double *max);
+
+    
 
 protected:
     vector<CvGaborFeaturePair*> pairs;
@@ -62,6 +66,8 @@ private:
     void writeTXT(const char* filename);
 
 };
+
+bool SortPredicate( CvGaborFeaturePair *pair1, CvGaborFeaturePair *pair2 );
 
 }
 

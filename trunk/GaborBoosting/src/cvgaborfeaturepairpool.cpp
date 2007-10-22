@@ -298,7 +298,9 @@ AdaGabor::CvGaborFeaturePairPool::CvGaborFeaturePairPool(CvPoolParams *param, Cv
  */
 void AdaGabor::CvGaborFeaturePairPool::sort()
 {
-  std::sort(pairs.begin(), pairs.end());
+  printf("Start sorting ...........\n");
+  std::sort(pairs.begin(), pairs.end(), SortPredicate);
+  printf("\n\n");
 }
 
 
@@ -376,3 +378,75 @@ void AdaGabor::CvGaborFeaturePairPool::load(const char *featurepoolname, const c
 }
 
 
+
+
+/*!
+    \fn AdaGabor::CvGaborFeaturePairPool::loadMutFile(const char* filename)
+ */
+void AdaGabor::CvGaborFeaturePairPool::loadMutFile(const char* filename)
+{
+  FILE * file;
+  if ((file=fopen(filename,"r")) == NULL)
+  {
+    perror( filename );
+    exit(1);
+  }
+  
+  float mutinf;
+  int count = 0;
+  printf("Load from the file %s   ........", filename);
+  while (!feof(file))
+  {
+    int flag = fscanf(file, " %f\n", &mutinf);
+    if ((flag == EOF)||(flag == 0)) break;
+    //printf("%d\n",count);
+    CvGaborFeaturePair *pair = getPair(count);
+    pair->setMutInf( mutinf );
+    count++;
+  }
+  printf("\n%d load from the file.\n", count);
+  if(count != size())
+  {
+    perror("the number of entry in the file are not same with the PairPool.");
+    exit(1);
+  }
+  fclose(file);
+  printf("\n\n");
+}
+
+
+
+
+
+bool AdaGabor::SortPredicate( CvGaborFeaturePair *pair1, CvGaborFeaturePair *pair2 )
+{
+  double mutinf1 = pair1->getMutInf();
+  double mutinf2 = pair2->getMutInf();
+  if(mutinf1 < mutinf2) return true;
+  else false;
+}
+
+
+
+
+/*!
+    \fn AdaGabor::CvGaborFeaturePairPool::MinMax(double *min, double *max)
+ */
+void AdaGabor::CvGaborFeaturePairPool::MinMax(double *min, double *max)
+{
+  int num = size();
+  double *array = new double[num];
+  
+  for(int i = 0; i < num ; i++)
+  {
+    CvGaborFeaturePair *pair = getPair(i);
+    double mutinf = pair->getMutInf();
+    array[i] = mutinf;
+  }
+  
+  
+  std::sort(array, array+num);
+  *min = array[0];
+  *max = array[num-1];
+  delete [] array;
+}

@@ -666,6 +666,7 @@ CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
   }
   double vfeature, label, criterion = 0.0, flabel=0.0, alpha;
   CvMat *rank = cvCreateMat(1, nClass, CV_32FC1);
+  cvSetZero( rank );
   for (int i = 0; i < nweaks; i++)
   {
       /* load feature value */
@@ -686,8 +687,24 @@ CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
       cvSetReal1D( tmpMat, (int)(c-1), 1.0 );
     }
     alpha = alphas[i];
-    cvConvertScale( tmpMat, tmpMat, alpha, 0.0 );
-    cvAdd( rank, tmpMat, rank, NULL );
+    
+    
+    //cvConvertScale( tmpMat, tmpMat, alpha, 0.0 );
+    for(int j = 0; j < nClass; j++)
+    {
+      double v = cvGetReal1D(tmpMat, j);
+      cvSetReal1D(tmpMat, j , v*alpha);
+    }
+    
+    //cvAdd( rank, tmpMat, rank, NULL );
+    for(int j = 0; j < nClass; j++)
+    {
+      double v1 = cvGetReal1D(tmpMat, j);
+      double v2 = cvGetReal1D(rank, j);
+      cvSetReal1D(rank, j , v1+v2);
+    }
+    
+    
     cvReleaseMat( &resultMat );
     cvReleaseMat( &tmpMat );
   }
@@ -697,7 +714,9 @@ CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
   CvPoint min_loc, max_loc;
   cvMinMaxLoc( rank, &min_val, &max_val, &min_loc, &max_loc, NULL );
   
-  CvMat *cls = cvCreateMat(1, nClass, CV_32FC1);
+
+  
+  /*  CvMat *cls = cvCreateMat(1, nClass, CV_32FC1);
   for(int i = 0; i < nClass; i++)
   {
     if(cvGetReal1D(rank, i) == max_val) cvSetReal1D(cls, i, 1.0);
@@ -713,7 +732,8 @@ CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
   
   
   
-  return cls;
+  return cls;*/
+  return rank;
 }
 
 
@@ -763,17 +783,70 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::testing(const char* filelist, const char*
   {
     if (fscanf(fs, "%s", imgname) == EOF) break;
     CvMat *cls = predict( imgname, nofeatures );
+    
+    char *cindexname = new char[50];
+    sprintf( cindexname, "%s.xml", imgname );
+    cvSave( cindexname, cls, NULL, NULL, cvAttrList() );
+    delete [] cindexname;
+    
+    
+    
+    //sort the matrix
+    
+    
+    CvMemStorage* storage = cvCreateMemStorage(0);
+    CvSeq* seq = cvCreateSeq( CV_32FC2, sizeof(CvSeq), sizeof(CvPoint2D32f), storage );
+    
+    for( int i = 0; i < nClass; i++ )
+    {
+      CvPoint2D32f pt;
+      pt.x = (float)(i+1);
+      pt.y = cvGetReal1D(cls, i);
+      cvSeqPush( seq, &pt );
+    }
+    
+    cvSeqSort( seq, cmp_func, 0 );
+    
+
     fprintf( file, "%s ", imgname);
     printf( "%s is Class ", imgname);
-    for(int i = 0; i < nClass; i++)
+    
+    //get class no
+    string str(imgname);
+    size_t found;
+    found = str.find_last_of("/\\");
+    string str1 = str.substr(found+1);
+    found = str1.find_last_of("_");
+    string str2 = str1.substr(0, found);
+    
+    
+    int sub = atoi(str2.c_str());
+    
+    for( int i = 0; i < seq->total; i++ )
     {
-      if(cvGetReal1D(cls, i) == 1.0)
+      CvPoint2D32f* pt = (CvPoint2D32f*)cvGetSeqElem( seq, i );
+      if((int)(pt->x)==sub)
       {
-        fprintf( file, " %d ", i+1);
-        printf( " %d ", i+1);
+        fprintf( file, " (%d %f) ", i, pt->y);
+        printf( " (%d %f) ", i, pt->y);
+        break;
       }
     }
+    
+    for(int i = 0; i < 10; i++)
+    {
+      CvPoint2D32f* pt = (CvPoint2D32f*)cvGetSeqElem( seq, i );
+      fprintf( file, " %d %f ", (int)(pt->x), pt->y);
+      printf( " %d %f ", (int)(pt->x), pt->y);
+      
+    }
     cvReleaseMat(&cls);
+    
+    
+    
+    fprintf( file, "\n ");
+    printf( "\n");
+    cvReleaseMemStorage( &storage );
   }
   delete [] imgname;
   fclose(file);
@@ -788,3 +861,15 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::testing(const char* filelist, const char*
 {
   testing(filelist, resultfile, mweaks.size());
 }
+
+
+
+static int MultiAdaGabor::cmp_func( const void* _a, const void* _b, void* userdata )
+{
+  CvPoint2D32f* a = (CvPoint2D32f*)_a;
+  CvPoint2D32f* b = (CvPoint2D32f*)_b;
+  if (a->y > b->y) return -1;
+  else if(a->y < b->y) return 1;
+  else return 0;
+}
+

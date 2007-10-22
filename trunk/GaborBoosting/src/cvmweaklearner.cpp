@@ -36,7 +36,7 @@ CvMWeakLearner::~CvMWeakLearner()
 
 
 /*!
-\fn MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(CvFaceDB *db, int Type)
+    \fn MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(CvFaceDB *db, int Type)
  */
 MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(CvFaceDB *db, int Type)
 {
@@ -54,7 +54,7 @@ MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(CvFaceDB *db, int Type)
 
 
 /*!
-\fn MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(int nclass, int type)
+    \fn MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(int nclass, int type)
  */
 MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(int nclass, int type)
 {
