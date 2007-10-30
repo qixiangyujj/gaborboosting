@@ -40,16 +40,7 @@ CvMWeakLearner::~CvMWeakLearner()
  */
 MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(CvFaceDB *db, int Type)
 {
-  this->type = Type;
-  CvXm2vts *xdb = (CvXm2vts*)db;
-  this->nClass = xdb->get_num_sub();
-  this->nsample = xdb->get_num_pic();
-  this->totalsamples = nClass*nsample;
-  for (int i = 0; i < nClass; i++)
-  {
-    CvWeakLearner weaklearner;
-    classifiers.push_back( weaklearner );
-  }
+  init( db, Type);
 }
 
 
@@ -58,13 +49,7 @@ MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(CvFaceDB *db, int Type)
  */
 MultiAdaGabor::CvMWeakLearner::CvMWeakLearner(int nclass, int type)
 {
-  this->nClass = nclass;
-  this->type = type;
-  for (int i = 0; i < nClass; i++)
-  {
-    CvWeakLearner weaklearner;
-    classifiers.push_back( weaklearner );
-  }
+  init( nclass, type );
 }
 
 
@@ -266,4 +251,67 @@ CvMat* MultiAdaGabor::CvMWeakLearner::mpredict(double val)
 void MultiAdaGabor::CvMWeakLearner::clear()
 {
   classifiers.clear();
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMWeakLearner::getTheshold(int clsIdx)
+ */
+double MultiAdaGabor::CvMWeakLearner::getTheshold(int clsIdx)
+{
+  double t = classifiers[clsIdx].getthreshold();
+  return t;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMWeakLearner::getParity(int clsIdx)
+ */
+double MultiAdaGabor::CvMWeakLearner::getParity(int clsIdx)
+{
+  double p = classifiers[clsIdx].getparity();
+  return p;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMWeakLearner::getWeakLearner(int index)
+ */
+CvWeakLearner* MultiAdaGabor::CvMWeakLearner::getWeakLearner(int index)
+{
+  CvWeakLearner *weak = &(classifiers[index]);
+  return weak;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMWeakLearner::init(int nclass, int type)
+ */
+void MultiAdaGabor::CvMWeakLearner::init(int nclass, int type)
+{
+  this->nClass = nclass;
+  this->type = type;
+  for (int i = 0; i < nClass; i++)
+  {
+    CvWeakLearner weaklearner;
+    classifiers.push_back( weaklearner );
+  }
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMWeakLearner::init(CvFaceDB *db, int Type)
+ */
+void MultiAdaGabor::CvMWeakLearner::init(CvFaceDB *db, int Type)
+{
+  this->type = Type;
+  CvXm2vts *xdb = (CvXm2vts*)db;
+  this->nClass = xdb->get_num_sub();
+  this->nsample = xdb->get_num_pic();
+  this->totalsamples = nClass*nsample;
+  for (int i = 0; i < nClass; i++)
+  {
+    CvWeakLearner weaklearner;
+    classifiers.push_back( weaklearner );
+  }
 }

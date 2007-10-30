@@ -23,6 +23,7 @@ using namespace MultiAdaGabor;
 
 int main(int argc, char *argv[])
 {
+  bool isWeakFile = true;
   
   const char* srcpath = "/mnt/export/rexm2vts/";
   const char* significantfile = "/home/sir/sir02mz/local/EXP/M1TEST/signficant.txt";
@@ -35,32 +36,35 @@ int main(int argc, char *argv[])
   
   
   CvMultiGabAdaFSM1 fsm1(&xm2vts, &param);
-  fsm1.loadsign( significantfile );
-  
-  int nfeatures = fsm1.getNumFeatures();
-  //nfeatures = 10;
-  for(int i = 0 ; i < nfeatures; i++)
-  {
-    printf("Weaklearner %d ........\n", i);
-    fsm1.setCurrentIter( i );
-    if(i > 0)
-    {
-      char * weightname = new char[50];
-      sprintf(weightname, "/home/sir/sir02mz/local/EXP/M1TEST/weight_%d.xml", i-1);
-      fsm1.loadweights( weightname );
-      delete [] weightname;
-    }
-    fsm1.update();
-    printf("\n");
-    
-    
-   
-    
-  }
   const char * inputname = "/local/FaceDB/XM2VTS/imglist.txt";
-  const char * outputname = "testingresults_1.txt";
+  const char * outputname = "testingresults_m.txt";
+  if(!isWeakFile)
+  {
+    fsm1.loadsign( significantfile );
+    int nfeatures = fsm1.getNumFeatures();
+    //nfeatures = 1;
+    for(int i = 0 ; i < nfeatures; i++)
+    {
+      printf("Weaklearner %d ........\n", i);
+      fsm1.setCurrentIter( i );
+      if(i > 0)
+      {
+        char * weightname = new char[50];
+        sprintf(weightname, "/home/sir/sir02mz/local/EXP/M1TEST/weight_%d.xml", i-1);
+        fsm1.loadweights( weightname );
+        delete [] weightname;
+      }
+      fsm1.update();
+      printf("\n");
+    }
+    
   
-  
+    fsm1.saveweaks("/local/mweaks.xml");
+  }
+  else
+  {
+    fsm1.loadweaks("/local/mweaks.xml");
+  }
   fsm1.testing( inputname, outputname );
   
   return 0;

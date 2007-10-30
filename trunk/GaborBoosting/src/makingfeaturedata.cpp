@@ -480,15 +480,12 @@ void PrepareData::MakingFeatureData::runferet( CvFeret *feret, CvPoolParams *par
            feature->getNu(), feature->getMu(), feature->getx(), feature->gety());
     CvTrainingData *data;
     data = feature->_FERETBin( feret, param);
-    
-    
-    
+
     char *filename = new char[100];
     generatename( feature, filename );
     savefeaturedata( data, filename );
     printf("Saved as %s\n", filename);
-    
-    
+
     time (&end);
     dif = difftime (end,start);
     printf("It took %.2lf seconds.\n", dif);

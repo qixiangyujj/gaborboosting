@@ -978,3 +978,5 @@ void CvGabAdaFeatureSelect::loadindex(const char *filename)
   CvSize size = cvGetSize( index );
   nopositivesampels = size.width;
 }
+
+

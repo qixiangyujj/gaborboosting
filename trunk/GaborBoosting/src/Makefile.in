@@ -42,7 +42,8 @@ bin_PROGRAMS = adaboostgabortraining$(EXEEXT) MutInf$(EXEEXT) \
 	GaborProcess$(EXEEXT) adaboostgabortesting$(EXEEXT) \
 	prepare$(EXEEXT) sign2weaks$(EXEEXT) \
 	PairPoolPartition$(EXEEXT) adaboostgabortraining.M1$(EXEEXT) \
-	GaborTesting$(EXEEXT)
+	GaborTesting$(EXEEXT) FindMutInf$(EXEEXT) trainFERET$(EXEEXT) \
+	testFERET$(EXEEXT)
 subdir = src
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
@@ -79,10 +80,14 @@ am_libAdaGabor_a_OBJECTS = cvadaboost.$(OBJEXT) \
 	makingfeaturedata.$(OBJEXT) \
 	cvmultigabadafeatureselect.$(OBJEXT) \
 	cvmultigabadafsm1.$(OBJEXT) cvmweaklearner.$(OBJEXT) \
-	MatUsage.$(OBJEXT) cvferet.$(OBJEXT) cvsubject.$(OBJEXT)
+	MatUsage.$(OBJEXT) cvferet.$(OBJEXT) cvsubject.$(OBJEXT) \
+	cvknnweaklearner.$(OBJEXT) cvbingabadafeatureselect.$(OBJEXT)
 libAdaGabor_a_OBJECTS = $(am_libAdaGabor_a_OBJECTS)
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_FindMutInf_OBJECTS = findMutInf.$(OBJEXT)
+FindMutInf_OBJECTS = $(am_FindMutInf_OBJECTS)
+FindMutInf_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 am_GaborProcess_OBJECTS = DataGen.$(OBJEXT)
 GaborProcess_OBJECTS = $(am_GaborProcess_OBJECTS)
 GaborProcess_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
@@ -113,6 +118,12 @@ prepare_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 am_sign2weaks_OBJECTS = sign2weaks.$(OBJEXT)
 sign2weaks_OBJECTS = $(am_sign2weaks_OBJECTS)
 sign2weaks_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
+am_testFERET_OBJECTS = ferettesting.$(OBJEXT)
+testFERET_OBJECTS = $(am_testFERET_OBJECTS)
+testFERET_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
+am_trainFERET_OBJECTS = ferettraining.$(OBJEXT)
+trainFERET_OBJECTS = $(am_trainFERET_OBJECTS)
+trainFERET_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -124,18 +135,22 @@ LTCXXCOMPILE = $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) \
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(libAdaGabor_a_SOURCES) $(GaborProcess_SOURCES) \
-	$(GaborTesting_SOURCES) $(MutInf_SOURCES) \
-	$(PairPoolPartition_SOURCES) $(adaboostgabortesting_SOURCES) \
+SOURCES = $(libAdaGabor_a_SOURCES) $(FindMutInf_SOURCES) \
+	$(GaborProcess_SOURCES) $(GaborTesting_SOURCES) \
+	$(MutInf_SOURCES) $(PairPoolPartition_SOURCES) \
+	$(adaboostgabortesting_SOURCES) \
 	$(adaboostgabortraining_SOURCES) \
 	$(adaboostgabortraining_M1_SOURCES) $(prepare_SOURCES) \
-	$(sign2weaks_SOURCES)
-DIST_SOURCES = $(libAdaGabor_a_SOURCES) $(GaborProcess_SOURCES) \
-	$(GaborTesting_SOURCES) $(MutInf_SOURCES) \
-	$(PairPoolPartition_SOURCES) $(adaboostgabortesting_SOURCES) \
+	$(sign2weaks_SOURCES) $(testFERET_SOURCES) \
+	$(trainFERET_SOURCES)
+DIST_SOURCES = $(libAdaGabor_a_SOURCES) $(FindMutInf_SOURCES) \
+	$(GaborProcess_SOURCES) $(GaborTesting_SOURCES) \
+	$(MutInf_SOURCES) $(PairPoolPartition_SOURCES) \
+	$(adaboostgabortesting_SOURCES) \
 	$(adaboostgabortraining_SOURCES) \
 	$(adaboostgabortraining_M1_SOURCES) $(prepare_SOURCES) \
-	$(sign2weaks_SOURCES)
+	$(sign2weaks_SOURCES) $(testFERET_SOURCES) \
+	$(trainFERET_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-exec-recursive install-info-recursive \
@@ -256,23 +271,25 @@ INCLUDES = -I/usr/local/include/opencv $(all_includes)
 # the library search path.
 adaboostgabortraining_LDFLAGS = $(all_libraries) 
 noinst_HEADERS = cvadaboost.h cvbinarytrainingdata.h cvgabadafeatureselect.h \
-						cvgaborfeature.h cvgaborfeaturepool.h cvgabor.h cvmultitrainingdata.h cvtestingdata.h \
-						cvtrainingdata.h cvweaklearner.h cvgaborfeaturepair.h cvgaborfeaturepairpool.h \
-						cvmutinf.h cventropy.h cvlookuptable.h cvbin.h cv2bins.h \
-						cvgaborfeaturepairselect.h cvfacedb.h cvxm2vts.h cvpoolparams.h PrepareData.h makingfeaturedata.h \
-				cvmultigabadafeatureselect.h cvmultigabadafsm1.h cvmweaklearner.h MatUsage.h cvferet.h cvsubject.h
+								cvgaborfeature.h cvgaborfeaturepool.h cvgabor.h cvmultitrainingdata.h cvtestingdata.h \
+								cvtrainingdata.h cvweaklearner.h cvgaborfeaturepair.h cvgaborfeaturepairpool.h \
+								cvmutinf.h cventropy.h cvlookuptable.h cvbin.h cv2bins.h \
+								cvgaborfeaturepairselect.h cvfacedb.h cvxm2vts.h cvpoolparams.h PrepareData.h makingfeaturedata.h \
+						cvmultigabadafeatureselect.h cvmultigabadafsm1.h cvmweaklearner.h MatUsage.h cvferet.h cvsubject.h \
+		cvknnweaklearner.h cvbingabadafeatureselect.h
 
 adaboostgabortraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lcv -lcxcore \
 	-lhighgui -L/usr/local/lib -lml
 
 lib_LIBRARIES = libAdaGabor.a
 libAdaGabor_a_SOURCES = cvadaboost.cpp cvbinarytrainingdata.cpp \
-						cvbin.cpp	cventropy.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
-						cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp cvgaborfeaturepool.cpp	cvlookuptable.cpp \
-						cvmultitrainingdata.cpp cvmutinf.cpp cvtestingdata.cpp	cvtrainingdata.cpp cvweaklearner.cpp \
-						cv2bins.cpp cvgaborfeaturepairselect.cpp cvfacedb.cpp cvxm2vts.cpp cvpoolparams.cpp \
-					makingfeaturedata.cpp cvmultigabadafeatureselect.cpp cvmultigabadafsm1.cpp cvmweaklearner.cpp \
-		MatUsage.cpp cvferet.cpp cvsubject.cpp
+								cvbin.cpp	cventropy.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
+								cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp cvgaborfeaturepool.cpp	cvlookuptable.cpp \
+								cvmultitrainingdata.cpp cvmutinf.cpp cvtestingdata.cpp	cvtrainingdata.cpp cvweaklearner.cpp \
+								cv2bins.cpp cvgaborfeaturepairselect.cpp cvfacedb.cpp cvxm2vts.cpp cvpoolparams.cpp \
+							makingfeaturedata.cpp cvmultigabadafeatureselect.cpp cvmultigabadafsm1.cpp cvmweaklearner.cpp \
+				MatUsage.cpp cvferet.cpp cvsubject.cpp cvknnweaklearner.cpp \
+	cvbingabadafeatureselect.cpp
 
 MutInf_SOURCES = MutInformation.cpp
 MutInf_LDADD = $(top_builddir)/src/libAdaGabor.a -lml -L/usr/local/lib -lcxcore \
@@ -306,6 +323,18 @@ PairPoolPartition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
 GaborTesting_SOURCES = GaborTest.cpp
 GaborTesting_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lcv \
 	-lhighgui -lcxcore
+
+FindMutInf_SOURCES = findMutInf.cpp
+FindMutInf_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lcxcore \
+	-lcv
+
+trainFERET_SOURCES = ferettraining.cpp
+trainFERET_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui -lml \
+	-L/usr/local/lib -lcxcore -lcv
+
+testFERET_SOURCES = ferettesting.cpp
+testFERET_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui -L/usr/local/lib \
+	-lml -lcxcore -lcv
 
 all: all-recursive
 
@@ -401,6 +430,9 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
+FindMutInf$(EXEEXT): $(FindMutInf_OBJECTS) $(FindMutInf_DEPENDENCIES) 
+	@rm -f FindMutInf$(EXEEXT)
+	$(CXXLINK) $(FindMutInf_LDFLAGS) $(FindMutInf_OBJECTS) $(FindMutInf_LDADD) $(LIBS)
 GaborProcess$(EXEEXT): $(GaborProcess_OBJECTS) $(GaborProcess_DEPENDENCIES) 
 	@rm -f GaborProcess$(EXEEXT)
 	$(CXXLINK) $(GaborProcess_LDFLAGS) $(GaborProcess_OBJECTS) $(GaborProcess_LDADD) $(LIBS)
@@ -428,6 +460,12 @@ prepare$(EXEEXT): $(prepare_OBJECTS) $(prepare_DEPENDENCIES)
 sign2weaks$(EXEEXT): $(sign2weaks_OBJECTS) $(sign2weaks_DEPENDENCIES) 
 	@rm -f sign2weaks$(EXEEXT)
 	$(CXXLINK) $(sign2weaks_LDFLAGS) $(sign2weaks_OBJECTS) $(sign2weaks_LDADD) $(LIBS)
+testFERET$(EXEEXT): $(testFERET_OBJECTS) $(testFERET_DEPENDENCIES) 
+	@rm -f testFERET$(EXEEXT)
+	$(CXXLINK) $(testFERET_LDFLAGS) $(testFERET_OBJECTS) $(testFERET_LDADD) $(LIBS)
+trainFERET$(EXEEXT): $(trainFERET_OBJECTS) $(trainFERET_DEPENDENCIES) 
+	@rm -f trainFERET$(EXEEXT)
+	$(CXXLINK) $(trainFERET_LDFLAGS) $(trainFERET_OBJECTS) $(trainFERET_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -447,6 +485,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvadaboost.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvbin.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvbinarytrainingdata.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvbingabadafeatureselect.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cventropy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvfacedb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvferet.Po@am__quote@
@@ -457,6 +496,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvgaborfeaturepairpool.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvgaborfeaturepairselect.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvgaborfeaturepool.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvknnweaklearner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvlookuptable.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvmultigabadafeatureselect.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvmultigabadafsm1.Po@am__quote@
@@ -469,6 +509,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvtrainingdata.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvweaklearner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvxm2vts.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ferettesting.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ferettraining.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/findMutInf.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/makingfeaturedata.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/prepare.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sign2weaks.Po@am__quote@

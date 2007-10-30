@@ -52,6 +52,11 @@ public:
     void updateweight(CvTrainingData *data);
     CvMat* mpredict(double val);
     void clear();
+    double getTheshold(int clsIdx);
+    double getParity(int clsIdx);
+    CvWeakLearner* getWeakLearner(int index);
+    void init(int nclass, int type);
+    void init(CvFaceDB *db, int Type);
    
 
 protected:

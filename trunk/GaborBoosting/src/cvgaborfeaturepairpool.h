@@ -52,6 +52,9 @@ public:
      CvGaborFeaturePairPool(CvPoolParams *param, CvGaborFeature* start_feature, CvGaborFeature *end_feature);
     void loadMutFile(const char* filename);
     void MinMax(double *min, double *max);
+    int numMutInf(double mutinf, const char* mode);
+    AdaGabor::CvGaborFeaturePairPool* select(double mutinf, const char* mode);
+    void clearPairs();
 
     
 
@@ -64,6 +67,7 @@ protected:
 private:
     void writeXML(const char *filename);
     void writeTXT(const char* filename);
+    
 
 };
 

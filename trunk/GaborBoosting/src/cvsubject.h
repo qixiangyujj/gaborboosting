@@ -42,7 +42,7 @@ public:
     string getname(int no);
 
 protected:
-  string ID;
+    string ID;
     int id;
     int num;
     vector<string> nametable;

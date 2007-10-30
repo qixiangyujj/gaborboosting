@@ -29,7 +29,7 @@ public:
     CvFaceDB();
 
     virtual ~CvFaceDB();
-     char* getName();
+    char* getName();
     virtual CvFaceDB* clone();
 
 protected:

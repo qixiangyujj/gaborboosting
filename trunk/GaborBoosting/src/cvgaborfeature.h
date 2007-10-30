@@ -80,6 +80,7 @@ public:
     CvTrainingData* _FERETBin(const char *pathname, bool reduce);
     double FERETdata(const char *pathname, int subject, const char* imgname, bool reduce);
     double FERETdata(const char *pathname, int subject, const char* imgname);
+    CvTrainingData* _FERETBin_F(CvFeret* feret, int possub, CvMat *index);
 
 protected:
     int ix;

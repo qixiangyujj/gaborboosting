@@ -572,6 +572,8 @@ void CvTrainingData::setdata(CvMat *mat)
     }
 
     //Valcache = cvCloneMat(mat);
+    CvSize size1 = cvGetSize(mat);
+    CvSize size2 = cvGetSize(Valcache);
     cvCopy(mat, Valcache);
 }
 

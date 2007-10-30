@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
   int interval = 0;
   
   int norientations = 8;
-  int minscale = 0;
+  int minscale = -1;
   int maxscale = 3;
   int nScale = maxscale - minscale + 1;
   bool reduced = true;

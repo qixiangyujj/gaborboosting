@@ -1056,7 +1056,7 @@ double CvGaborFeature::val(const char *filename, int scale)
   int reheight = (int)ceil(dheight);
   IplImage * reimg = cvCreateImage(cvSize(rewidth, reheight), IPL_DEPTH_32F, 1);
   cvResize( img, reimg, CV_INTER_CUBIC );
-  double ve = val(reimg);
+  double ve = cvGetReal2D((IplImage*)reimg, iy-1, ix-1);
   cvReleaseImage( &reimg );
   cvReleaseImage( &img );
   return ve;
@@ -1165,4 +1165,37 @@ double CvGaborFeature::FERETdata(const char *pathname, int subject, const char* 
 double CvGaborFeature::FERETdata(const char *pathname, int subject, const char* imgname)
 {
     /// @todo implement me
+}
+
+
+
+
+/*!
+    \fn CvGaborFeature::_FERETBin_F(CvFeret* feret, int possub, CvMat *index)
+ */
+CvTrainingData* CvGaborFeature::_FERETBin_F(CvFeret* feret, int possub, CvMat *index)
+{
+  int nosub = feret->getSub();
+  int nsamples = feret->getNum();
+  /*    Generate filename   */
+  string path = feret->getMainpath();
+  char * filename = new char[50];
+  sprintf(filename, "%s/%d/%d/%d_%d.xml", path.c_str(), iNu, iMu, ix, iy);
+  
+  
+  CvMat* mat = (CvMat*)cvLoad( filename, NULL, NULL, NULL );
+  //cvTranspose( mat, mat );
+  CvTrainingData *bindata = new CvTrainingData;
+  bindata->init(2, nsamples, 1);
+  bindata->setdata( mat );
+  
+  for(int i = 0; i < nsamples; i++)
+  {
+    int id = (int)cvGetReal1D(index, i);
+    if(id == possub) bindata->setclsidxofsample( 1, i);
+    else bindata->setclsidxofsample( 2, i);
+  }
+  bindata->statclsdist();
+  delete [] filename;
+  return bindata;
 }

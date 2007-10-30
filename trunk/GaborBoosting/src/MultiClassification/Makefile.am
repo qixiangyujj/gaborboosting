@@ -12,5 +12,7 @@ update_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml -lcxcore 
 
 
 Recognition_SOURCES = FaceRecog.cpp
-Recognition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml \
-	-lcv -lcxcore
+Recognition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
+	-lhighgui -lml -lcv -lcxcore
+allfeaturetraining_LDFLAGS = -all-static
+update_LDFLAGS = -all-static

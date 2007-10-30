@@ -42,7 +42,7 @@ bin_PROGRAMS = adaboostgabortraining$(EXEEXT) MutInf$(EXEEXT) \
 	GaborProcess$(EXEEXT) adaboostgabortesting$(EXEEXT) \
 	prepare$(EXEEXT) sign2weaks$(EXEEXT) \
 	PairPoolPartition$(EXEEXT) adaboostgabortraining.M1$(EXEEXT) \
-	GaborTesting$(EXEEXT)
+	GaborTesting$(EXEEXT) FindMutInf$(EXEEXT)
 subdir = src
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
@@ -79,10 +79,14 @@ am_libAdaGabor_a_OBJECTS = cvadaboost.$(OBJEXT) \
 	makingfeaturedata.$(OBJEXT) \
 	cvmultigabadafeatureselect.$(OBJEXT) \
 	cvmultigabadafsm1.$(OBJEXT) cvmweaklearner.$(OBJEXT) \
-	MatUsage.$(OBJEXT) cvferet.$(OBJEXT) cvsubject.$(OBJEXT)
+	MatUsage.$(OBJEXT) cvferet.$(OBJEXT) cvsubject.$(OBJEXT) \
+	cvknnweaklearner.$(OBJEXT)
 libAdaGabor_a_OBJECTS = $(am_libAdaGabor_a_OBJECTS)
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_FindMutInf_OBJECTS = findMutInf.$(OBJEXT)
+FindMutInf_OBJECTS = $(am_FindMutInf_OBJECTS)
+FindMutInf_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 am_GaborProcess_OBJECTS = DataGen.$(OBJEXT)
 GaborProcess_OBJECTS = $(am_GaborProcess_OBJECTS)
 GaborProcess_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
@@ -124,15 +128,17 @@ LTCXXCOMPILE = $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) \
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(libAdaGabor_a_SOURCES) $(GaborProcess_SOURCES) \
-	$(GaborTesting_SOURCES) $(MutInf_SOURCES) \
-	$(PairPoolPartition_SOURCES) $(adaboostgabortesting_SOURCES) \
+SOURCES = $(libAdaGabor_a_SOURCES) $(FindMutInf_SOURCES) \
+	$(GaborProcess_SOURCES) $(GaborTesting_SOURCES) \
+	$(MutInf_SOURCES) $(PairPoolPartition_SOURCES) \
+	$(adaboostgabortesting_SOURCES) \
 	$(adaboostgabortraining_SOURCES) \
 	$(adaboostgabortraining_M1_SOURCES) $(prepare_SOURCES) \
 	$(sign2weaks_SOURCES)
-DIST_SOURCES = $(libAdaGabor_a_SOURCES) $(GaborProcess_SOURCES) \
-	$(GaborTesting_SOURCES) $(MutInf_SOURCES) \
-	$(PairPoolPartition_SOURCES) $(adaboostgabortesting_SOURCES) \
+DIST_SOURCES = $(libAdaGabor_a_SOURCES) $(FindMutInf_SOURCES) \
+	$(GaborProcess_SOURCES) $(GaborTesting_SOURCES) \
+	$(MutInf_SOURCES) $(PairPoolPartition_SOURCES) \
+	$(adaboostgabortesting_SOURCES) \
 	$(adaboostgabortraining_SOURCES) \
 	$(adaboostgabortraining_M1_SOURCES) $(prepare_SOURCES) \
 	$(sign2weaks_SOURCES)
@@ -256,23 +262,24 @@ INCLUDES = -I/usr/local/include/opencv $(all_includes)
 # the library search path.
 adaboostgabortraining_LDFLAGS = $(all_libraries) 
 noinst_HEADERS = cvadaboost.h cvbinarytrainingdata.h cvgabadafeatureselect.h \
-						cvgaborfeature.h cvgaborfeaturepool.h cvgabor.h cvmultitrainingdata.h cvtestingdata.h \
-						cvtrainingdata.h cvweaklearner.h cvgaborfeaturepair.h cvgaborfeaturepairpool.h \
-						cvmutinf.h cventropy.h cvlookuptable.h cvbin.h cv2bins.h \
-						cvgaborfeaturepairselect.h cvfacedb.h cvxm2vts.h cvpoolparams.h PrepareData.h makingfeaturedata.h \
-				cvmultigabadafeatureselect.h cvmultigabadafsm1.h cvmweaklearner.h MatUsage.h cvferet.h cvsubject.h
+							cvgaborfeature.h cvgaborfeaturepool.h cvgabor.h cvmultitrainingdata.h cvtestingdata.h \
+							cvtrainingdata.h cvweaklearner.h cvgaborfeaturepair.h cvgaborfeaturepairpool.h \
+							cvmutinf.h cventropy.h cvlookuptable.h cvbin.h cv2bins.h \
+							cvgaborfeaturepairselect.h cvfacedb.h cvxm2vts.h cvpoolparams.h PrepareData.h makingfeaturedata.h \
+					cvmultigabadafeatureselect.h cvmultigabadafsm1.h cvmweaklearner.h MatUsage.h cvferet.h cvsubject.h \
+	cvknnweaklearner.h
 
 adaboostgabortraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lcv -lcxcore \
 	-lhighgui -L/usr/local/lib -lml
 
 lib_LIBRARIES = libAdaGabor.a
 libAdaGabor_a_SOURCES = cvadaboost.cpp cvbinarytrainingdata.cpp \
-						cvbin.cpp	cventropy.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
-						cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp cvgaborfeaturepool.cpp	cvlookuptable.cpp \
-						cvmultitrainingdata.cpp cvmutinf.cpp cvtestingdata.cpp	cvtrainingdata.cpp cvweaklearner.cpp \
-						cv2bins.cpp cvgaborfeaturepairselect.cpp cvfacedb.cpp cvxm2vts.cpp cvpoolparams.cpp \
-					makingfeaturedata.cpp cvmultigabadafeatureselect.cpp cvmultigabadafsm1.cpp cvmweaklearner.cpp \
-		MatUsage.cpp cvferet.cpp cvsubject.cpp
+							cvbin.cpp	cventropy.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
+							cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp cvgaborfeaturepool.cpp	cvlookuptable.cpp \
+							cvmultitrainingdata.cpp cvmutinf.cpp cvtestingdata.cpp	cvtrainingdata.cpp cvweaklearner.cpp \
+							cv2bins.cpp cvgaborfeaturepairselect.cpp cvfacedb.cpp cvxm2vts.cpp cvpoolparams.cpp \
+						makingfeaturedata.cpp cvmultigabadafeatureselect.cpp cvmultigabadafsm1.cpp cvmweaklearner.cpp \
+			MatUsage.cpp cvferet.cpp cvsubject.cpp cvknnweaklearner.cpp
 
 MutInf_SOURCES = MutInformation.cpp
 MutInf_LDADD = $(top_builddir)/src/libAdaGabor.a -lml -L/usr/local/lib -lcxcore \
@@ -306,6 +313,10 @@ PairPoolPartition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
 GaborTesting_SOURCES = GaborTest.cpp
 GaborTesting_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lcv \
 	-lhighgui -lcxcore
+
+FindMutInf_SOURCES = findMutInf.cpp
+FindMutInf_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lcxcore \
+	-lcv
 
 all: all-recursive
 
@@ -401,6 +412,9 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
+FindMutInf$(EXEEXT): $(FindMutInf_OBJECTS) $(FindMutInf_DEPENDENCIES) 
+	@rm -f FindMutInf$(EXEEXT)
+	$(CXXLINK) $(FindMutInf_LDFLAGS) $(FindMutInf_OBJECTS) $(FindMutInf_LDADD) $(LIBS)
 GaborProcess$(EXEEXT): $(GaborProcess_OBJECTS) $(GaborProcess_DEPENDENCIES) 
 	@rm -f GaborProcess$(EXEEXT)
 	$(CXXLINK) $(GaborProcess_LDFLAGS) $(GaborProcess_OBJECTS) $(GaborProcess_LDADD) $(LIBS)
@@ -457,6 +471,7 @@ include ./$(DEPDIR)/cvgaborfeaturepair.Po
 include ./$(DEPDIR)/cvgaborfeaturepairpool.Po
 include ./$(DEPDIR)/cvgaborfeaturepairselect.Po
 include ./$(DEPDIR)/cvgaborfeaturepool.Po
+include ./$(DEPDIR)/cvknnweaklearner.Po
 include ./$(DEPDIR)/cvlookuptable.Po
 include ./$(DEPDIR)/cvmultigabadafeatureselect.Po
 include ./$(DEPDIR)/cvmultigabadafsm1.Po
@@ -469,6 +484,7 @@ include ./$(DEPDIR)/cvtestingdata.Po
 include ./$(DEPDIR)/cvtrainingdata.Po
 include ./$(DEPDIR)/cvweaklearner.Po
 include ./$(DEPDIR)/cvxm2vts.Po
+include ./$(DEPDIR)/findMutInf.Po
 include ./$(DEPDIR)/makingfeaturedata.Po
 include ./$(DEPDIR)/prepare.Po
 include ./$(DEPDIR)/sign2weaks.Po

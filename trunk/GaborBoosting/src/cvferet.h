@@ -64,6 +64,9 @@ public:
   //void process40Gabor( const char* filename, const char* subpath );
     IplImage* reducebyscale(IplImage *src, int Nu);
     string getMainpath();
+    void opentestingPath(const char* pathname);
+    CvFeret* clone();
+    
     
 
 
@@ -75,6 +78,9 @@ protected:
     int numpic;
     vector<CvSubject> subjects;
     vector<CvSubject>::iterator pos;
+    vector<CvSubject> testsubjects;
+    int testnumpic;
+    int testnumsub;
 };
 
 #endif

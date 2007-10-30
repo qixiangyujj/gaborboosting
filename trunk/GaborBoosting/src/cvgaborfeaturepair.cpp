@@ -85,6 +85,7 @@ bool AdaGabor::CvGaborFeaturePair::addFeature(CvGaborFeature* feature)
 AdaGabor::CvGaborFeaturePair* AdaGabor::CvGaborFeaturePair::clone()
 {
   CvGaborFeaturePair *newpair = new CvGaborFeaturePair(this->feature1, this->feature2);
+  newpair->setMutInf( this->MutInf);
   return newpair;
 }
 

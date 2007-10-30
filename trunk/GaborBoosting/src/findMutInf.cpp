@@ -24,6 +24,8 @@
 
 using namespace AdaGabor;
 void findMinMax(int job, const char* jobpath, double *min, double *max);
+int numbelow( int job, const char* jobpath, double value );
+int numbelowfrmpool( int job, const char* jobpath, double value );
 
 
 int main(int argc, char *argv[])
@@ -32,7 +34,7 @@ int main(int argc, char *argv[])
  
       //fprintf (file, "%d %f\n", i, v);
   const char* jobpath = "/windows/D/mutinf/";
-  for(int job = 103; job <= 120; job++)
+  /*  for(int job = 103; job <= 120; job++)
   {
     FILE * file;
     file = fopen("mutmaxmin.txt", "a");
@@ -45,7 +47,55 @@ int main(int argc, char *argv[])
     fprintf(file, "%d %f %f\n",job, min, max);
     fclose( file );
   }
- 
+ */
+  const char* filename = "/local/mutlocalmaxmin.txt";
+  FILE * file;
+  if ((file=fopen(filename,"r")) == NULL)
+  {
+    printf( "Cannot read file %s.\n", filename );
+    exit(1);
+  }
+  int job;
+  float min, max;
+  vector<float> vec;
+  while (!feof(file))
+  {
+    if (fscanf(file, " %d", &job) == EOF) break;
+    if (fscanf(file, " %f", &min) == EOF) break;
+    if (fscanf(file, " %f\n", &max) == EOF) break;
+    vec.push_back(min);
+    vec.push_back(max);
+  }
+  fclose( file );
+  std::sort(vec.begin(), vec.end());
+  
+  double value = vec[3];
+  
+  
+  
+//   int n = 0;
+//   for(int job = 0; job <= 120; job++)
+//   {
+//     int num = numbelow( job, jobpath, value ); 
+//     printf("Job%d has %d \n", job, num);
+//     n = n + num;
+//   }
+//   printf("\nTotal %d\n", n); 
+//   vec.clear();
+  
+  
+  numbelowfrmpool( 23, jobpath, value );
+  numbelowfrmpool( 24, jobpath, value );
+  numbelowfrmpool( 84, jobpath, value );
+  numbelowfrmpool( 96, jobpath, value );
+  numbelowfrmpool( 97, jobpath, value );
+  
+  
+  
+  
+  
+  
+  
   return 0; 
 }
 
@@ -119,5 +169,115 @@ void findMinMax(int job, const char* jobpath, double *min, double *max)
   delete pool;
   delete [] jobfile;
 }
+
+int numbelow( int job, const char* jobpath, double value )
+{
+  char * jobfile = new char[30];
+  sprintf(jobfile, "%s/job%d.txt", jobpath, job);
+  
+  FILE * file;
+  if ((file=fopen(jobfile,"r")) == NULL)
+  {
+    printf("Cannot read file %s.\n", jobfile);
+    exit(1);
+  }
+  float mutinf;
+  vector<float> vec;
+  while (!feof(file))
+  {
+    int flag = fscanf(file, " %f\n", &mutinf);
+    if ((flag == EOF)||(flag == 0)) break;
+    vec.push_back(mutinf);
+  }
+  fclose( file );
+  int n = 0;
+  for(int i = 0; i < vec.size(); i++)
+  {
+    float v = vec[i];
+    if (v <= value) n++;
+  }
+  
+  
+  vec.clear();
+  delete [] jobfile;
+  return n;
+}
+
+
+int numbelowfrmpool( int job, const char* jobpath, double value )
+{
+  char * jobfile = new char[30];
+  sprintf(jobfile, "%s/job%d.txt", jobpath, job);
+  
+  int width = 51, height = 55, minscale = -1, maxscale = 3, norientations = 8, interval = 0, bound = 0;
+  bool reduce = true;
+  CvPoolParams param( height, width, minscale, maxscale, norientations, interval, bound, reduce );
+  CvGaborFeaturePool *pool = new CvGaborFeaturePool;
+  pool->Init( &param );
+  //find the parts
+  int N = pool->getSize();
+  int numParts = 120;
+  
+  int total = N*(N-1)/2;
+  int size_part = total/numParts;
+  int *nums = new int[numParts];
+  
+  int n = 0;
+  int sum = 0;
+  for(int i = 0; i < N; i++)
+  {
+    sum = sum + (N-i-1);
+    if(sum > size_part)  
+    {
+      i--;
+      nums[n] = i;
+      sum = 0;
+        //printf("%d\n", nums[n]);
+      n++;
+    }
+  }
+  
+  int istart, iend;
+  if(job == 0)
+  {
+    istart = 0;
+    iend = nums[job];
+  }
+  else if (job == numParts)
+  {
+    istart = nums[job-1]+1;
+    iend = N-2;
+  }
+  else
+  {
+    istart = nums[job-1]+1;
+    iend = nums[job];
+  }
+  
+  
+  
+  CvXm2vts xm2vts( "/mnt/export/rexm2vts/" );  
+  xm2vts.setPicIndex( 1 );
+  
+  CvGaborFeature *fstart = pool->getfeature( istart );
+  CvGaborFeature *fend = pool->getfeature( iend );
+  
+  
+  CvGaborFeaturePairPool pairpool(&param, fstart, fend );
+  pairpool.loadMutFile( jobfile );
+  
+  //int num = pairpool.numMutInf(value, "LESS");
+  
+  CvGaborFeaturePairPool *newpool = pairpool.select(value, "LESS");
+  newpool->write("/local/lowmutinf.txt");
+  
+  //delete newpool;
+  printf("dddd\n");
+  delete pool;
+  delete [] jobfile;
+  
+  return 0;
+}
+
 
 

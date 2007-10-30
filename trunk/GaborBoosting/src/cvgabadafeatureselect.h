@@ -89,6 +89,7 @@ public:
     void sign2weaks(const char* signfile, const char* weaksname);
     void loadparams(const char *filename);
     void loadindex(const char *filename);
+    
 
     enum { XM2VTS = 0, FERET = 1};
 

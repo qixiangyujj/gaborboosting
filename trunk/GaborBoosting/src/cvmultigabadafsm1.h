@@ -31,6 +31,26 @@ namespace MultiAdaGabor {
 /**
 	@author Mian Zhou <M.Zhou@reading.ac.uk>
 */
+
+
+
+struct CvWeak
+{
+  double threshold;
+  double parity;
+};
+
+struct CvMGaborTree
+{
+  int x;
+  int y;
+  int Nu;
+  int Mu;
+  double alpha;
+  int num;
+  CvWeak** weak;
+};
+
 class CvMultiGabAdaFSM1{
 public:
     CvMultiGabAdaFSM1();
@@ -68,6 +88,12 @@ public:
     CvMat* predict(const char *filename);
     void testing(const char* filelist, const char* resultfile, int nofeatures);
     void testing(const char* filelist, const char* resultfile);
+    void saveweaks(const char *filename);
+    void loadweaks(const char* filename);
+    void mweaknode2tree(CvFileNode *node, CvFileStorage *fs, CvMGaborTree *mtree);
+    void node2CvWeak(CvFileNode *node, CvFileStorage *fs, CvWeak *weak);
+    void mweaknode2mweak(CvFileNode *node, CvFileStorage *fs, CvMWeakLearner *mweak);
+    void node2weak(CvFileNode *node, CvFileStorage *fs, CvWeakLearner *weak);
 
     
 

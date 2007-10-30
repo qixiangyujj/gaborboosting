@@ -70,7 +70,8 @@ AdaGabor::CvGaborFeaturePair* AdaGabor::CvGaborFeaturePairPool::getPair(long ind
 {
   if (index < pairs.size())
   {  
-    CvGaborFeaturePair *pair = (pairs[index]);
+    //CvGaborFeaturePair *pair = (pairs[index]);
+    CvGaborFeaturePair *pair = pairs.at(index);
     return pair;
   }
   else
@@ -96,7 +97,7 @@ long AdaGabor::CvGaborFeaturePairPool::size()
  */
 void AdaGabor::CvGaborFeaturePairPool::remove(long index)
 {
-  if(index >= pairs.size())
+  if(index < pairs.size())
   {
     CvGaborFeaturePair *pair = pairs.at(index);
     delete pair;
@@ -118,6 +119,7 @@ void AdaGabor::CvGaborFeaturePairPool::remove(long index)
 AdaGabor::CvGaborFeaturePairPool* AdaGabor::CvGaborFeaturePairPool::clone()
 {
   CvGaborFeaturePairPool *newpool = new CvGaborFeaturePairPool;
+  newpool->features = features->clone();
   long count = pairs.size();
   for (long i = 0; i < count; i++)
   {
@@ -347,6 +349,7 @@ void AdaGabor::CvGaborFeaturePairPool::writeTXT(const char* filename)
   file = fopen (filename,"a");
   for(long i = 0; i < pairs.size(); i++)
   {
+    //printf("%d\n",i);
     CvGaborFeaturePair *pair = getPair(i);
     CvGaborFeature *feature1 = pair->getFeature(1);
     CvGaborFeature *feature2 = pair->getFeature(2);
@@ -449,4 +452,72 @@ void AdaGabor::CvGaborFeaturePairPool::MinMax(double *min, double *max)
   *min = array[0];
   *max = array[num-1];
   delete [] array;
+}
+
+
+/*!
+    \fn AdaGabor::CvGaborFeaturePairPool::numMutInf(double mutinf, const char* mode)
+ */
+int AdaGabor::CvGaborFeaturePairPool::numMutInf(double mutinf, const char* mode)
+{
+  int n = 0;
+  if(!strcmp(mode, "LESS"))
+  {
+    for(int i = 0; i < pairs.size(); i++)
+    {
+      CvGaborFeaturePair *pair = getPair( i );
+      double MutInf = pair->getMutInf();
+      if( MutInf <= mutinf )
+      {
+        pair->describe();
+        n++;
+      }
+    }
+  }
+  return n;
+}
+
+
+/*!
+    \fn AdaGabor::CvGaborFeaturePairPool::select(double mutinf, const char* mode)
+ */
+AdaGabor::CvGaborFeaturePairPool* AdaGabor::CvGaborFeaturePairPool::select(double mutinf, const char* mode)
+{
+  CvGaborFeaturePairPool* pool = this->clone();
+  pool->clearPairs();
+  
+  int n = 0;
+  if(!strcmp(mode, "LESS"))
+  {
+    for(int i = 0; i < pairs.size(); i++)
+    {
+      // printf("%d", i);
+      CvGaborFeaturePair *pair = this->getPair( i );
+      double MutInf = pair->getMutInf();
+      if( MutInf <= mutinf )
+      {
+        pair->describe();
+        n++;
+        pool->push( pair );
+      }
+      else 
+      {
+        //printf("  : nothing ");
+        
+      }
+      //printf("\n");
+    }
+  }
+  printf("%d pair selected\n", n);
+  
+  return pool;
+}
+
+
+/*!
+    \fn AdaGabor::CvGaborFeaturePairPool::clearPairs()
+ */
+void AdaGabor::CvGaborFeaturePairPool::clearPairs()
+{
+  pairs.clear();
 }

@@ -22,6 +22,7 @@
 CvFeret::CvFeret()
  : CvFaceDB()
 {
+  strcpy(name, "FERET");
   pathname = new char[30];
   fa_path = new char[30];
   fb_path = new char[30];
@@ -149,112 +150,8 @@ void CvFeret::openPath(const char* pathname)
  */
 void CvFeret::openPath(const char* faname, const char* fbname)
 {
-  // clear the subjects first
-  subjects.clear();
-  
-  
-  CvSubject **templist;
-  templist = new CvSubject*[1209];
-  for(int i = 1; i <= 1209; i++)
-  {
-    CvSubject *subject = new CvSubject( i );
-    templist[i-1] = subject;
-    
-  }
-  
-  
-  DIR *pdir;
-  struct dirent *pent;
-  
-  
-  // input FA part
-  pdir=opendir( faname ); 
-  if (!pdir)
-  {
-    perror( faname );
-    exit(-1);
-  }
-  errno=0;
-  while ((pent=readdir(pdir)))
-  {
-    if((strcmp(pent->d_name, "."))&&(strcmp(pent->d_name, "..")))
-    {
-      string name( pent->d_name );
-      string ID = name.substr( 0,5 );
-      char *idstring = new char[5];
-      strcpy(idstring, ID.c_str());
-      int id = atoi( idstring );
-      CvSubject *subject = templist[id-1];
-      subject->setname( name );
-      delete [] idstring;
-    }
-  }
-  if (errno){
-    printf ("readdir() failure; terminating");
-    exit(-1);
-  }
-  closedir(pdir);
-  
-  
-   // input FB part
-  pdir=opendir( fbname ); 
-  if (!pdir)
-  {
-    perror( fbname );
-    exit(-1);
-  }
-  errno=0;
-  while ((pent=readdir(pdir)))
-  {
-    if((strcmp(pent->d_name, "."))&&(strcmp(pent->d_name, "..")))
-    {
-      string name( pent->d_name );
-      //printf("%s\n", pent->d_name);
-      string ID = name.substr( 0,5 );
-      char *idstring = new char[5];
-      strcpy(idstring, ID.c_str());
-      int id = atoi( idstring );
-      CvSubject *subject = templist[id-1];
-      subject->setname( name );
-      delete [] idstring;
-    }
-  }
-  if (errno){
-    printf ("readdir() failure; terminating");
-    exit(-1);
-  }
-  closedir(pdir);
-  
-  for(int i = 1; i <= 1209; i++)
-  {
-    CvSubject *subject = templist[i-1];
-    subjects.push_back( *subject );
-    
-    delete subject;
-  }
-  
-  delete [] templist;
-  
-  numpic = 0;
-  
-  for(int i = 0; i < subjects.size(); i++)
-  {
-    CvSubject sub = subjects[i];
-    numpic = numpic + sub.getnum();
-    if( sub.getnum() > 0 )
-    {
-      string name = sub.getname(0);
-      //printf("%d    %d    %s\n", sub.getId(), sub.getnum(), name.c_str());
-    }
-    else
-    {
-      pos = subjects.begin()+i;
-      subjects.erase(pos);
-      i--;
-    }
-   
-  }
-  numsub = subjects.size();
+  openPath( faname );
+  opentestingPath( fbname );
   
 }
 
@@ -264,6 +161,8 @@ void CvFeret::openPath(const char* faname, const char* fbname)
  */
  CvFeret::CvFeret(const char* mainpath)
 {
+  name = new char[10];
+  strcpy(name, "FERET");
   pathname = new char[30];
   fa_path = new char[30];
   fb_path = new char[30];
@@ -276,6 +175,8 @@ void CvFeret::openPath(const char* faname, const char* fbname)
  */
  CvFeret::CvFeret(const char* mainpath, const char* fapath, const char* fbpath)
 {
+  name = new char[10];
+  strcpy(name, "FERET");
   pathname = new char[30];
   fa_path = new char[30];
   fb_path = new char[30];
@@ -289,6 +190,8 @@ void CvFeret::openPath(const char* faname, const char* fbname)
  */
  CvFeret::CvFeret(const char* mainpath, const char* fapath)
 {
+  name = new char[10];
+  strcpy(name, "FERET");
   pathname = new char[30];
   fa_path = new char[30];
   fb_path = new char[30];
@@ -302,10 +205,12 @@ void CvFeret::openPath(const char* faname, const char* fbname)
  */
 void CvFeret::clear()
 {
+  delete [] name;
   delete [] pathname;
   delete [] fa_path;
   delete [] fb_path;
   subjects.clear();
+  testsubjects.clear();
 }
 
 
@@ -592,4 +497,108 @@ string CvFeret::getMainpath()
 {
   string path(pathname);
   return path;
+}
+
+
+
+
+
+/*!
+    \fn CvFeret::opentestingPath(const char* pathname)
+ */
+void CvFeret::opentestingPath(const char* pathname)
+{
+   // clear the subjects first
+  testsubjects.clear();
+  
+  CvSubject **templist;
+  templist = new CvSubject*[1209];
+  for(int i = 1; i <= 1209; i++)
+  {
+    CvSubject *subject = new CvSubject( i );
+    templist[i-1] = subject;
+    
+  }
+  
+  
+  DIR *pdir;
+  struct dirent *pent;
+  
+  pdir=opendir( pathname ); //"." refers to the current dir
+  if (!pdir)
+  {
+    perror( pathname );
+    exit(-1);
+  }
+  
+  errno=0;
+  while ((pent=readdir(pdir)))
+  {
+    if((strcmp(pent->d_name, "."))&&(strcmp(pent->d_name, "..")))
+    {
+      string name( pent->d_name );
+      string ID = name.substr( 0,5 );
+      char *idstring = new char[5];
+      strcpy(idstring, ID.c_str());
+      int id = atoi( idstring );
+      CvSubject *subject = templist[id-1];
+      subject->setname( name );
+      delete [] idstring;
+    }
+  }
+  
+  if (errno){
+    printf ("readdir() failure; terminating");
+    exit(-1);
+  }
+  closedir(pdir);
+  
+  for(int i = 1; i <= 1209; i++)
+  {
+    CvSubject *subject = templist[i-1];
+    testsubjects.push_back( *subject );
+    
+    delete subject;
+  }
+  
+  delete [] templist;
+  testnumpic = 0;
+  
+  
+  
+  for(int i = 0; i < testsubjects.size(); i++)
+  {
+    CvSubject sub = testsubjects[i];
+    testnumpic = testnumpic + sub.getnum();
+
+    testnumsub = testsubjects.size();  
+    
+    if( sub.getnum() > 0 )
+    {
+      printf("%d    %d", sub.getId(), sub.getnum());
+      for(int i = 0; i < sub.getnum(); i++)
+      {
+        string name = sub.getname(i);
+        printf("  %s", name.c_str());
+      }
+      printf("\n");
+    }
+    else 
+    {
+      pos = testsubjects.begin()+i;
+      testsubjects.erase(pos);
+      i--;
+    } 
+  }
+  testnumsub = testsubjects.size();
+}
+
+
+/*!
+    \fn CvFeret::clone()
+ */
+CvFeret* CvFeret::clone()
+{
+  CvFeret* db = new CvFeret(pathname, fa_path, fb_path);
+  return db;
 }

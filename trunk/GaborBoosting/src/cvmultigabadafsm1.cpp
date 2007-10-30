@@ -873,3 +873,220 @@ static int MultiAdaGabor::cmp_func( const void* _a, const void* _b, void* userda
   else return 0;
 }
 
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::saveweaks(const char *filename)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::saveweaks(const char *filename)
+{
+  CvMemStorage* storage = cvCreateMemStorage(0);
+  CvSeq* seq = cvCreateSeq(0, sizeof(CvSeq), sizeof(CvMGaborTree), storage );
+  int num = mweaks.size();
+  for(int i = 0; i < num; i++ )
+  {
+    CvGaborFeature *feature;
+    feature = new_pool->getfeature(i);
+    
+    CvMGaborTree mtree;
+    
+    mtree.x = feature->getx();
+    mtree.y = feature->gety();
+    mtree.Mu = feature->getMu();
+    mtree.Nu = feature->getNu();
+    mtree.alpha = alphas[i];
+    mtree.num = nClass;
+    CvWeak* weak = new CvWeak[nClass];
+    for(int j = 0; j < nClass; j++)
+    {
+      weak[j].threshold = mweaks[i].getTheshold(j);
+      weak[j].parity = mweaks[i].getParity(j);
+    }
+    mtree.weak = &weak;
+    cvSeqPush( seq, &mtree );
+  }
+  
+  char *weakname = new char[20];
+  char *classifiername = new char[20];
+  CvMemStorage* xstorage = cvCreateMemStorage( 0 );
+  CvFileStorage *fs = cvOpenFileStorage( filename, xstorage, CV_STORAGE_WRITE );
+  for (int i = 0; i <seq->total; i++)
+  {
+    CvMGaborTree *atree = (CvMGaborTree*)cvGetSeqElem(seq, i);
+    
+    sprintf(weakname, "weak_%d", i);
+    cvStartWriteStruct( fs, weakname, CV_NODE_MAP, "CvGaborTree", cvAttrList(0,0) );
+    cvWriteInt(fs, "x", atree->x);
+    cvWriteInt(fs, "y", atree->y);
+    cvWriteInt(fs, "Mu", atree->Mu);
+    cvWriteInt(fs, "Nu", atree->Nu);
+    cvWriteInt(fs, "num", atree->num);
+    cvWriteReal(fs, "alpha", atree->alpha);
+    int nC = atree->num;
+
+    for(int j = 0; j < nC; j++)
+    {
+      sprintf(classifiername, "classifier_%d", j);
+      cvStartWriteStruct( fs, classifiername, CV_NODE_MAP, "CvWeak", cvAttrList(0,0) );
+      double t = mweaks[i].getTheshold(j);
+      double p = mweaks[i].getParity(j);
+      cvWriteReal(fs, "threshold", t);
+      cvWriteReal(fs, "parity", p);
+      cvEndWriteStruct( fs );
+    }
+
+    cvEndWriteStruct( fs ); 
+  } 
+  
+    /* release memory storage in the end */
+  delete [] weakname;
+  delete [] classifiername;
+  cvReleaseMemStorage( &xstorage );
+  cvReleaseMemStorage( &storage );
+  cvReleaseFileStorage(&fs);
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::loadweaks(const char* filename)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::loadweaks(const char* filename)
+{
+  //clear();
+  {
+    mweaks.clear();
+    delete new_pool;
+  }
+  CvMemStorage* fstorage = cvCreateMemStorage( 0 );
+  CvFileStorage *fs;
+  fs = cvOpenFileStorage( filename, fstorage, CV_STORAGE_READ );
+  CvFileNode *root = cvGetRootFileNode( fs, 0);
+  char *weakname = new char[20];
+  int i = 0;
+  
+  CvMemStorage* storage = cvCreateMemStorage(0);
+  
+  while(1)
+  {
+    sprintf( weakname, "weak_%d", i);
+    CvFileNode *weaknode = cvGetFileNodeByName( fs, root, weakname);
+    if (!weaknode) break;
+    CvMWeakLearner *mweak = new CvMWeakLearner;
+    mweaknode2mweak(weaknode, fs, mweak);
+    mweaks.push_back( *mweak );
+    i++;	
+  }
+  
+
+  cvReleaseFileStorage(&fs);
+  
+  delete [] weakname;
+  
+    /* set member variables */
+  current = new_pool->getSize();
+  nexpfeatures = new_pool->getSize();
+  nselecfeatures = new_pool->getSize();
+  printf(" %d weak classifiers have been loaded!\n", nselecfeatures);
+  cvReleaseMemStorage( &fstorage );
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::mweaknode2tree(CvFileNode *node, CvFileStorage *fs, CvMGaborTree *mtree);
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::mweaknode2tree(CvFileNode *node, CvFileStorage *fs, CvMGaborTree *mtree)
+{
+  CvFileNode *xnode = cvGetFileNodeByName( fs, node, "x");
+  CvFileNode *ynode = cvGetFileNodeByName( fs, node, "y");
+  CvFileNode *Munode = cvGetFileNodeByName( fs, node, "Mu");
+  CvFileNode *Nunode = cvGetFileNodeByName( fs, node, "Nu");
+  CvFileNode *numnode = cvGetFileNodeByName( fs, node, "num");
+  CvFileNode *anode = cvGetFileNodeByName( fs, node, "alpha");
+  int x = cvReadInt( xnode, 0 );
+  int y = cvReadInt( ynode, 0 );
+  int Mu = cvReadInt( Munode, 0 );
+  int Nu = cvReadInt( Nunode, 0 );
+  int num = cvReadInt( numnode, 0 );
+  double alpha = cvReadReal( anode, 0);
+
+  CvWeak* weak = new CvWeak[num];
+  for(int i = 0; i < num; i++)
+  {
+    char *classifiername = new char[30];
+    sprintf(classifiername, "classifier_%d", i);
+    CvFileNode *weaknode = cvGetFileNodeByName( fs, node, classifiername );
+    node2CvWeak( weaknode, fs, &weak[i] );
+    delete [] classifiername;
+  }
+  mtree->x = x;
+  mtree->y = y;
+  mtree->Mu = Mu;
+  mtree->Nu = Nu;
+  mtree->alpha = alpha;
+  mtree->num = num;
+  mtree->weak = &weak;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::node2CvWeak(CvFileNode *node, CvFileStorage *fs, CvWeak *weak)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::node2CvWeak(CvFileNode *node, CvFileStorage *fs, CvWeak *weak)
+{
+  CvFileNode *tnode = cvGetFileNodeByName( fs, node, "threshold");
+  CvFileNode *pnode = cvGetFileNodeByName( fs, node, "parity");
+  double threshold = cvReadReal( tnode, 0);
+  double parity = cvReadReal( pnode, 0);
+  weak->parity = parity;
+  weak->threshold = threshold;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::mweaknode2mweak(CvFileNode *node, CvFileStorage *fs, CvMWeakLearner *mweak)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::mweaknode2mweak(CvFileNode *node, CvFileStorage *fs, CvMWeakLearner *mweak)
+{
+  CvFileNode *xnode = cvGetFileNodeByName( fs, node, "x");
+  CvFileNode *ynode = cvGetFileNodeByName( fs, node, "y");
+  CvFileNode *Munode = cvGetFileNodeByName( fs, node, "Mu");
+  CvFileNode *Nunode = cvGetFileNodeByName( fs, node, "Nu");
+  CvFileNode *numnode = cvGetFileNodeByName( fs, node, "num");
+  CvFileNode *anode = cvGetFileNodeByName( fs, node, "alpha");
+  int x = cvReadInt( xnode, 0 );
+  int y = cvReadInt( ynode, 0 );
+  int Mu = cvReadInt( Munode, 0 );
+  int Nu = cvReadInt( Nunode, 0 );
+  int num = cvReadInt( numnode, 0 );
+  double alpha = cvReadReal( anode, 0);
+  
+  mweak->init(num, 0);
+  for(int i = 0; i < num; i++)
+  {
+    char *classifiername = new char[30];
+    sprintf(classifiername, "classifier_%d", i);
+    CvFileNode *weaknode = cvGetFileNodeByName( fs, node, classifiername );
+    CvWeakLearner *weak = mweak->getWeakLearner( i );
+    node2weak( weaknode, fs, weak );
+    delete [] classifiername;
+  }
+  
+  CvGaborFeature *feature = new CvGaborFeature( x, y, Mu, Nu);
+  new_pool->add( feature );
+  alphas.push_back( alpha );
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::node2weak(CvFileNode *node, CvFileStorage *fs, CvWeakLearner *weak)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::node2weak(CvFileNode *node, CvFileStorage *fs, CvWeakLearner *weak)
+{
+  CvFileNode *tnode = cvGetFileNodeByName( fs, node, "threshold");
+  CvFileNode *pnode = cvGetFileNodeByName( fs, node, "parity");
+  double threshold = cvReadReal( tnode, 0);
+  double parity = cvReadReal( pnode, 0);
+  weak->setType(CvWeakLearner::THRESHOLD);
+  weak->setparity( parity );
+  weak->setthreshold( threshold );
+}
