@@ -24,8 +24,8 @@
 int main(int argc, char *argv[])
 {
   int id = 29;
-  const char * filelist = "/local/FaceDB/FERET/fa/filelist.txt";
-  const char * resultfile = "testresults.txt";
+  const char * filelist = "/local/FaceDB/FERET/fb/filelist.txt";
+  const char * resultfile = "ftestresults.txt";
 
   int width = 64;
   int height = 64;
@@ -42,11 +42,10 @@ int main(int argc, char *argv[])
   
   CvFeret feret("/windows/D/Data/feret/", "/local/FaceDB/FERET/fa/PPMS/", "/local/FaceDB/FERET/fb/PPMS/");
   
-  CvBinGabAdaFeatureSelect FeatureSelec(&feret, &param, id);
-  FeatureSelec.loadweaks( "/local/EXP/FERET.BAK/29/weaks.xml" );
-  FeatureSelec.testing(filelist, resultfile,1);
+  CvBinGabAdaFeatureSelect FeatureSelec( &feret, &param, id );
+  FeatureSelec.loadweaks( "/local/EXP/FERET/29/weaks.xml" );
+  FeatureSelec.testing( filelist, resultfile );
   return 0;
-  
   
 }
 

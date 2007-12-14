@@ -65,6 +65,8 @@ int main(int argc, char *argv[])
   {
     fsm1.loadweaks("/local/mweaks.xml");
   }
+  CvMat *mat = (CvMat*)cvLoad("/windows/D/Data/xm2vts/100/1/-1_4.xml", NULL, NULL, NULL);
+  float v = cvGetReal2D(mat, 12-1, 25-1);
   fsm1.testing( inputname, outputname );
   
   return 0;

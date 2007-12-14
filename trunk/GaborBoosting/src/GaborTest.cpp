@@ -29,27 +29,40 @@
 int main( int argc, char *argv[] )
 {
   
-  CvGabor gabor(3,-1);
-  IplImage *img = cvLoadImage( "/local/FaceDB/CMU/rotated/217.jpg", CV_LOAD_IMAGE_GRAYSCALE );
   
-  IplImage *reimg = cvCreateImage(cvGetSize(img), IPL_DEPTH_8U, 1);
   
-  time_t start,end;
-  double dif;
-  time (&start);
+  //IplImage *img = cvLoadImage( "/home/sir/sir02mz/local/FaceDB/FERET/fa/PPMS/00001_930831_fa_a.ppm", CV_LOAD_IMAGE_ANYCOLOR );
+  IplImage *img = cvLoadImage( "/home/sir/sir02mz/local/00001_930831_fb_a.ppm", CV_LOAD_IMAGE_ANYCOLOR );
+  IplImage *grayimg = cvCreateImage(cvGetSize(img), IPL_DEPTH_8U, 1);
+  cvCvtColor( img, grayimg, CV_RGB2GRAY );
+  cvReleaseImage(&img);
   
-  for(int i = 0; i < 1000; i++)
+  for(int i = -1; i <= 3; i++)
   {
-    gabor.conv_img(img, reimg, CV_GABOR_REAL);
+    for(int j = 0; j <8 ; j++)
+    {
+      CvGabor gabor(j,i);
+      IplImage *reimg = cvCreateImage(cvGetSize(grayimg), IPL_DEPTH_8U, 1);
+      gabor.conv_img(grayimg, reimg, CV_GABOR_IMAG);
+      
+      char *filename = new char[30];
+      sprintf(filename, "/local/imag_%d_%d.jpg", i, j);
+      cvSaveImage( filename, (IplImage*)reimg );
+      delete [] filename;
+      cvReleaseImage(&reimg);
+    }
   }
   
-  time (&end);
-  dif = difftime (end,start);
-  printf("It took %.2lf seconds \n\n", dif);
   
   
-  cvReleaseImage(&reimg);
-  cvReleaseImage(&img);
+ 
+  
+  
+  
+  cvReleaseImage(&grayimg);
+  
+
+
   return 0;
 }
 

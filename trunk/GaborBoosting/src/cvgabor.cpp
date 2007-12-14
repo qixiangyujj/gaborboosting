@@ -504,8 +504,8 @@ void CvGabor::output_file(const char *filename, int Type)
   pImage = get_image(Type);
   if(pImage != NULL)
   {
-    //if( cvSaveImage(filename, pImage )) printf("%s has been written successfully!\n", filename);
-    //else printf("Error: writting %s has failed!\n", filename);
+    if( cvSaveImage(filename, pImage )) printf("%s has been written successfully!\n", filename);
+    else printf("Error: writting %s has failed!\n", filename);
   }
   else 
     perror("Error: the image is empty in output_file()!\n"); 
@@ -698,7 +698,7 @@ void CvGabor::conv_img(IplImage *src, IplImage *dst, int Type)
 {
   double ve, re,im;
   
-  CvMat *mat = cvCreateMat(src->width, src->height, CV_32FC1);
+   CvMat *mat = cvCreateMat(src->width, src->height, CV_32FC1);
   for (int i = 0; i < src->width; i++)
   {
     for (int j = 0; j < src->height; j++)

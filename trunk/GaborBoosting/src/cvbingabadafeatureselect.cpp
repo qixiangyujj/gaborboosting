@@ -658,30 +658,31 @@ double CvBinGabAdaFeatureSelect::predict(IplImage *img, int nweaks)
     CvGaborFeature *feature;
     feature = new_pool->getfeature(i);
     
-    IplImage *aimg;
-    if(img->depth == IPL_DEPTH_8U)
-    {
-      aimg = cvCreateImage(cvGetSize(img), IPL_DEPTH_32F, 1);
-      for(int i = 0; i < img->width; i++)
-      {
-        for(int j = 0; j < img->height; j++)
-        {
-          
-          double pix = cvGetReal2D(img, j, i);
-          
-          cvSetReal2D(aimg, j, i, pix);
-          //printf("%d %d\n", i, j);
-        }
-      }
-    }
-    else
-    {
-      aimg = cvCloneImage(img);
-    }
+//     IplImage *aimg;
+//     if(img->depth == IPL_DEPTH_8U)
+//     {
+//       aimg = cvCreateImage(cvGetSize(img), IPL_DEPTH_32F, 1);
+//       for(int i = 0; i < img->width; i++)
+//       {
+//         for(int j = 0; j < img->height; j++)
+//         {
+//           
+//           double pix = cvGetReal2D(img, j, i);
+//           
+//           cvSetReal2D(aimg, j, i, pix);
+//           //printf("%d %d\n", i, j);
+//         }
+//       }
+//     }
+//     else
+//     {
+//       aimg = cvCloneImage(img);
+//     }
     //
-    vfeature = feature->val( aimg, -1 );
-    printf("%f\n ", vfeature);
-    cvReleaseImage(&aimg);
+    int s = feature->getNu();
+    vfeature = feature->val( img, s );
+    //printf("%f\n ", vfeature);
+    
     /* get label from weak learner*/
     label = weaks[i].predict( vfeature );
     //printf("The label that Weak Learner No.%d predicted is %d.\n", i, (int)label);
@@ -690,8 +691,10 @@ double CvBinGabAdaFeatureSelect::predict(IplImage *img, int nweaks)
     alpha = alphas[i];
     flabel = flabel + label*alpha;
     criterion = criterion + alpha;            //features.begin()
+    //cvReleaseImage(&aimg);
   }
   criterion = criterion / 2;
+  
   if ( flabel >= criterion ) return 1.0;
   else return 2.0;
 }

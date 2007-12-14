@@ -1,7 +1,44 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="0" />
+ <DocsAndViews NumberOfDocuments="12" >
+  <Doc0 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/ferettesting.cpp" >
+   <View0 Type="Source" />
+  </Doc0>
+  <Doc1 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/MultiClassification/FaceRecog.cpp" >
+   <View0 Type="Source" />
+  </Doc1>
+  <Doc2 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/cvmultigabadafsm1.cpp" >
+   <View0 Type="Source" />
+  </Doc2>
+  <Doc3 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/cvmweaklearner.cpp" >
+   <View0 Type="Source" />
+  </Doc3>
+  <Doc4 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/Segmentation/FaceSeg.cpp" >
+   <View0 Type="Source" />
+  </Doc4>
+  <Doc5 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/Segmentation/resize.cpp" >
+   <View0 Type="Source" />
+  </Doc5>
+  <Doc6 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/ferettraining.cpp" >
+   <View0 Type="Source" />
+  </Doc6>
+  <Doc7 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/GaborTest.cpp" >
+   <View0 line="45" Type="Source" />
+  </Doc7>
+  <Doc8 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/cvgaborfeature.cpp" >
+   <View0 Type="Source" />
+  </Doc8>
+  <Doc9 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/cvbingabadafeatureselect.cpp" >
+   <View0 line="694" Type="Source" />
+  </Doc9>
+  <Doc10 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/cvgabor.h" >
+   <View0 line="37" Type="Source" />
+  </Doc10>
+  <Doc11 NumberOfViews="1" URL="file:///local/CWorks/test/trunk/GaborBoosting/src/cvgabor.cpp" >
+   <View0 line="294" Type="Source" />
+  </Doc11>
+ </DocsAndViews>
  <pluginList>
   <kdevdebugger>
    <breakpointList>
@@ -20,6 +57,18 @@
     <breakpoint4 location="/local/CWorks/test/trunk/GaborBoosting/src/cvbingabadafeatureselect.cpp:694" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
      <tracedExpressions/>
     </breakpoint4>
+    <breakpoint5 location="/local/CWorks/test/trunk/GaborBoosting/src/cvmultigabadafsm1.cpp:692" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint5>
+    <breakpoint6 location="/local/CWorks/test/trunk/GaborBoosting/src/cvmultigabadafsm1.cpp:775" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint6>
+    <breakpoint7 location="/local/CWorks/test/trunk/GaborBoosting/src/cvmweaklearner.cpp:216" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint7>
+    <breakpoint8 location="/local/CWorks/test/trunk/GaborBoosting/src/GaborTest.cpp:36" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint8>
    </breakpointList>
   </kdevdebugger>
   <kdevbookmarks>

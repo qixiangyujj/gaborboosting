@@ -677,24 +677,35 @@ CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
     
       /* get label from weak learner*/
     CvMat *resultMat = mweaks[i].mpredict( vfeature );
+
     CvMat *tmpMat = cvCreateMat( 1, nClass, CV_32FC1 ); 
     cvSetZero( tmpMat );
     CvSize size = cvGetSize( resultMat );
     int nCls = size.width;
+    
+    alpha = alphas[i];
     for(int j = 0; j < nCls; j++)
     {
       double c = cvGetReal1D( resultMat, j );
-      cvSetReal1D( tmpMat, (int)(c-1), 1.0 );
+      cvSetReal1D( tmpMat, (int)(c-1), alpha );
     }
-    alpha = alphas[i];
     
+    //#ifdef DEBUG
+    char *resultsname = new char[30];
+    sprintf(resultsname, "results_%d.txt", i);
+    //cvSave(resultsname, tmpMat, NULL, NULL, cvAttrList());
+    FILE *fs;
+    fs = fopen(resultsname, "w");
+    for(int i = 0; i < nClass; i++)
+    {
+      double v = cvGetReal1D( tmpMat, i );
+      fprintf(fs, "%f ", v);
+    }
+    fclose(fs);
+    delete [] resultsname;
+    //#endif
     
     //cvConvertScale( tmpMat, tmpMat, alpha, 0.0 );
-    for(int j = 0; j < nClass; j++)
-    {
-      double v = cvGetReal1D(tmpMat, j);
-      cvSetReal1D(tmpMat, j , v*alpha);
-    }
     
     //cvAdd( rank, tmpMat, rank, NULL );
     for(int j = 0; j < nClass; j++)
@@ -703,8 +714,7 @@ CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
       double v2 = cvGetReal1D(rank, j);
       cvSetReal1D(rank, j , v1+v2);
     }
-    
-    
+
     cvReleaseMat( &resultMat );
     cvReleaseMat( &tmpMat );
   }
@@ -713,25 +723,15 @@ CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
   double min_val, max_val;
   CvPoint min_loc, max_loc;
   cvMinMaxLoc( rank, &min_val, &max_val, &min_loc, &max_loc, NULL );
-  
 
-  
   /*  CvMat *cls = cvCreateMat(1, nClass, CV_32FC1);
   for(int i = 0; i < nClass; i++)
   {
     if(cvGetReal1D(rank, i) == max_val) cvSetReal1D(cls, i, 1.0);
     else cvSetReal1D(cls, i, 0.0);
   }
-  
-  
+
   cvReleaseMat( &rank );
-  
-  
-  
-  
-  
-  
-  
   return cls;*/
   return rank;
 }
@@ -987,7 +987,7 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::loadweaks(const char* filename)
   nexpfeatures = new_pool->getSize();
   nselecfeatures = new_pool->getSize();
   printf(" %d weak classifiers have been loaded!\n", nselecfeatures);
-  cvReleaseMemStorage( &fstorage );
+  //cvReleaseMemStorage( &fstorage );
 }
 
 

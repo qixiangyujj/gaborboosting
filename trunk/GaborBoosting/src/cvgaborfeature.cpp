@@ -62,6 +62,8 @@ double CvGaborFeature::val(IplImage *img)
     
     IplImage *reimg = cvCreateImage(cvSize(img->width,img->height), IPL_DEPTH_32F, 1);
     gabor->conv_img(img, reimg, CV_GABOR_MAG);
+    
+  
     ve = cvGetReal2D((IplImage*)reimg, iy-1, ix-1);
     cvReleaseImage(&reimg);
     clear();
@@ -1077,11 +1079,31 @@ double CvGaborFeature::val(IplImage* img, int scale)
   double dheight = (double)(height)/pow((double)2,(double)div);
   int rewidth = (int)ceil(dwidth);
   int reheight = (int)ceil(dheight);
+  
+  
+  
+  //double ve = val(reimg);
+  
+  CreateGabor();
+  
+  double ve;
+  
+  IplImage *magimg = cvCreateImage(cvSize(img->width,img->height), IPL_DEPTH_32F, 1);
+  gabor->conv_img(img, magimg, CV_GABOR_MAG);
+  //cvSave("reimg2.xml", (IplImage*)magimg, NULL, NULL, cvAttrList());
   IplImage * reimg = cvCreateImage(cvSize(rewidth, reheight), IPL_DEPTH_32F, 1);
-  cvResize( img, reimg, CV_INTER_CUBIC );
-  double ve = val(reimg);
+  cvResize( magimg, reimg, CV_INTER_CUBIC );
+  // cvSave("simg2.xml", (IplImage*)reimg, NULL, NULL, cvAttrList());
+  ve = cvGetReal2D((IplImage*)reimg, iy-1, ix-1);
+  cvReleaseImage(&reimg);
+  clear();
+  cvReleaseImage(&magimg);
+  return ve;
+  
+  
+  
   cvReleaseImage( &reimg );
-  cvReleaseImage( &img );
+  //cvReleaseImage( &img );
   return ve;
 }
 
