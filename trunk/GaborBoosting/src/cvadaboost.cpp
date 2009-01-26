@@ -63,12 +63,12 @@ bool CvAdaBoost::train(CvTrainingData *data, int numweak, int learner_type)
         //tdata->saveweight(filename);
         weak->train(tdata, weak_type);
         error = weak->training_error();
-        if (error >= 0.5) 
+        /*if (error >= 0.5) 
         {
           printf("Learning quit from the %d th from %d due to the error exceeds the random guessing, Only %d weak learners are built.\n", nweak, niteration, nweak);
           break;
         }
-        
+        */
         weaks.push_back(*weak);
 
         alpha = weak->importance();

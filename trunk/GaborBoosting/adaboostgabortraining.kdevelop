@@ -14,11 +14,11 @@
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
     <description/>
-    <versioncontrol>kdevsubversion</versioncontrol>
+    <versioncontrol/>
   </general>
   <kdevautoproject>
     <general>
-      <activetarget>src/GaborTesting</activetarget>
+      <activetarget>src/PCA/PCAtraining</activetarget>
       <useconfiguration>debug</useconfiguration>
     </general>
     <run>
@@ -41,8 +41,15 @@
         <Recognition/>
         <testFERET/>
         <trainFERET/>
+        <GaborTesting/>
+        <KnnFaceReog/>
+        <SVMFaceRecog/>
+        <FindMutInf/>
+        <genderdetect/>
+        <Gendertesting/>
+        <PCAtraining/>
       </runarguments>
-      <customdirectory>/home/sir/sir02mz/local/EXP/M1/</customdirectory>
+      <customdirectory>/home/sir/sir02mz/local/BinEXP/Gender/</customdirectory>
       <programargs/>
       <autocompile>true</autocompile>
       <envvars/>
@@ -204,7 +211,7 @@
   </cppsupportpart>
   <kdevdebugger>
     <general>
-      <programargs/>
+      <programargs>-n 200 -type svm</programargs>
       <gdbpath/>
       <dbgshell>libtool</dbgshell>
       <configGdbScript/>
@@ -224,4 +231,28 @@
     <customArguments/>
     <customTagfilePath/>
   </ctagspart>
+  <dist>
+    <custom>false</custom>
+    <bzip>false</bzip>
+    <archname/>
+    <appname>adaboostgabortraining.kdevelop</appname>
+    <version>0.1</version>
+    <release/>
+    <vendor/>
+    <licence/>
+    <summary/>
+    <group/>
+    <packager/>
+    <description/>
+    <changelog/>
+    <devpackage>false</devpackage>
+    <docspackage>false</docspackage>
+    <appicon>false</appicon>
+    <arch>0</arch>
+    <genHTML>false</genHTML>
+    <useRPM>false</useRPM>
+    <ftpkde>false</ftpkde>
+    <appskde>false</appskde>
+    <url/>
+  </dist>
 </kdevelop>

@@ -81,7 +81,9 @@ public:
     double FERETdata(const char *pathname, int subject, const char* imgname, bool reduce);
     double FERETdata(const char *pathname, int subject, const char* imgname);
     CvTrainingData* _FERETBin_F(CvFeret* feret, int possub, CvMat *index);
-
+    CvTrainingData* _XM2VTSGender_F( CvXm2vts* xm2vts, int ntpic);
+    CvTrainingData* _XM2VTSGender_F( CvXm2vts* xm2vts, CvMat* index);
+    
 protected:
     int ix;
     int iy;
@@ -95,6 +97,7 @@ protected:
 private:
     void writeTXT(const char *filename);
     void writeXML(const char* filename);
+
     
 
     

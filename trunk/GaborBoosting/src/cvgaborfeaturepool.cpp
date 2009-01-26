@@ -563,3 +563,51 @@ bool CvGaborFeaturePool::isIn(CvGaborFeature *feature)
   }
   return in;
 }
+
+
+/*!
+    \fn CvGaborFeaturePool::load_a(const char* filename)
+ */
+void CvGaborFeaturePool::load_a(const char* filename)
+{
+  clear();
+  
+  FILE * file;
+    //file = fopen (filename,"r");
+  if ((file=fopen(filename,"r")) == NULL)
+  {
+    printf("Cannot read file %s.\n", filename);
+    exit(1);
+  }
+  int x;
+  int y;
+  int Mu;
+  int Nu;
+  float merror;
+  float alpha;
+  count = 0;
+  isInitialised = true;    
+  
+  int fpos;
+  int n = 0;
+  while (!feof(file))
+  {
+    if (fscanf(file, " %d", &x) == EOF) break;
+    if (fscanf(file, " %d", &y) == EOF) break;
+    if (fscanf(file, " %d", &Mu) == EOF) break;
+    if (fscanf(file, " %d", &Nu) == EOF) break;
+    if (fscanf(file, " %f", &merror) == EOF) break;
+    if (fscanf(file, " %f\n", &alpha) == EOF) break;
+    
+      //if (merror < 0.25) 
+    {
+      CvGaborFeature feature(x,y,Mu,Nu);
+      feature.seterror(merror);
+      add(&feature);
+      n++;
+    }
+    
+  }
+  printf(" %d features been loaded\n", n);
+  fclose(file);
+}

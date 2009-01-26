@@ -23,10 +23,12 @@ using namespace MultiAdaGabor;
 
 int main(int argc, char *argv[])
 {
-  bool isWeakFile = true;
+  bool isWeakFile = false;
   
   const char* srcpath = "/mnt/export/rexm2vts/";
-  const char* significantfile = "/home/sir/sir02mz/local/EXP/M1TEST/signficant.txt";
+  const char *datapath = "/home/sir/sir02mz/local/BinEXP/M1/";
+  char* significantfile = new char[50];
+  sprintf(significantfile, "%s/signficant.txt", datapath);
   CvXm2vts xm2vts( srcpath );
   xm2vts.setNumSub( 200 );
   xm2vts.setNumPic( 4 );
@@ -50,7 +52,7 @@ int main(int argc, char *argv[])
       if(i > 0)
       {
         char * weightname = new char[50];
-        sprintf(weightname, "/home/sir/sir02mz/local/EXP/M1TEST/weight_%d.xml", i-1);
+        sprintf(weightname, "%s/weight_%d.xml", datapath, i-1);
         fsm1.loadweights( weightname );
         delete [] weightname;
       }
@@ -65,10 +67,11 @@ int main(int argc, char *argv[])
   {
     fsm1.loadweaks("/local/mweaks.xml");
   }
-  CvMat *mat = (CvMat*)cvLoad("/windows/D/Data/xm2vts/100/1/-1_4.xml", NULL, NULL, NULL);
-  float v = cvGetReal2D(mat, 12-1, 25-1);
+  //CvMat *mat = (CvMat*)cvLoad("/windows/D/Data/xm2vts/100/1/-1_4.xml", NULL, NULL, NULL);
+  //float v = cvGetReal2D(mat, 12-1, 25-1);
   fsm1.testing( inputname, outputname );
   
+  delete [] significantfile;
   return 0;
 }
 

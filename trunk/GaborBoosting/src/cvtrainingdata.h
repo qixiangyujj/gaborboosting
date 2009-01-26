@@ -63,6 +63,7 @@ public:
     bool loadUCI(const char  *filename);
     CvMat* getweights();
     void setweights(CvMat *wmat);
+    CvTrainingData* split(int clsidx1, int clsidx2);
   
     
 

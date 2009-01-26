@@ -30,6 +30,7 @@ CvXm2vts::CvXm2vts()
   strcpy(pathname, "/mnt/export/xm2vts_feature/"); 
   setNumPic(MAXPIC);
   setNumSub(200);
+  isGender = false;
 }
 
 
@@ -54,6 +55,7 @@ CvXm2vts::~CvXm2vts()
   strcpy(pathname, where);
   setNumPic(MAXPIC);
   setNumSub(200);
+  isGender = false;
 }
 
 
@@ -250,8 +252,12 @@ void CvXm2vts::clear()
 {
   delete [] name;
   delete [] pathname;
-  if(subIndex!=NULL) cvReleaseMat(&subIndex);
-  if(picIndex!=NULL) cvReleaseMat(&picIndex);
+  if( subIndex!=NULL ) 
+    cvReleaseMat( &subIndex );
+  if( picIndex!=NULL ) 
+    cvReleaseMat( &picIndex );
+  if( isGender ) 
+    cvReleaseMat( &gender );
 }
 
 
@@ -295,6 +301,7 @@ CvMat* CvXm2vts::getPic()
   strcpy(this->pathname, a.pathname);
   this->picIndex = cvCloneMat(a.picIndex);
   this->subIndex = cvCloneMat(a.subIndex);
+
 }
 
 
@@ -311,6 +318,8 @@ CvXm2vts* CvXm2vts::clone()
   if( database->subIndex != NULL ) cvReleaseMat(&(database->subIndex));
   database->picIndex = cvCloneMat(this->picIndex);
   database->subIndex = cvCloneMat(this->subIndex);
+  database->isGender = isGender;
+  if(this->isGender)database->gender = cvCloneMat(this->gender);
   return database;
 }
 
@@ -330,4 +339,67 @@ int CvXm2vts::get_num_pic()
 int CvXm2vts::get_num_sub()
 {
   return numsub;
+}
+
+
+/*!
+    \fn CvXm2vts::setGender(const char* filename)
+ */
+void CvXm2vts::setGender(const char* filename)
+{
+  if (isGender) cvReleaseMat( &gender );
+  
+  gender = cvCreateMat( 1, 295, CV_32FC1 );
+  isGender = true;
+  FILE * file;
+  if ((file=fopen(filename,"r")) == NULL)
+  {
+    printf("Cannot read file %s.\n", filename);
+    exit(1);
+  }
+  
+  int nosub;
+  char *genderchar = new char[20];
+  char malekey[] = "M";
+  char femalekey[] = "F";
+  while (!feof(file))
+  {
+    if (fscanf(file, "%d", &nosub) == EOF) break;
+    if (nosub > 200) break;
+    if (fscanf(file, ",%s\n", genderchar) == EOF) break;
+    char * pch;
+    pch = strpbrk (genderchar, malekey);
+    if (pch != NULL)       // male
+    {
+      cvSetReal1D( gender, nosub-1, 1.0 );
+      //printf( "%d:M\n", nosub );
+    }
+    else           //female
+    {
+      cvSetReal1D( gender, nosub-1, 2.0);
+      //printf( "%d:F\n", nosub );
+    }
+  }
+  delete [] genderchar;
+  fclose(file);
+}
+
+
+/*!
+    \fn CvXm2vts::getGender(int nsub)
+ */
+bool CvXm2vts::getGender(int nsub)
+{
+  float v = cvGetReal1D( gender, nsub-1);
+  if ( v == 1.0 ) return true;
+  else return false;
+}
+
+
+/*!
+    \fn CvXm2vts::getfilename(int sub, int pic, char *filename)
+ */
+void CvXm2vts::getfilename(int sub, int pic, char *filename)
+{
+   sprintf( filename, "%s/%d_%d.jpg", pathname, sub, pic );
 }

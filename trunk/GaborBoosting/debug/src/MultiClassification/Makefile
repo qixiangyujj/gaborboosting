@@ -37,7 +37,8 @@ POST_UNINSTALL = :
 build_triplet = i686-pc-linux-gnu
 host_triplet = i686-pc-linux-gnu
 bin_PROGRAMS = allfeaturetraining$(EXEEXT) update$(EXEEXT) \
-	Recognition$(EXEEXT)
+	Recognition$(EXEEXT) KnnFaceReog$(EXEEXT) \
+	SVMFaceRecog$(EXEEXT)
 subdir = src/MultiClassification
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -50,9 +51,15 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_KnnFaceReog_OBJECTS = knnFaceRecog.$(OBJEXT)
+KnnFaceReog_OBJECTS = $(am_KnnFaceReog_OBJECTS)
+KnnFaceReog_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 am_Recognition_OBJECTS = FaceRecog.$(OBJEXT)
 Recognition_OBJECTS = $(am_Recognition_OBJECTS)
 Recognition_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
+am_SVMFaceRecog_OBJECTS = svmFaceRecog.$(OBJEXT)
+SVMFaceRecog_OBJECTS = $(am_SVMFaceRecog_OBJECTS)
+SVMFaceRecog_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 am_allfeaturetraining_OBJECTS = allfeaturetraining.$(OBJEXT)
 allfeaturetraining_OBJECTS = $(am_allfeaturetraining_OBJECTS)
 allfeaturetraining_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
@@ -70,9 +77,11 @@ LTCXXCOMPILE = $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) \
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(Recognition_SOURCES) $(allfeaturetraining_SOURCES) \
+SOURCES = $(KnnFaceReog_SOURCES) $(Recognition_SOURCES) \
+	$(SVMFaceRecog_SOURCES) $(allfeaturetraining_SOURCES) \
 	$(update_SOURCES)
-DIST_SOURCES = $(Recognition_SOURCES) $(allfeaturetraining_SOURCES) \
+DIST_SOURCES = $(KnnFaceReog_SOURCES) $(Recognition_SOURCES) \
+	$(SVMFaceRecog_SOURCES) $(allfeaturetraining_SOURCES) \
 	$(update_SOURCES)
 ETAGS = etags
 CTAGS = ctags
@@ -181,19 +190,25 @@ target_alias =
 INCLUDES = -I$(top_srcdir)/src -I/usr/local/include/opencv $(all_includes)
 METASOURCES = AUTO
 allfeaturetraining_SOURCES = allfeaturetraining.cpp
-allfeaturetraining_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
-	-lml -lcxcore -lcv
+allfeaturetraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui \
+	-L/usr/local/lib -lml -lcxcore -lcv
 
 update_SOURCES = minandupdate.cpp
-update_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib -lml -lcxcore \
-	-lcv
+update_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui -L/usr/local/lib \
+	-lml -lcxcore -lcv
 
 Recognition_SOURCES = FaceRecog.cpp
 Recognition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
 	-lhighgui -lml -lcv -lcxcore
 
-allfeaturetraining_LDFLAGS = -all-static
-update_LDFLAGS = -all-static
+KnnFaceReog_SOURCES = knnFaceRecog.cpp
+KnnFaceReog_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
+	-lhighgui -lml -lcv -lcxcore
+
+SVMFaceRecog_SOURCES = svmFaceRecog.cpp
+SVMFaceRecog_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib\
+	-lhighgui -lml -lcv -lcxcore
+
 all: all-am
 
 .SUFFIXES:
@@ -255,9 +270,15 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
+KnnFaceReog$(EXEEXT): $(KnnFaceReog_OBJECTS) $(KnnFaceReog_DEPENDENCIES) 
+	@rm -f KnnFaceReog$(EXEEXT)
+	$(CXXLINK) $(KnnFaceReog_LDFLAGS) $(KnnFaceReog_OBJECTS) $(KnnFaceReog_LDADD) $(LIBS)
 Recognition$(EXEEXT): $(Recognition_OBJECTS) $(Recognition_DEPENDENCIES) 
 	@rm -f Recognition$(EXEEXT)
 	$(CXXLINK) $(Recognition_LDFLAGS) $(Recognition_OBJECTS) $(Recognition_LDADD) $(LIBS)
+SVMFaceRecog$(EXEEXT): $(SVMFaceRecog_OBJECTS) $(SVMFaceRecog_DEPENDENCIES) 
+	@rm -f SVMFaceRecog$(EXEEXT)
+	$(CXXLINK) $(SVMFaceRecog_LDFLAGS) $(SVMFaceRecog_OBJECTS) $(SVMFaceRecog_LDADD) $(LIBS)
 allfeaturetraining$(EXEEXT): $(allfeaturetraining_OBJECTS) $(allfeaturetraining_DEPENDENCIES) 
 	@rm -f allfeaturetraining$(EXEEXT)
 	$(CXXLINK) $(allfeaturetraining_LDFLAGS) $(allfeaturetraining_OBJECTS) $(allfeaturetraining_LDADD) $(LIBS)
@@ -273,7 +294,9 @@ distclean-compile:
 
 include ./$(DEPDIR)/FaceRecog.Po
 include ./$(DEPDIR)/allfeaturetraining.Po
+include ./$(DEPDIR)/knnFaceRecog.Po
 include ./$(DEPDIR)/minandupdate.Po
+include ./$(DEPDIR)/svmFaceRecog.Po
 
 .cpp.o:
 	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \

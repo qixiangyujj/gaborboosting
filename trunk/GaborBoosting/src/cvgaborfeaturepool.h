@@ -52,6 +52,7 @@ public:
     CvGaborFeaturePool* range(int start, int end);
     void addfile(const char *filename);
     bool isIn(CvGaborFeature *feature);
+    void load_a(const char* filename);
     vector<CvGaborFeature> features;
     vector<CvGaborFeature>::iterator pos;
 

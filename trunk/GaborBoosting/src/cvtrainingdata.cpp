@@ -719,3 +719,18 @@ void CvTrainingData::setweights(CvMat *wmat)
       setweightofsample(w, i);
     }
 }
+
+
+/*!
+    \fn CvTrainingData::split(int clsidx1, int clsidx2)
+ */
+CvTrainingData* CvTrainingData::split(int clsidx1, int clsidx2)
+{
+  CvTrainingData * data1 = this->split(clsidx1);
+  CvTrainingData * data2 = this->split(clsidx2);
+  CvTrainingData * newdata = data1->merge( data2 );
+  
+  return newdata;
+  delete data1;
+  delete data2;
+}

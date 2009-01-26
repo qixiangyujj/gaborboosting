@@ -27,6 +27,10 @@ int main(int argc, char *argv[])
   const char * filelist = "/local/FaceDB/FERET/fb/filelist.txt";
   const char * resultfile = "ftestresults.txt";
 
+  
+  int nofeatures = 0;
+  bool allfeatures = true;
+  
   int width = 64;
   int height = 64;
   int bound = 0;
@@ -36,15 +40,49 @@ int main(int argc, char *argv[])
   int maxscale = 3;
   bool reduced = true;
   
+  char *inputname = new char[100];
+  char *outputname = new char[100];
+  strcpy(inputname, "/local/FaceDB/FERET/fb/filelist.txt");
+  strcpy(outputname, "testingresults.txt");
+  char *weaksname = new char[100];
+  strcpy(weaksname, "weaks.xml");
   
+  for(int i = 1; i < argc; i++ )
+  {
+    if( !strcmp( argv[i], "-weaks" ) )
+    {
+      strcpy(weaksname, argv[++i]);
+    }
+    else if( !strcmp( argv[i], "-input" ) )
+    {
+      strcpy(inputname, argv[++i]);
+    }
+    else if( !strcmp( argv[i], "-output" ) )
+    {
+      strcpy(outputname, argv[++i]);
+    }
+    else if( !strcmp( argv[i], "-nofeatures" ) )
+    {
+      nofeatures = atoi( argv[++i] );
+      allfeatures = false;
+    }
+    else if( !strcmp( argv[i], "-subject" ) )
+    {
+      id = atoi( argv[++i] );
+    }
+  }
   
   CvPoolParams param(height, width, minscale, maxscale, norientations, interval, bound, reduced);
   
   CvFeret feret("/windows/D/Data/feret/", "/local/FaceDB/FERET/fa/PPMS/", "/local/FaceDB/FERET/fb/PPMS/");
   
   CvBinGabAdaFeatureSelect FeatureSelec( &feret, &param, id );
-  FeatureSelec.loadweaks( "/local/EXP/FERET/29/weaks.xml" );
-  FeatureSelec.testing( filelist, resultfile );
+  FeatureSelec.loadweaks( weaksname );
+  if (allfeatures) FeatureSelec.testing( inputname, outputname );
+  else FeatureSelec.testing(inputname, outputname, nofeatures);
+  delete [] weaksname;
+  delete [] inputname;
+  delete [] outputname;
   return 0;
   
 }

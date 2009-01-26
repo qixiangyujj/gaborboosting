@@ -521,3 +521,39 @@ void AdaGabor::CvGaborFeaturePairPool::clearPairs()
 {
   pairs.clear();
 }
+
+
+/*!
+    \fn AdaGabor::CvGaborFeaturePairPool::select(double mutinf1, double mutinf2, const char* mode)
+ */
+AdaGabor::CvGaborFeaturePairPool* AdaGabor::CvGaborFeaturePairPool::select(double mutinf1, double mutinf2, const char* mode)
+{
+  CvGaborFeaturePairPool* pool = this->clone();
+  pool->clearPairs();
+  
+  int n = 0;
+  if(!strcmp(mode, "BETWEEN"))
+  {
+    for(int i = 0; i < pairs.size(); i++)
+    {
+      // printf("%d", i);
+      CvGaborFeaturePair *pair = this->getPair( i );
+      double MutInf = pair->getMutInf();
+      if(( MutInf <= mutinf1 ) && (MutInf > mutinf2))
+      {
+        pair->describe();
+        n++;
+        pool->push( pair );
+      }
+      else 
+      {
+        //printf("  : nothing ");
+        
+      }
+      //printf("\n");
+    }
+  }
+  printf("%d pair selected\n", n);
+  
+  return pool;
+}

@@ -26,6 +26,7 @@ CvWeakLearner::CvWeakLearner()
 
 CvWeakLearner::~CvWeakLearner()
 {
+  clear();
 }
 
 
@@ -63,17 +64,19 @@ bool CvWeakLearner::train(CvTrainingData *data, int Learner_Type)
         case KNEAR:
           break;
         case SVM:
+          svmlearning(data);
           break;
         case ANN:
           annlearning(data);
           break;
-        case LFD:
+        case FLD:
+          fldlearning( data );
           break;
-        case THRESHOLD:
+        case POTSU:
           thresholdlearning(data);
           break;
       }
-
+      IsTrained = true;
       return true;
     }
 }
@@ -91,7 +94,7 @@ double CvWeakLearner::training_error()
    } 
    else
    {
-     //printf("The training error of this weak learner is %f\n", error);
+     //printf("Error of this weak learner is %f. ", error);
      return error;
    }
 }
@@ -119,6 +122,7 @@ double CvWeakLearner::importance()
    } 
    else
    {
+     printf("Error of this weak learner is %f. ", error);
      printf("Alpha of this weak learner is %f\n", alpha);
      return alpha;
    }
@@ -150,9 +154,9 @@ double CvWeakLearner::predict(CvMat* sample)
         case ANN:
           label = annpredict(sample);
           break;
-        case LFD:
+        case FLD:
           break;
-        case THRESHOLD:
+        case POTSU:
           label = thresholdpredict(sample);
           break;
 
@@ -170,17 +174,21 @@ void CvWeakLearner::clear()
     switch(type)
     {
         case BAYES:
-          bayes->clear();
+          delete bayes;
           break;
         case KNEAR:
           break;
         case SVM:
+          delete svm;
           break;
         case ANN:
-          ann->clear();
+      //ann->clear();
+          delete (CvANN_MLP *)ann;
           break;
-        case LFD:
-          break;
+        case FLD:
+      break;
+    case POTSU:
+      break;
     }
 }
 
@@ -300,10 +308,11 @@ void CvWeakLearner::bayeslearning(CvTrainingData* data)
       int n = 0;
       for (int i = 0; i < nsample; i++)
       {
-        for (int j = 0; j < nelement; j++)
-        {
-          cvSetReal1D(sample, j, ((double*)(trainData->data.ptr + trainData->step*i))[j]);
-        }
+//         for (int j = 0; j < nelement; j++)
+//         {
+//           cvSetReal1D(sample, j, ((double*)(trainData->data.ptr + trainData->step*i))[j]);
+//         }
+        cvGetRow(trainData, sample, i);
         label1 = cvGetReal1D(response, i);
         label2 = bayes->predict(sample, 0);
         if (label1 != label2)
@@ -315,15 +324,20 @@ void CvWeakLearner::bayeslearning(CvTrainingData* data)
       }
       fprate = (double)falsepos/numpos;
       error = e;
-      printf("%d / %d      %d / %d\n", n, nsample, falsepos, numpos);
+  //printf("%d / %d      %d / %d\n", n, nsample, falsepos, numpos);
+      printf("%d / %d\n", n, nsample);
       alpha = log((1-error)/error)/2;
+      
+  // update weights
+  /*
       double dwei;
       for (int i = 0; i < nsample; i++)
       {
-        for (int j = 0; j < nelement; j++)
-        {
-          cvSetReal1D(sample, j, ((double*)(trainData->data.ptr + trainData->step*i))[j]);
-        }
+//         for (int j = 0; j < nelement; j++)
+//         {
+//           cvSetReal1D(sample, j, ((double*)(trainData->data.ptr + trainData->step*i))[j]);
+//         }
+        cvGetRow(trainData, sample, i);
         label1 = cvGetReal1D(response, i);
         label2 = bayes->predict(sample, 0);
 
@@ -331,8 +345,8 @@ void CvWeakLearner::bayeslearning(CvTrainingData* data)
         else dwei = exp(-1*alpha)*data->getweightofsample(i);
         data->setweightofsample(dwei, i);
       }
+     */ 
       
-      IsTrained = true;
      
       cvReleaseMat(&sample);
       cvReleaseMat(&response1);
@@ -360,14 +374,16 @@ void CvWeakLearner::annlearning(CvTrainingData *data)
     CvANN_MLP_TrainParams params;
     params.train_method = CvANN_MLP_TrainParams::RPROP;
   
-   int layer[3] = {nelement, 2, 1};
-  
-    CvMat layer_sizes = cvMat(1, 3, CV_32SC1, layer);
-    
 
-    CvANN_MLP *classifier = new CvANN_MLP;
-    classifier->create(&layer_sizes, CvANN_MLP::SIGMOID_SYM, 1, 1);
-    niteration = classifier->train(trainData, trainClasses, weight, 0, params, 0);
+  
+    CvMat *layer_sizes = cvCreateMat(1, 3, CV_32SC1);
+    cvSetReal1D( layer_sizes, 0, nelement);
+    cvSetReal1D( layer_sizes, 1, 2);
+    cvSetReal1D( layer_sizes, 2, 1);
+  
+    ann = new CvANN_MLP;
+    ann->create(layer_sizes, CvANN_MLP::SIGMOID_SYM, 1, 1);
+    niteration = ann->train(trainData, trainClasses, weight, 0, params, 0);
     if (niteration <= 0)
     {
       printf("ANN Weak Learner training failed!\n");
@@ -386,26 +402,29 @@ void CvWeakLearner::annlearning(CvTrainingData *data)
     for (int i = 0; i < nsample; i++)
     {
       cvGetRow(trainData, sample, i);
-      classifier->predict(sample, output);
+      ann->predict(sample, output);
       label1 = cvGetReal1D(trainClasses, i);
       label2 = round(cvGetReal1D(output, 0));
       //printf("%f vs %f\n", label1, label2);
       if (label1 != label2)
       {
         e = e + data->getweightofsample(i);
-          //printf("%d vs  %d\n", (int)label1, (int)label2);
-          //printf("the error is %f .\n", e);
+        //printf("%d vs  %d\n", (int)label1, (int)label2);
+        //printf("the error is %f .\n", e);
         n++;
       }
     }
     error = e;
-    //printf("%d / %d\n", n, nsample);
+  //printf("%d / %d\n", n, nsample);
+  
     alpha = log((1-error)/error)/2;
+  // update the weights
+  /*
     double dwei;
     for (int i = 0; i < nsample; i++)
     {
       cvGetRow(trainData, sample, i);
-      classifier->predict(sample, output);
+      ann->predict(sample, output);
       label1 = cvGetReal1D(trainClasses, i);
       label2 = round(cvGetReal1D(output, 0));
 
@@ -413,15 +432,18 @@ void CvWeakLearner::annlearning(CvTrainingData *data)
       else dwei = exp(-1*alpha)*data->getweightofsample(i);
       data->setweightofsample(dwei, i);
     }
-    IsTrained = true;
+    */
     
-    ann = (CvANN_MLP*) classifier;
-
+  //ann = (CvANN_MLP*) classifier;
 
 
     cvReleaseMat(&sample);
     cvReleaseMat(&output);
+    cvReleaseMat( &layer_sizes);
     //delete layer;
+  
+  
+    cvReleaseMat( &weight );
     cvReleaseMat(&trainClasses);
     cvReleaseMat(&trainData);
 }
@@ -458,6 +480,7 @@ double CvWeakLearner::myerror()
     //double m = fprate/error;
     //printf("My error is %f.\n", m);
     //error/fprate;
+  fprate = 0.0;
     return fprate;
 }
 
@@ -510,6 +533,8 @@ void CvWeakLearner::thresholdlearning(CvTrainingData *data)
     thresholding = cvGetReal1D(thresholds, loc); 
 
     alpha = log((1-error)/error)/2;
+    
+  
     double label1, label2, ve, dwei;
     int falsepos = 0;
     int n = 0;
@@ -520,15 +545,15 @@ void CvWeakLearner::thresholdlearning(CvTrainingData *data)
       label2 = thresholdpredict(thresholding, ve);
       if (label1 != label2)
       {
-        dwei = exp(alpha)*data->getweightofsample(i);
+        //dwei = exp(alpha)*data->getweightofsample(i);
         if (label1 == 1.0) falsepos++;
         n++;
       }  
-      else dwei = exp(-1*alpha)*data->getweightofsample(i);
-      data->setweightofsample(dwei, i);
+      //else dwei = exp(-1*alpha)*data->getweightofsample(i);
+      //data->setweightofsample(dwei, i);
     }
     //printf("%d / %d      %d / %d\n", n, nsample, falsepos, numpos);
-    IsTrained = true;
+    
     fprate = (double)falsepos/numpos;
     this->num_pos = numpos;
     this->num_neg = nsample - numpos;
@@ -698,18 +723,20 @@ double CvWeakLearner::predict(double value)
     switch (type)
     {
         case BAYES:
-          //label = bayespredict(sample);
+          label = bayespredict(value);
           break;
         case KNEAR:
           break;
         case SVM:
+          label = svmpredict( value );
           break;
         case ANN:
-          //label = annpredict(sample);
+          label = annpredict(value);
           break;
-        case LFD:
+        case FLD:
+          label = fldpredict( value);
           break;
-        case THRESHOLD:
+        case POTSU:
           label = thresholdpredict( thresholding, value );
           break;
 
@@ -747,9 +774,9 @@ double CvWeakLearner::confident(double value)
   case ANN:
           //label = annpredict(sample);
     break;
-  case LFD:
+  case FLD:
     break;
-  case THRESHOLD:
+  case POTSU:
     confid = thresholdconfident( value );
     break;
     
@@ -771,4 +798,270 @@ double CvWeakLearner::thresholdconfident( double input)
     v = v*(-1.0);
   }
   return v;
+}
+
+
+/*!
+    \fn CvWeakLearner::fldlearning(CvTrainingData *data)
+ */
+void CvWeakLearner::fldlearning(CvTrainingData *data)
+{
+  num_pos = data->getnumsamcls( 1 );
+  num_neg = data->getnumsamcls( 2 );
+  nsample = data->getnumsample(); 
+  nelement = data->getnumelement();
+  
+  CvMat* trainData = data->getdata();
+  CvMat *trainClasses = data->getresponse();
+  
+  double mean_pos = 0.0, mean_neg = 0.0, sum_pos = 0.0, sum_neg = 0.0;
+  
+  for(int i = 0; i < nsample; i++)
+  {
+    if ( cvGetReal1D(trainClasses, i) == 1.0)
+    {
+      double value = cvGetReal1D( trainData, i );
+      sum_pos += value;
+    }
+    else
+    {
+      double value = cvGetReal1D( trainData, i );
+      sum_neg += value;
+    }
+  }
+  mean_neg = sum_neg / (double)num_neg;
+  mean_pos = sum_pos / (double)num_pos;
+  
+  double S_pos = 0.0, S_neg = 0.0;
+ 
+  for(int i = 0; i < nsample; i++)
+  {
+    if ( cvGetReal1D(trainClasses, i) == 1.0)
+    {
+      double value = cvGetReal1D( trainData, i );
+      S_pos += pow((value -mean_pos),2.0);
+    }
+    else
+    {
+      double value = cvGetReal1D( trainData, i );
+      S_neg += pow((value -mean_neg),2.0);
+    }
+  }
+  double Sw = S_pos+S_neg;
+  w = pow(Sw,-1.0)*(mean_pos-mean_neg);
+  double proj_neg = w*mean_neg;
+  double proj_pos = w*mean_pos;
+  b = (proj_neg+proj_pos)*(-0.5);
+  
+  double ve, dwei = 0.0;
+  double label1, label2;
+  fn = 0;
+  fp = 0;
+  for (int i = 0; i < nsample; i++)
+  {
+    ve = cvGetReal1D( trainData,i );
+    label1 =  cvGetReal1D(trainClasses, i);
+    label2 = predict( ve );
+    if (label1 != label2)
+    {
+      dwei += data->getweightofsample( i );
+      
+      /* 
+      if (label1 == 1)
+        fn++;
+      if (label2 == 2)
+        fp++;
+      */
+    }  
+  }
+  error = dwei;
+  alpha = log((1-error)/error)/2;
+  //printf("The error rate is %f\n", error);
+  //printf("The false negative rate is %f\n", (double)fp/(double)num_pos);
+  //printf("The false positive rate is %f\n", (double)fn/(double)num_neg);
+  //printf("The false negative rate is %d   %d\n", fp, num_pos);
+  //printf("The false positive rate is %d    %d\n", fn, num_neg);
+  
+  
+  
+  cvReleaseMat( &trainClasses );
+  cvReleaseMat( &trainData );
+}
+
+
+/*!
+    \fn CvWeakLearner::annpredict(double value)
+ */
+double CvWeakLearner::annpredict(double value)
+{
+  double label;
+  CvMat* sample = cvCreateMat(1, 1, CV_32FC1);
+  cvSetReal1D( sample, 0, value);
+  CvMat* output = cvCreateMat(1, 1, CV_32FC1);
+  ann->predict(sample, output);
+  label = round(cvGetReal1D(output, 0));
+  cvReleaseMat(&output);
+  cvReleaseMat(&sample);
+  return label;
+}
+
+
+/*!
+    \fn CvWeakLearner::bayespredict(double value)
+ */
+double CvWeakLearner::bayespredict(double value)
+{
+  double label;
+  CvMat* sample = cvCreateMat(1, 1, CV_32FC1);
+  cvSetReal1D( sample, 0, value);
+  label = bayes->predict(sample, 0);
+  cvReleaseMat(&sample);
+  return label;
+}
+
+
+/*!
+    \fn CvWeakLearner::fldpredict( double value )
+ */
+double CvWeakLearner::fldpredict( double value )
+{
+  double y;
+  y = w*value + b;
+  
+  double label;
+  if(y >= 0.0) label = 1.0;
+  else label = 2.0;
+  return label;
+}
+
+
+/*!
+    \fn CvWeakLearner::update(CvTrainingData *data)
+ */
+void CvWeakLearner::update(CvTrainingData *data)
+{
+  double label1, label2, ve, dwei;
+  
+  CvMat* trainData = data->getdata();
+  CvMat *trainClasses = data->getresponse();
+  
+  for (int i = 0; i < nsample; i++)
+  {
+    ve = cvGetReal1D(trainData,i);
+    label1 = cvGetReal1D(trainClasses, i);
+    label2 = predict( ve );
+    if ( label1 != label2 )
+      dwei = exp(alpha)*data->getweightofsample( i );
+    else 
+      dwei = exp(-1*alpha)*data->getweightofsample( i );
+    data->setweightofsample( dwei, i );
+  }
+  
+  cvReleaseMat( &trainClasses );
+  cvReleaseMat( &trainData );
+}
+
+
+/*!
+    \fn CvWeakLearner::svmlearning(CvTrainingData *data)
+ */
+void CvWeakLearner::svmlearning(CvTrainingData *data)
+{
+
+  nsample = data->getnumsample();
+  nelement = data->getnumelement();
+  
+  CvMat *trainData = data->getdata();
+  CvMat *trainClasses = data->getresponse();
+  
+  CvMat *weight = data->getweights();
+  
+  svm = new CvSVM;
+  CvTermCriteria term_crit = cvTermCriteria( CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 200, 0.8);
+  /*Type of SVM, one of the following types:
+    CvSVM::C_SVC - n-class classification (n>=2), allows imperfect separation of classes with penalty multiplier C for outliers.
+    CvSVM::NU_SVC - n-class classification with possible imperfect separation. Parameter nu (in the range 0..1, the larger the value, the smoother the decision boundary) is used instead of C.
+    CvSVM::ONE_CLASS - one-class SVM. All the training data are from the same class, SVM builds a boundary that separates the class from the rest of the feature space.
+    CvSVM::EPS_SVR - regression. The distance between feature vectors from the training set and the fitting hyperplane must be less than p. For outliers the penalty multiplier C is used.
+    CvSVM::NU_SVR - regression; nu is used instead of p. */
+  int _svm_type = CvSVM::NU_SVC;
+  /*The kernel type, one of the following types:
+    CvSVM::LINEAR - no mapping is done, linear discrimination (or regression) is done in the original feature space. It is the fastest option. d(x,y) = x•y == (x,y)
+    CvSVM::POLY - polynomial kernel: d(x,y) = (gamma*(x•y)+coef0)degree
+    CvSVM::RBF - radial-basis-function kernel; a good choice in most cases: d(x,y) = exp(-gamma*|x-y|2)
+    CvSVM::SIGMOID - sigmoid function is used as a kernel: d(x,y) = tanh(gamma*(x•y)+coef0) */
+  
+  int _kernel_type = CvSVM::LINEAR;
+  
+  double _degree = 3.0;
+  double _gamma = 1.0;
+  double _coef0 = 0.0;
+  double _C = 1.0;
+  double _nu = 1.0;
+  double _p = 1.0;
+  
+  CvSVMParams  params( CvSVM::C_SVC, CvSVM::POLY, _degree, _gamma, _coef0, _C, _nu, _p,
+                       0, term_crit );
+  svm->train( trainData, trainClasses, 0, 0, params );
+
+    // computing error
+  CvMat* sample = cvCreateMat(1, nelement, CV_32FC1);
+  CvMat* output = cvCreateMat(1, 1, CV_32FC1);
+  double label1, label2;
+  double e = 0;
+  int n = 0;
+  double v;
+  float preclass;
+  for (int i = 0; i < nsample; i++)
+  {
+    cvGetRow(trainData, sample, i);
+    preclass = svm->predict(sample);
+    label1 = cvGetReal1D(trainClasses, i);
+    label2 =preclass;
+    if (label1 != label2)
+    {
+      e = e + data->getweightofsample(i);
+
+      n++;
+    }
+  }
+  error = e;
+
+  
+  alpha = log((1-error)/error)/2;
+
+  
+  
+  cvReleaseMat(&sample);
+  cvReleaseMat(&output);
+ 
+  
+  
+  cvReleaseMat( &weight );
+  cvReleaseMat(&trainClasses);
+  cvReleaseMat(&trainData);
+}
+
+
+/*!
+    \fn CvWeakLearner::svmpredict(double value)
+ */
+double CvWeakLearner::svmpredict(double value)
+{
+  CvMat* sample = cvCreateMat(1,1, CV_32FC1);
+  cvSetReal1D( sample, 0, value);
+  
+  float label = svm->predict( sample );
+  cvReleaseMat(&sample);
+  return label;
+}
+
+
+/*!
+    \fn CvWeakLearner::svmpredict( CvMat *sample )
+ */
+double CvWeakLearner::svmpredict( CvMat *sample )
+{
+  float label = svm->predict( sample );
+  return label;
 }

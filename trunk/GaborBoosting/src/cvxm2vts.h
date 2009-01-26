@@ -56,6 +56,9 @@ public:
     CvXm2vts* clone();
     int get_num_pic();
     int get_num_sub();
+    void setGender(const char* filename);
+    bool getGender(int nsub);
+    void getfilename(int sub, int pic, char *filename);
 
 protected:
     char* pathname;
@@ -65,6 +68,8 @@ protected:
     CvMat* subIndex;
     bool isPic;
     bool isSub;
+    CvMat* gender;
+    bool isGender;
 };
 
 #endif

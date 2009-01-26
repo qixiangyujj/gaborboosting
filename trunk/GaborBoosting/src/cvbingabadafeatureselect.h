@@ -57,7 +57,21 @@ public:
     double predict(const char *filename, int nweaks);
     double predict(IplImage *img, int nweaks);
     void testing(const char* filelist, const char* resultfile);
-     enum { XM2VTS = 0, FERET = 1};
+    void gendertesting( const char* resultfile );
+    void gendertesting(const char* resultfile, int nweaks);
+    double predict_a(const char *filename, int nweaks);
+    double predict_a(IplImage *img, int nweaks);
+    void resume();
+    void resume(int c);
+    void svmtesting(const char* resultfile, int nofeatures);
+    float svmpredict(IplImage *img, CvSVM *svm, int nfeatures);
+    float svmpredict(const char* filename, CvSVM *svm, int nfeatures);
+    void svmtesting( const char* resultfile );
+    void svmlearning(const char* path, int nofeatures, CvSVM * svm);
+    void svm_test( FILE *file, const char *path, int nofeatures, CvSVM * svm);
+    void svm_test_a( FILE *file, const char *path, int nofeatures, CvSVM * svm);
+    void setTypeWeak(int type);
+    enum { XM2VTS = 0, FERET = 1};
   
 protected:
     CvFaceDB* database;
@@ -79,6 +93,7 @@ protected:
     int nselecfeatures;
     int current;
     string weaksname;
+    int weaklearner_type;
 };
 
 #endif

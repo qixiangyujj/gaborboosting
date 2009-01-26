@@ -55,7 +55,7 @@ public:
     int numMutInf(double mutinf, const char* mode);
     AdaGabor::CvGaborFeaturePairPool* select(double mutinf, const char* mode);
     void clearPairs();
-
+    AdaGabor::CvGaborFeaturePairPool* select(double mutinf1, double mutinf2, const char* mode);
     
 
 protected:
@@ -67,6 +67,7 @@ protected:
 private:
     void writeXML(const char *filename);
     void writeTXT(const char* filename);
+    
     
 
 };

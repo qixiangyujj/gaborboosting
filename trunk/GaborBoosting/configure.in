@@ -7,4 +7,4 @@ AC_LANG_CPLUSPLUS
 AC_PROG_CXX
 AM_PROG_LIBTOOL
 
-AC_OUTPUT(Makefile src/Makefile src/MultiClassification/Makefile src/Segmentation/Makefile)
+AC_OUTPUT(Makefile src/Makefile src/MultiClassification/Makefile src/Segmentation/Makefile src/Gender/Makefile src/PCA/Makefile)

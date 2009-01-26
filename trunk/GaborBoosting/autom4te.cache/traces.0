@@ -9352,7 +9352,7 @@ m4trace:configure.in:8: -1- _LT_AC_SHELL_INIT([tagnames=${tagnames+${tagnames},}
 m4trace:configure.in:8: -1- AC_LIBTOOL_F77
 m4trace:configure.in:8: -1- _LT_AC_LANG_F77
 m4trace:configure.in:8: -1- _LT_AC_SHELL_INIT([tagnames=${tagnames+${tagnames},}F77])
-m4trace:configure.in:10: -1- AC_CONFIG_FILES([Makefile src/Makefile src/MultiClassification/Makefile src/Segmentation/Makefile])
+m4trace:configure.in:10: -1- AC_CONFIG_FILES([Makefile src/Makefile src/MultiClassification/Makefile src/Segmentation/Makefile src/Gender/Makefile src/PCA/Makefile])
 m4trace:configure.in:10: -1- _m4_warn([obsolete], [AC_OUTPUT should be used without arguments.
 You should run autoupdate.], [])
 m4trace:configure.in:10: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])

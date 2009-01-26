@@ -365,7 +365,7 @@ CvGaborFeature* CvGaborFeature::clone()
       feature->Init(ix, iy, iMu, iNu);
       feature->seterror(error);
     }
-      return feature; 
+    return feature; 
 }
 
 
@@ -1221,3 +1221,137 @@ CvTrainingData* CvGaborFeature::_FERETBin_F(CvFeret* feret, int possub, CvMat *i
   delete [] filename;
   return bindata;
 }
+
+
+
+/*!
+    \fn CvGaborFeature::_XM2VTSGender_F( CvXm2vts* xm2vts, int ntpic)
+ */
+CvTrainingData* CvGaborFeature::_XM2VTSGender_F( CvXm2vts* xm2vts, int ntpic)
+{
+  int nosub = 200;
+  int nopic = 8;
+  
+  /*    Generate filename   */
+  char *filename = new char[100];
+  char *ch_scale = new char[5];
+  char *ch_orient = new char[5];
+  char *ch_name = new char[10];
+  strcpy( filename, xm2vts->getPath() );
+  sprintf( ch_scale, "%d", iNu );
+  strcat(filename, ch_scale);
+  strcat(filename, "/");
+  
+  sprintf( ch_orient, "%d", iMu );
+  strcat( filename, ch_orient );
+  strcat(filename, "/");
+  sprintf(ch_name, "%d_%d.xml", ix, iy);
+  strcat(filename, ch_name);
+  delete [] ch_scale;
+  delete [] ch_orient;
+  delete [] ch_name;
+  /*  Generate filename   */
+  
+  /* Get data from the file */
+  CvMat* mat = (CvMat*)cvLoad( filename, NULL, NULL, NULL );
+  
+  int numsample = nosub*ntpic;
+  CvTrainingData *bindata = new CvTrainingData;
+  CvMat* tmpmat = cvCreateMat(numsample, 1, CV_32FC1);
+  bindata->init(2, numsample, 1);
+  
+  int n = 0;
+  double v;
+  for(int sub = 0; sub < nosub; sub++)
+  {
+    int ind;
+    bool gender = xm2vts->getGender( sub+1 );
+    if (gender) ind = 1;
+    else ind = 2;
+    for(int i = 0; i < ntpic; i++)
+    {
+      v = cvGetReal1D( mat, sub*nopic + i);
+      cvSetReal1D( tmpmat, sub*ntpic+i, v);
+      bindata->setclsidxofsample( ind, sub*ntpic+i);
+    }
+  }
+  
+  
+  bindata->setdata(tmpmat);
+  
+  cvReleaseMat(&tmpmat);
+  cvReleaseMat(&mat);
+  delete [] filename;
+  bindata->statclsdist();
+  return bindata;
+}
+
+
+/*!
+    \fn CvGaborFeature::_XM2VTSGender_F( CvXm2vts* xm2vts, CvMat* index)
+ */
+CvTrainingData* CvGaborFeature::_XM2VTSGender_F( CvXm2vts* xm2vts, CvMat* index)
+{
+  int nosub = 200;
+  int nopic = 8;
+  
+  /*    Generate filename   */
+  char *filename = new char[100];
+  char *ch_scale = new char[5];
+  char *ch_orient = new char[5];
+  char *ch_name = new char[10];
+  strcpy( filename, xm2vts->getPath() );
+  sprintf( ch_scale, "%d", iNu );
+  strcat(filename, ch_scale);
+  strcat(filename, "/");
+  
+  sprintf( ch_orient, "%d", iMu );
+  strcat( filename, ch_orient );
+  strcat(filename, "/");
+  sprintf(ch_name, "%d_%d.xml", ix, iy);
+  strcat(filename, ch_name);
+  delete [] ch_scale;
+  delete [] ch_orient;
+  delete [] ch_name;
+  /*  Generate filename   */
+  
+  CvSize size = cvGetSize( index );
+  int ntpic = size.width;
+  
+  /* Get data from the file */
+  CvMat* mat = (CvMat*)cvLoad( filename, NULL, NULL, NULL );
+  
+  int numsample = nosub*ntpic;
+  CvTrainingData *bindata = new CvTrainingData;
+  CvMat* tmpmat = cvCreateMat(numsample, 1, CV_32FC1);
+  bindata->init(2, numsample, 1);
+  
+  int n = 0;
+  double v;
+  for(int sub = 0; sub < nosub; sub++)
+  {
+    int ind;
+    bool gender = xm2vts->getGender( sub+1 );
+    if (gender) ind = 1;
+    else ind = 2;
+    for(int i = 0; i < ntpic; i++)
+    {
+      double indx = cvGetReal1D(index, i);
+      v = cvGetReal1D(mat, sub*nopic+(int)(indx-1));
+      cvSetReal1D(tmpmat, sub*ntpic+i, v);
+      bindata->setclsidxofsample( ind, sub*ntpic+i );
+    }
+  }
+  
+  
+  bindata->setdata(tmpmat);
+  
+  cvReleaseMat(&tmpmat);
+  cvReleaseMat(&mat);
+  delete [] filename;
+  bindata->statclsdist();
+  return bindata;
+}
+
+
+

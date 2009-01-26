@@ -43,6 +43,8 @@ CvMultiGabAdaFSM1::~CvMultiGabAdaFSM1()
   setDB( facedb );
   setPool( params );
   init_weights();
+  knn = new CvKNearest;
+  svm = new CvSVM;
 }
 
 
@@ -177,7 +179,7 @@ double MultiAdaGabor::CvMultiGabAdaFSM1::featureweak(CvGaborFeature* feature)
          feature->getx(), feature->gety(), feature->getNu(), feature->getMu());
   CvTrainingData *data = feature->_XM2VTSMulti_F( (CvXm2vts*)database );
   data->setweights(weights);
-  CvMWeakLearner *mweak = new CvMWeakLearner( (CvXm2vts*)database, CvWeakLearner::THRESHOLD );
+  CvMWeakLearner *mweak = new CvMWeakLearner( (CvXm2vts*)database, CvWeakLearner::POTSU );
   mweak->train( data );
 
   double e = mweak->get_error();
@@ -244,7 +246,7 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::update(CvMat* mat)
     data = feature->_XM2VTSMulti_F((CvXm2vts*)database);
     data->setweights(weights);
     
-    CvMWeakLearner *mweak = new CvMWeakLearner( (CvXm2vts*)database, CvWeakLearner::THRESHOLD );
+    CvMWeakLearner *mweak = new CvMWeakLearner( (CvXm2vts*)database, CvWeakLearner::POTSU );
     mweak->train(data);
   
     for(int i = 0; i < nsamples; i++)
@@ -307,6 +309,8 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::clear()
   delete database;
   delete new_pool;
   delete old_pool;
+  delete knn;
+  delete svm;
   cvReleaseMat(&weights);
 }
 
@@ -441,6 +445,8 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::continue_training(int no, int current)
   printf(".................a %d long pool built!\n", old_pool->getSize());
   new_pool = new CvGaborFeaturePool;
   init_weights();
+  knn = new CvKNearest;
+  svm = new CvSVM;
 }
 
 
@@ -605,7 +611,7 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::update()
     data = feature->_XM2VTSMulti_F((CvXm2vts*)database);
     data->setweights(weights);
     
-    CvMWeakLearner *mweak = new CvMWeakLearner( (CvXm2vts*)database, CvWeakLearner::THRESHOLD );
+    CvMWeakLearner *mweak = new CvMWeakLearner( (CvXm2vts*)database, CvWeakLearner::POTSU );
     mweak->train(data);
     
     for(int i = 0; i < nsamples; i++)
@@ -673,7 +679,7 @@ CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::predict(IplImage *img, int nweaks)
     
     CvGaborFeature *feature;
     feature = new_pool->getfeature(i);
-    vfeature = feature->val( img );
+    vfeature = feature->val( img, feature->getNu());
     
       /* get label from weak learner*/
     CvMat *resultMat = mweaks[i].mpredict( vfeature );
@@ -1086,7 +1092,581 @@ void MultiAdaGabor::CvMultiGabAdaFSM1::node2weak(CvFileNode *node, CvFileStorage
   CvFileNode *pnode = cvGetFileNodeByName( fs, node, "parity");
   double threshold = cvReadReal( tnode, 0);
   double parity = cvReadReal( pnode, 0);
-  weak->setType(CvWeakLearner::THRESHOLD);
+  weak->setType(CvWeakLearner::POTSU);
   weak->setparity( parity );
   weak->setthreshold( threshold );
+}
+
+
+/*!
+\fn MultiAdaGabor::CvMultiGabAdaFSM1::knnpredict(IplImage *img, int nfeatures)
+ */
+CvMat* MultiAdaGabor::CvMultiGabAdaFSM1::knnpredict(IplImage *img, int nfeatures)
+{
+  if( nfeatures > new_pool->getSize())
+  {
+    perror("Number of features exceeds the maximal!\n");
+    exit(-1);
+  }
+
+  CvMat *test_sample = cvCreateMat(1, nfeatures, CV_32FC1);
+  double vfeature;
+  for (int i = 0; i < nfeatures; i++)
+  {
+      /* load feature value */
+    CvGaborFeature *feature;
+    feature = new_pool->getfeature( i );
+    vfeature = feature->val( img, feature->getNu() );
+    cvSetReal1D( test_sample, i, vfeature );
+  }
+  
+  float *neighbors = new float[max_k];
+  CvMat *neighbor_responses = cvCreateMat(1, max_k, CV_32FC1);
+  CvMat *dist = cvCreateMat(1, max_k, CV_32FC1);
+  float c = knn->find_nearest( test_sample, max_k, 0, 0, neighbor_responses, dist );
+  //printf("The class number is %f\n", c);
+ 
+  
+  
+  cvReleaseMat( &dist );
+  cvReleaseMat( &test_sample ); 
+  //cvReleaseMat( &neighbor_responses );
+  delete neighbors;
+  //CvMat *result = cvCreateMat(1, max_k, CV_32FC1);
+  //cvSetReal1D(result, 0, c);
+  return neighbor_responses;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::knntraining(int nfeatures, int k)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::knntraining(int nfeatures, int k)
+{
+  if( nfeatures > new_pool->getSize())
+  {
+    perror("Number of features exceeds the maximal!\n");
+    exit(-1);
+  }
+  
+  max_k = k;
+  CvXm2vts *xm2vts = (CvXm2vts*)database;
+  
+  int nTrainingExample = xm2vts->get_num_sub()*xm2vts->get_num_pic();
+  CvMat* trainData = cvCreateMat(nTrainingExample, nfeatures, CV_32FC1);
+  
+  CvMat* response = cvCreateMat(nTrainingExample, 1, CV_32FC1);
+
+  for (int i = 0; i < nfeatures; i++)
+  {
+      /* load feature value */
+    
+    CvGaborFeature *feature;
+    feature = new_pool->getfeature(i);
+    
+    CvTrainingData *data = feature->_XM2VTSMulti_F( (CvXm2vts*)database );
+    int nexamples = data->getnumsample();
+    CvMat *datamat = data->getdata();
+    if( i == 0)
+    {
+      CvMat *dataresponse = data->getresponse();
+      cvCopy(dataresponse, response);
+      cvReleaseMat(&dataresponse);
+    }
+    for (int j = 0; j < nexamples; j++)
+    {
+      double vfeature = cvGetReal1D(datamat, j);
+      cvSetReal2D(trainData, j, i, vfeature);
+    }
+    //vfeature = feature->val( img );
+    cvReleaseMat(&datamat);
+    delete data;
+  }
+  
+  //CvSize size = cvGetSize(trainData);
+  knn->train( trainData, response, 0, false, max_k, false );
+  
+  
+  cvReleaseMat(&response);
+  cvReleaseMat(&trainData);
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::knntesting(const char* filelist, const char* resultfile, int nofeatures)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::knntesting(const char* filelist, const char* resultfile, int nofeatures)
+{
+  printf("Start testing from %s ... ... \n", filelist);
+  char *imgname = new char[50];
+  FILE *fs = fopen(filelist, "r");
+  assert(fs);
+  FILE *file = fopen(resultfile,"w");
+  assert(file);
+  
+  while(feof(fs) == 0)
+  {
+    if (fscanf(fs, "%s", imgname) == EOF) break;
+    printf("%s      ", imgname);
+    IplImage *img = cvLoadImage( imgname, CV_LOAD_IMAGE_GRAYSCALE);
+    knnpredict( img, nofeatures );
+    cvReleaseImage( &img );
+  }
+  
+  delete [] imgname;
+  fclose(file);
+  fclose(fs);
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::knnsave(const char* filename)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::knnsave(const char* filename)
+{
+  knn->save( filename, 0 );
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::knnload(const char* filename)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::knnload(const char* filename)
+{
+  knn->clear();
+  knn->load( filename, 0 );
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::knntesting(const char* resultfile, int nofeatures)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::knntesting(const char* resultfile, int nofeatures)
+{
+  const char * pathname = "/home/sir/sir02mz/local/FaceDB/XM2VTS/";
+  FILE *file = fopen(resultfile,"w");
+  assert(file);
+  
+  // testing the training examples
+  int sub, pic;
+  char *imgname = new char[50];
+  int accept_training = 0, accept_testing = 0;;
+  for ( sub = 1; sub <= 200; sub++)
+  {
+    for (pic = 1; pic <= 4; pic++)
+    {
+      sprintf( imgname, "%s/%d_%d.bmp", pathname, sub, pic);
+      printf("%s      ", imgname);
+      IplImage *img = cvLoadImage( imgname, CV_LOAD_IMAGE_GRAYSCALE);
+      int c = (int)knnpredict1( img, nofeatures );
+      fprintf( file, "%s            %d   \n",imgname, c);
+      if( c == sub) accept_training++;
+      cvReleaseImage( &img );
+    }
+  }
+  
+  fprintf( file, "\n\n\n");
+  // testing the testing examples
+  for ( sub = 1; sub <= 200; sub++)
+  {
+    for (pic = 5; pic <= 8; pic++)
+    {
+      sprintf( imgname, "%s/%d_%d.bmp", pathname, sub, pic);
+      printf("%s      ", imgname);
+      IplImage *img = cvLoadImage( imgname, CV_LOAD_IMAGE_GRAYSCALE);
+      int c = (int)knnpredict1( img, nofeatures );
+      fprintf( file, "%s            %d   \n",imgname, c);
+      if( c == sub) accept_testing++;
+      cvReleaseImage( &img );
+    }
+  }
+  
+  int impostor_false = 0;
+  /* for ( sub = 201; sub <= 295; sub++)
+  {
+    for (pic = 1; pic <= 8; pic++)
+    {
+      sprintf( imgname, "%s/%d_%d.bmp", pathname, sub, pic);
+      printf("%s      ", imgname);
+      IplImage *img = cvLoadImage( imgname, CV_LOAD_IMAGE_GRAYSCALE);
+      CvMat * result = knnpredict( img, nofeatures );
+      int c = (int)cvGetReal1D(result, 0);
+      fprintf( file, "%s            %d   \n",imgname, c);
+      if( c == sub) impostor_false++;
+      cvReleaseImage( &img );
+      cvReleaseMat(&result);
+    }
+  }
+  */
+  double training_error = (double)(800-accept_training) /800.0;
+  double testing_error = (double)(800-accept_testing)/800.0;
+  fprintf( file, "%d     %d      %d\n", accept_training, accept_testing, impostor_false);
+  fprintf( file, "%f         %f\n", training_error, testing_error );
+  delete [] imgname;
+  fclose( file );
+  knn->clear();
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::svmtraining(int nfeatures)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::svmtraining(int nfeatures)
+{
+  if( nfeatures > new_pool->getSize())
+  {
+    perror("Number of features exceeds the maximal!\n");
+    exit(-1);
+  }
+  
+ 
+  CvXm2vts *xm2vts = (CvXm2vts*)database;
+  
+  int nTrainingExample = xm2vts->get_num_sub()*xm2vts->get_num_pic();
+  CvMat* trainData = cvCreateMat(nTrainingExample, nfeatures, CV_32FC1);
+  
+  CvMat* response = cvCreateMat(nTrainingExample, 1, CV_32FC1);
+  printf("Training an SVM classifier  ................\n");
+  for (int i = 0; i < nfeatures; i++)
+  {
+      /* load feature value */
+    
+    CvGaborFeature *feature;
+    feature = new_pool->getfeature(i);
+    
+    CvTrainingData *data = feature->_XM2VTSMulti_F( (CvXm2vts*)database );
+    int nexamples = data->getnumsample();
+    CvMat *datamat = data->getdata();
+    if( i == 0)
+    {
+      CvMat *dataresponse = data->getresponse();
+      cvCopy(dataresponse, response);
+      cvReleaseMat(&dataresponse);
+    }
+    for (int j = 0; j < nexamples; j++)
+    {
+      double vfeature = cvGetReal1D(datamat, j);
+      cvSetReal2D(trainData, j, i, vfeature);
+    }
+    cvReleaseMat(&datamat);
+    delete data;
+  }
+  
+  CvTermCriteria term_crit = cvTermCriteria( CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 200, 0.8);
+  
+  /*Type of SVM, one of the following types:
+    CvSVM::C_SVC - n-class classification (n>=2), allows imperfect separation of classes with penalty multiplier C for outliers.
+    CvSVM::NU_SVC - n-class classification with possible imperfect separation. Parameter nu (in the range 0..1, the larger the value, the smoother the decision boundary) is used instead of C.
+    CvSVM::ONE_CLASS - one-class SVM. All the training data are from the same class, SVM builds a boundary that separates the class from the rest of the feature space.
+    CvSVM::EPS_SVR - regression. The distance between feature vectors from the training set and the fitting hyperplane must be less than p. For outliers the penalty multiplier C is used.
+    CvSVM::NU_SVR - regression; nu is used instead of p. */
+  int _svm_type = CvSVM::NU_SVC;
+  
+  /*The kernel type, one of the following types:
+    CvSVM::LINEAR - no mapping is done, linear discrimination (or regression) is done in the original feature space. It is the fastest option. d(x,y) = x•y == (x,y)
+    CvSVM::POLY - polynomial kernel: d(x,y) = (gamma*(x•y)+coef0)degree
+    CvSVM::RBF - radial-basis-function kernel; a good choice in most cases: d(x,y) = exp(-gamma*|x-y|2)
+    CvSVM::SIGMOID - sigmoid function is used as a kernel: d(x,y) = tanh(gamma*(x•y)+coef0) */
+  
+  int _kernel_type = CvSVM::POLY;
+  
+  double _degree = 3.0;
+  double _gamma = 1.0;
+  double _coef0 = 0.0;
+  double _C = 1.0;
+  double _nu = 1.0;
+  double _p = 1.0;
+  
+  CvSVMParams  params( CvSVM::C_SVC, CvSVM::POLY, _degree, _gamma, _coef0, _C, _nu, _p,
+                                        0, term_crit );
+  
+  svm->train( trainData, response, 0, 0, params );
+  cvReleaseMat(&response);
+  cvReleaseMat(&trainData);
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::svmtesting(const char* resultfile, int nofeatures)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::svmtesting(const char* resultfile, int nofeatures)
+{
+  const char * pathname = "/home/sir/sir02mz/local/FaceDB/XM2VTS/";
+  FILE *file = fopen(resultfile,"w");
+  assert(file);
+  
+  // testing the training examples
+  int sub, pic;
+  char *imgname = new char[50];
+  int accept_training = 0, accept_testing = 0;;
+  for ( sub = 1; sub <= 200; sub++)
+  {
+    for (pic = 1; pic <= 4; pic++)
+    {
+      sprintf( imgname, "%s/%d_%d.bmp", pathname, sub, pic);
+      printf("%s      ", imgname);
+      IplImage *img = cvLoadImage( imgname, CV_LOAD_IMAGE_GRAYSCALE);
+      float result = svmpredict( img, nofeatures );
+      int c = (int)result;
+      fprintf( file, "%s            %d   \n",imgname, c);
+      if( c == sub) accept_training++;
+      cvReleaseImage( &img );
+
+    }
+  }
+  
+  fprintf( file, "\n\n\n");
+  // testing the testing examples
+  for ( sub = 1; sub <= 200; sub++)
+  {
+    for (pic = 5; pic <= 8; pic++)
+    {
+      sprintf( imgname, "%s/%d_%d.bmp", pathname, sub, pic);
+      printf("%s      ", imgname);
+      IplImage *img = cvLoadImage( imgname, CV_LOAD_IMAGE_GRAYSCALE);
+      float result = svmpredict( img, nofeatures );
+      int c = (int)result;
+      if( c == sub) accept_testing++;
+      fprintf( file, "%s            %d   \n",imgname, c);
+      cvReleaseImage( &img );
+
+    }
+  }
+  
+  int impostor_false = 0;
+  /* for ( sub = 201; sub <= 295; sub++)
+  {
+    for (pic = 1; pic <= 8; pic++)
+    {
+      sprintf( imgname, "%s/%d_%d.bmp", pathname, sub, pic);
+      printf("%s      ", imgname);
+      IplImage *img = cvLoadImage( imgname, CV_LOAD_IMAGE_GRAYSCALE);
+      CvMat * result = knnpredict( img, nofeatures );
+      int c = (int)cvGetReal1D(result, 0);
+      fprintf( file, "%s            %d   \n",imgname, c);
+      if( c == sub) impostor_false++;
+      cvReleaseImage( &img );
+      cvReleaseMat(&result);
+    }
+  }
+  */
+  double training_error = (double)(800-accept_training) /800.0;
+  double testing_error = (double)(800-accept_testing)/800.0;
+  fprintf( file, "%d     %d      %d\n", accept_training, accept_testing, impostor_false);
+  fprintf( file, "%f         %f\n", training_error, testing_error );
+  delete [] imgname;
+  fclose( file );
+  svm->clear();
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::svmpredict(IplImage *img, int nfeatures)
+ */
+float MultiAdaGabor::CvMultiGabAdaFSM1::svmpredict(IplImage *img, int nfeatures)
+{
+  if( nfeatures > new_pool->getSize())
+  {
+    perror("Number of features exceeds the maximal!\n");
+    exit(-1);
+  }
+  
+  CvMat *test_sample = cvCreateMat(1, nfeatures, CV_32FC1);
+  double vfeature;
+  for (int i = 0; i < nfeatures; i++)
+  {
+      /* load feature value */
+    CvGaborFeature *feature;
+    feature = new_pool->getfeature( i );
+    vfeature = feature->val( img, feature->getNu() );
+    cvSetReal1D( test_sample, i, vfeature );
+  }
+  
+  
+  float result = svm->predict( test_sample );
+  printf("The class number is %f\n", result);
+
+  return result;
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::lossknntesting(const char* resultfile, int nofeatures)
+ */
+void MultiAdaGabor::CvMultiGabAdaFSM1::lossknntesting(const char* resultfile, int nofeatures)
+{
+  const char * pathname = "/home/sir/sir02mz/local/FaceDB/XM2VTS/";
+  FILE *file = fopen(resultfile,"w");
+  assert(file);
+  
+  // testing the training examples
+  int sub, pic;
+  char *imgname = new char[50];
+  int accept_training = 0, accept_testing = 0;
+  int c;
+  for ( sub = 1; sub <= 200; sub++)
+  {
+    for (pic = 1; pic <= 4; pic++)
+    {
+      sprintf( imgname, "%s/%d_%d.bmp", pathname, sub, pic);
+      printf("%s      ", imgname);
+      IplImage *img = cvLoadImage( imgname, CV_LOAD_IMAGE_GRAYSCALE);
+      CvMat * result = knnpredict( img, nofeatures );
+      
+      CvMat *cls = cvCreateMat( 1, 32, CV_32FC1 );
+      int index = 0;
+      for (int i = 0; i < max_k; i++)
+      {
+        double val = cvGetReal1D( result, i );
+        if (i != 0)
+        {
+          if ( ! isInMat( cls, val ) )
+          {
+            cvSetReal1D( cls, index, val);
+            index++;
+          }
+        }
+        else
+        {
+          cvSetReal1D( cls, index, val);
+          index++;
+        }
+      }
+      cvReleaseMat( &cls );
+      
+      
+      bool correct = false;
+      for (int i = 0; i < max_k; i++)
+      {
+        c = (int)cvGetReal1D(result, i);
+        if( c == sub)
+        {
+          correct = true;
+          break;
+        }
+      }
+      if ( correct ) 
+      {
+        printf("       The class number is %d  %d\n", c, index);
+        fprintf( file, "%s            %d   %d\n",imgname, c, index);
+        accept_training++;
+      }
+      else
+      {
+        printf( "       misclassified.\n  %d", index );
+        fprintf( file, "%s            %d   %d\n",imgname, 0, index);
+      }
+    
+      cvReleaseImage( &img );
+      cvReleaseMat(&result);
+    }
+  }
+  
+  fprintf( file, "\n\n\n");
+  // testing the testing examples
+  for ( sub = 1; sub <= 200; sub++)
+  {
+    for (pic = 5; pic <= 8; pic++)
+    {
+      sprintf( imgname, "%s/%d_%d.bmp", pathname, sub, pic);
+      printf("%s      ", imgname);
+      IplImage *img = cvLoadImage( imgname, CV_LOAD_IMAGE_GRAYSCALE);
+      CvMat * result = knnpredict( img, nofeatures );
+      
+      CvMat *cls = cvCreateMat( 1, 32, CV_32FC1 );
+      int index = 0;
+      for (int i = 0; i < max_k; i++)
+      {
+        double val = cvGetReal1D( result, i );
+        if (i != 0)
+        {
+          if ( ! isInMat( cls, val ) )
+          {
+            cvSetReal1D( cls, index, val);
+            index++;
+          }
+        }
+        else
+        {
+          cvSetReal1D( cls, index, val);
+          index++;
+        }
+      }
+      cvReleaseMat( &cls );
+      
+      bool correct = false;
+      for (int i = 0; i < max_k; i++)
+      {
+        c = (int)cvGetReal1D(result, i);
+        if( c == sub)
+        {
+          correct = true;
+          break;
+        }
+      }
+      if ( correct ) 
+      {
+        printf("       The class number is %d      %d\n", c, index);
+        fprintf( file, "%s            %d   %d\n",imgname, c, index);
+        accept_testing++;
+      }
+      else
+      {
+        printf( "       misclassified.    %d\n", index );
+        fprintf( file, "%s            %d     %d\n",imgname, 0, index);
+      }
+
+      cvReleaseImage( &img );
+      cvReleaseMat(&result);
+    }
+  }
+  
+  int impostor_false = 0;
+
+  double training_error = (double)(800-accept_training) /800.0;
+  double testing_error = (double)(800-accept_testing)/800.0;
+  fprintf( file, "%d     %d      %d\n", accept_training, accept_testing, impostor_false);
+  fprintf( file, "%f         %f\n", training_error, testing_error );
+  delete [] imgname;
+  fclose( file );
+  knn->clear();
+}
+
+
+/*!
+    \fn MultiAdaGabor::CvMultiGabAdaFSM1::knnpredict1(IplImage *img, int nfeatures)
+ */
+float MultiAdaGabor::CvMultiGabAdaFSM1::knnpredict1(IplImage *img, int nfeatures)
+{
+  if( nfeatures > new_pool->getSize())
+  {
+    perror("Number of features exceeds the maximal!\n");
+    exit(-1);
+  }
+  
+  CvMat *test_sample = cvCreateMat(1, nfeatures, CV_32FC1);
+  double vfeature;
+  for (int i = 0; i < nfeatures; i++)
+  {
+      /* load feature value */
+    CvGaborFeature *feature;
+    feature = new_pool->getfeature( i );
+    vfeature = feature->val( img, feature->getNu() );
+    cvSetReal1D( test_sample, i, vfeature );
+  }
+  
+  float *neighbors = new float[max_k];
+  CvMat *neighbor_responses = cvCreateMat(1, max_k, CV_32FC1);
+  CvMat *dist = cvCreateMat(1, max_k, CV_32FC1);
+  float c = knn->find_nearest( test_sample, max_k, 0, 0, neighbor_responses, dist );
+  printf("The class number is %f\n", c);
+  
+  
+  
+  cvReleaseMat( &dist );
+  cvReleaseMat( &test_sample ); 
+  cvReleaseMat( &neighbor_responses );
+  delete neighbors;
+  
+  return c;
 }

@@ -207,7 +207,7 @@ double CvGabAdaFeatureSelect::featureweak(CvGaborFeature *feature)
     }
     data->setweights(weights);
     CvWeakLearner *weak = new CvWeakLearner;
-    weak->train(data, CvWeakLearner::THRESHOLD);
+    weak->train(data, CvWeakLearner::POTSU);
   //weak->describe();
     //weak->train(data, CvWeakLearner::ANN);
     e = weak->training_error();
@@ -246,7 +246,7 @@ int CvGabAdaFeatureSelect::trainallfeature(CvGaborFeaturePool *pool)
     int maxfeatures = pool->getSize();
     double error;
     /* For each feature, trainiging a weaklearner, and get the error */
-    int n = 0;
+    int n = 0, m= 0;
   
     double errthreshold = errorthreshold();
     
@@ -282,6 +282,10 @@ int CvGabAdaFeatureSelect::trainallfeature(CvGaborFeaturePool *pool)
        maxfeatures = pool->getSize();
       //int p = i/maxfeatures;
       std::cout << "Trainging in the iteration: " << i<< "\r" << std::flush;
+      //m++;
+      //time (&end);
+      //dif = difftime (end,start);
+      //if(m == 100) printf("the computational time for training 100 features is %.2lf seconds.\n", dif);
     }
     std::cout << endl;
     time (&end);
@@ -322,7 +326,7 @@ void CvGabAdaFeatureSelect::updateweights()
       data->setweights(weights);
     
       CvWeakLearner *weak = new CvWeakLearner;
-      weak->train(data, CvWeakLearner::THRESHOLD);
+      weak->train(data, CvWeakLearner::POTSU);
     
       weights = data->getweights();
       error = weak->training_error();
@@ -573,7 +577,7 @@ void CvGabAdaFeatureSelect::loadweaks(const char* filename)
     {
       CvGaborTree *atree = (CvGaborTree*)cvGetSeqElem(seq, i);
       CvWeakLearner *weak = new CvWeakLearner;
-      weak->setType( CvWeakLearner::THRESHOLD );
+      weak->setType( CvWeakLearner::POTSU );
       weak->setthreshold(atree->threshold);
       weak->setparity(atree->parity);
       weaks.push_back(*weak);
@@ -919,7 +923,7 @@ void CvGabAdaFeatureSelect::loadsignfeatures(const char *filename)
     data->setweights(weight);
     
     CvWeakLearner *weak = new CvWeakLearner;
-    weak->train(data, CvWeakLearner::THRESHOLD);
+    weak->train(data, CvWeakLearner::POTSU);
     alpha = weak->importance();
     
     printf("Push a weaklearner .......\n");

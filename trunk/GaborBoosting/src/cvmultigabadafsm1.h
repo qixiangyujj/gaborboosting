@@ -94,6 +94,17 @@ public:
     void node2CvWeak(CvFileNode *node, CvFileStorage *fs, CvWeak *weak);
     void mweaknode2mweak(CvFileNode *node, CvFileStorage *fs, CvMWeakLearner *mweak);
     void node2weak(CvFileNode *node, CvFileStorage *fs, CvWeakLearner *weak);
+    CvMat* knnpredict(IplImage *img, int nfeatures);
+    void knntraining(int nfeatures, int k);
+    void knntesting(const char* filelist, const char* resultfile, int nofeatures);
+    void knnsave(const char* filename);
+    void knnload(const char* filename);
+    void knntesting(const char* resultfile, int nofeatures);
+    void svmtraining(int nfeatures);
+    void svmtesting(const char* resultfile, int nofeatures);
+    float svmpredict(IplImage *img, int nfeatures);
+    void lossknntesting(const char* resultfile, int nofeatures);
+    float knnpredict1(IplImage *img, int nfeatures);
 
     
 
@@ -112,6 +123,9 @@ protected:
     int nexpfeatures;
     int nselecfeatures;
     int current;
+    CvKNearest* knn;
+    int max_k;
+    CvSVM* svm;
  
 };
 

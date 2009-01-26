@@ -34,6 +34,30 @@ int main(int argc, char *argv[])
   int maxscale = 3;
   bool reduced = true;
   
+  for(int i = 1; i < argc; i++ )
+  {
+    if( !strcmp( argv[i], "-weaks" ) )
+    {
+      strcpy(weaksname, argv[++i]);
+    }
+    else if( !strcmp( argv[i], "-input" ) )
+    {
+      strcpy(inputname, argv[++i]);
+    }
+    else if( !strcmp( argv[i], "-output" ) )
+    {
+      strcpy(outputname, argv[++i]);
+    }
+    else if( !strcmp( argv[i], "-nofeatures" ) )
+    {
+      nofeatures = atoi( argv[++i] );
+      allfeatures = false;
+    }
+    else if( !strcmp( argv[i], "-subject" ) )
+    {
+      id = atoi( argv[++i] );
+    }
+  }
   
   
   CvPoolParams param(height, width, minscale, maxscale, norientations, interval, bound, reduced);

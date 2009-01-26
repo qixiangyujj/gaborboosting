@@ -58,7 +58,15 @@ public:
     void describe();
     double confident(double value);
     double thresholdconfident( double input);
-    enum { BAYES = 0, KNEAR = 1, SVM = 2, ANN = 3, LFD = 4, THRESHOLD = 5};
+    void fldlearning(CvTrainingData *data);
+    double annpredict(double value);
+    double bayespredict(double value);
+    double fldpredict( double value );
+    void update(CvTrainingData *data);
+    void svmlearning(CvTrainingData *data);
+    double svmpredict(double value);
+    double svmpredict( CvMat *sample );
+    enum { BAYES = 0, KNEAR = 1, SVM = 2, ANN = 3, FLD = 4, POTSU = 5};
  
 protected:
     int type;
@@ -68,6 +76,7 @@ protected:
     //CvStatModel* classifier;
     CvNormalBayesClassifier *bayes;
     CvANN_MLP *ann;
+    CvSVM *svm;
     bool IsTrained;
     double error;
     double alpha;
@@ -78,6 +87,8 @@ protected:
     int num_pos;
     int fp;
     int fn;
+    double w;
+    double b;
 };
 
 #endif
