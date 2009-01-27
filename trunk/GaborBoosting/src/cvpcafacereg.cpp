@@ -21,11 +21,14 @@
 
 CvPCAFaceReg::CvPCAFaceReg()
 {
+  isImgLoaded = false;
+  svm = new CvSVM;
 }
 
 
 CvPCAFaceReg::~CvPCAFaceReg()
 {
+  clear();
 }
 
 
@@ -81,9 +84,9 @@ void CvPCAFaceReg::setDB(CvFaceDB* db)
 
 
 /*!
-    \fn CvPCAFaceReg::learn()
+    \fn CvPCAFaceReg::pca()
  */
-void CvPCAFaceReg::learn()
+void CvPCAFaceReg::pca()
 {
 
   loadFaceImgArray( database );
@@ -140,12 +143,12 @@ void CvPCAFaceReg::doPCA()
   faceImgSize.height = faceImgArr[0]->height;
   eigenVectArr = (IplImage**)cvAlloc(sizeof(IplImage *)*nEigens);
 
-  printf("Allocating Memory for Eigen Vectors ..........   \n");
+ 
   for(int i = 0; i < nEigens; i++)
   {
     eigenVectArr[i] = cvCreateImage(faceImgSize, IPL_DEPTH_32F, 1);
   }
-  printf("done!\n");
+
   eigenValMat = cvCreateMat( 1, nEigens, CV_32FC1 );
 
   pAvgTrainImg = cvCreateImage(faceImgSize, IPL_DEPTH_32F, 1);
@@ -229,6 +232,7 @@ int CvPCAFaceReg::loadFaceImgArray(CvFaceDB *db)
   {
   }
   printf(" done!\n");
+  isImgLoaded = true;
   return nFace;
 }
 
@@ -284,4 +288,232 @@ void CvPCAFaceReg::showEigenImage(int n)
     cvReleaseImage(&newimage);
     cvReleaseImage(&fimage);
   }
+}
+
+
+/*!
+    \fn CvPCAFaceReg::loadTrainingData(const char * filename)
+ */
+void CvPCAFaceReg::loadTrainingData(const char * filename)
+{
+  CvFileStorage *fileStorage;
+  
+  fileStorage = cvOpenFileStorage( filename, 0, CV_STORAGE_READ );
+  if( !fileStorage )
+  {
+    fprintf( stderr, "Can not open %s\n", filename );
+  }
+  
+  nEigens = cvReadIntByName( fileStorage, 0, "nEigens", 0);
+  nTrainImages = cvReadIntByName( fileStorage, 0, "nTrainImages", 0 );
+  eigenValMat = (CvMat *)cvReadByName( fileStorage, 0, "eigenValMat", 0 );
+  projectedTrainFaceMat = (CvMat *)cvReadByName( fileStorage, 0, "projectedTrainFaceMat", 0 );
+  pAvgTrainImg = (IplImage *)cvReadByName( fileStorage, 0, "avgTrainImg", 0 );
+  eigenVectArr = (IplImage **)cvAlloc( nTrainImages * sizeof(IplImage *) );
+  for( int i = 0; i < nEigens; i++ )
+  {
+    char varname[200];
+    sprintf( varname, "eigenVect_%d", i );
+    eigenVectArr[i] = (IplImage *)cvReadByName( fileStorage, 0, varname, 0 );
+  }
+  
+  cvReleaseFileStorage(&fileStorage);
+}
+
+
+/*!
+    \fn CvPCAFaceReg::clear()
+ */
+void CvPCAFaceReg::clear()
+{
+  delete database;
+  cvReleaseMat( &eigenValMat );
+  cvReleaseMat( &projectedTrainFaceMat );
+  cvReleaseImage( &pAvgTrainImg );
+  delete svm;
+  if(isImgLoaded)
+  {
+    for (int i = 0; i < nTrainImages; i++)
+    {
+      IplImage *img = (IplImage *)faceImgArr[i];
+      cvReleaseImage( &img );
+    }
+  }
+  
+  for (int i = 0; i < nEigens ; i++)
+  {
+    IplImage *eigenVect = (IplImage *)eigenVectArr[i];
+    cvReleaseImage( &eigenVect );
+  }
+}
+
+
+/*!
+    \fn CvPCAFaceReg::svmlearning(int client_no, int nfeatures)
+ */
+void CvPCAFaceReg::svmlearning(int client_no, int nfeatures)
+{
+  CvMat* trainData = cvCreateMat(nTrainImages, nfeatures, CV_32FC1);
+  CvMat* response = cvCreateMat(nTrainImages, 1, CV_32FC1);
+  
+  
+  for(int i = 0; i < nTrainImages; i++)
+  {
+    if((i>=(client_no-1)*4) && (i<client_no*4))
+      cvSetReal1D( response, i, 1.0 );
+    else
+      cvSetReal1D( response, i, 2.0 );
+    for(int j = 0; j < nfeatures; j++)
+    {
+      float val = cvGetReal2D( projectedTrainFaceMat, i, j );
+      cvSetReal2D( trainData, i, j, val);
+    }
+  }
+  
+  
+ 
+  CvTermCriteria term_crit = cvTermCriteria( CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 200, 1.0);
+  /*Type of SVM, one of the following types:
+    CvSVM::C_SVC - n-class classification (n>=2), allows imperfect separation of classes with penalty multiplier C for outliers.
+    CvSVM::NU_SVC - n-class classification with possible imperfect separation. Parameter nu (in the range 0..1, the larger the value, the smoother the decision boundary) is used instead of C.
+    CvSVM::ONE_CLASS - one-class SVM. All the training data are from the same class, SVM builds a boundary that separates the class from the rest of the feature space.
+    CvSVM::EPS_SVR - regression. The distance between feature vectors from the training set and the fitting hyperplane must be less than p. For outliers the penalty multiplier C is used.
+    CvSVM::NU_SVR - regression; nu is used instead of p. */
+  int _svm_type = CvSVM::NU_SVC;
+  /*The kernel type, one of the following types:
+    CvSVM::LINEAR - no mapping is done, linear discrimination (or regression) is done in the original feature space. It is the fastest option. d(x,y) = x•y == (x,y)
+    CvSVM::POLY - polynomial kernel: d(x,y) = (gamma*(x•y)+coef0)degree
+    CvSVM::RBF - radial-basis-function kernel; a good choice in most cases: d(x,y) = exp(-gamma*|x-y|2)
+    CvSVM::SIGMOID - sigmoid function is used as a kernel: d(x,y) = tanh(gamma*(x•y)+coef0) */
+    
+  int _kernel_type = CvSVM::POLY;
+    
+  double _degree = 3.0;
+  double _gamma = 1.0;
+  double _coef0 = 0.0;
+  double _C = 1.0;
+  double _nu = 1.0;
+  double _p = 1.0;
+    
+  CvSVMParams  params( CvSVM::C_SVC, CvSVM::POLY, _degree, _gamma, _coef0, _C, _nu, _p, 0, term_crit );
+    
+  svm->train( trainData, response, 0, 0, params );
+    
+  svm->save( "svm.xml", 0 );
+  
+  
+  cvReleaseMat( &trainData );
+  cvReleaseMat( &response );
+}
+
+
+/*!
+    \fn CvPCAFaceReg::svmtesting( const char* filelist, int nfeatures )
+ */
+void CvPCAFaceReg::svmtesting( const char* filelist, int nfeatures )
+{
+  char *imgname = new char[50];
+  FILE *fs = fopen(filelist, "r");
+  assert(fs);
+  FILE *file = fopen("output.txt","w");
+  assert(file);
+  double l;
+  while(feof(fs) == 0)
+  {
+    if (fscanf(fs, "%s", imgname) == EOF) break;
+    l = svmpredict( imgname, nfeatures );
+    fprintf( file, "%s   %f\n", imgname, l );
+    printf( "%s is Class %d\n", imgname, (int)l );
+  }
+  delete [] imgname;
+  fclose(file);
+  fclose(fs);
+
+}
+
+
+/*!
+    \fn CvPCAFaceReg::loadTestImgArray(CvFaceDB *db)
+ */
+int CvPCAFaceReg::loadTestImgArray(CvFaceDB *db)
+{
+  printf("Loading testing images ............ \n");
+  int nFace;
+  if(db_type == XM2VTS)
+  {
+    char *filename = new char[50];
+    int nClass = ((CvXm2vts*)database)->get_num_sub();
+    int nperClass = ((CvXm2vts*)database)->get_num_pic();
+
+    IplImage ** testImgArr = (IplImage **)cvAlloc(200*8*sizeof(IplImage *));
+    
+    
+    
+    nFace = 0;
+    for (int i = 1; i <= nClass; i++)
+    {
+      for(int j = 1; j <= 8; j++)
+      {
+        ((CvXm2vts*)database)->getfilename( i, j, filename );
+        testImgArr[nFace] = cvLoadImage(filename, CV_LOAD_IMAGE_GRAYSCALE);
+        nFace++;
+
+      }
+    }
+    delete filename;
+    
+    
+    cvReleaseMat(&projectedTrainFaceMat);
+    projectedTrainFaceMat = cvCreateMat(200*8, nEigens, CV_32FC1);
+    for (int i = 0; i < nTrainImages; i++)
+    {
+      cvEigenDecomposite(
+	    testImgArr[i],
+	    nEigens,
+	    eigenVectArr,
+	    0, 0,
+	    pAvgTrainImg,
+	    projectedTrainFaceMat->data.fl + i*nEigens);
+    }
+
+    cvFree(testImgArr);
+  }
+  else if(db_type == FERET)
+  {
+  }
+
+  return nFace;
+}
+
+
+/*!
+    \fn CvPCAFaceReg::svmpredict(const char *imgfilename, int nfeatures)
+ */
+float CvPCAFaceReg::svmpredict(const char *imgfilename, int nfeatures)
+{
+  IplImage *img = cvLoadImage(imgfilename, CV_LOAD_IMAGE_GRAYSCALE);
+   
+  CvMat * coeff = cvCreateMat(1, nEigens, CV_32FC1);
+  cvEigenDecomposite(
+	  img,
+	  nEigens,
+	  eigenVectArr,
+	  0, 0,
+	  pAvgTrainImg,
+	  coeff->data.fl ); 
+   	  
+  CvMat *sample = cvCreateMat(1, nfeatures, CV_32FC1);
+  for(int i = 0; i < nfeatures; i++)
+  {
+    float val = cvGetReal1D( coeff, i);
+    cvSetReal1D( sample, i, val );
+  }
+  
+  float r = svm->predict( sample );
+   
+  cvReleaseMat(&sample);
+  cvReleaseMat( &coeff ); 
+  cvReleaseImage( &img );
+  
+  return r;
 }
