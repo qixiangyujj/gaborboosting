@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
   CvXm2vts xm2vts( srcpath );
   xm2vts.setNumSub( 200 );
   xm2vts.setNumPic( 4 );
-  xm2vts.setGender( "/home/sir/sir02mz/local/FaceDB/XM2VTS/gender.csv" );
+  xm2vts.setGender( "/local/FaceDB/XM2VTS/gender.csv" );
   
   CvPoolParams param(height, width, minscale, maxscale, norientations, interval, bound, reduced);
   
