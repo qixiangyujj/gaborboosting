@@ -600,11 +600,13 @@ double CvWeakLearner::thresholderror(double thesld, CvMat *weights, CvMat *data,
  */
 double CvWeakLearner::thresholdpredict(double thresld, double input)
 {
-    input = input * parity;
-    thresld = thresld * parity;
+    double i, t;
+    i = input * parity;
+    t = thresld * parity;
 
-    if (input < thresld) return 1.0;
-    else return 2.0;
+    if (i < t) return 1.0;
+    else 
+       return 2.0;
 }
 
 
@@ -940,6 +942,8 @@ double CvWeakLearner::fldpredict( double value )
  */
 void CvWeakLearner::update(CvTrainingData *data)
 {
+if (error > 0.0)
+{
   double label1, label2, ve, dwei;
   
   CvMat* trainData = data->getdata();
@@ -959,6 +963,7 @@ void CvWeakLearner::update(CvTrainingData *data)
   
   cvReleaseMat( &trainClasses );
   cvReleaseMat( &trainData );
+}
 }
 
 
