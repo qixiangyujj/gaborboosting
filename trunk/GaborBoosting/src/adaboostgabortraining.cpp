@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
   CvGabAdaFeatureParams training_params;
   int sub = 4;
   int nfeatures = 200;
-  const char *xm2vtspath= "/mnt/export/rexm2vts/";
+  const char *xm2vtspath= "/windows/D/Data/xm2vts_feature/";
   strcpy(training_params.sourcepath, xm2vtspath);
   int DB = _XM2VTS; // 1 is XM2VTS; and 2 is FERET
   bool resume = false;
