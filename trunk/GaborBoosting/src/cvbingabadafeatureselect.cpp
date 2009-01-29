@@ -266,16 +266,16 @@ void CvBinGabAdaFeatureSelect::trainallfeatures()
     double error = featureweak(feature);
     
     writefeature( allfeaturefilename, feature, error, falsepositive );
-    //if ((error > errthreshold)||(falsepositive > 0.5))
+    if ((error > errthreshold)||(falsepositive > 0.5))
 //     if (error > 0.5)
-//     {
-//       writefeature( disfeaturefilename, feature, error, falsepositive );
-//       //printf("Rejecting this feature .............\n");
-//       old_pool->remove(i);
-//       i--;
-//       m++;
-//     }
-//     else
+    {
+      writefeature( disfeaturefilename, feature, error, falsepositive );
+      //printf("Rejecting this feature .............\n");
+      old_pool->remove(i);
+      i--;
+      m++;
+    }
+    else
     {
       writefeature( featurefilename, feature, error, falsepositive );
     }
@@ -433,6 +433,8 @@ double CvBinGabAdaFeatureSelect::errorthreshold()
 {
 
   double nsum = 0.0, psum = 0.0;
+  //CvSize class_size = cvGetSize( classIdx );
+  //CvSize weights_size = cvGetSize( weights );
   for(int i = 0; i < nsamples; i++)
   {
     int id = (int)cvGetReal1D( classIdx, i );
