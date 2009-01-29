@@ -557,8 +557,11 @@ CvTrainingData* CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub, C
   CvSize size = cvGetSize( index );
   CvSize size1 = cvGetSize( mat );
   int num = size1.height;
-  int numpos = size.width;
+  int num_example = size.height;
   int numneg = ( nosub - 1 )*4;
+  int numpos = num_example - numneg;
+
+
   int numsample = numneg + numpos;
   CvTrainingData *bindata = new CvTrainingData;
   CvMat* tmpmat = cvCreateMat(numsample, 1, CV_32FC1);
