@@ -40,6 +40,8 @@ public:
     void setParam(CvPoolParams *param);
     void clear();
     void generate();
+    void loadData(const char* datapath);
+    enum { XM2VTS = 0,FERET = 1};
 
 
 protected:
@@ -52,10 +54,12 @@ protected:
     CvFaceDB *database;
     CvMat *Orients;
     CvMat *Scales;
-    enum { XM2VTS = 0, FERET = 1};
+
 
 };
 
 }
 
 #endif
+
+
