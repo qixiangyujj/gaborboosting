@@ -266,14 +266,16 @@ void PrepareData::makeXM2VTSMetas(const char* source, const char* destination)
           gaborfilter.conv_img((IplImage*)img, (IplImage*)response, CV_GABOR_MAG);
           
           /*  scale image according to scales  */
-          base = -NuMin;
+          
+	/*
+	  base = -NuMin;
           double dwidth = (double)width/pow(2,(iNu + base));
           double dheight = (double)height/pow(2,(iNu + base));
           int rewidth = (int)ceil(dwidth);
           int reheight = (int)ceil(dheight);
           IplImage *reduced = cvCreateImage(cvSize(rewidth,reheight), IPL_DEPTH_32F, 1);
           cvResize( response, reduced, CV_INTER_CUBIC );
-          
+          */
           strcpy(outputfile, destination);
           strcat(outputfile, sub);
           strcat(outputfile, "/");
@@ -286,11 +288,11 @@ void PrepareData::makeXM2VTSMetas(const char* source, const char* destination)
           strcat(outputfile, Mu);
           strcat(outputfile, ".xml");
           
-          cvSave( outputfile, (IplImage*)reduced, NULL, NULL, cvAttrList(0,0));
-          //cvSave( outputfile, (IplImage*)response, NULL, NULL, cvAttrList(0,0));
+          //cvSave( outputfile, (IplImage*)reduced, NULL, NULL, cvAttrList(0,0));
+          cvSave( outputfile, (IplImage*)response, NULL, NULL, cvAttrList(0,0));
           printf("%s has been saved!\n", outputfile); 
           cvReleaseImage(&response);
-          cvReleaseImage(&reduced);
+          //cvReleaseImage(&reduced);
         }
       }
       cvReleaseImage(&img);
