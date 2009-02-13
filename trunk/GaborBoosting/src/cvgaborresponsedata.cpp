@@ -79,8 +79,8 @@ void PrepareData::CvGaborResponseData::setDB(CvFaceDB *db)
  */
 void PrepareData::CvGaborResponseData::setParam(CvPoolParams *param)
 {
-	CvMat *Orients = cvCloneMat( param->getOrients() );
-	CvMat *Scales = cvCloneMat( param->getScales() );
+	Orients = cvCloneMat( param->getOrients() );
+	Scales = cvCloneMat( param->getScales() );
 	
 	CvSize size_o;
 	size_o = cvGetSize( Orients );
@@ -134,10 +134,10 @@ void PrepareData::CvGaborResponseData::generate()
 				IplImage *img = cvLoadImage( filename,  CV_LOAD_IMAGE_GRAYSCALE );
 				for(int k = 0; k < nScales; k++)
 				{
-					int scale = cvGetReal1D( Scales, k );
+					int scale = (int)cvGetReal1D( Scales, k );
 					for(int l = 0; l < nOrientations; l++)
 					{
-						int orientation = cvGetReal1D( Orients, l);
+						int orientation = (int)cvGetReal1D( Orients, l);
 						CvGabor gaborfilter(orientation, scale);
 						responses[n] = cvCreateImage(cvSize(img->width,img->height), IPL_DEPTH_32F, 1);
 						gaborfilter.conv_img((IplImage*)img, (IplImage*)responses[n], CV_GABOR_MAG);
@@ -146,7 +146,8 @@ void PrepareData::CvGaborResponseData::generate()
 				}	
 				cvReleaseImage(&img);
 			}
-			printf("=");
+			if( fmod(i,2.0) == 0.0)
+				printf("%d\%\n",i/2);
 		}
 		printf("\n");
 	}
@@ -160,3 +161,12 @@ void PrepareData::CvGaborResponseData::generate()
 
 
 
+
+
+/*!
+    \fn PrepareData::CvGaborResponseData::loadData(const char* datapath)
+ */
+void PrepareData::CvGaborResponseData::loadData(const char* datapath)
+{
+    /// @todo implement me
+}
