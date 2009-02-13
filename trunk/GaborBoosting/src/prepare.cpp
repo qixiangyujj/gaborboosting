@@ -115,17 +115,17 @@ int main(int argc, char *argv[])
     }
   }
   
-  /* 
-  const char *srcpath = "/local/FaceDB/XM2VTS/NEW/";
-  const char *dstpath = "/local/D/Data/rexm2vts/";
+   
+  //srcpath = "/local/FaceDB/XM2VTS/NEW/";
+  //dstpath = "/local/D/Data/rexm2vts/";
   preparefolder( dstpath, XM2VTS );
   makeMetas( srcpath, dstpath, XM2VTS );
-*/
+
   
   //const char *srcpath = "/mnt/export/xm2vts/";
   //const char *dstpath = "/mnt/export/xm2vts_feature/";
-  MakingFeatureData make(height, width, min, max, no, srcpath, dstpath, reduce);
-  make.run();
+  //MakingFeatureData make(height, width, min, max, no, srcpath, dstpath, reduce);
+  //make.run();
 
   delete [] srcpath;
   delete [] dstpath;
