@@ -26,10 +26,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "cvgabor.h"
+#include "cvgaborresponsedata.h"
 
 
-#define XM2VTS		0
-#define FERET		1
+//#define XM2VTS		0
+//#define FERET		1
 
 
 
@@ -48,12 +49,12 @@ void PrepareData::preparefolder(const char* pathname, int flag)
 {
   switch(flag)
   {
-  case XM2VTS:
+  case CvGaborResponseData::XM2VTS:
     {
       prepareXM2VTSfolder(pathname);
       break;
     }
-  case FERET:
+  case CvGaborResponseData::FERET:
     {
       break;
     }
@@ -66,12 +67,12 @@ void PrepareData::makeJPEGs(const char* source, const char* destination, int fla
 {
   switch(flag)
   {
-  case XM2VTS:
+  case CvGaborResponseData::XM2VTS:
     {
       makeXM2VTSJPEGs(source, destination);
       break;
     }
-  case FERET:
+  case CvGaborResponseData::FERET:
     {
       break;
     }
@@ -82,12 +83,12 @@ void PrepareData::makeMetas(const char* source, const char* destination, int fla
 {
   switch(flag)
   {
-  case XM2VTS:
+  case CvGaborResponseData::XM2VTS:
     {
       makeXM2VTSMetas(source, destination);
       break;
     }
-  case FERET:
+  case CvGaborResponseData::FERET:
     {
       break;
     }
@@ -249,8 +250,8 @@ void PrepareData::makeXM2VTSMetas(const char* source, const char* destination)
       int width = img->width;
       int height = img->height;
       printf("..................The image file '%s' has been read..................\n", inputfile);
-      int NuMin = -2;
-      int NuMax = 2;
+      int NuMin = -1;
+      int NuMax = 3;
       int MuMin = 0;
       int MuMax = 8;
       int base;
