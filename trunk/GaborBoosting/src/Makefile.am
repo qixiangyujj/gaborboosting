@@ -21,14 +21,14 @@ adaboostgabortraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lcvaux -lcv \
 
 
 lib_LIBRARIES = libAdaGabor.a
-libAdaGabor_a_SOURCES = cvadaboost.cpp cvbinarytrainingdata.cpp \
-									cvbin.cpp	cventropy.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
-									cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp cvgaborfeaturepool.cpp	cvlookuptable.cpp \
-									cvmultitrainingdata.cpp cvmutinf.cpp cvtestingdata.cpp	cvtrainingdata.cpp cvweaklearner.cpp \
-									cv2bins.cpp cvgaborfeaturepairselect.cpp cvfacedb.cpp cvxm2vts.cpp cvpoolparams.cpp \
-								makingfeaturedata.cpp cvmultigabadafeatureselect.cpp cvmultigabadafsm1.cpp cvmweaklearner.cpp \
-					MatUsage.cpp cvferet.cpp cvsubject.cpp cvknnweaklearner.cpp \
-		cvbingabadafeatureselect.cpp cvpcafacereg.cpp
+libAdaGabor_a_SOURCES = MatUsage.cpp cv2bins.cpp cvadaboost.cpp \
+	cvbin.cpp	cventropy.cpp cvbinarytrainingdata.cpp cvbingabadafeatureselect.cpp cvfacedb.cpp \
+	cvferet.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
+	cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp cvgaborfeaturepairselect.cpp \
+	cvgaborfeaturepool.cpp	cvlookuptable.cpp cvgaborresponsedata.cpp cvknnweaklearner.cpp \
+	cvmultigabadafeatureselect.cpp cvmultigabadafsm1.cpp cvmultitrainingdata.cpp cvmutinf.cpp \
+	cvmweaklearner.cpp cvpcafacereg.cpp cvpoolparams.cpp cvsubject.cpp \
+	cvtestingdata.cpp	cvtrainingdata.cpp cvweaklearner.cpp cvxm2vts.cpp makingfeaturedata.cpp
 MutInf_SOURCES = MutInformation.cpp
 MutInf_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui -lml \
 	-L/usr/local/lib -lcxcore -lcv
@@ -51,7 +51,7 @@ PairPoolPartition_SOURCES = PoolPartition.cpp
 adaboostgabortraining_M1_SOURCES = adaboostgabor.M1.cpp
 adaboostgabortraining_M1_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui \
 	-L/usr/local/lib -lcv -lml -lcxcore
-SUBDIRS = MultiClassification Segmentation Gender PCA
+SUBDIRS = Gender IntraExtraFaceReg MultiClassification PCA Segmentation
 PairPoolPartition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
 	-lhighgui -lcxcore -lcv
 GaborTesting_SOURCES = GaborTest.cpp
