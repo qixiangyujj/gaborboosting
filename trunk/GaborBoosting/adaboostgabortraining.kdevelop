@@ -20,7 +20,7 @@
   <kdevautoproject>
     <general>
       <activetarget>src/libAdaGabor.a</activetarget>
-      <useconfiguration>debug</useconfiguration>
+      <useconfiguration>optimized</useconfiguration>
     </general>
     <run>
       <mainprogram/>
