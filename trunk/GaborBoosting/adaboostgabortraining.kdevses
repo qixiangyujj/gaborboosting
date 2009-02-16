@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="5" >
+ <DocsAndViews NumberOfDocuments="9" >
   <Doc0 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvbingabadafeatureselect.h" >
    <View0 Encoding="" Type="Source" />
   </Doc0>
@@ -17,6 +17,18 @@
   <Doc4 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvmultitrainingdata.h" >
    <View0 Encoding="" line="28" Type="Source" />
   </Doc4>
+  <Doc5 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/ferettraining.cpp" >
+   <View0 Encoding="" line="40" Type="Source" />
+  </Doc5>
+  <Doc6 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/prepare.cpp" >
+   <View0 Encoding="" line="120" Type="Source" />
+  </Doc6>
+  <Doc7 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgaborresponsedata.h" >
+   <View0 Encoding="" line="33" Type="Source" />
+  </Doc7>
+  <Doc8 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgaborresponsedata.cpp" >
+   <View0 Encoding="" line="246" Type="Source" />
+  </Doc8>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>
