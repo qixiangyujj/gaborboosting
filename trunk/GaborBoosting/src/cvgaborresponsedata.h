@@ -24,6 +24,7 @@
 #include "cvxm2vts.h"
 #include "cvpoolparams.h"
 #include "cvgabor.h"
+#include "cvgaborfeature.h"
 
 namespace PrepareData {
 
@@ -41,6 +42,8 @@ public:
     void clear();
     void generate();
     void loadData(const char* datapath);
+    double getfeaturefrominstance(CvGaborFeature *feature, int client_index, int picture_index);
+    CvMat* getfeaturefromall(CvGaborFeature *feature);
     enum { XM2VTS = 0,FERET = 1};
 
 
