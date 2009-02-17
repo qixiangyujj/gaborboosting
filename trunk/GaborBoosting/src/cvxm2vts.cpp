@@ -403,3 +403,18 @@ void CvXm2vts::getfilename(int sub, int pic, char *filename)
 {
    sprintf( filename, "%s/%d_%d.jpg", pathname, sub, pic );
 }
+
+
+/*!
+    \fn CvXm2vts::getSize()
+ */
+CvSize CvXm2vts::getSize()
+{
+    char filename[200];
+    getfilename( 1, 1, filename );
+    IplImage *img = cvLoadImage(filename, CV_LOAD_IMAGE_GRAYSCALE );
+    CvSize size;
+    size = cvGetSize( img );
+    cvReleaseImage( &img );
+    return size;
+}

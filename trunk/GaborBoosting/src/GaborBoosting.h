@@ -17,60 +17,55 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-// #include <cv.h>
-// #include <cxcore.h>
-// #include <cvaux.h>
-// #include <highgui.h>
-// #include <ml.h>
-// #include "cvxm2vts.h"
-// #include "cvpoolparams.h"
-// #include "PrepareData.h"
-// #include "cvgaborresponsedata.h"
-#include "GaborBoosting.h"
+#include <cxcore.h>
+#include <cv.h>
+#include <highgui.h>
+#include <ml.h>
+#include <cvaux.h>
 
-using namespace std;
-using namespace PrepareData;
-
-int main(int argc, char *argv[])
-{
-  const char *srcpath = "/home/sir02mz/XM2VTS/";
-  int height = 0;
-  int width = 0;
-  int minscale = -1;
-  int maxscale = 3;
-  int norientations = 8;
-  int interval = 0;
-  int bound = 0;
-  bool reduced = false;
+#include <CommonCVFunction.h>
 
 
-  CvXm2vts xm2vts( srcpath );
-  xm2vts.setNumSub( 200 );
-  xm2vts.setNumPic( 4 );
-  CvSize size = xm2vts.getSize();
+#include <cvadaboost.h>
+#include <cvbinarytrainingdata.h>
+#include <cvbingabadafeatureselect.h>
+#include <cvfacedb.h>
+#include <cvferet.h>
+#include <cvgabadafeatureselect.h>
+#include <cvgabor.h>
+#include <cvgaborfeature.h>
+#include <cvgaborfeaturepool.h>
+#include <cvmultitrainingdata.h>
+#include <cvpcafacereg.h>
+#include <cvpoolparams.h>
+#include <cvsubject.h>
+#include <cvtestingdata.h>
+#include <cvtrainingdata.h>
+#include <cvweaklearner.h>
+#include <cvxm2vts.h>
 
-  height = size.height;
-  width = size.width;
-  CvPoolParams param(size, minscale, maxscale, norientations, interval, bound, reduced);
-  
-  CvGaborResponseData GaborData( &xm2vts, &param );
-  //GaborData.generate();
-  GaborData.loadData("/home/sir02mz/OUTPUT/");
-  
-  CvGaborFeature feature(width, height, 1, 5);
-  //double value = GaborData.getfeaturefrominstance(&feature, 1, 1); 
-  //printf("The value is %f\n", value);
-  CvMat *vector = GaborData.getfeaturefromall( &feature );
-  displayMatrix(vector);
-  cvReleaseMat(&vector);
+//using namespace AdaGabor;
+#include <cv2bins.h>
+#include <cvbin.h>
+#include <cventropy.h>
+#include <cvgaborfeaturepair.h>
+#include <cvgaborfeaturepairpool.h>
+#include <cvgaborfeaturepairselect.h>
+#include <cvlookuptable.h>
+#include <cvmutinf.h>
+
+//using namespace MatFunctions;
+#include <MatUsage.h>
+#include <cvknnweaklearner.h>
+#include <cvmultigabadafeatureselect.h>
+#include <cvmultigabadafsm1.h>
+#include <cvmweaklearner.h>
 
 
-  return EXIT_SUCCESS;
+//using namespace PrepareData;
+#include <PrepareData.h>
+#include <cvgaborresponsedata.h>
+#include <makingfeaturedata.h>
 
-}
-
-
-
-
-
+#include <cvfacesegment.h>
 

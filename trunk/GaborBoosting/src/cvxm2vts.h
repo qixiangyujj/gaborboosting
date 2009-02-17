@@ -23,6 +23,7 @@
 #include <cvfacedb.h>
 #include <cxcore.h>
 #include <iostream>
+#include <highgui.h>
 
 #define MAXPIC  8
 #define MAXSUB  295
@@ -59,6 +60,7 @@ public:
     void setGender(const char* filename);
     bool getGender(int nsub);
     void getfilename(int sub, int pic, char *filename);
+    CvSize getSize();
 
 protected:
     char* pathname;

@@ -117,11 +117,11 @@ void PrepareData::CvGaborResponseData::clear()
 void PrepareData::CvGaborResponseData::generate()
 {
 	printf("Generating the response data, please waiting ....\n");
-	
+	int n = 0;
 	responses = (IplImage **)cvAlloc(nRespones*sizeof(IplImage *));
 	if(dbtype == XM2VTS)
 	{
-		int n = 0;
+		
 		char * xm2vts_path = ((CvXm2vts*)database)->getPath();
 		int nClients = ((CvXm2vts*)database)->get_num_sub();
 		int imgsperClient = ((CvXm2vts*)database)->get_num_pic();
@@ -148,7 +148,7 @@ void PrepareData::CvGaborResponseData::generate()
 			}
 			//if( fmod(i,2.0) == 0.0)
 			//	printf("%d\%\n",i/2);
-			std::cout << "Generating the response: " << i<< "\r" << std::flush;
+			std::cout << i<< "\r" << std::flush;
 		}
 		printf("\n");
 	}
@@ -156,6 +156,7 @@ void PrepareData::CvGaborResponseData::generate()
 	{
 		/// @todo implement me
 	}
+	printf("\n%d response images are generated.\n", n);
 }
 
 
@@ -171,10 +172,11 @@ void PrepareData::CvGaborResponseData::loadData(const char* datapath)
 {
 	printf("Loading the response data, please waiting ....\n");
 	
+	int n = 0;
 	responses = (IplImage **)cvAlloc(nRespones*sizeof(IplImage *));
 	if(dbtype == XM2VTS)
 	{
-		int n = 0;
+
 		char * xm2vts_path = ((CvXm2vts*)database)->getPath();
 		int nClients = ((CvXm2vts*)database)->get_num_sub();
 		int imgsperClient = ((CvXm2vts*)database)->get_num_pic();
@@ -195,7 +197,7 @@ void PrepareData::CvGaborResponseData::loadData(const char* datapath)
 					}
 				}
 			}
-			std::cout << "Generating the response: " << i<< "\r" << std::flush;
+			std::cout << i<< "\r" << std::flush;
 		}
 	}
 	else if(dbtype == FERET)
@@ -203,6 +205,8 @@ void PrepareData::CvGaborResponseData::loadData(const char* datapath)
 		/// @todo implement me
 	}
 	printf("\n");
+
+	printf("\n%d response images are loaded.\n", n);
 }
 
 
@@ -217,7 +221,7 @@ void PrepareData::CvGaborResponseData::loadData(const char* datapath)
 double PrepareData::CvGaborResponseData::getfeaturefrominstance(CvGaborFeature *feature, int client_index, int picture_index)
 {
 	int scale_index = feature->getNu();
-	int orientation_index = feature->getNu();
+	int orientation_index = feature->getMu();
 	int x = feature->getx();
 	int y = feature->gety();
 	int min_scale = (int)cvGetReal1D(Scales, 0);
@@ -231,7 +235,7 @@ double PrepareData::CvGaborResponseData::getfeaturefrominstance(CvGaborFeature *
 		int nPictureperClient = ((CvXm2vts *)database)->get_num_pic();
 		response_index = (picture_index-1)*nGaborResponse + (client_index-1)*nPictureperClient + (scale_index-min_scale)*nOrientations + (orientation_index - min_orientation);
 		IplImage *reponse_img = responses[response_index];
-		feature_value = cvGetReal2D( reponse_img, x, y );
+		feature_value = cvGetReal2D( reponse_img, y-1, x-1 );
 	}
 	else if(dbtype == FERET)
 	{
