@@ -16,7 +16,7 @@
 
 
 
-VPATH = /home/sir02mz/CppWorks/gaborboosting/src
+VPATH = /home/sir02mz/CWorks/GaborBoosting/src
 pkgdatadir = $(datadir)/adaboostgabortraining
 pkglibdir = $(libdir)/adaboostgabortraining
 pkgincludedir = $(includedir)/adaboostgabortraining
@@ -166,12 +166,12 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/sir02mz/CppWorks/gaborboosting/missing --run aclocal-1.10
-AMTAR = ${SHELL} /home/sir02mz/CppWorks/gaborboosting/missing --run tar
+ACLOCAL = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run aclocal-1.10
+AMTAR = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /home/sir02mz/CppWorks/gaborboosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/sir02mz/CppWorks/gaborboosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/sir02mz/CppWorks/gaborboosting/missing --run automake-1.10
+AUTOCONF = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run automake-1.10
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -206,7 +206,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/sir02mz/CppWorks/gaborboosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NMEDIT = 
 OBJEXT = o
@@ -223,10 +223,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.1
-abs_builddir = /home/sir02mz/CppWorks/gaborboosting/debug/src
-abs_srcdir = /home/sir02mz/CppWorks/gaborboosting/src
-abs_top_builddir = /home/sir02mz/CppWorks/gaborboosting/debug
-abs_top_srcdir = /home/sir02mz/CppWorks/gaborboosting
+abs_builddir = /home/sir02mz/CWorks/GaborBoosting/debug/src
+abs_srcdir = /home/sir02mz/CWorks/GaborBoosting/src
+abs_top_builddir = /home/sir02mz/CWorks/GaborBoosting/debug
+abs_top_srcdir = /home/sir02mz/CWorks/GaborBoosting
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_F77 = 
@@ -255,7 +255,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /home/sir02mz/CppWorks/gaborboosting/install-sh
+install_sh = $(SHELL) /home/sir02mz/CWorks/GaborBoosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -269,11 +269,11 @@ program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
-srcdir = /home/sir02mz/CppWorks/gaborboosting/src
+srcdir = /home/sir02mz/CWorks/GaborBoosting/src
 sysconfdir = ${prefix}/etc
 target_alias = 
 top_builddir = ..
-top_srcdir = /home/sir02mz/CppWorks/gaborboosting
+top_srcdir = /home/sir02mz/CWorks/GaborBoosting
 adaboostgabortraining_SOURCES = adaboostgabortraining.cpp
 
 # set the include path found by configure

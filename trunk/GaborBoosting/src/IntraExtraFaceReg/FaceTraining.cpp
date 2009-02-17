@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
   //double value = GaborData.getfeaturefrominstance(&feature, 1, 1); 
   //printf("The value is %f\n", value);
   CvMat *vector = GaborData.getfeaturefromall( &feature );
-  displayMatrix(vector);
+  //displayMatrix(vector);
   cvReleaseMat(&vector);
 
 
