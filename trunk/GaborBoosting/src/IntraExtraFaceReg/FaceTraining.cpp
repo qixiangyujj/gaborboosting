@@ -17,16 +17,16 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-// #include <cv.h>
-// #include <cxcore.h>
-// #include <cvaux.h>
-// #include <highgui.h>
-// #include <ml.h>
-// #include "cvxm2vts.h"
-// #include "cvpoolparams.h"
-// #include "PrepareData.h"
-// #include "cvgaborresponsedata.h"
-#include "GaborBoosting.h"
+#include <cv.h>
+#include <cxcore.h>
+#include <cvaux.h>
+#include <highgui.h>
+#include <ml.h>
+#include "cvxm2vts.h"
+#include "cvpoolparams.h"
+#include "PrepareData.h"
+#include "cvgaborresponsedata.h"
+//#include "GaborBoosting.h"
 
 using namespace std;
 using namespace PrepareData;

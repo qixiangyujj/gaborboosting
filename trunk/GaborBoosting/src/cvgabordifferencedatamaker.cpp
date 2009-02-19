@@ -111,3 +111,43 @@ CvMat* CvGaborDifferenceDataMaker::getExtraDifference()
 	}
 	return examples;
 }
+
+
+/*!
+    \fn CvGaborDifferenceDataMaker::getDifference()
+ */
+CvTrainingData* CvGaborDifferenceDataMaker::getDifference()
+{
+  CvMat *intra_mat = getIntraDifference();
+  CvMat *extra_mat = getExtraDifference();
+  
+  CvSize intra_size = cvGetSize(intra_mat);
+  CvSize extra_size = cvGetSize(extra_mat);
+  
+  int nIntraDiff = intra_size.width*intra_size.height;
+  int nExtraDiff = extra_size.width*extra_size.height;
+  int numsample = nIntraDiff+nExtraDiff;
+  CvTrainingData *bindata = new CvTrainingData; 
+  bindata->init( 2, numsample, 1 );
+  CvMat *mat = cvCreateMat(1, numsample, CV_32FC1);
+  
+  double v;
+  for(int i = 0; i < numsample; i++)
+  {
+    if(i < nIntraDiff)
+    {
+      v = cvGetReal1D(intra_mat, i);
+      cvSetReal1D(mat, i, v);
+      bindata->setclsidxofsample(1, i);
+    }
+    else
+    {
+      v = cvGetReal1D(extra_mat, i);
+      cvSetReal1D(mat, i, v);
+      bindata->setclsidxofsample(2, i);
+    }
+  }
+  bindata->setdata(mat);
+  cvReleaseMat(&mat);
+  return bindata;
+}

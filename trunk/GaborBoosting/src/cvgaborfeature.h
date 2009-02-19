@@ -25,10 +25,13 @@
 #include "cvxm2vts.h"
 #include "cvferet.h"
 #include "cvpoolparams.h"
+//#include "cvgaborresponsedata.h"
+//#include "cvfacedb.h"
 
 /**
 @author Mian Zhou
 */
+
 
 
 class CvGaborFeature{
