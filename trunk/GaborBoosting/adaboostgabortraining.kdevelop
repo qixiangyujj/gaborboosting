@@ -14,7 +14,7 @@
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
     <description></description>
-    <versioncontrol></versioncontrol>
+    <versioncontrol/>
     <projectname>adaboostgabortraining</projectname>
     <defaultencoding></defaultencoding>
   </general>
@@ -24,7 +24,7 @@
       <useconfiguration>debug</useconfiguration>
     </general>
     <run>
-      <mainprogram>/home/sir02mz/CWorks/GaborBoosting/debug</mainprogram>
+      <mainprogram></mainprogram>
       <terminal>true</terminal>
       <directoryradio>build</directoryradio>
       <runarguments>
@@ -56,7 +56,7 @@
       <autocompile>true</autocompile>
       <envvars/>
       <globaldebugarguments></globaldebugarguments>
-      <globalcwd>/home/sir02mz/CWorks/GaborBoosting/debug</globalcwd>
+      <globalcwd></globalcwd>
       <useglobalprogram>false</useglobalprogram>
       <autoinstall>false</autoinstall>
       <autokdesu>false</autokdesu>
@@ -164,9 +164,9 @@
   </kdevfileview>
   <kdevdocumentation>
     <projectdoc>
-      <docsystem></docsystem>
-      <docurl></docurl>
-      <usermanualurl></usermanualurl>
+      <docsystem/>
+      <docurl/>
+      <usermanualurl/>
     </projectdoc>
   </kdevdocumentation>
   <substmap>
@@ -183,7 +183,9 @@
     <dest>/home/sir/sir02mz/local/CWorks/adaboostgabortraining</dest>
   </substmap>
   <kdevcppsupport>
-    <references/>
+    <references>
+      <pcs>opencv</pcs>
+    </references>
     <codecompletion>
       <includeGlobalFunctions>true</includeGlobalFunctions>
       <includeTypes>true</includeTypes>
@@ -202,13 +204,13 @@
       <statusBarTypeEvaluation>false</statusBarTypeEvaluation>
       <namespaceAliases>std=_GLIBCXX_STD;__gnu_cxx=std</namespaceAliases>
       <processPrimaryTypes>true</processPrimaryTypes>
-      <processFunctionArguments>false</processFunctionArguments>
+      <processFunctionArguments>true</processFunctionArguments>
       <preProcessAllHeaders>false</preProcessAllHeaders>
       <parseMissingHeadersExperimental>false</parseMissingHeadersExperimental>
       <resolveIncludePathsUsingMakeExperimental>false</resolveIncludePathsUsingMakeExperimental>
       <alwaysParseInBackground>true</alwaysParseInBackground>
       <usePermanentCaching>true</usePermanentCaching>
-      <alwaysIncludeNamespaces>false</alwaysIncludeNamespaces>
+      <alwaysIncludeNamespaces>true</alwaysIncludeNamespaces>
       <includePaths>.;</includePaths>
     </codecompletion>
     <qt>
@@ -250,8 +252,8 @@
       <runShellScript></runShellScript>
       <runGdbScript></runGdbScript>
       <breakonloadinglibs>true</breakonloadinglibs>
-      <separatetty>false</separatetty>
-      <floatingtoolbar>false</floatingtoolbar>
+      <separatetty>true</separatetty>
+      <floatingtoolbar>true</floatingtoolbar>
       <raiseGDBOnStart>false</raiseGDBOnStart>
     </general>
     <display>
