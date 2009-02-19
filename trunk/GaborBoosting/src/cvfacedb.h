@@ -31,6 +31,8 @@ public:
     virtual ~CvFaceDB();
     char* getName();
     virtual CvFaceDB* clone();
+    bool is_feret();
+    bool is_xm2vts();
 
 protected:
     char* name;

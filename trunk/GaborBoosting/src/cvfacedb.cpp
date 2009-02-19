@@ -47,3 +47,29 @@ CvFaceDB* CvFaceDB::clone()
 {
     /// @todo implement me
 }
+
+
+/*!
+    \fn CvFaceDB::is_xm2vts()
+ */
+bool CvFaceDB::is_xm2vts()
+{
+	bool result = false;
+	char * dbname = getName();
+	if( !strcmp(dbname, "XM2VTS")) 
+		result = true;
+	return result;
+}
+
+
+/*!
+    \fn CvFaceDB::is_feret()
+ */
+bool CvFaceDB::is_feret()
+{
+	bool result = false;
+	char * dbname = getName();
+	if ( !strcmp(dbname, "FERET")) 
+		result = true;
+	return result;
+}
