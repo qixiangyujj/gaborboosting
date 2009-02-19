@@ -1,34 +1,19 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="9" >
-  <Doc0 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvbingabadafeatureselect.h" >
-   <View0 Encoding="" Type="Source" />
+ <DocsAndViews NumberOfDocuments="4" >
+  <Doc0 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgabordifferencedatamaker.h" >
+   <View0 Encoding="" line="0" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgabadafeatureselect.h" >
-   <View0 Encoding="" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgabordifferencedatamaker.cpp" >
+   <View0 Encoding="" line="129" Type="Source" />
   </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgabor.h" >
-   <View0 Encoding="" Type="Source" />
+  <Doc2 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgaborfeature.cpp" >
+   <View0 Encoding="" line="241" Type="Source" />
   </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgaborfeaturepool.h" >
-   <View0 Encoding="" Type="Source" />
+  <Doc3 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvtrainingdata.cpp" >
+   <View0 Encoding="" line="329" Type="Source" />
   </Doc3>
-  <Doc4 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvmultitrainingdata.h" >
-   <View0 Encoding="" line="28" Type="Source" />
-  </Doc4>
-  <Doc5 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/ferettraining.cpp" >
-   <View0 Encoding="" line="40" Type="Source" />
-  </Doc5>
-  <Doc6 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/prepare.cpp" >
-   <View0 Encoding="" line="120" Type="Source" />
-  </Doc6>
-  <Doc7 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgaborresponsedata.h" >
-   <View0 Encoding="" line="33" Type="Source" />
-  </Doc7>
-  <Doc8 NumberOfViews="1" URL="file:///home/sir02mz/CppWorks/gaborboosting/src/cvgaborresponsedata.cpp" >
-   <View0 Encoding="" line="246" Type="Source" />
-  </Doc8>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>
@@ -93,6 +78,9 @@
     <breakpoint19 location="/local/CWorks/test/trunk/GaborBoosting/src/cvpcafacereg.cpp:274" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
      <tracedExpressions/>
     </breakpoint19>
+    <breakpoint20 location="/home/sir02mz/CppWorks/gaborboosting/src/IntraExtraFaceReg/FaceTraining.cpp:47" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint20>
    </breakpointList>
    <showInternalCommands value="0" />
   </kdevdebugger>
