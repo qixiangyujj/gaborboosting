@@ -113,45 +113,45 @@ void CvPoolParams::setBound(int b)
 
 
 /*!
-    \fn CvPoolParams::getInterval()
+    \fn CvPoolParams::getInterval() const
  */
-int CvPoolParams::getInterval()
+int CvPoolParams::getInterval() const
 {
   return interval;
 }
 
 
 /*!
-    \fn CvPoolParams::getBound()
+    \fn CvPoolParams::getBound() const
  */
-int CvPoolParams::getBound()
+int CvPoolParams::getBound() const
 {
   return bound;
 }
 
 
 /*!
-    \fn CvPoolParams::getScales()
+    \fn CvPoolParams::getScales() const
  */
-CvMat* CvPoolParams::getScales()
+CvMat* CvPoolParams::getScales() const
 {
   return scales;
 }
 
 
 /*!
-    \fn CvPoolParams::getOrients()
+    \fn CvPoolParams::getOrients() const
  */
-CvMat* CvPoolParams::getOrients()
+CvMat* CvPoolParams::getOrients() const
 {
   return orients;
 }
 
 
 /*!
-    \fn CvPoolParams::getImgSize()
+    \fn CvPoolParams::getImgSize() const
  */
-CvSize CvPoolParams::getImgSize()
+CvSize CvPoolParams::getImgSize() const
 {
   return imgSize;
 }
@@ -219,9 +219,9 @@ void CvPoolParams::init(CvSize imgsize,
 
 
 /*!
-    \fn CvPoolParams::isReduced()
+    \fn CvPoolParams::isReduced() const
  */
-bool CvPoolParams::isReduced()
+bool CvPoolParams::isReduced() const
 {
   return reduce;
 }

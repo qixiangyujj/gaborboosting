@@ -224,7 +224,7 @@ void CvXm2vts::setPicIndex(int i1)
 /*!
     \fn CvXm2vts::setPicIndex(CvMat* mat)
  */
-void CvXm2vts::setPicIndex(CvMat* mat)
+void CvXm2vts::setPicIndex(const CvMat* mat)
 {
   if(picIndex!= NULL) cvReleaseMat(&picIndex);
   picIndex = cvCloneMat(mat);
@@ -236,7 +236,7 @@ void CvXm2vts::setPicIndex(CvMat* mat)
 /*!
     \fn CvXm2vts::setSubIndex(CvMat* mat)
  */
-void CvXm2vts::setSubIndex(CvMat* mat)
+void CvXm2vts::setSubIndex(const CvMat* mat)
 {
   if(subIndex!= NULL) cvReleaseMat(&subIndex);
   subIndex = cvCloneMat(mat);
@@ -262,27 +262,27 @@ void CvXm2vts::clear()
 
 
 /*!
-    \fn CvXm2vts::getPath()
+    \fn CvXm2vts::getPath() const
  */
-char* CvXm2vts::getPath()
+char* CvXm2vts::getPath() const
 {
   return (char*)pathname; 
 }
 
 
 /*!
-    \fn CvXm2vts::getSub()
+    \fn CvXm2vts::getSub() const
  */
-CvMat* CvXm2vts::getSub()
+CvMat* CvXm2vts::getSub() const
 {
   return subIndex;
 }
 
 
 /*!
-    \fn CvXm2vts::getPic()
+    \fn CvXm2vts::getPic() const
  */
-CvMat* CvXm2vts::getPic()
+CvMat* CvXm2vts::getPic() const
 {
   return picIndex;
 }
@@ -306,9 +306,9 @@ CvMat* CvXm2vts::getPic()
 
 
 /*!
-    \fn CvXm2vts::clone()
+    \fn CvXm2vts::clone() const
  */
-CvXm2vts* CvXm2vts::clone()
+CvXm2vts* CvXm2vts::clone() const
 {
   CvXm2vts *database= new CvXm2vts;
   strcpy( database->pathname, this->pathname);
@@ -325,18 +325,18 @@ CvXm2vts* CvXm2vts::clone()
 
 
 /*!
-    \fn CvXm2vts::get_num_pic()
+    \fn CvXm2vts::get_num_pic() const
  */
-int CvXm2vts::get_num_pic()
+int CvXm2vts::get_num_pic() const
 {
   return numpic;
 }
 
 
 /*!
-    \fn CvXm2vts::get_num_sub()
+    \fn CvXm2vts::get_num_sub() const
  */
-int CvXm2vts::get_num_sub()
+int CvXm2vts::get_num_sub() const
 {
   return numsub;
 }
@@ -386,9 +386,9 @@ void CvXm2vts::setGender(const char* filename)
 
 
 /*!
-    \fn CvXm2vts::getGender(int nsub)
+    \fn CvXm2vts::getGender(int nsub) const
  */
-bool CvXm2vts::getGender(int nsub)
+bool CvXm2vts::getGender(int nsub) const
 {
   float v = cvGetReal1D( gender, nsub-1);
   if ( v == 1.0 ) return true;
@@ -397,18 +397,18 @@ bool CvXm2vts::getGender(int nsub)
 
 
 /*!
-    \fn CvXm2vts::getfilename(int sub, int pic, char *filename)
+    \fn CvXm2vts::getfilename(int sub, int pic, char *filename) const
  */
-void CvXm2vts::getfilename(int sub, int pic, char *filename)
+void CvXm2vts::getfilename(int sub, int pic, char *filename) const
 {
    sprintf( filename, "%s/%d_%d.jpg", pathname, sub, pic );
 }
 
 
 /*!
-    \fn CvXm2vts::getSize()
+    \fn CvXm2vts::getSize() const
  */
-CvSize CvXm2vts::getSize()
+CvSize CvXm2vts::getSize() const
 {
     char filename[200];
     getfilename( 1, 1, filename );

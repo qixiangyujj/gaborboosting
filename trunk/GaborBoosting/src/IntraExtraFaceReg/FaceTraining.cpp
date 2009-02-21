@@ -26,6 +26,7 @@
 #include "cvpoolparams.h"
 #include "PrepareData.h"
 #include "cvgaborresponsedata.h"
+#include "cvbindiffgabadafeatureselect.h"
 //#include "GaborBoosting.h"
 
 using namespace std;
@@ -53,17 +54,13 @@ int main(int argc, char *argv[])
   width = size.width;
   CvPoolParams param(size, minscale, maxscale, norientations, interval, bound, reduced);
   
-  CvGaborResponseData GaborData( &xm2vts, &param );
+  //const CvGaborResponseData GaborData( &xm2vts, &param );
   
-  //GaborData.generate();
-  GaborData.loadData("/home/sir02mz/OUTPUT/");
+  CvGaborResponseData GaborData( &xm2vts, &param, "/home/sir02mz/OUTPUT" );
+  //GaborData.loadData("/home/sir02mz/OUTPUT/");
+  CvBinDiffGabAdaFeatureSelect FeatureSelection(&xm2vts, &param, &GaborData);
   
-  CvGaborFeature feature(width, height, 1, 5);
-  //double value = GaborData.getfeaturefrominstance(&feature, 1, 1); 
-  //printf("The value is %f\n", value);
-  CvMat *vector = GaborData.getfeaturefromall( &feature );
-  //displayMatrix(vector);
-  cvReleaseMat(&vector);
+
 
 
   return EXIT_SUCCESS;

@@ -42,7 +42,7 @@ public:
     void bayeslearning(CvTrainingData* data);
     void annlearning(CvTrainingData *data);
     double bayespredict(CvMat *sample);
-    double annpredict(CvMat *sample);
+    double annpredict(const CvMat *sample) const;
     double myerror();
     void thresholdlearning(CvTrainingData *data);
     double thresholderror(double thesld, CvMat *weights, CvMat *data, CvMat *classes);
@@ -59,7 +59,7 @@ public:
     double confident(double value);
     double thresholdconfident( double input);
     void fldlearning(CvTrainingData *data);
-    double annpredict(double value);
+    double annpredict(double value) const;
     double bayespredict(double value);
     double fldpredict( double value );
     void update(CvTrainingData *data);

@@ -33,16 +33,16 @@ public:
      CvPoolParams(int height, int width, int minscale, int maxscale, int norient, int interval, int bound);
     void setInterval(int i);
     void setBound(int b);
-    int getInterval();
-    int getBound();
-    CvMat* getScales();
-    CvMat* getOrients();
-    CvSize getImgSize();
+    int getInterval() const;
+    int getBound() const;
+    CvMat* getScales() const;
+    CvMat* getOrients() const;
+    CvSize getImgSize() const;
     void clear();
     void setReduce(bool key);
      CvPoolParams(CvSize imgsize, int minscale, int maxscale, int norient, int interval, int bound, bool reduced);
      CvPoolParams(int height, int width, int minscale, int maxscale, int norient, int interval, int bound, bool reduced);
-    bool isReduced();
+     bool isReduced() const;
 
 protected:
     CvSize imgSize;

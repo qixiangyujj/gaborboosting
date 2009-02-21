@@ -44,9 +44,9 @@ CvGaborDifferenceDataMaker::~CvGaborDifferenceDataMaker()
 
 
 /*!
-    \fn CvGaborDifferenceDataMaker::getIntraDifference()
+    \fn CvGaborDifferenceDataMaker::getIntraDifference() const
  */
-CvMat* CvGaborDifferenceDataMaker::getIntraDifference()
+CvMat* CvGaborDifferenceDataMaker::getIntraDifference() const
 {
     CvMat* examples;
     if(database->is_xm2vts())
@@ -81,9 +81,9 @@ CvMat* CvGaborDifferenceDataMaker::getIntraDifference()
 
 
 /*!
-    \fn CvGaborDifferenceDataMaker::getExtraDifference()
+    \fn CvGaborDifferenceDataMaker::getExtraDifference() const
  */
-CvMat* CvGaborDifferenceDataMaker::getExtraDifference()
+CvMat* CvGaborDifferenceDataMaker::getExtraDifference() const
 {
 	CvMat* examples;
 	if(database->is_xm2vts())
@@ -114,9 +114,9 @@ CvMat* CvGaborDifferenceDataMaker::getExtraDifference()
 
 
 /*!
-    \fn CvGaborDifferenceDataMaker::getDifference()
+    \fn CvGaborDifferenceDataMaker::getDifference() const
  */
-CvTrainingData* CvGaborDifferenceDataMaker::getDifference()
+CvTrainingData* CvGaborDifferenceDataMaker::getDifference() const
 {
   CvMat *intra_mat = getIntraDifference();
   CvMat *extra_mat = getExtraDifference();

@@ -28,7 +28,7 @@ CvGaborResponseData::CvGaborResponseData()
 
 CvGaborResponseData::~CvGaborResponseData()
 {
-	clear();
+  clear();
 }
 
 
@@ -36,21 +36,22 @@ CvGaborResponseData::~CvGaborResponseData()
 
 
 /*!
-    \fn PrepareData::CvGaborResponseData::CvGaborResponseData(CvFaceDB *db, CvPoolParams *param)
+    \fn PrepareData::CvGaborResponseData::CvGaborResponseData(const CvFaceDB *db, const CvPoolParams *param)
  */
- PrepareData::CvGaborResponseData::CvGaborResponseData(CvFaceDB *db, CvPoolParams *param)
+ PrepareData::CvGaborResponseData::CvGaborResponseData( const CvFaceDB *db, const CvPoolParams *param)
 {
 	setDB( db );
 	setParam( param );
 	
 	nRespones = nImages * nScales * nOrientations;
+        generate();
 }
 
 
 /*!
-    \fn PrepareData::CvGaborResponseData::setDB(CvFaceDB *db)
+    \fn PrepareData::CvGaborResponseData::setDB(const CvFaceDB *db)
  */
-void PrepareData::CvGaborResponseData::setDB(CvFaceDB *db)
+void PrepareData::CvGaborResponseData::setDB(const CvFaceDB *db)
 {
 	database = db->clone();
 	char * dbname = database->getName();
@@ -75,9 +76,9 @@ void PrepareData::CvGaborResponseData::setDB(CvFaceDB *db)
 
 
 /*!
-    \fn PrepareData::CvGaborResponseData::setParam(CvPoolParams *param)
+    \fn PrepareData::CvGaborResponseData::setParam(const CvPoolParams *param)
  */
-void PrepareData::CvGaborResponseData::setParam(CvPoolParams *param)
+void PrepareData::CvGaborResponseData::setParam(const CvPoolParams *param)
 {
 	Orients = cvCloneMat( param->getOrients() );
 	Scales = cvCloneMat( param->getScales() );
@@ -216,9 +217,9 @@ void PrepareData::CvGaborResponseData::loadData(const char* datapath)
 
 
 /*!
-    \fn PrepareData::CvGaborResponseData::getfeaturefrominstance(CvGaborFeature *feature, int client_index, int picture_index)
+    \fn PrepareData::CvGaborResponseData::getfeaturefrominstance(const CvGaborFeature *feature, int client_index, int picture_index) const
  */
-double PrepareData::CvGaborResponseData::getfeaturefrominstance(CvGaborFeature *feature, int client_index, int picture_index)
+double PrepareData::CvGaborResponseData::getfeaturefrominstance(const CvGaborFeature *feature, int client_index, int picture_index) const
 {
 	int scale_index = feature->getNu();
 	int orientation_index = feature->getMu();
@@ -246,9 +247,9 @@ double PrepareData::CvGaborResponseData::getfeaturefrominstance(CvGaborFeature *
 
 
 /*!
-    \fn PrepareData::CvGaborResponseData::getfeaturefromall(CvGaborFeature *feature)
+    \fn PrepareData::CvGaborResponseData::getfeaturefromall(const CvGaborFeature *feature) const
  */
-CvMat* PrepareData::CvGaborResponseData::getfeaturefromall(CvGaborFeature *feature)
+CvMat* PrepareData::CvGaborResponseData::getfeaturefromall(const CvGaborFeature *feature) const
 {
 	CvMat * Vvector = cvCreateMat(1, nImages, CV_32FC1);
 	int n = 0;
@@ -271,4 +272,19 @@ CvMat* PrepareData::CvGaborResponseData::getfeaturefromall(CvGaborFeature *featu
 	}
 	
 	return Vvector;
+}
+
+
+
+
+/*!
+    \fn PrepareData::CvGaborResponseData::CvGaborResponseData(CvFaceDB *db, CvPoolParams *param, const char *saved_data_path)
+ */
+ PrepareData::CvGaborResponseData::CvGaborResponseData(CvFaceDB *db, CvPoolParams *param, const char *saved_data_path)
+{
+  setDB( db );
+  setParam( param );
+	
+  nRespones = nImages * nScales * nOrientations;
+  loadData( saved_data_path );
 }

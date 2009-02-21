@@ -47,20 +47,20 @@ public:
     void setPicIndex(int i1, int i2, int i3);
     void setPicIndex(int i1, int i2);
     void setPicIndex(int i1);
-    void setPicIndex(CvMat* mat);
-    void setSubIndex(CvMat* mat);
+    void setPicIndex(const CvMat* mat);
+    void setSubIndex(const CvMat* mat);
     void clear();
-    char* getPath();
-    CvMat* getSub();
-    CvMat* getPic();
+    char* getPath() const;
+    CvMat* getSub() const;
+    CvMat* getPic() const;
     CvXm2vts(const CvXm2vts& a);
-    CvXm2vts* clone();
-    int get_num_pic();
-    int get_num_sub();
+    CvXm2vts* clone() const;
+    int get_num_pic() const;
+    int get_num_sub() const;
     void setGender(const char* filename);
-    bool getGender(int nsub);
-    void getfilename(int sub, int pic, char *filename);
-    CvSize getSize();
+    bool getGender(int nsub) const;
+    void getfilename(int sub, int pic, char *filename) const;
+    CvSize getSize() const;
 
 protected:
     char* pathname;

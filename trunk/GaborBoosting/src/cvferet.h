@@ -52,20 +52,20 @@ public:
      CvFeret(const char* mainpath, const char* fapath, const char* fbpath);
      CvFeret(const char* mainpath, const char* fapath);
     void clear();
-    int getSub();
-    int getNum();
-    CvSubject getSubject(int index);
-    string getFApath();
-    string getFBpath();
+    int getSub() const;
+    int getNum() const;
+    CvSubject getSubject(int index) const;
+    string getFApath() const;
+    string getFBpath() const;
     void openorigin(const char* dvd1path, const char* dvd2path);
     void readorigin(const char* path);
     void readfrmsubjectpath(const char* subpath, CvSubject *subject);
     void make(const char* dbpath);
   //void process40Gabor( const char* filename, const char* subpath );
     IplImage* reducebyscale(IplImage *src, int Nu);
-    string getMainpath();
+    string getMainpath() const;
     void opentestingPath(const char* pathname);
-    CvFeret* clone();
+    CvFeret* clone() const;
     
     
 

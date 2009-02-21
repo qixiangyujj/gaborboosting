@@ -43,9 +43,9 @@ void CvSubject::setname(const char* filename)
 
 
 /*!
-    \fn CvSubject::setname(string filename)
+    \fn CvSubject::setname(const string filename)
  */
-void CvSubject::setname(string filename)
+void CvSubject::setname(const string filename)
 {
   nametable.push_back(filename);
   num = nametable.size();
@@ -53,9 +53,9 @@ void CvSubject::setname(string filename)
 
 
 /*!
-    \fn CvSubject::getnum()
+    \fn CvSubject::getnum() const
  */
-int CvSubject::getnum()
+int CvSubject::getnum() const
 {
   return nametable.size();
 }
@@ -91,18 +91,18 @@ void CvSubject::clear()
 
 
 /*!
-    \fn CvSubject::getId()
+    \fn CvSubject::getId() const
  */
-int CvSubject::getId()
+int CvSubject::getId() const
 {
   return id;
 }
 
 
 /*!
-    \fn CvSubject::getname(int no)
+    \fn CvSubject::getname(int no) const
  */
-string CvSubject::getname(int no)
+string CvSubject::getname(int no) const
 {
   if(no >= nametable.size())
   {

@@ -33,13 +33,13 @@ public:
 
     ~CvSubject();
     void setname(const char* filename);
-    void setname(string filename);
-    int getnum();
+    void setname(const string filename);
+    int getnum() const;
     void setID(int id);
      CvSubject(int id);
     void clear();
-    int getId();
-    string getname(int no);
+    int getId() const;
+    string getname(int no) const;
 
 protected:
     string ID;

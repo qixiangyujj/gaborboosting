@@ -36,14 +36,15 @@ public:
     CvGaborResponseData();
 
     ~CvGaborResponseData();
-     CvGaborResponseData(CvFaceDB *db, CvPoolParams *param);
-    void setDB(CvFaceDB *db);
-    void setParam(CvPoolParams *param);
+     CvGaborResponseData(const CvFaceDB *db, const CvPoolParams *param);
+    void setDB(const CvFaceDB *db);
+    void setParam(const CvPoolParams *param);
     void clear();
     void generate();
     void loadData(const char* datapath);
-    double getfeaturefrominstance(CvGaborFeature *feature, int client_index, int picture_index);
-    CvMat* getfeaturefromall(CvGaborFeature *feature);
+    double getfeaturefrominstance(const CvGaborFeature *feature, int client_index, int picture_index) const;
+    CvMat* getfeaturefromall(const CvGaborFeature *feature) const;
+     CvGaborResponseData(CvFaceDB *db, CvPoolParams *param, const char *saved_data_path);
     enum { XM2VTS = 0,FERET = 1};
 
 

@@ -17,14 +17,15 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "cvfacedb.h"
+#include "cvbindiffgabadafeatureselect.h"
 
-CvFaceDB::CvFaceDB()
+CvBinDiffGabAdaFeatureSelect::CvBinDiffGabAdaFeatureSelect()
+ : CvBinGabAdaFeatureSelect()
 {
 }
 
 
-CvFaceDB::~CvFaceDB()
+CvBinDiffGabAdaFeatureSelect::~CvBinDiffGabAdaFeatureSelect()
 {
 }
 
@@ -32,44 +33,52 @@ CvFaceDB::~CvFaceDB()
 
 
 /*!
-    \fn CvFaceDB::getName() const
+    \fn CvBinDiffGabAdaFeatureSelect::CvBinDiffGabAdaFeatureSelect(CvFaceDB *db, CvPoolParams *param, CvGaborResponseData *data)
  */
-char* CvFaceDB::getName() const
+ CvBinDiffGabAdaFeatureSelect::CvBinDiffGabAdaFeatureSelect(CvFaceDB *db, CvPoolParams *param, CvGaborResponseData *data)
 {
-  return (char*)name;
+  setMemdata( data );
+  setDB( db );
+  setPool( param );
+  //setSub( possub );
+  setWeaksname( "weaks.xml" );
+  init_weights();
 }
 
 
 /*!
-    \fn CvFaceDB::clone() const
+    \fn CvBinDiffGabAdaFeatureSelect::setMemdata(CvGaborResponseData *data)
  */
-CvFaceDB* CvFaceDB::clone() const
+void CvBinDiffGabAdaFeatureSelect::setMemdata(CvGaborResponseData *data)
 {
-    /// @todo implement me
+  memdata = data;
 }
 
 
 /*!
-    \fn CvFaceDB::is_xm2vts() const
+    \fn CvBinDiffGabAdaFeatureSelect::featureweak(CvGaborFeature* feature)
  */
-bool CvFaceDB::is_xm2vts() const
+double CvBinDiffGabAdaFeatureSelect::featureweak(CvGaborFeature* feature)
 {
-	bool result = false;
-	char * dbname = getName();
-	if( !strcmp(dbname, "XM2VTS")) 
-		result = true;
-	return result;
-}
-
-
-/*!
-    \fn CvFaceDB::is_feret() const
- */
-bool CvFaceDB::is_feret() const
-{
-	bool result = false;
-	char * dbname = getName();
-	if ( !strcmp(dbname, "FERET")) 
-		result = true;
-	return result;
+  double e;
+  CvTrainingData *data;
+ 
+  CvGaborDifferenceDataMaker DataMaker(memdata, feature, database);
+  data = DataMaker.getDifference();
+  data->setweights(weights);
+  CvWeakLearner *weak = new CvWeakLearner;
+  weak->train(data, weaklearner_type);
+  //weak->describe();
+  // weak->train(data, CvWeakLearner::ANN);
+  e = weak->training_error();
+  
+  //printf( "the error of this weak learner is %f\n", e );
+  
+  feature->seterror(e);
+  falsepositive = weak->myerror();
+  //weak->clear();
+  delete data;
+  delete weak;
+  
+  return e;
 }

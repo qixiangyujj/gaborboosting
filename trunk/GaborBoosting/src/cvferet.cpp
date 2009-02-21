@@ -215,18 +215,18 @@ void CvFeret::clear()
 
 
 /*!
-    \fn CvFeret::getSub()
+    \fn CvFeret::getSub() const
  */
-int CvFeret::getSub()
+int CvFeret::getSub() const
 {
   return numsub;
 }
 
 
 /*!
-    \fn CvFeret::getNum()
+    \fn CvFeret::getNum() const
  */
-int CvFeret::getNum()
+int CvFeret::getNum() const
 {
   return numpic;
   
@@ -236,9 +236,9 @@ int CvFeret::getNum()
 
 
 /*!
-    \fn CvFeret::getSubject(int index)
+    \fn CvFeret::getSubject(int index) const
  */
-CvSubject CvFeret::getSubject(int index)
+CvSubject CvFeret::getSubject(int index) const
 {
   CvSubject sub = subjects[index];
   return sub;
@@ -246,9 +246,9 @@ CvSubject CvFeret::getSubject(int index)
 
 
 /*!
-    \fn CvFeret::getFApath()
+    \fn CvFeret::getFApath() const
  */
-string CvFeret::getFApath()
+string CvFeret::getFApath() const
 {
   string path(fa_path);
   return path;
@@ -256,9 +256,9 @@ string CvFeret::getFApath()
 
 
 /*!
-    \fn CvFeret::getFBpath()
+    \fn CvFeret::getFBpath() const
  */
-string CvFeret::getFBpath()
+string CvFeret::getFBpath() const
 {
   string path(fb_path);
   return path;
@@ -491,9 +491,9 @@ IplImage* CvFeret::reducebyscale(IplImage *src, int Nu)
 
 
 /*!
-    \fn CvFeret::getMainpath()
+    \fn CvFeret::getMainpath() const
  */
-string CvFeret::getMainpath()
+string CvFeret::getMainpath() const
 {
   string path(pathname);
   return path;
@@ -595,9 +595,9 @@ void CvFeret::opentestingPath(const char* pathname)
 
 
 /*!
-    \fn CvFeret::clone()
+    \fn CvFeret::clone() const
  */
-CvFeret* CvFeret::clone()
+CvFeret* CvFeret::clone() const
 {
   CvFeret* db = new CvFeret(pathname, fa_path, fb_path);
   return db;

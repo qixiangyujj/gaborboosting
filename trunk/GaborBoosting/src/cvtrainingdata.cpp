@@ -43,9 +43,9 @@ CvTrainingData::~CvTrainingData()
 
 
 /*!
-    \fn CvTrainingData::numcls()
+    \fn CvTrainingData::numcls() const
  */
-int CvTrainingData::getnumcls()
+int CvTrainingData::getnumcls() const
 {
     return ncls;
 }
@@ -53,9 +53,9 @@ int CvTrainingData::getnumcls()
 
 
 /*!
-    \fn CvTrainingData::numsample()
+    \fn CvTrainingData::numsample() const
  */
-int CvTrainingData::getnumsample()
+int CvTrainingData::getnumsample() const
 {
     return maxnum;
 }
@@ -145,9 +145,9 @@ bool CvTrainingData::loadIris(const char *filename)
 
 
 /*!
-    \fn CvTrainingData::numelement()
+    \fn CvTrainingData::numelement() const
  */
-int CvTrainingData::getnumelement()
+int CvTrainingData::getnumelement() const
 {
     return nelement;
 }
@@ -189,9 +189,9 @@ void CvTrainingData::init(int numcls, int numsample, int numelement)
 
 
 /*!
-    \fn CvTrainingData::int getnumsamcls(int clsidx)
+    \fn CvTrainingData::int getnumsamcls(int clsidx) const
  */
-int CvTrainingData::getnumsamcls(int clsidx)
+int CvTrainingData::getnumsamcls(int clsidx) const
 {
     if ((clsidx <= 0) || (clsidx > ncls))
     {
@@ -225,9 +225,9 @@ void CvTrainingData::stat()
 
 
 /*!
-    \fn CvTrainingData::clone()
+    \fn CvTrainingData::clone() const
  */
-CvTrainingData* CvTrainingData::clone()
+CvTrainingData* CvTrainingData::clone() const
 {
     if (bInitialised == 1)
     {
@@ -251,9 +251,9 @@ CvTrainingData* CvTrainingData::clone()
 
 
 /*!
-    \fn CvTrainingData::setclsidxofsample(int clsidx, int sampleidx)
+    \fn CvTrainingData::setclsidxofsample(int clsidx, int sampleidx) const
  */
-void CvTrainingData::setclsidxofsample(int clsidx, int sampleidx)
+void CvTrainingData::setclsidxofsample(int clsidx, int sampleidx) const
 {
     if ((clsidx <= 0) || (clsidx > ncls)) 
     {
@@ -274,9 +274,9 @@ void CvTrainingData::setclsidxofsample(int clsidx, int sampleidx)
 
 
 /*!
-    \fn CvTrainingData::getclsidxofsample(int sampleidx);
+    \fn CvTrainingData::getclsidxofsample(int sampleidx) const
  */
-int CvTrainingData::getclsidxofsample(int sampleidx)
+int CvTrainingData::getclsidxofsample(int sampleidx) const
 {
     if ((sampleidx < 0) || (sampleidx >= maxnum))
     {
@@ -308,9 +308,9 @@ void CvTrainingData::setweightofsample(double weightvalue, int sampleidx)
 
 
 /*!
-    \fn CvTrainingData::getweightofsample(int sampleidx)
+    \fn CvTrainingData::getweightofsample(int sampleidx) const
  */
-double CvTrainingData::getweightofsample(int sampleidx)
+double CvTrainingData::getweightofsample(int sampleidx) const
 {
     if ((sampleidx < 0) || (sampleidx >= maxnum))
     {
@@ -354,9 +354,9 @@ void CvTrainingData::statclsdist()
 
 
 /*!
-    \fn CvTrainingData::split(int clsidx)
+    \fn CvTrainingData::split(int clsidx) const
  */
-CvTrainingData* CvTrainingData::split(int clsidx)
+CvTrainingData* CvTrainingData::split(int clsidx) const
 {
     if ((clsidx <= 0) || (clsidx > ncls))
     {
@@ -395,9 +395,9 @@ CvTrainingData* CvTrainingData::split(int clsidx)
 
 
 /*!
-    \fn CvTrainingData::merge(CvTrainingData *data)
+    \fn CvTrainingData::merge(const CvTrainingData *data) const
  */
-CvTrainingData* CvTrainingData::merge(CvTrainingData *data)
+CvTrainingData* CvTrainingData::merge(const CvTrainingData *data) const
 {
     if ((bInitialised == 0)||(data->bInitialised == 0)) 
     {
@@ -457,9 +457,9 @@ CvTrainingData* CvTrainingData::merge(CvTrainingData *data)
 
 
 /*!
-    \fn CvTrainingData::extract(int elementidx)
+    \fn CvTrainingData::extract(int elementidx) const
  */
-CvTrainingData* CvTrainingData::extract(int elementidx)
+CvTrainingData* CvTrainingData::extract(int elementidx) const
 {
     if ((elementidx < 0) || (elementidx >= getnumelement()))
     {
@@ -491,9 +491,9 @@ CvTrainingData* CvTrainingData::extract(int elementidx)
 
 
 /*!
-    \fn CvTrainingData::combine(CvTrainingData *data)
+    \fn CvTrainingData::combine(CvTrainingData *data) const
  */
-CvTrainingData* CvTrainingData::combine(CvTrainingData *data)
+CvTrainingData* CvTrainingData::combine(CvTrainingData *data) const
 {
     if ((getnumcls() != 1) || (data->getnumcls() != 1))
     {
@@ -535,9 +535,9 @@ CvTrainingData* CvTrainingData::combine(CvTrainingData *data)
 
 
 /*!
-    \fn CvTrainingData::getdata()
+    \fn CvTrainingData::getdata() const
  */
-CvMat* CvTrainingData::getdata()
+CvMat* CvTrainingData::getdata() const
 {
     CvMat* mat = cvCloneMat( Valcache );
     return mat;
@@ -545,9 +545,9 @@ CvMat* CvTrainingData::getdata()
 
 
 /*!
-    \fn CvTrainingData::getresponse()
+    \fn CvTrainingData::getresponse() const
  */
-CvMat* CvTrainingData::getresponse()
+CvMat* CvTrainingData::getresponse() const
 {
     CvMat* response = cvCreateMat(maxnum, 1, CV_32FC1);
     double v;
@@ -561,9 +561,9 @@ CvMat* CvTrainingData::getresponse()
 
 
 /*!
-    \fn CvTrainingData::setdata(CvMat *mat)
+    \fn CvTrainingData::setdata(const CvMat *mat)
  */
-void CvTrainingData::setdata(CvMat *mat)
+void CvTrainingData::setdata(const CvMat *mat)
 {
     if (!bInitialised) 
     {
@@ -579,9 +579,9 @@ void CvTrainingData::setdata(CvMat *mat)
 
 
 /*!
-    \fn CvTrainingData::setresponse(CvMat* response)
+    \fn CvTrainingData::setresponse(const CvMat* response)
  */
-void CvTrainingData::setresponse(CvMat* response)
+void CvTrainingData::setresponse(const CvMat* response)
 {
     if (!bInitialised) 
     {
@@ -598,9 +598,9 @@ void CvTrainingData::setresponse(CvMat* response)
 
 
 /*!
-    \fn CvTrainingData::saveweight(const char *filename)
+    \fn CvTrainingData::saveweight(const char *filename) const
  */
-void CvTrainingData::saveweight(const char *filename)
+void CvTrainingData::saveweight(const char *filename) const
 {
     CvMat mat = cvMat( maxnum, 1,
                    CV_32FC1, // 32-bit floating-point, single channel type
@@ -611,9 +611,9 @@ void CvTrainingData::saveweight(const char *filename)
 
 
 /*!
-    \fn CvTrainingData::savedata(const char *filename)
+    \fn CvTrainingData::savedata(const char *filename) const
  */
-void CvTrainingData::savedata(const char *filename)
+void CvTrainingData::savedata(const char *filename) const
 {
     cvSave( filename, (CvMat*)Valcache, NULL, NULL, cvAttrList(0,0));
 }
@@ -687,9 +687,9 @@ bool CvTrainingData::loadUCI(const char  *filename)
 
 
 /*!
-    \fn CvTrainingData::getweights()
+    \fn CvTrainingData::getweights() const
  */
-CvMat* CvTrainingData::getweights()
+CvMat* CvTrainingData::getweights() const
 {
     CvMat* weights = cvCreateMat(maxnum, 1, CV_32FC1);
     double v;
@@ -703,9 +703,9 @@ CvMat* CvTrainingData::getweights()
 
 
 /*!
-    \fn CvTrainingData::setweights(CvMat *wmat)
+    \fn CvTrainingData::setweights(const CvMat *wmat)
  */
-void CvTrainingData::setweights(CvMat *wmat)
+void CvTrainingData::setweights(const CvMat *wmat)
 {
      if (!bInitialised) 
     {
@@ -722,9 +722,9 @@ void CvTrainingData::setweights(CvMat *wmat)
 
 
 /*!
-    \fn CvTrainingData::split(int clsidx1, int clsidx2)
+    \fn CvTrainingData::split(int clsidx1, int clsidx2) const
  */
-CvTrainingData* CvTrainingData::split(int clsidx1, int clsidx2)
+CvTrainingData* CvTrainingData::split(int clsidx1, int clsidx2) const
 {
   CvTrainingData * data1 = this->split(clsidx1);
   CvTrainingData * data2 = this->split(clsidx2);

@@ -46,20 +46,20 @@ public:
      CvGabor(double dPhi, int iNu);
      CvGabor(double dPhi, int iNu, double dSigma);
      CvGabor(double dPhi, int iNu, double dSigma, double dF);
-    bool IsInit();
-    long mask_width();
-    IplImage* get_image(int Type);
-    bool IsKernelCreate();
-    long get_mask_width();
+     bool IsInit() const;
+     long mask_width() const;
+    IplImage* get_image(int Type) const;
+    bool IsKernelCreate() const;
+    long get_mask_width() const;
     void Init(int iMu, int iNu, double dSigma, double dF);
     void Init(double dPhi, int iNu, double dSigma, double dF);
-    void output_file(const char *filename, int Type);
-    CvMat* get_matrix(int Type);
-    void show(int Type);
-    void conv_img(IplImage *src, IplImage *dst, int Type);
+    void output_file(const char *filename, int Type) const;
+    CvMat* get_matrix(int Type) const;
+    void show(int Type) const;
+    void conv_img(const IplImage *src, IplImage *dst, int Type);
      CvGabor(int iMu, int iNu);
     void normalize( const CvArr* src, CvArr* dst, double a, double b, int norm_type, const CvArr* mask );
-    void conv_img_a(IplImage *src, IplImage *dst, int Type);
+    void conv_img_a(const IplImage *src, IplImage *dst, int Type);
 
 protected:
     double Sigma;

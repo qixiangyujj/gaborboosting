@@ -17,9 +17,9 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-void displayMatrix(CvArr *arr);
+void displayMatrix(const CvArr *arr);
 
-void displayMatrix(CvArr *arr)
+void displayMatrix(const CvArr *arr)
 {
   CvSize size = cvGetSize( arr );
   for(int i = 0; i < size.height; i++)

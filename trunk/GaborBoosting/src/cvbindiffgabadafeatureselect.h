@@ -17,25 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CVFACEDB_H
-#define CVFACEDB_H
-#include <iostream>
+#ifndef CVBINDIFFGABADAFEATURESELECT_H
+#define CVBINDIFFGABADAFEATURESELECT_H
 
+#include <cvbingabadafeatureselect.h>
+#include "cvgaborresponsedata.h"
+#include "cvgabordifferencedatamaker.h"
+
+using namespace PrepareData;
 /**
 	@author Mian Zhou <M.Zhou@reading.ac.uk>
 */
-class CvFaceDB{
+class CvBinDiffGabAdaFeatureSelect : public CvBinGabAdaFeatureSelect
+{
 public:
-    CvFaceDB();
+    CvBinDiffGabAdaFeatureSelect();
 
-    virtual ~CvFaceDB();
-    char* getName() const;
-    virtual CvFaceDB* clone() const;
-    bool is_feret() const;
-    bool is_xm2vts() const;
+    ~CvBinDiffGabAdaFeatureSelect();
+    CvBinDiffGabAdaFeatureSelect(CvFaceDB *db, CvPoolParams *param, CvGaborResponseData *data);
+    void setMemdata(CvGaborResponseData *data);
+    double featureweak(CvGaborFeature* feature);
 
 protected:
-    char* name;
+    CvGaborResponseData *memdata;
 };
 
 #endif

@@ -33,9 +33,9 @@ public:
 
     ~CvGaborDifferenceDataMaker();
      CvGaborDifferenceDataMaker(CvGaborResponseData *data, CvGaborFeature *gaborfeature, CvFaceDB *db);
-    CvMat* getIntraDifference();
-    CvMat* getExtraDifference();
-    CvTrainingData* getDifference();
+    CvMat* getIntraDifference() const;
+    CvMat* getExtraDifference() const;
+    CvTrainingData* getDifference() const;
 
 protected:
     CvFaceDB* database;

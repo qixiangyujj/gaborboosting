@@ -459,9 +459,9 @@ double CvWeakLearner::bayespredict(CvMat *sample)
 
 
 /*!
-    \fn CvWeakLearner::annpredict(CvMat *sample)
+    \fn CvWeakLearner::annpredict(const CvMat *sample) const
  */
-double CvWeakLearner::annpredict(CvMat *sample)
+double CvWeakLearner::annpredict(const CvMat *sample) const
 {
     double label;
     CvMat* output = cvCreateMat(1, 1, CV_32FC1);
@@ -892,9 +892,9 @@ void CvWeakLearner::fldlearning(CvTrainingData *data)
 
 
 /*!
-    \fn CvWeakLearner::annpredict(double value)
+    \fn CvWeakLearner::annpredict(double value) const
  */
-double CvWeakLearner::annpredict(double value)
+double CvWeakLearner::annpredict(double value) const
 {
   double label;
   CvMat* sample = cvCreateMat(1, 1, CV_32FC1);

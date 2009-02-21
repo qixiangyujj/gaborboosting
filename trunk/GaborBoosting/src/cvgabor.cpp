@@ -142,7 +142,7 @@ Create a gabor with a orientation dPhi, a scale iNu, a sigma value dSigma, and a
 }
 
 /*!
-    \fn CvGabor::IsInit()
+    \fn CvGabor::IsInit() const
 Determine the gabor is initilised or not
 
 Parameters:
@@ -153,14 +153,14 @@ Returns:
 
 Determine whether the gabor has been initlized - variables F, K, Kmax, Phi, Sigma are filled.
  */
-bool CvGabor::IsInit()
+bool CvGabor::IsInit() const
 {
 
     return bInitialised;
 }
 
 /*!
-    \fn CvGabor::mask_width()
+    \fn CvGabor::mask_width() const
 Give out the width of the mask
 
 Parameters:
@@ -171,7 +171,7 @@ Returns:
 
 Return the width of mask (should be NxN) by the value of Sigma and iNu.
  */
-long CvGabor::mask_width()
+long CvGabor::mask_width() const
 {
 
     long lWidth;
@@ -251,7 +251,7 @@ void CvGabor::creat_kernel()
 
 
 /*!
-    \fn CvGabor::get_image(int Type)
+    \fn CvGabor::get_image(int Type) const
 Get the speific type of image of Gabor
 
 Parameters:
@@ -262,7 +262,7 @@ Returns:
 
 Return an Image (gandalf image class) with a specific Type   "REAL"	"IMAG" "MAG" "PHASE"  
  */
-IplImage* CvGabor::get_image(int Type)
+IplImage* CvGabor::get_image(int Type) const
 {
 
     if(IsKernelCreate() == false)
@@ -272,26 +272,26 @@ IplImage* CvGabor::get_image(int Type)
     }
     else
     {  
-    IplImage* pImage;
-    IplImage *newimage;
-    newimage = cvCreateImage(cvSize(Width,Width), IPL_DEPTH_8U, 1 );
-    //printf("Width is %d.\n",(int)Width);
-    //printf("Sigma is %f.\n", Sigma);
-    //printf("F is %f.\n", F);
-    //printf("Phi is %f.\n", Phi);
-    
-    //pImage = gan_image_alloc_gl_d(Width, Width);
-    pImage = cvCreateImage( cvSize(Width,Width), IPL_DEPTH_32F, 1 );
-    
-    
-    CvMat* kernel = cvCreateMat(Width, Width, CV_32FC1);
-    double ve;
-    CvScalar S;
-    CvSize size = cvGetSize( kernel );
-    int rows = size.height;
-    int cols = size.width;
-    switch(Type)
-    {
+      IplImage* pImage;
+      IplImage *newimage;
+      newimage = cvCreateImage(cvSize(Width,Width), IPL_DEPTH_8U, 1 );
+      //printf("Width is %d.\n",(int)Width);
+      //printf("Sigma is %f.\n", Sigma);
+      //printf("F is %f.\n", F);
+      //printf("Phi is %f.\n", Phi);
+      
+      //pImage = gan_image_alloc_gl_d(Width, Width);
+      pImage = cvCreateImage( cvSize(Width,Width), IPL_DEPTH_32F, 1 );
+      
+      
+      CvMat* kernel = cvCreateMat(Width, Width, CV_32FC1);
+      double ve;
+      CvScalar S;
+      CvSize size = cvGetSize( kernel );
+      int rows = size.height;
+      int cols = size.width;
+      switch(Type)
+      {
         case 1:  //Real
 
            cvCopy( (CvMat*)Real, (CvMat*)kernel, NULL );
@@ -323,24 +323,24 @@ IplImage* CvGabor::get_image(int Type)
         case 4:  //Phase
           ///@todo
            break;
-    }
+      }
    
-    cvNormalize((IplImage*)pImage, (IplImage*)pImage, 0, 255, CV_MINMAX, NULL );
+      cvNormalize((IplImage*)pImage, (IplImage*)pImage, 0, 255, CV_MINMAX, NULL );
 
 
-    cvConvertScaleAbs( (IplImage*)pImage, (IplImage*)newimage, 1, 0 );
+      cvConvertScaleAbs( (IplImage*)pImage, (IplImage*)newimage, 1, 0 );
 
-    cvReleaseMat(&kernel);
+      cvReleaseMat(&kernel);
 
-    cvReleaseImage(&pImage);
+      cvReleaseImage(&pImage);
 
-    return newimage;
+      return newimage;
     }
 }
 
 
 /*!
-    \fn CvGabor::IsKernelCreate()
+    \fn CvGabor::IsKernelCreate() const
 Determine the gabor kernel is created or not
 
 Parameters:
@@ -351,7 +351,7 @@ Returns:
 
 Determine whether a gabor kernel is created.
  */
-bool CvGabor::IsKernelCreate()
+bool CvGabor::IsKernelCreate() const
 {
 
     return bKernel;
@@ -359,7 +359,7 @@ bool CvGabor::IsKernelCreate()
 
 
 /*!
-    \fn CvGabor::get_mask_width()
+    \fn CvGabor::get_mask_width() const
 Reads the width of Mask
 
 Parameters:
@@ -368,7 +368,7 @@ Parameters:
 Returns:
     Pointer to long type width of mask.
  */
-long CvGabor::get_mask_width()
+long CvGabor::get_mask_width() const
 {
   return Width;
 }
@@ -451,7 +451,7 @@ void CvGabor::Init(double dPhi, int iNu, double dSigma, double dF)
 
 
 /*!
-    \fn CvGabor::get_matrix(int Type)
+    \fn CvGabor::get_matrix(int Type) const
 Get a matrix by the type of kernel
 
 Parameters:
@@ -462,16 +462,23 @@ Returns:
 
 Return the gabor kernel.
  */
-CvMat* CvGabor::get_matrix(int Type)
+CvMat* CvGabor::get_matrix(int Type) const
 {
-    if (!IsKernelCreate()) {perror("Error: the gabor kernel has not been created!\n"); return NULL;}
+    if (!IsKernelCreate()) 
+    {
+      printf("Error: the gabor kernel has not been created!\n"); 
+      exit(-1);
+    }
+    CvMat *mat;
     switch (Type)
     {
       case CV_GABOR_REAL:
-        return Real;
+        mat = cvCloneMat(Real);
+        return mat;
         break;
       case CV_GABOR_IMAG:
-        return Imag;
+        mat = cvCloneMat(Imag);
+        return mat;
         break;
       case CV_GABOR_MAG:
         return NULL;
@@ -486,7 +493,7 @@ CvMat* CvGabor::get_matrix(int Type)
 
 
 /*!
-    \fn CvGabor::output_file(const char *filename, Gan_ImageFileFormat file_format, int Type)
+    \fn CvGabor::output_file(const char *filename, Gan_ImageFileFormat file_format, int Type) const
 Writes a gabor kernel as an image file.
 
 Parameters:
@@ -498,7 +505,7 @@ Returns:
 
 Writes an image from the provided image structure into the given file and the type of gabor kernel.
  */
-void CvGabor::output_file(const char *filename, int Type)
+void CvGabor::output_file(const char *filename, int Type) const
 {
   IplImage *pImage;
   pImage = get_image(Type);
@@ -519,9 +526,9 @@ void CvGabor::output_file(const char *filename, int Type)
 
 
 /*!
-    \fn CvGabor::show(int Type)
+    \fn CvGabor::show(int Type) const
  */
-void CvGabor::show(int Type)
+void CvGabor::show(int Type) const
 {
     if(!IsInit()) {
         perror("Error: the gabor kernel has not been created!\n");
@@ -542,9 +549,9 @@ void CvGabor::show(int Type)
 
 
 /*!
-    \fn CvGabor::conv_img_a(IplImage *src, IplImage *dst, int Type)
+    \fn CvGabor::conv_img_a(const IplImage *src, IplImage *dst, int Type)
  */
-void CvGabor::conv_img_a(IplImage *src, IplImage *dst, int Type)
+void CvGabor::conv_img_a(const IplImage *src, IplImage *dst, int Type)
 {
     double ve, re,im;
   
@@ -692,9 +699,9 @@ void CvGabor::normalize( const CvArr* src, CvArr* dst, double a, double b, int n
 
 
 /*!
-    \fn CvGabor::conv_img(IplImage *src, IplImage *dst, int Type)
+    \fn CvGabor::conv_img(const IplImage *src, IplImage *dst, int Type)
  */
-void CvGabor::conv_img(IplImage *src, IplImage *dst, int Type)
+void CvGabor::conv_img(const IplImage *src, IplImage *dst, int Type)
 {
   double ve, re,im;
   

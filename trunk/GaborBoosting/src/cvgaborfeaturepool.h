@@ -36,7 +36,7 @@ public:
     int Init(CvSize imgsize, CvMat *Scale, CvMat *Orientation, int interval, int bound);
     int Init(CvSize imgsize, int minscale, int maxscale, int norient, int interval, int bound);
     void clear();
-    int getSize();
+    int getSize() const;
     void add(CvGaborFeature *gabor);
     void remove(int idex);
     CvGaborFeature* getfeature(int idex);

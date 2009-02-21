@@ -34,36 +34,36 @@ public:
     CvTrainingData();
 
     ~CvTrainingData();
-    int getnumcls();
-    int getnumsample();
+    int getnumcls() const;
+    int getnumsample() const;
     void setnumsample(int num);
     void setnumcls(int num);
     bool loadIris(const char *filename);
-    int getnumelement();
+    int getnumelement() const;
     void setnumelement(int num);
     void init(int numcls, int numsample, int numelement);
-    int getnumsamcls(int clsidx);
+    int getnumsamcls(int clsidx) const;
     void stat();
-    CvTrainingData* clone();
-    void setclsidxofsample(int clsidx, int sampleidx);
-    int getclsidxofsample(int sampleidx);
+    CvTrainingData* clone() const;
+    void setclsidxofsample(int clsidx, int sampleidx) const;
+    int getclsidxofsample(int sampleidx) const;
     void setweightofsample(double weightvalue, int sampleidx);
-    double getweightofsample(int sampleidx);
+    double getweightofsample(int sampleidx) const;
     void statclsdist();
-    CvTrainingData* split(int clsidx);
-    CvTrainingData* merge(CvTrainingData *data);
-    CvTrainingData* extract(int elementidx);
-    CvTrainingData* combine(CvTrainingData *data);
-    CvMat* getdata();
-    CvMat* getresponse();
-    void setdata(CvMat *mat);
-    void setresponse(CvMat* response);
-    void saveweight(const char *filename);
-    void savedata(const char *filename);
+    CvTrainingData* split(int clsidx) const;
+    CvTrainingData* merge(const CvTrainingData *data) const;
+    CvTrainingData* extract(int elementidx) const;
+    CvTrainingData* combine(CvTrainingData *data) const;
+    CvMat* getdata() const;
+    CvMat* getresponse() const;
+    void setdata(const CvMat *mat);
+    void setresponse(const CvMat* response);
+    void saveweight(const char *filename) const;
+    void savedata(const char *filename) const;
     bool loadUCI(const char  *filename);
-    CvMat* getweights();
-    void setweights(CvMat *wmat);
-    CvTrainingData* split(int clsidx1, int clsidx2);
+    CvMat* getweights() const;
+    void setweights(const CvMat *wmat);
+    CvTrainingData* split(int clsidx1, int clsidx2) const;
   
     
 

@@ -52,9 +52,9 @@ CvGaborFeature::CvGaborFeature(int x, int y, int Mu, int Nu)
 
 
 /*!
-    \fn CvGaborFeature::val(IplImage *img)
+    \fn CvGaborFeature::val(const IplImage *img)
  */
-double CvGaborFeature::val(IplImage *img)
+double CvGaborFeature::val(const IplImage *img)
 {
     CreateGabor();
     
@@ -90,9 +90,9 @@ void CvGaborFeature::Init(int x, int y, double Phi, int Nu)
 
 
 /*!
-    \fn CvGaborFeature::XM2VTSdata(const char *pathname, int subject, int pic)
+    \fn CvGaborFeature::XM2VTSdata(const char *pathname, int subject, int pic) const
  */
-double CvGaborFeature::XM2VTSdata(const char *pathname, int subject, int pic)
+double CvGaborFeature::XM2VTSdata(const char *pathname, int subject, int pic) const
 {
     //char filename[80];
     char *filename;
@@ -120,9 +120,9 @@ double CvGaborFeature::XM2VTSdata(const char *pathname, int subject, int pic)
 
 
 /*!
-\fn CvGaborFeature::XM2VTSdata(const char *pathname, int subject, int pic, bool reduce)
+\fn CvGaborFeature::XM2VTSdata(const char *pathname, int subject, int pic, bool reduce) const
  */
-double CvGaborFeature::XM2VTSdata(const char *pathname, int subject, int pic, bool reduce)
+double CvGaborFeature::XM2VTSdata(const char *pathname, int subject, int pic, bool reduce) const
 {
     //char filename[80];
   char *filename;
@@ -159,9 +159,9 @@ void CvGaborFeature::clear()
 
 
 /*!
-    \fn CvGaborFeature::val(const char *filename)
+    \fn CvGaborFeature::val(const char *filename) const
  */
-double CvGaborFeature::val(const char *filename)
+double CvGaborFeature::val(const char *filename) const
 {
     double ve;
     CvFileStorage *fs;
@@ -202,9 +202,9 @@ double CvGaborFeature::val(const char *filename)
 
 
 /*!
-    \fn CvGaborFeature::geterror()
+    \fn CvGaborFeature::geterror() const
  */
-double CvGaborFeature::geterror()
+double CvGaborFeature::geterror() const
 {
     return error;
 }
@@ -220,9 +220,9 @@ void CvGaborFeature::seterror(double e)
 
 
 /*!
-\fn CvGaborFeature::_XM2VTSBin(const char *pathname)
+\fn CvGaborFeature::_XM2VTSBin(const char *pathname) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname)
+CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname) const
 {
   int nopic = 8;
   int nosub = 200;
@@ -252,9 +252,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname)
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSBin(const char *pathname, bool reduce)
+    \fn CvGaborFeature::_XM2VTSBin(const char *pathname, bool reduce) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname, bool reduce)
+CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname, bool reduce) const
 {
   int nopic = 8;
   int nosub = 200;
@@ -289,9 +289,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname, bool reduce)
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSBin(const char *pathname, int possub)
+    \fn CvGaborFeature::_XM2VTSBin(const char *pathname, int possub) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname, int possub)
+CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname, int possub) const
 {
     int nopic = 4;
     int nosub = 200;
@@ -350,9 +350,9 @@ bool CvGaborFeature::operator>(const CvGaborFeature& a)
 
 
 /*!
-    \fn CvGaborFeature::clone()
+    \fn CvGaborFeature::clone() const
  */
-CvGaborFeature* CvGaborFeature::clone()
+CvGaborFeature* CvGaborFeature::clone() const
 {
     CvGaborFeature *feature = new CvGaborFeature;
     if(GaborCreated)
@@ -401,54 +401,54 @@ void CvGaborFeature::CreateGabor()
 
 
 /*!
-    \fn CvGaborFeature::getx()
+    \fn CvGaborFeature::getx() const
  */
-int CvGaborFeature::getx()
+int CvGaborFeature::getx() const
 {
     return ix;
 }
 
 
 /*!
-    \fn CvGaborFeature::gety()
+    \fn CvGaborFeature::gety() const
  */
-int CvGaborFeature::gety()
+int CvGaborFeature::gety() const
 {
     return iy;
 }
 
 
 /*!
-    \fn CvGaborFeature::getMu()
+    \fn CvGaborFeature::getMu() const
  */
-int CvGaborFeature::getMu()
+int CvGaborFeature::getMu() const
 {
     return iMu;
 }
 
 
 /*!
-    \fn CvGaborFeature::getNu()
+    \fn CvGaborFeature::getNu() const
  */
-int CvGaborFeature::getNu()
+int CvGaborFeature::getNu() const
 {
     return iNu;
 }
 
 
 /*!
-    \fn CvGaborFeature::getPhi()
+    \fn CvGaborFeature::getPhi() const
  */
-double CvGaborFeature::getPhi()
+double CvGaborFeature::getPhi() const
 {
     return dPhi;
 }
 
 
 /*!
-    \fn CvGaborFeature::extractname(char * name, const char * filename)
+    \fn CvGaborFeature::extractname(char * name, const char * filename) const
  */
-void CvGaborFeature::extractname(char * name, const char * filename)
+void CvGaborFeature::extractname(char * name, const char * filename) const
 {
     string str(filename);
     size_t found;
@@ -464,9 +464,9 @@ void CvGaborFeature::extractname(char * name, const char * filename)
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSBin(const char *pathname, int possub, CvMat *index)
+    \fn CvGaborFeature::_XM2VTSBin(const char *pathname, int possub, const CvMat *index) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname, int possub, CvMat *index)
+CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname, int possub, const CvMat *index) const
 {
     int nopic = 4;
     int nosub = 200; 
@@ -525,9 +525,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSBin(const char *pathname, int possub, CvM
 
 
 /*!
-\fn CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub, CvMat *index)
+\fn CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub, const CvMat *index) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub, CvMat *index)
+CvTrainingData* CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub, const CvMat *index) const
 {
   int nosub = 200;
   int nopic = 8;
@@ -631,9 +631,9 @@ bool CvGaborFeature::operator==(const CvGaborFeature& a)
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSMulti(const char *pathname, CvMat* index)
+    \fn CvGaborFeature::_XM2VTSMulti(const char *pathname, const CvMat* index) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSMulti(const char *pathname, CvMat* index)
+CvTrainingData* CvGaborFeature::_XM2VTSMulti(const char *pathname, const CvMat* index) const
 {
   CvSize size = cvGetSize(index);
   int npic = size.width;
@@ -662,9 +662,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSMulti(const char *pathname, CvMat* index)
 
 
 /*!
-\fn CvGaborFeature::_XM2VTSMulti(const char *pathname, CvMat* picIndex, CvMat* subIndex)
+\fn CvGaborFeature::_XM2VTSMulti(const char *pathname, const CvMat* picIndex, const CvMat* subIndex) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSMulti(const char *pathname, CvMat* picIndex, CvMat* subIndex)
+CvTrainingData* CvGaborFeature::_XM2VTSMulti(const char *pathname, const CvMat* picIndex, const CvMat* subIndex) const
 {
   CvSize size = cvGetSize(picIndex);
   int npic = size.width;
@@ -695,9 +695,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSMulti(const char *pathname, CvMat* picInd
 
 
 /*!
-\fn CvGaborFeature::_XM2VTSMulti(CvXm2vts *database)
+\fn CvGaborFeature::_XM2VTSMulti(const CvXm2vts *database) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSMulti(CvXm2vts *database)
+CvTrainingData* CvGaborFeature::_XM2VTSMulti(const CvXm2vts *database) const
 {
   char * pathname = database->getPath();
   CvMat *picIndex = database->getPic();
@@ -753,9 +753,9 @@ CvGaborFeature & CvGaborFeature::operator = (const CvGaborFeature& a)
 
 
 /*!
-    \fn CvGaborFeature::write(const char* filename)
+    \fn CvGaborFeature::write(const char* filename) const
  */
-void CvGaborFeature::write(const char* filename)
+void CvGaborFeature::write(const char* filename) const
 {
   string str(filename);
   size_t found;
@@ -769,9 +769,9 @@ void CvGaborFeature::write(const char* filename)
 
 
 /*!
-    \fn CvGaborFeature::writeXML(const char* filename)
+    \fn CvGaborFeature::writeXML(const char* filename) const
  */
-void CvGaborFeature::writeXML(const char* filename)
+void CvGaborFeature::writeXML(const char* filename) const
 {
   CvMemStorage* storage = cvCreateMemStorage( 0 );
   CvFileStorage* fs = cvOpenFileStorage( filename, storage, CV_STORAGE_WRITE);
@@ -792,9 +792,9 @@ void CvGaborFeature::writeXML(const char* filename)
 
 
 /*!
-    \fn CvGaborFeature::writeTXT(const char *filename)
+    \fn CvGaborFeature::writeTXT(const char *filename) const
  */
-void CvGaborFeature::writeTXT(const char *filename)
+void CvGaborFeature::writeTXT(const char *filename) const
 {
   FILE * file;
   file = fopen (filename,"a");
@@ -812,9 +812,9 @@ void CvGaborFeature::writeTXT(const char *filename)
 
 
 /*!
-    \fn CvGaborFeature::neighbor(CvGaborFeature *feature, int num)
+    \fn CvGaborFeature::neighbor(const CvGaborFeature *feature, int num) const
  */
-bool CvGaborFeature::neighbor(CvGaborFeature *feature, int num)
+bool CvGaborFeature::neighbor(const CvGaborFeature *feature, int num) const
 {
   if(fmod((double)num,(double)2) == 0)
   {
@@ -848,9 +848,9 @@ bool CvGaborFeature::neighbor(CvGaborFeature *feature, int num)
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub)
+    \fn CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub)
+CvTrainingData* CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub) const
 {
   CvMat *index = cvCreateMat(1, 4, CV_32FC1);
   cvSetReal1D(index,0,1);
@@ -865,9 +865,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSBin_F(const char *pathname, int possub)
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSMulti_F(CvXm2vts *database)
+    \fn CvGaborFeature::_XM2VTSMulti_F(const CvXm2vts *database) const 
  */
-CvTrainingData* CvGaborFeature::_XM2VTSMulti_F(CvXm2vts *database)
+CvTrainingData* CvGaborFeature::_XM2VTSMulti_F(const CvXm2vts *database) const
 {
   char * pathname = database->getPath();
   CvMat *picIndex = database->getPic();
@@ -878,9 +878,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSMulti_F(CvXm2vts *database)
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSMulti_F(const char *pathname, CvMat* picIndex, CvMat* subIndex)
+    \fn CvGaborFeature::_XM2VTSMulti_F(const char *pathname, const CvMat* picIndex, const CvMat* subIndex) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSMulti_F(const char *pathname, CvMat* picIndex, CvMat* subIndex)
+CvTrainingData* CvGaborFeature::_XM2VTSMulti_F(const char *pathname, const CvMat* picIndex, const CvMat* subIndex) const
 {
   int nosub = 200;
   int nopic = 8;
@@ -972,9 +972,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSMulti_F(const char *pathname, CvMat* picI
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSMulti_F(const char *pathname, CvMat* index)
+    \fn CvGaborFeature::_XM2VTSMulti_F(const char *pathname, const CvMat* index) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSMulti_F(const char *pathname, CvMat* index)
+CvTrainingData* CvGaborFeature::_XM2VTSMulti_F(const char *pathname, const CvMat* index) const
 {
   int nosub = 200;
   int nopic = 8;
@@ -1045,9 +1045,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSMulti_F(const char *pathname, CvMat* inde
 
 
 /*!
-    \fn CvGaborFeature::val(const char *filename, int scale)
+    \fn CvGaborFeature::val(const char *filename, int scale) const
  */
-double CvGaborFeature::val(const char *filename, int scale)
+double CvGaborFeature::val(const char *filename, int scale) const
 {
   IplImage * img = (IplImage*)cvLoad(filename, NULL, NULL, NULL);
   CvSize size = cvGetSize( img );
@@ -1069,9 +1069,9 @@ double CvGaborFeature::val(const char *filename, int scale)
 
 
 /*!
-    \fn CvGaborFeature::val(IplImage* img, int scale)
+    \fn CvGaborFeature::val(const IplImage* img, int scale)
  */
-double CvGaborFeature::val(IplImage* img, int scale)
+double CvGaborFeature::val(const IplImage* img, int scale)
 {
   CvSize size = cvGetSize( img );
   int width = size.width;
@@ -1112,9 +1112,9 @@ double CvGaborFeature::val(IplImage* img, int scale)
 
 
 /*!
-    \fn CvGaborFeature::_FERETBin(CvFeret* feret, CvPoolParams* param)
+    \fn CvGaborFeature::_FERETBin(const CvFeret* feret, const CvPoolParams* param) const
  */
-CvTrainingData* CvGaborFeature::_FERETBin(CvFeret* feret, CvPoolParams* param )
+CvTrainingData* CvGaborFeature::_FERETBin(const CvFeret* feret, const CvPoolParams* param) const
 {
   int numsample = feret->getNum();
   CvTrainingData *bindata = new CvTrainingData; 
@@ -1151,18 +1151,18 @@ CvTrainingData* CvGaborFeature::_FERETBin(CvFeret* feret, CvPoolParams* param )
 
 
 /*!
-    \fn CvGaborFeature::_FERETBin(const char *pathname, bool reduce)
+    \fn CvGaborFeature::_FERETBin(const char *pathname, bool reduce) const
  */
-CvTrainingData* CvGaborFeature::_FERETBin(const char *pathname, bool reduce)
+CvTrainingData* CvGaborFeature::_FERETBin(const char *pathname, bool reduce) const
 {
     /// @todo implement me
 }
 
 
 /*!
-    \fn CvGaborFeature::FERETdata(const char *pathname, int subject, const char* imgname, bool reduce)
+    \fn CvGaborFeature::FERETdata(const char *pathname, int subject, const char* imgname, bool reduce) const
  */
-double CvGaborFeature::FERETdata(const char *pathname, int subject, const char* imgname, bool reduce)
+double CvGaborFeature::FERETdata(const char *pathname, int subject, const char* imgname, bool reduce) const
 {
  
   char *filename = new char[50];
@@ -1185,9 +1185,9 @@ double CvGaborFeature::FERETdata(const char *pathname, int subject, const char* 
 
 
 /*!
-    \fn CvGaborFeature::FERETdata(const char *pathname, int subject, const char* imgname)
+    \fn CvGaborFeature::FERETdata(const char *pathname, int subject, const char* imgname) const
  */
-double CvGaborFeature::FERETdata(const char *pathname, int subject, const char* imgname)
+double CvGaborFeature::FERETdata(const char *pathname, int subject, const char* imgname) const
 {
     /// @todo implement me
 }
@@ -1196,9 +1196,9 @@ double CvGaborFeature::FERETdata(const char *pathname, int subject, const char* 
 
 
 /*!
-    \fn CvGaborFeature::_FERETBin_F(CvFeret* feret, int possub, CvMat *index)
+    \fn CvGaborFeature::_FERETBin_F(const CvFeret* feret, int possub, const CvMat *index) const
  */
-CvTrainingData* CvGaborFeature::_FERETBin_F(CvFeret* feret, int possub, CvMat *index)
+CvTrainingData* CvGaborFeature::_FERETBin_F(const CvFeret* feret, int possub, const CvMat *index) const
 {
   int nosub = feret->getSub();
   int nsamples = feret->getNum();
@@ -1228,9 +1228,9 @@ CvTrainingData* CvGaborFeature::_FERETBin_F(CvFeret* feret, int possub, CvMat *i
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSGender_F( CvXm2vts* xm2vts, int ntpic)
+    \fn CvGaborFeature::_XM2VTSGender_F(const CvXm2vts* xm2vts, int ntpic) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSGender_F( CvXm2vts* xm2vts, int ntpic)
+CvTrainingData* CvGaborFeature::_XM2VTSGender_F(const CvXm2vts* xm2vts, int ntpic) const
 {
   int nosub = 200;
   int nopic = 8;
@@ -1291,9 +1291,9 @@ CvTrainingData* CvGaborFeature::_XM2VTSGender_F( CvXm2vts* xm2vts, int ntpic)
 
 
 /*!
-    \fn CvGaborFeature::_XM2VTSGender_F( CvXm2vts* xm2vts, CvMat* index)
+    \fn CvGaborFeature::_XM2VTSGender_F(const CvXm2vts* xm2vts, const CvMat* index) const
  */
-CvTrainingData* CvGaborFeature::_XM2VTSGender_F( CvXm2vts* xm2vts, CvMat* index)
+CvTrainingData* CvGaborFeature::_XM2VTSGender_F(const CvXm2vts* xm2vts, const CvMat* index) const
 {
   int nosub = 200;
   int nopic = 8;

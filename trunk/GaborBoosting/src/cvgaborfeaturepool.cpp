@@ -177,9 +177,9 @@ void CvGaborFeaturePool::clear()
 
 
 /*!
-    \fn CvGaborFeaturePool::getSize()
+    \fn CvGaborFeaturePool::getSize() const
  */
-int CvGaborFeaturePool::getSize()
+int CvGaborFeaturePool::getSize() const
 {
     int n = features.size();
     return n;
