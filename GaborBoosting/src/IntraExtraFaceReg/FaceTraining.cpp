@@ -27,6 +27,7 @@
 #include "PrepareData.h"
 #include "cvgaborresponsedata.h"
 #include "cvbindiffgabadafeatureselect.h"
+#include "cvadaboostfeatureselection.h"
 //#include "GaborBoosting.h"
 
 using namespace std;
@@ -57,17 +58,16 @@ int main(int argc, char *argv[])
   //const CvGaborResponseData GaborData( &xm2vts, &param );
   
 
-  const CvGaborResponseData GaborData( &xm2vts, &param, "/home/sir02mz/OUTPUT" );
-  //GaborData.loadData("/home/sir02mz/OUTPUT/");
-
   CvGaborResponseData GaborData( &xm2vts, &param, "/home/sir02mz/OUTPUT" );
   //GaborData.loadData("/home/sir02mz/OUTPUT/");
-  CvBinDiffGabAdaFeatureSelect FeatureSelection(&xm2vts, &param, &GaborData);
+  CvGaborFeature feature(1,1,1,1);
+  CvGaborDifferenceDataMaker maker(&GaborData, &feature, &xm2vts);
+  CvMat* labels = maker.getLabels();
 
-  
 
-  CvAdaBoostFeatureSelection fs(&GaborData, , param, CvWeakLearner::POTSU);
-  fs.Select( 500 );
+
+  CvAdaBoostFeatureSelection fs( &GaborData, labels, &param, CvWeakLearner::SVM );
+  fs.Select( 5 );
 
 
 
