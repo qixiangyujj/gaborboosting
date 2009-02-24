@@ -1,5 +1,0 @@
-cvmultigabadafeatureselect.o cvmultigabadafeatureselect.o:  \
- /home/sir02mz/CppWorks/gaborboosting/src/cvmultigabadafeatureselect.cpp \
-  /home/sir02mz/CppWorks/gaborboosting/src/cvmultigabadafeatureselect.h
-
-/home/sir02mz/CppWorks/gaborboosting/src/cvmultigabadafeatureselect.h:
