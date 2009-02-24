@@ -1,0 +1,12 @@
+AC_INIT(configure.in)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(adaboostgabortraining, 0.1)
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+AC_OUTPUT(Makefile src/ClientBasedFaceReg/Makefile src/Gender/Makefile \
+	src/IntraExtraFaceReg/Makefile src/Makefile src/MultiClassification/Makefile src/PCA/Makefile \
+	src/Segmentation/Makefile)
