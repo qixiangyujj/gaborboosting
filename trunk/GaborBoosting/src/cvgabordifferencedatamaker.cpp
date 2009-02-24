@@ -240,7 +240,7 @@ CvTrainingData* CvGaborDifferenceDataMaker::getDifference(CvMat *labels) const
     }
     else
     {
-      v = cvGetReal1D(extra_mat, i);
+      v = cvGetReal1D(extra_mat, i-nIntraDiff);
       cvSetReal1D(mat, i, v);
     }
   }
@@ -250,4 +250,38 @@ CvTrainingData* CvGaborDifferenceDataMaker::getDifference(CvMat *labels) const
   cvReleaseMat(&intra_mat);
   cvReleaseMat(&extra_mat);
   return bindata;
+}
+
+
+/*!
+    \fn CvGaborDifferenceDataMaker::getLabels() const
+ */
+CvMat* CvGaborDifferenceDataMaker::getLabels() const
+{
+  CvMat* labels;
+  if(database->is_xm2vts())
+  {
+    int nClients = ((CvXm2vts *)database)->get_num_sub();
+    int nPics = ((CvXm2vts *)database)->get_num_pic();
+    int nIntraDiff = nPics *(nPics-1)/2*nClients;
+    int nExtraDiff = nClients*(nClients-1)/2;
+    int nDiff = nIntraDiff + nExtraDiff;
+    labels = cvCreateMat( 1, nDiff, CV_32FC1);
+    for(int i = 0; i < nDiff; i++)
+    {
+      if(i < nIntraDiff)
+      {
+        cvSetReal1D(labels, i, 1.0);
+      }
+      else
+      {
+        cvSetReal1D(labels, i, 2.0);
+      }
+    }
+  }
+  else if(database->is_feret())
+  {
+    /// @todo implement me
+  }
+  return labels;
 }

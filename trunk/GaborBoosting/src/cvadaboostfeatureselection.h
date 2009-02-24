@@ -44,7 +44,7 @@ public:
     double TrainWeaklearner(CvGaborFeature *feature, int learner_type);
     void SetType(int learner_type);
     CvTrainingData* GetDataforWeak(CvGaborFeature *feature, CvGaborResponseData *memdata);
-     CvAdaBoostFeatureSelection(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type);
+    CvAdaBoostFeatureSelection(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type);
     void clear();
     void SaveWeights(const char *filename) const;
     void SaveWeights(int Iter);

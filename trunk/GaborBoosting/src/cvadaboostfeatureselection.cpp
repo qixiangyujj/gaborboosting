@@ -42,6 +42,7 @@ void CvAdaBoostFeatureSelection::SetFeatures(CvPoolParams *param)
   assert( param!=NULL );
   m_features = new CvGaborFeaturePool;
   m_features->Init( param);
+  printf("%d features are stored in a list\n", m_features->getSize());
 }
 
 
@@ -105,11 +106,16 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
   assert(numfeatures > 0);
   for(int i = 0; i < numfeatures; i++)
   {
+    printf("Training in the iteration %d:\n", i);
     NormalizeWeights();
-    for(int j = 0; j < m_features->getSize(); j++)
+    //for(int j = 0; j < m_features->getSize(); j++)
+    for(int j = 0; j < 30; j++)
     {
+      std::cout << "Learning a weak learner on the feature: " << j<< "\r" << std::flush;
       CvGaborFeature *feature = m_features->getfeature(j);
       double error = TrainWeaklearner( feature, m_learner_type);
+      assert(error >= 0.0);
+      assert(error <= 1.0);
       feature->seterror( error );
     }
     CvGaborFeature *sfeature = FindSignificantFeature( m_features );
@@ -117,6 +123,7 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
     SaveWeights( i );
     UpdateWeights( sfeature );
     delete sfeature;
+    printf("\n");
   }
   CvGaborFeaturePool *seletedfeatures = m_selectedfeatures->clone();
   return seletedfeatures;
@@ -183,6 +190,7 @@ CvTrainingData* CvAdaBoostFeatureSelection::GetDataforWeak(CvGaborFeature *featu
   CvFaceDB *database = memdata->getDB();
   CvGaborDifferenceDataMaker maker( memdata, feature, database );
   CvTrainingData *data = maker.getDifference(m_labels);
+  data->setweights(m_weights);
   return data;
 }
 
@@ -220,7 +228,7 @@ void CvAdaBoostFeatureSelection::clear()
 void CvAdaBoostFeatureSelection::SaveWeights(const char *filename) const
 {
   assert(filename!=NULL);
-  cvSave( filename, NULL, NULL, NULL, cvAttrList(0,0));
+  cvSave( filename, m_weights, NULL, NULL, cvAttrList(0,0));
 }
 
 
@@ -230,7 +238,8 @@ void CvAdaBoostFeatureSelection::SaveWeights(const char *filename) const
 void CvAdaBoostFeatureSelection::SaveWeights(int Iter)
 {
   assert(Iter >= 0);
-  char filename[200];
+  char *filename = new char[200];
   sprintf(filename, "weights_%d.xml", Iter);
   SaveWeights(filename);
+  delete [] filename;
 }

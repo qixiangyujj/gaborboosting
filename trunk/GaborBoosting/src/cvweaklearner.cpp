@@ -383,7 +383,13 @@ void CvWeakLearner::annlearning(CvTrainingData *data)
   
     ann = new CvANN_MLP;
     ann->create(layer_sizes, CvANN_MLP::SIGMOID_SYM, 1, 1);
-    niteration = ann->train(trainData, trainClasses, weight, 0, params, 0);
+    CvSize size_data = cvGetSize( trainData );
+    CvSize size_class = cvGetSize( trainClasses );
+    if(size_class.height != nsample)
+      cvTranspose( trainClasses, trainClasses );
+    //CvSize size_t = cvGetSize( trainData );
+    //cvSave("weights.xml", weight, NULL, NULL, cvAttrList(0,0));
+    niteration = ann->train( trainData, trainClasses, weight, 0, params, 0 );
     if (niteration <= 0)
     {
       printf("ANN Weak Learner training failed!\n");
@@ -958,6 +964,7 @@ if (error > 0.0)
       dwei = exp(alpha)*data->getweightofsample( i );
     else 
       dwei = exp(-1*alpha)*data->getweightofsample( i );
+    assert(dwei > 0.0);
     data->setweightofsample( dwei, i );
   }
   

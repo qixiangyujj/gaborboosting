@@ -40,6 +40,7 @@ public:
     int getNumExtraDifference() const;
     int getNumDifference() const;
     CvTrainingData* getDifference(CvMat *labels) const;
+    CvMat* getLabels() const;
 
 protected:
     CvFaceDB* database;
