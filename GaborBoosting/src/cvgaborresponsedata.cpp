@@ -205,7 +205,7 @@ void PrepareData::CvGaborResponseData::loadData(const char* datapath)
 	{
 		/// @todo implement me
 	}
-	printf("\n");
+
 
 	printf("\n%d response images are loaded.\n", n);
 }

@@ -574,7 +574,11 @@ void CvTrainingData::setdata(const CvMat *mat)
     //Valcache = cvCloneMat(mat);
     CvSize size1 = cvGetSize(mat);
     CvSize size2 = cvGetSize(Valcache);
-    cvCopy(mat, Valcache);
+    CvMat *tmat = cvCloneMat(Valcache);
+    if(size1.width != size2.width)
+      cvTranspose(mat, tmat);
+    cvCopy(tmat, Valcache);
+    cvReleaseMat(&tmat);
 }
 
 
@@ -696,6 +700,7 @@ CvMat* CvTrainingData::getweights() const
     for (int i = 0; i < maxnum; i++)
     {
       v = getweightofsample(i);
+      assert(v >= 0.0);
       cvSetReal1D(weights, i, v);
     }
     return weights;
@@ -716,6 +721,7 @@ void CvTrainingData::setweights(const CvMat *wmat)
     for (int i = 0; i < maxnum; i++)
     {
       w = cvGetReal1D(wmat, i);
+      assert(w >= 0.0);
       setweightofsample(w, i);
     }
 }
