@@ -14,7 +14,7 @@
 
 
 
-VPATH = /home/sir02mz/CWorks/GaborBoosting/src/PCA
+VPATH = /home/sir02mz/CWorks/gaborboosting/src/PCA
 pkgdatadir = $(datadir)/adaboostgabortraining
 pkglibdir = $(libdir)/adaboostgabortraining
 pkgincludedir = $(includedir)/adaboostgabortraining
@@ -77,12 +77,12 @@ DIST_SOURCES = PCAtesting.c $(PCAtraining_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run aclocal-1.10
-AMTAR = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run tar
+ACLOCAL = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run aclocal-1.10
+AMTAR = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run automake-1.10
+AUTOCONF = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run automake-1.10
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -117,7 +117,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NMEDIT = 
 OBJEXT = o
@@ -134,10 +134,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.1
-abs_builddir = /home/sir02mz/CWorks/GaborBoosting/optimized/src/PCA
-abs_srcdir = /home/sir02mz/CWorks/GaborBoosting/src/PCA
-abs_top_builddir = /home/sir02mz/CWorks/GaborBoosting/optimized
-abs_top_srcdir = /home/sir02mz/CWorks/GaborBoosting
+abs_builddir = /home/sir02mz/CWorks/gaborboosting/optimized/src/PCA
+abs_srcdir = /home/sir02mz/CWorks/gaborboosting/src/PCA
+abs_top_builddir = /home/sir02mz/CWorks/gaborboosting/optimized
+abs_top_srcdir = /home/sir02mz/CWorks/gaborboosting
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_F77 = 
@@ -166,7 +166,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /home/sir02mz/CWorks/GaborBoosting/install-sh
+install_sh = $(SHELL) /home/sir02mz/CWorks/gaborboosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -180,11 +180,11 @@ program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
-srcdir = /home/sir02mz/CWorks/GaborBoosting/src/PCA
+srcdir = /home/sir02mz/CWorks/gaborboosting/src/PCA
 sysconfdir = ${prefix}/etc
 target_alias = 
 top_builddir = ../..
-top_srcdir = /home/sir02mz/CWorks/GaborBoosting
+top_srcdir = /home/sir02mz/CWorks/gaborboosting
 INCLUDES = -I$(top_srcdir)/src -I$(top_srcdir)/src/Gender \
 	-I$(top_srcdir)/src/MultiClassification -I$(top_srcdir)/src/PCA -I$(top_srcdir)/src/Segmentation \
 	-I/usr/local/include/opencv $(all_includes)
