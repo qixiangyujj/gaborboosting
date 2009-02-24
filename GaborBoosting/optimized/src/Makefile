@@ -16,7 +16,7 @@
 
 
 
-VPATH = /home/sir02mz/CWorks/GaborBoosting/src
+VPATH = /home/sir02mz/CWorks/gaborboosting/src
 pkgdatadir = $(datadir)/adaboostgabortraining
 pkglibdir = $(libdir)/adaboostgabortraining
 pkgincludedir = $(includedir)/adaboostgabortraining
@@ -63,12 +63,15 @@ ARFLAGS = cru
 libAdaGabor_a_AR = $(AR) $(ARFLAGS)
 libAdaGabor_a_LIBADD =
 am_libAdaGabor_a_OBJECTS = MatUsage.$(OBJEXT) cv2bins.$(OBJEXT) \
-	cvadaboost.$(OBJEXT) cvbin.$(OBJEXT) cventropy.$(OBJEXT) \
+	cvadaboost.$(OBJEXT) cvadaboostfeatureselection.$(OBJEXT) \
+	cvbin.$(OBJEXT) cventropy.$(OBJEXT) \
 	cvbinarytrainingdata.$(OBJEXT) \
+	cvbindiffgabadafeatureselect.$(OBJEXT) \
 	cvbingabadafeatureselect.$(OBJEXT) cvfacedb.$(OBJEXT) \
 	cvferet.$(OBJEXT) cvgabadafeatureselect.$(OBJEXT) \
-	cvgabor.$(OBJEXT) cvgaborfeature.$(OBJEXT) \
-	cvgaborfeaturepair.$(OBJEXT) cvgaborfeaturepairpool.$(OBJEXT) \
+	cvgabor.$(OBJEXT) cvgabordifferencedatamaker.$(OBJEXT) \
+	cvgaborfeature.$(OBJEXT) cvgaborfeaturepair.$(OBJEXT) \
+	cvgaborfeaturepairpool.$(OBJEXT) \
 	cvgaborfeaturepairselect.$(OBJEXT) \
 	cvgaborfeaturepool.$(OBJEXT) cvlookuptable.$(OBJEXT) \
 	cvgaborresponsedata.$(OBJEXT) cvknnweaklearner.$(OBJEXT) \
@@ -166,12 +169,12 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run aclocal-1.10
-AMTAR = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run tar
+ACLOCAL = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run aclocal-1.10
+AMTAR = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run automake-1.10
+AUTOCONF = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run automake-1.10
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -206,7 +209,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NMEDIT = 
 OBJEXT = o
@@ -223,10 +226,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.1
-abs_builddir = /home/sir02mz/CWorks/GaborBoosting/optimized/src
-abs_srcdir = /home/sir02mz/CWorks/GaborBoosting/src
-abs_top_builddir = /home/sir02mz/CWorks/GaborBoosting/optimized
-abs_top_srcdir = /home/sir02mz/CWorks/GaborBoosting
+abs_builddir = /home/sir02mz/CWorks/gaborboosting/optimized/src
+abs_srcdir = /home/sir02mz/CWorks/gaborboosting/src
+abs_top_builddir = /home/sir02mz/CWorks/gaborboosting/optimized
+abs_top_srcdir = /home/sir02mz/CWorks/gaborboosting
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_F77 = 
@@ -255,7 +258,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /home/sir02mz/CWorks/GaborBoosting/install-sh
+install_sh = $(SHELL) /home/sir02mz/CWorks/gaborboosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -269,33 +272,36 @@ program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
-srcdir = /home/sir02mz/CWorks/GaborBoosting/src
+srcdir = /home/sir02mz/CWorks/gaborboosting/src
 sysconfdir = ${prefix}/etc
 target_alias = 
 top_builddir = ..
-top_srcdir = /home/sir02mz/CWorks/GaborBoosting
+top_srcdir = /home/sir02mz/CWorks/gaborboosting
 adaboostgabortraining_SOURCES = adaboostgabortraining.cpp
 
 # set the include path found by configure
-INCLUDES = -I/usr/local/include/opencv $(all_includes)
+INCLUDES = $(all_includes) -I/usr/local/include/opencv
 
 # the library search path.
 adaboostgabortraining_LDFLAGS = $(all_libraries) 
-noinst_HEADERS = cvadaboost.h cvbinarytrainingdata.h cvgabadafeatureselect.h \
-									cvgaborfeature.h cvgaborfeaturepool.h cvgabor.h cvmultitrainingdata.h cvtestingdata.h \
-									cvtrainingdata.h cvweaklearner.h cvgaborfeaturepair.h cvgaborfeaturepairpool.h \
-									cvmutinf.h cventropy.h cvlookuptable.h cvbin.h cv2bins.h \
-									cvgaborfeaturepairselect.h cvfacedb.h cvxm2vts.h cvpoolparams.h PrepareData.h makingfeaturedata.h \
-							cvmultigabadafeatureselect.h cvmultigabadafsm1.h cvmweaklearner.h MatUsage.h cvferet.h cvsubject.h \
-			cvknnweaklearner.h cvbingabadafeatureselect.h cvpcafacereg.h
+noinst_HEADERS = CommonCVFunction.h GaborBoosting.h MatUsage.h PrepareData.h \
+	cv2bins.h cvadaboost.h cvadaboostfeatureselection.h cvbin.h \
+	cvbinarytrainingdata.h cvbindiffgabadafeatureselect.h cvbingabadafeatureselect.h cventropy.h \
+	cvfacedb.h cvferet.h cvgabadafeatureselect.h cvgabor.h \
+	cvgabordifferencedatamaker.h cvgaborfeature.h cvgaborfeaturepair.h cvgaborfeaturepairpool.h \
+	cvgaborfeaturepairselect.h cvgaborfeaturepool.h cvknnweaklearner.h cvlookuptable.h \
+	cvmultigabadafeatureselect.h cvmultigabadafsm1.h cvmultitrainingdata.h cvmutinf.h cvmweaklearner.h \
+	cvpcafacereg.h cvpoolparams.h cvsubject.h cvtestingdata.h cvtrainingdata.h \
+	cvweaklearner.h cvxm2vts.h makingfeaturedata.h
 
 adaboostgabortraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lcvaux -lcv \
 	-lcxcore -lhighgui -L/usr/local/lib -lml
 
 lib_LIBRARIES = libAdaGabor.a
 libAdaGabor_a_SOURCES = MatUsage.cpp cv2bins.cpp cvadaboost.cpp \
-	cvbin.cpp	cventropy.cpp cvbinarytrainingdata.cpp cvbingabadafeatureselect.cpp cvfacedb.cpp \
-	cvferet.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
+	cvadaboostfeatureselection.cpp cvbin.cpp	cventropy.cpp cvbinarytrainingdata.cpp \
+	cvbindiffgabadafeatureselect.cpp cvbingabadafeatureselect.cpp cvfacedb.cpp cvferet.cpp \
+	cvgabadafeatureselect.cpp cvgabor.cpp cvgabordifferencedatamaker.cpp \
 	cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp cvgaborfeaturepairselect.cpp \
 	cvgaborfeaturepool.cpp	cvlookuptable.cpp cvgaborresponsedata.cpp cvknnweaklearner.cpp \
 	cvmultigabadafeatureselect.cpp cvmultigabadafsm1.cpp cvmultitrainingdata.cpp cvmutinf.cpp \
@@ -327,7 +333,9 @@ adaboostgabortraining_M1_SOURCES = adaboostgabor.M1.cpp
 adaboostgabortraining_M1_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui \
 	-L/usr/local/lib -lcv -lml -lcxcore
 
-SUBDIRS = Gender IntraExtraFaceReg MultiClassification PCA Segmentation
+SUBDIRS = ClientBasedFaceReg Gender IntraExtraFaceReg MultiClassification PCA \
+	Segmentation
+
 PairPoolPartition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
 	-lhighgui -lcxcore -lcv
 
@@ -494,14 +502,17 @@ include ./$(DEPDIR)/adaboostgabortesting.Po
 include ./$(DEPDIR)/adaboostgabortraining.Po
 include ./$(DEPDIR)/cv2bins.Po
 include ./$(DEPDIR)/cvadaboost.Po
+include ./$(DEPDIR)/cvadaboostfeatureselection.Po
 include ./$(DEPDIR)/cvbin.Po
 include ./$(DEPDIR)/cvbinarytrainingdata.Po
+include ./$(DEPDIR)/cvbindiffgabadafeatureselect.Po
 include ./$(DEPDIR)/cvbingabadafeatureselect.Po
 include ./$(DEPDIR)/cventropy.Po
 include ./$(DEPDIR)/cvfacedb.Po
 include ./$(DEPDIR)/cvferet.Po
 include ./$(DEPDIR)/cvgabadafeatureselect.Po
 include ./$(DEPDIR)/cvgabor.Po
+include ./$(DEPDIR)/cvgabordifferencedatamaker.Po
 include ./$(DEPDIR)/cvgaborfeature.Po
 include ./$(DEPDIR)/cvgaborfeaturepair.Po
 include ./$(DEPDIR)/cvgaborfeaturepairpool.Po
