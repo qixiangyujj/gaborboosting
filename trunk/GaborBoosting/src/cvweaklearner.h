@@ -19,6 +19,10 @@
  ***************************************************************************/
 #ifndef CVWEAKLEARNER_H
 #define CVWEAKLEARNER_H
+#define RANDOM      0
+#define UNIFOR      1
+#define NORMAL      2
+#define MAX_NUM_EXAMPLES      100
 
 #include <ml.h>
 #include <algorithm>
@@ -66,6 +70,7 @@ public:
     void svmlearning(CvTrainingData *data);
     double svmpredict(double value);
     double svmpredict( CvMat *sample );
+    CvMat* sampling(CvMat *data, int numsamples, int dist_type);
     enum { BAYES = 0, KNEAR = 1, SVM = 2, ANN = 3, FLD = 4, POTSU = 5};
  
 protected:

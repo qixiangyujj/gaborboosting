@@ -522,19 +522,41 @@ void CvWeakLearner::thresholdlearning(CvTrainingData *data)
     int nthresholds = nsample-1;
     float v;
     CvMat *thresholds = cvCreateMat(nthresholds, nelement, CV_32FC1);
-    CvMat *theslderrors = cvCreateMat(nthresholds, nelement, CV_32FC1);
-    float e;
     for (int i = 0; i < nthresholds; i++)
     {
       v = (myarr[i] + myarr[i+1])/2;
       cvSetReal1D(thresholds, i, v);
+    }
+    
+    
+    CvMat *subthresholds;
+    CvMat *temp_thresholds;
+    if(nsample > MAX_NUM_EXAMPLES)
+    {
+      nthresholds = MAX_NUM_EXAMPLES - 1;
+      subthresholds = sampling(thresholds, nthresholds, RANDOM);
+      temp_thresholds = thresholds;
+      thresholds = subthresholds;
+    }
+
+
+    CvMat *theslderrors = cvCreateMat(nthresholds, nelement, CV_32FC1);
+    float e;
+    for (int i = 0; i < nthresholds; i++)
+    {
+      v = cvGetReal1D(thresholds, i);
       e = thresholderror(v, weight, trainData, trainClasses);
+      assert(e >= 0.0);
+      assert(e <= 1.0);
       cvSetReal1D(theslderrors, i, e);
     }
+
     double min_val, max_val;
     CvPoint min_loc, max_loc;
     cvMinMaxLoc( theslderrors, &min_val, &max_val,&min_loc, &max_loc,NULL );
     error = min_val;
+    assert(error >= 0.0 && error <= 1.0);
+    
     int loc = min_loc.y; 
     thresholding = cvGetReal1D(thresholds, loc); 
 
@@ -566,6 +588,8 @@ void CvWeakLearner::thresholdlearning(CvTrainingData *data)
     this->fp = falsepos;
     this->fn = n - falsepos;
     delete [] myarr;
+    if(nsample > MAX_NUM_EXAMPLES)
+      cvReleaseMat(&temp_thresholds);
     cvReleaseMat(&theslderrors);
     cvReleaseMat(&thresholds);
     cvReleaseMat(&trainData);
@@ -1076,4 +1100,48 @@ double CvWeakLearner::svmpredict( CvMat *sample )
 {
   float label = svm->predict( sample );
   return label;
+}
+
+
+/*!
+    \fn CvWeakLearner::sampling(CvMat *data, int numsamples, int dist_type)
+ */
+CvMat* CvWeakLearner::sampling(CvMat *data, int numsamples, int dist_type)
+{
+  assert(data != NULL);
+  assert( numsamples > 0 );
+  CvSize size = cvGetSize( data );
+  int num_old_samples = size.height;
+  int num_elements = size.width;
+  CvMat *subdata = cvCreateMat(numsamples, num_elements, CV_32FC1);
+  if(dist_type == RANDOM)
+  {
+    int ind;
+    CvMat *index = cvCreateMat(1, numsamples, CV_32SC1);
+    for(int i = 2; i < (numsamples+2); i++)
+    {
+      srand(i);
+      ind = rand() %num_old_samples;
+      cvSetReal1D(index, i-2, ind);
+    }
+    CvSize size_index = cvGetSize(index);
+    assert( numsamples == (size_index.width*size_index.height) );
+    for(int i = 0; i < numsamples; i++)
+    {
+      ind = cvGetReal1D(index, i);
+      for(int j = 0; j < num_elements; j++)
+      {
+        double value = cvGetReal2D(data, ind, j);
+        cvSetReal2D(subdata, i, j, value);
+      }
+    }
+    cvReleaseMat( &index );
+  }
+  else if(dist_type == UNIFOR)
+  {
+  }
+  else if(dist_type == NORMAL)
+  {
+  }
+  return subdata;
 }
