@@ -103,9 +103,13 @@ void CvAdaBoostFeatureSelection::NormalizeWeights()
  */
 CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
 {
+  printf("\n");
   assert(numfeatures > 0);
   for(int i = 0; i < numfeatures; i++)
   {
+    time_t start, end;
+    double dif;
+    time (&start);
     printf("Training in the iteration %d:\n", i);
     NormalizeWeights();
     //for(int j = 0; j < m_features->getSize(); j++)
@@ -114,8 +118,7 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
       std::cout << "Learning a weak learner on the feature: " << j<< "\r" << std::flush;
       CvGaborFeature *feature = m_features->getfeature(j);
       double error = TrainWeaklearner( feature, m_learner_type);
-      assert(error >= 0.0);
-      assert(error <= 1.0);
+      assert(error >= 0.0 && error <= 1.0);
       feature->seterror( error );
     }
     CvGaborFeature *sfeature = FindSignificantFeature( m_features );
@@ -123,6 +126,13 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
     SaveWeights( i );
     UpdateWeights( sfeature );
     delete sfeature;
+    printf("\n");
+    // display time consumed
+    time (&end);
+    dif = difftime (end,start);
+    if(dif >= 3600) printf("The iteration takes %.2lf hours.\n", dif/3600);
+    else if(dif >= 60) printf("The iteration takes %.2lf minutes.\n", dif/60);
+    else if(dif < 60) printf("The iteration takes %.2lf seconds.\n", dif);
     printf("\n");
   }
   CvGaborFeaturePool *seletedfeatures = m_selectedfeatures->clone();
@@ -177,6 +187,14 @@ double CvAdaBoostFeatureSelection::TrainWeaklearner(CvGaborFeature *feature, int
 void CvAdaBoostFeatureSelection::SetType(int learner_type)
 {
   m_learner_type = learner_type;
+  if(m_learner_type == CvWeakLearner::POTSU)
+    printf("The weak learner is set as POTSU.\n");
+  else if(m_learner_type == CvWeakLearner::ANN)
+    printf("The weak learner is set as ANN.\n");
+  else if(m_learner_type == CvWeakLearner::FLD)
+    printf("The weak learner is set as FLD.\n");
+  else if(m_learner_type == CvWeakLearner::SVM)
+    printf("The weak learner is set as SVM.\n");
 }
 
 

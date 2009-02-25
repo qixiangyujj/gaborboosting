@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
 
 
-  CvAdaBoostFeatureSelection fs( &GaborData, labels, &param, CvWeakLearner::SVM );
+  CvAdaBoostFeatureSelection fs( &GaborData, labels, &param, CvWeakLearner::POTSU );
   fs.Select( 5 );
 
 

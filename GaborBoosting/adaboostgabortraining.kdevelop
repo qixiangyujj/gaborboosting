@@ -13,10 +13,10 @@
     <ignoreparts/>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description/>
+    <description></description>
     <versioncontrol/>
     <projectname>adaboostgabortraining</projectname>
-    <defaultencoding/>
+    <defaultencoding></defaultencoding>
   </general>
   <kdevautoproject>
     <general>
@@ -234,7 +234,7 @@
       <designerpluginpaths/>
     </qt>
     <creategettersetter>
-      <prefixGet/>
+      <prefixGet></prefixGet>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -256,11 +256,11 @@
   <kdevdebugger>
     <general>
       <programargs>-n 200 -type svm</programargs>
-      <gdbpath/>
+      <gdbpath></gdbpath>
       <dbgshell>libtool</dbgshell>
-      <configGdbScript/>
-      <runShellScript/>
-      <runGdbScript/>
+      <configGdbScript></configGdbScript>
+      <runShellScript></runShellScript>
+      <runGdbScript></runGdbScript>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>true</separatetty>
       <floatingtoolbar>true</floatingtoolbar>
@@ -273,7 +273,7 @@
     </display>
   </kdevdebugger>
   <ctagspart>
-    <customArguments/>
+    <customArguments></customArguments>
     <customTagfilePath>/home/sir02mz/CppWorks/gaborboosting/tags</customTagfilePath>
     <activeTagsFiles/>
   </ctagspart>
