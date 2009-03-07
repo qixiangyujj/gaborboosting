@@ -294,6 +294,7 @@ void CvGaborFeaturePool::load(const char *filename)
 
     int fpos;
 
+    
     while (!feof(file))
     {
        if (fscanf(file, " %d", &x) == EOF) break;
