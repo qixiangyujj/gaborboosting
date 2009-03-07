@@ -13,10 +13,10 @@
     <ignoreparts/>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description></description>
+    <description/>
     <versioncontrol/>
     <projectname>adaboostgabortraining</projectname>
-    <defaultencoding></defaultencoding>
+    <defaultencoding/>
   </general>
   <kdevautoproject>
     <general>
@@ -52,6 +52,8 @@
         <PCAtraining/>
         <ClientFeatureSelec/>
         <Training/>
+        <Selection/>
+        <Testing/>
       </runarguments>
       <customdirectory>/home/sir/sir02mz/local/BinEXP/Gender/</customdirectory>
       <programargs/>
@@ -65,10 +67,14 @@
       <debugarguments>
         <ClientFeatureSelec/>
         <Training/>
+        <Selection/>
+        <Testing/>
       </debugarguments>
       <cwd>
         <ClientFeatureSelec>/home/sir02mz/CppWorks/gaborboosting/debug/./src/IntraExtraFaceReg</ClientFeatureSelec>
         <Training>/home/sir02mz/CppWorks/gaborboosting/debug/./src/IntraExtraFaceReg</Training>
+        <Selection>/home/sir02mz/CWorks/GaborBoosting/debug/./src/IntraExtraFaceReg</Selection>
+        <Testing>/home/sir02mz/CWorks/GaborBoosting/debug/./src/IntraExtraFaceReg</Testing>
       </cwd>
     </run>
     <configurations>
@@ -234,7 +240,7 @@
       <designerpluginpaths/>
     </qt>
     <creategettersetter>
-      <prefixGet></prefixGet>
+      <prefixGet/>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -256,11 +262,11 @@
   <kdevdebugger>
     <general>
       <programargs>-n 200 -type svm</programargs>
-      <gdbpath></gdbpath>
+      <gdbpath/>
       <dbgshell>libtool</dbgshell>
-      <configGdbScript></configGdbScript>
-      <runShellScript></runShellScript>
-      <runGdbScript></runGdbScript>
+      <configGdbScript/>
+      <runShellScript/>
+      <runGdbScript/>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>true</separatetty>
       <floatingtoolbar>true</floatingtoolbar>
@@ -273,7 +279,7 @@
     </display>
   </kdevdebugger>
   <ctagspart>
-    <customArguments></customArguments>
+    <customArguments/>
     <customTagfilePath>/home/sir02mz/CppWorks/gaborboosting/tags</customTagfilePath>
     <activeTagsFiles/>
   </ctagspart>
