@@ -14,7 +14,7 @@
 
 
 
-VPATH = /home/sir02mz/CWorks/gaborboosting/src/IntraExtraFaceReg
+VPATH = /home/sir02mz/CWorks/GaborBoosting/src/IntraExtraFaceReg
 pkgdatadir = $(datadir)/adaboostgabortraining
 pkglibdir = $(libdir)/adaboostgabortraining
 pkgincludedir = $(includedir)/adaboostgabortraining
@@ -32,7 +32,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = i686-pc-linux-gnu
 host_triplet = i686-pc-linux-gnu
-bin_PROGRAMS = Training$(EXEEXT)
+bin_PROGRAMS = Selection$(EXEEXT) Testing$(EXEEXT) Training$(EXEEXT)
 subdir = src/IntraExtraFaceReg
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -45,12 +45,27 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_Selection_OBJECTS = FaceFeatureSelection.$(OBJEXT)
+Selection_OBJECTS = $(am_Selection_OBJECTS)
+Selection_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
+Testing_SOURCES = Testing.c
+Testing_OBJECTS = Testing.$(OBJEXT)
+Testing_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 am_Training_OBJECTS = FaceTraining.$(OBJEXT)
 Training_OBJECTS = $(am_Training_OBJECTS)
 Training_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -60,17 +75,17 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(Training_SOURCES)
-DIST_SOURCES = $(Training_SOURCES)
+SOURCES = $(Selection_SOURCES) Testing.c $(Training_SOURCES)
+DIST_SOURCES = $(Selection_SOURCES) Testing.c $(Training_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run aclocal-1.10
-AMTAR = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run tar
+ACLOCAL = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run aclocal-1.10
+AMTAR = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run automake-1.10
+AUTOCONF = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run automake-1.10
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -105,7 +120,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/sir02mz/CWorks/gaborboosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NMEDIT = 
 OBJEXT = o
@@ -122,10 +137,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.1
-abs_builddir = /home/sir02mz/CWorks/gaborboosting/debug/src/IntraExtraFaceReg
-abs_srcdir = /home/sir02mz/CWorks/gaborboosting/src/IntraExtraFaceReg
-abs_top_builddir = /home/sir02mz/CWorks/gaborboosting/debug
-abs_top_srcdir = /home/sir02mz/CWorks/gaborboosting
+abs_builddir = /home/sir02mz/CWorks/GaborBoosting/debug/src/IntraExtraFaceReg
+abs_srcdir = /home/sir02mz/CWorks/GaborBoosting/src/IntraExtraFaceReg
+abs_top_builddir = /home/sir02mz/CWorks/GaborBoosting/debug
+abs_top_srcdir = /home/sir02mz/CWorks/GaborBoosting
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_F77 = 
@@ -154,7 +169,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /home/sir02mz/CWorks/gaborboosting/install-sh
+install_sh = $(SHELL) /home/sir02mz/CWorks/GaborBoosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -168,24 +183,27 @@ program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
-srcdir = /home/sir02mz/CWorks/gaborboosting/src/IntraExtraFaceReg
+srcdir = /home/sir02mz/CWorks/GaborBoosting/src/IntraExtraFaceReg
 sysconfdir = ${prefix}/etc
 target_alias = 
 top_builddir = ../..
-top_srcdir = /home/sir02mz/CWorks/gaborboosting
+top_srcdir = /home/sir02mz/CWorks/GaborBoosting
 INCLUDES = -I$(top_srcdir)/src -I$(top_srcdir)/src/Gender \
 	-I$(top_srcdir)/src/MultiClassification -I$(top_srcdir)/src/PCA -I$(top_srcdir)/src/Segmentation \
 	-I$(top_srcdir)/src/IntraExtraFaceReg $(all_includes) -I/usr/local/include/opencv
 
 METASOURCES = AUTO
 Training_SOURCES = FaceTraining.cpp
-Training_LDADD = $(top_builddir)/src/libAdaGabor.a -lml -lhighgui -lcxcore -lcv \
-	-L/usr/local/lib
+Training_LDADD = $(top_builddir)/src/libAdaGabor.a -lcv -lcxcore -lhighgui -lml
+Selection_SOURCES = FaceFeatureSelection.cpp
+Selection_LDADD = $(top_builddir)/src/libAdaGabor.a -lml -lhighgui -lcxcore \
+	-lcv
 
+Testing_LDADD = $(top_builddir)/src/libAdaGabor.a
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .cpp .lo .o .obj
+.SUFFIXES: .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -243,6 +261,12 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
+Selection$(EXEEXT): $(Selection_OBJECTS) $(Selection_DEPENDENCIES) 
+	@rm -f Selection$(EXEEXT)
+	$(CXXLINK) $(Selection_OBJECTS) $(Selection_LDADD) $(LIBS)
+Testing$(EXEEXT): $(Testing_OBJECTS) $(Testing_DEPENDENCIES) 
+	@rm -f Testing$(EXEEXT)
+	$(LINK) $(Testing_OBJECTS) $(Testing_LDADD) $(LIBS)
 Training$(EXEEXT): $(Training_OBJECTS) $(Training_DEPENDENCIES) 
 	@rm -f Training$(EXEEXT)
 	$(CXXLINK) $(Training_OBJECTS) $(Training_LDADD) $(LIBS)
@@ -253,7 +277,30 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/FaceFeatureSelection.Po
 include ./$(DEPDIR)/FaceTraining.Po
+include ./$(DEPDIR)/Testing.Po
+
+.c.o:
+	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+#	source='$<' object='$@' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(COMPILE) -c $<
+
+.c.obj:
+	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+#	source='$<' object='$@' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+.c.lo:
+	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+#	source='$<' object='$@' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(LTCOMPILE) -c -o $@ $<
 
 .cpp.o:
 	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
