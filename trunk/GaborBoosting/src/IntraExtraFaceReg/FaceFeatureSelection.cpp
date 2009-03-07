@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
 
   CvAdaBoostFeatureSelection fs( &GaborData, labels, &param, CvWeakLearner::POTSU );
-  CvGaborFeaturePool *newfeatures = fs.Select( 5 );
+  CvGaborFeaturePool *newfeatures = fs.Select( 500 );
   newfeatures->write("newfeatures.txt");
   delete newfeatures;
 
@@ -76,3 +76,4 @@ int main(int argc, char *argv[])
   return EXIT_SUCCESS;
 
 }
+

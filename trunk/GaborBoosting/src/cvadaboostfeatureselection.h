@@ -25,6 +25,8 @@
 #include "cvweaklearner.h"
 #include "cvgabordifferencedatamaker.h"
 
+#define SIGN_FILE	"significant.txt"
+
 using namespace PrepareData;
 
 /**
@@ -47,7 +49,8 @@ public:
     CvAdaBoostFeatureSelection(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type);
     void clear();
     void SaveWeights(const char *filename) const;
-    void SaveWeights(int Iter);
+    void SaveWeights(int Iter) const;
+    int isResume();
 
 protected:
     CvMat *m_labels;

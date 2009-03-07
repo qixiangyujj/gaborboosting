@@ -103,6 +103,7 @@ void CvAdaBoostFeatureSelection::NormalizeWeights()
  */
 CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
 {
+  
   printf("\n");
   assert(numfeatures > 0);
   for(int i = 0; i < numfeatures; i++)
@@ -112,8 +113,8 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
     time (&start);
     printf("Training in the iteration %d:\n", i);
     NormalizeWeights();
-    //for(int j = 0; j < m_features->getSize(); j++)
-    for(int j = 0; j < 30; j++)
+    for(int j = 0; j < m_features->getSize(); j++)
+    //for(int j = 0; j < 30; j++)
     {
       std::cout << "Learning a weak learner on the feature: " << j<< "\r" << std::flush;
       
@@ -127,7 +128,7 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
     }
     // find the significant feature with minimal error
     CvGaborFeature *sfeature = FindSignificantFeature( m_features );
-    
+    sfeature->write(SIGN_FILE);
     // save the selected feature
     m_selectedfeatures->add( sfeature );
     
@@ -263,13 +264,23 @@ void CvAdaBoostFeatureSelection::SaveWeights(const char *filename) const
 
 
 /*!
-    \fn CvAdaBoostFeatureSelection::SaveWeights(int Iter)
+    \fn CvAdaBoostFeatureSelection::SaveWeights(int Iter) const
  */
-void CvAdaBoostFeatureSelection::SaveWeights(int Iter)
+void CvAdaBoostFeatureSelection::SaveWeights(int Iter) const
 {
   assert(Iter >= 0);
   char *filename = new char[200];
   sprintf(filename, "weights_%d.xml", Iter);
   SaveWeights(filename);
   delete [] filename;
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::isResume()
+ */
+int CvAdaBoostFeatureSelection::isResume()
+{
+  CvGaborFeaturePool tmp_list;
+  
 }
