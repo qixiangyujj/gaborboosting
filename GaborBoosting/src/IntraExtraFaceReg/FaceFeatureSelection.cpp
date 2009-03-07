@@ -17,62 +17,62 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CVXM2VTS_H
-#define CVXM2VTS_H
-
-#include <cvfacedb.h>
+#include <cv.h>
 #include <cxcore.h>
-#include <iostream>
+#include <cvaux.h>
 #include <highgui.h>
-#include <dirent.h>
+#include <ml.h>
+#include "cvxm2vts.h"
+#include "cvpoolparams.h"
+#include "PrepareData.h"
+#include "cvgaborresponsedata.h"
+#include "cvbindiffgabadafeatureselect.h"
+#include "cvadaboostfeatureselection.h"
+//#include "GaborBoosting.h"
 
-#define MAXPIC  8
-#define MAXSUB  295
+using namespace std;
+using namespace PrepareData;
 
-/**
-	@author Mian Zhou <M.Zhou@reading.ac.uk>
-*/
-class CvXm2vts : public CvFaceDB
+int main(int argc, char *argv[])
 {
-public:
-    CvXm2vts();
+  const char *srcpath = "/home/sir02mz/XM2VTS/";
+  int height = 0;
+  int width = 0;
+  int minscale = -1;
+  int maxscale = 3;
+  int norientations = 8;
+  int interval = 0;
+  int bound = 0;
+  bool reduced = false;
 
-    ~CvXm2vts();
-     CvXm2vts(const char* where);
-    void setNumSub(int s);
-    void setNumPic(int p);
-    void setPicIndex(int i1, int i2, int i3, int i4, int i5, int i6, int i7);
-    void setPicIndex(int i1, int i2, int i3, int i4, int i5, int i6);
-    void setPicIndex(int i1, int i2, int i3, int i4, int i5);
-    void setPicIndex(int i1, int i2, int i3, int i4);
-    void setPicIndex(int i1, int i2, int i3);
-    void setPicIndex(int i1, int i2);
-    void setPicIndex(int i1);
-    void setPicIndex(const CvMat* mat);
-    void setSubIndex(const CvMat* mat);
-    void clear();
-    char* getPath() const;
-    CvMat* getSub() const;
-    CvMat* getPic() const;
-    CvXm2vts(const CvXm2vts& a);
-    CvXm2vts* clone() const;
-    int get_num_pic() const;
-    int get_num_sub() const;
-    void setGender(const char* filename);
-    bool getGender(int nsub) const;
-    void getfilename(int sub, int pic, char *filename) const;
-    CvSize getSize() const;
 
-protected:
-    char* pathname;
-    CvMat* picIndex;
-    int numsub;
-    int numpic;
-    CvMat* subIndex;
-    bool isPic;
-    bool isSub;
-    CvMat* gender;
-    bool isGender;
-};
+  CvXm2vts xm2vts( srcpath );
+  xm2vts.setNumSub( 200 );
+  xm2vts.setNumPic( 4 );
+  CvSize size = xm2vts.getSize();
 
-#endif
+  height = size.height;
+  width = size.width;
+  CvPoolParams param(size, minscale, maxscale, norientations, interval, bound, reduced);
+  
+  //const CvGaborResponseData GaborData( &xm2vts, &param );
+  
+
+  CvGaborResponseData GaborData( &xm2vts, &param, "/home/sir02mz/OUTPUT" );
+
+  // get the labels of the training data
+  CvGaborFeature feature(1,1,1,1);
+  CvGaborDifferenceDataMaker maker(&GaborData, &feature, &xm2vts);
+  CvMat* labels = maker.getLabels();
+
+
+
+  CvAdaBoostFeatureSelection fs( &GaborData, labels, &param, CvWeakLearner::POTSU );
+  CvGaborFeaturePool *newfeatures = fs.Select( 5 );
+  newfeatures->write("newfeatures.txt");
+  delete newfeatures;
+
+
+  return EXIT_SUCCESS;
+
+}

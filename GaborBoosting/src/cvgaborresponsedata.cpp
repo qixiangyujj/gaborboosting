@@ -100,13 +100,13 @@ void PrepareData::CvGaborResponseData::setParam(const CvPoolParams *param)
  */
 void PrepareData::CvGaborResponseData::clear()
 {
-	delete database;
-	cvReleaseMat( &Orients );
-	cvReleaseMat( &Scales );
-	for (int i = 0; i < nRespones ; i++)
-	{
-		cvReleaseImage( &(responses[i]) );
-	}
+  delete database;
+  cvReleaseMat( &Orients );
+  cvReleaseMat( &Scales );
+  for (int i = 0; i < nRespones ; i++)
+  {
+    cvReleaseImage( &(responses[i]) );
+  }
 	
 	
 }
@@ -117,47 +117,47 @@ void PrepareData::CvGaborResponseData::clear()
  */
 void PrepareData::CvGaborResponseData::generate()
 {
-	printf("Generating the response data, please waiting ....\n");
-	int n = 0;
-	responses = (IplImage **)cvAlloc(nRespones*sizeof(IplImage *));
-	if(dbtype == XM2VTS)
-	{
+  printf("Generating the response data, please waiting ....\n");
+  int n = 0;
+  responses = (IplImage **)cvAlloc(nRespones*sizeof(IplImage *));
+  if(dbtype == XM2VTS)
+  {
 		
-		char * xm2vts_path = ((CvXm2vts*)database)->getPath();
-		int nClients = ((CvXm2vts*)database)->get_num_sub();
-		int imgsperClient = ((CvXm2vts*)database)->get_num_pic();
-		char filename[200];
-		for( int i = 1; i <= nClients; i++ )
-		{
-			for(int j = 1; j <= imgsperClient; j++ )
-			{
-				sprintf(filename, "%s/%d_%d.jpg", xm2vts_path, i, j);			
-				IplImage *img = cvLoadImage( filename,  CV_LOAD_IMAGE_GRAYSCALE );
-				for(int k = 0; k < nScales; k++)
-				{
-					int scale = (int)cvGetReal1D( Scales, k );
-					for(int l = 0; l < nOrientations; l++)
-					{
-						int orientation = (int)cvGetReal1D( Orients, l);
-						CvGabor gaborfilter(orientation, scale);
-						responses[n] = cvCreateImage(cvSize(img->width,img->height), IPL_DEPTH_32F, 1);
-						gaborfilter.conv_img((IplImage*)img, (IplImage*)responses[n], CV_GABOR_MAG);
-						n++;
-					}
-				}	
-				cvReleaseImage(&img);
-			}
+    char * xm2vts_path = ((CvXm2vts*)database)->getPath();
+    int nClients = ((CvXm2vts*)database)->get_num_sub();
+    int imgsperClient = ((CvXm2vts*)database)->get_num_pic();
+    char filename[200];
+    for( int i = 1; i <= nClients; i++ )
+    {
+      for(int j = 1; j <= imgsperClient; j++ )
+      {
+        sprintf(filename, "%s/%d_%d.jpg", xm2vts_path, i, j);			
+        IplImage *img = cvLoadImage( filename,  CV_LOAD_IMAGE_GRAYSCALE );
+        for(int k = 0; k < nScales; k++)
+        {
+          int scale = (int)cvGetReal1D( Scales, k );
+          for(int l = 0; l < nOrientations; l++)
+          {
+            int orientation = (int)cvGetReal1D( Orients, l);
+            CvGabor gaborfilter(orientation, scale);
+            responses[n] = cvCreateImage(cvSize(img->width,img->height), IPL_DEPTH_32F, 1);
+            gaborfilter.conv_img((IplImage*)img, (IplImage*)responses[n], CV_GABOR_MAG);
+            n++;
+          }
+        }	
+        cvReleaseImage(&img);
+      }
 			//if( fmod(i,2.0) == 0.0)
 			//	printf("%d\%\n",i/2);
-			std::cout << i<< "\r" << std::flush;
-		}
-		printf("\n");
-	}
-	else if(dbtype == FERET)
-	{
+      std::cout << i<< "\r" << std::flush;
+    }
+    printf("\n");
+  }
+  else if(dbtype == FERET)
+  {
 		/// @todo implement me
-	}
-	printf("\n%d response images are generated.\n", n);
+  }
+  printf("\n%d response images are generated.\n", n);
 }
 
 
@@ -171,43 +171,52 @@ void PrepareData::CvGaborResponseData::generate()
  */
 void PrepareData::CvGaborResponseData::loadData(const char* datapath)
 {
-	printf("Loading the response data, please waiting ....\n");
+  //check the path is valid
+  DIR *pdir = NULL;
+  pdir = opendir (datapath); 
+  if (pdir == NULL) 
+  { 
+    printf ("\nERROR! %s is not a valid path!\n", datapath);
+    exit (-1);
+  }
+  
+  printf("Loading the response data, please waiting ....\n");
 	
-	int n = 0;
-	responses = (IplImage **)cvAlloc(nRespones*sizeof(IplImage *));
-	if(dbtype == XM2VTS)
-	{
+  int n = 0;
+  responses = (IplImage **)cvAlloc(nRespones*sizeof(IplImage *));
+  if(dbtype == XM2VTS)
+  {
 
-		char * xm2vts_path = ((CvXm2vts*)database)->getPath();
-		int nClients = ((CvXm2vts*)database)->get_num_sub();
-		int imgsperClient = ((CvXm2vts*)database)->get_num_pic();
-		char filename[200];
-		for( int i = 1; i <= nClients; i++ )
-		{
-			for(int j = 1; j <= imgsperClient; j++ )
-			{
-				for(int k = 0; k < nScales; k++)
-				{
-					int scale = (int)cvGetReal1D( Scales, k );
-					for(int l = 0; l < nOrientations; l++)
-					{
-						int orientation = (int)cvGetReal1D( Orients, l);
-						sprintf(filename, "%s/%d/%d/%d_%d.xml", datapath, i, j, scale, orientation);
-						responses[n] = (IplImage *)cvLoad(filename,NULL,NULL,NULL);
-						n++;
-					}
-				}
-			}
-			std::cout << i<< "\r" << std::flush;
-		}
-	}
-	else if(dbtype == FERET)
-	{
+    char * xm2vts_path = ((CvXm2vts*)database)->getPath();
+    int nClients = ((CvXm2vts*)database)->get_num_sub();
+    int imgsperClient = ((CvXm2vts*)database)->get_num_pic();
+    char filename[200];
+    for( int i = 1; i <= nClients; i++ )
+    {
+      for(int j = 1; j <= imgsperClient; j++ )
+      {
+        for(int k = 0; k < nScales; k++)
+        {
+          int scale = (int)cvGetReal1D( Scales, k );
+          for(int l = 0; l < nOrientations; l++)
+          {
+            int orientation = (int)cvGetReal1D( Orients, l);
+            sprintf(filename, "%s/%d/%d/%d_%d.xml", datapath, i, j, scale, orientation);
+            responses[n] = (IplImage *)cvLoad(filename,NULL,NULL,NULL);
+            n++;
+          }
+        }
+      }
+      std::cout << i<< "\r" << std::flush;
+    }
+  }
+  else if(dbtype == FERET)
+  {
 		/// @todo implement me
-	}
+  }
 
-
-	printf("\n%d response images are loaded.\n", n);
+  closedir( pdir );
+  printf("\n%d response images are loaded.\n", n);
 }
 
 

@@ -17,64 +17,15 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <cv.h>
-#include <cxcore.h>
-#include <cvaux.h>
-#include <highgui.h>
-#include <ml.h>
-#include "cvxm2vts.h"
-#include "cvpoolparams.h"
-#include "PrepareData.h"
-#include "cvgaborresponsedata.h"
-#include "cvbindiffgabadafeatureselect.h"
-#include "cvadaboostfeatureselection.h"
-//#include "GaborBoosting.h"
+#include "cvfaceclassifier.h"
 
-using namespace std;
-using namespace PrepareData;
-
-int main(int argc, char *argv[])
+CvFaceClassifier::CvFaceClassifier()
 {
-  const char *srcpath = "/home/sir02mz/XM2VTS/";
-  const char *selectfeaturefilename = "";
-  int height = 0;
-  int width = 0;
-  int minscale = -1;
-  int maxscale = 3;
-  int norientations = 8;
-  int interval = 0;
-  int bound = 0;
-  bool reduced = false;
-
-
-  CvXm2vts xm2vts( srcpath );
-  xm2vts.setNumSub( 200 );
-  xm2vts.setPicIndex( 5, 6 );
-  CvSize size = xm2vts.getSize();
-
-  height = size.height;
-  width = size.width;
-  CvPoolParams param(size, minscale, maxscale, norientations, interval, bound, reduced);
-  
-
-  
-
-  CvGaborResponseData GaborData( &xm2vts, &param );
-
-  CvGaborFeaturePool selected_features;
-  selected_features.load(selectfeaturefilename);
-  
-  
-
-
-
-
-  return EXIT_SUCCESS;
-
 }
 
 
-
-
+CvFaceClassifier::~CvFaceClassifier()
+{
+}
 
 

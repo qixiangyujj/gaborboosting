@@ -85,31 +85,31 @@ CvMat* CvGaborDifferenceDataMaker::getIntraDifference() const
  */
 CvMat* CvGaborDifferenceDataMaker::getExtraDifference() const
 {
-	CvMat* examples;
-	if(database->is_xm2vts())
-	{
-		int nClients = ((CvXm2vts *)database)->get_num_sub();
-		int nPics = ((CvXm2vts *)database)->get_num_pic();
-		int nDiff = nClients*(nClients-1)/2;
-		examples = cvCreateMat(1, nDiff, CV_32FC1);
-		double v1,v2,v;
-		int n = 0;
-		for(int i = 1; i <= nClients; i++)
-		{
-			v1 = gabordata->getfeaturefrominstance(feature, i, 1);
-			for(int j = i+1; j <= nClients; j++)
-			{
-				v2 = gabordata->getfeaturefrominstance(feature, j, 1);
-				v = fabs(v1-v2);
-				cvSetReal1D(examples, n, v);
-				n++;
-			}
-		}
-	}
-	else if(database->is_feret())
-	{
-	}
-	return examples;
+  CvMat* examples;
+  if(database->is_xm2vts())
+  {
+    int nClients = ((CvXm2vts *)database)->get_num_sub();
+    int nPics = ((CvXm2vts *)database)->get_num_pic();
+    int nDiff = nClients*(nClients-1)/2;
+    examples = cvCreateMat(1, nDiff, CV_32FC1);
+    double v1,v2,v;
+    int n = 0;
+    for(int i = 1; i <= nClients; i++)
+    {
+      v1 = gabordata->getfeaturefrominstance(feature, i, 1);
+      for(int j = i+1; j <= nClients; j++)
+      {
+        v2 = gabordata->getfeaturefrominstance(feature, j, 1);
+        v = fabs(v1-v2);
+        cvSetReal1D(examples, n, v);
+        n++;
+      }
+    }
+  }
+  else if(database->is_feret())
+  {
+  }
+  return examples;
 }
 
 

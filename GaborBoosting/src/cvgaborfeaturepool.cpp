@@ -218,8 +218,7 @@ CvGaborFeature* CvGaborFeaturePool::getfeature(int idex)
 {
     if (idex < count)
     {
-      CvGaborFeature *feature;
-      feature = &(features[idex]);
+      CvGaborFeature *feature = &(features[idex]);
       //printf("Get a feature: Scale %d and Orientation %d at (%d,%d)\n", feature->getNu(), feature->getMu(), feature->getx(), feature->gety());
       return feature;
     }
@@ -282,7 +281,7 @@ void CvGaborFeaturePool::load(const char *filename)
     if ((file=fopen(filename,"r")) == NULL)
     {
       printf("Cannot read file %s.\n", filename);
-      exit(1);
+      exit(-1);
     }
     int x;
     int y;

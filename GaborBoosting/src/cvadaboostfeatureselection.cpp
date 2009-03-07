@@ -116,16 +116,28 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
     for(int j = 0; j < 30; j++)
     {
       std::cout << "Learning a weak learner on the feature: " << j<< "\r" << std::flush;
+      
+      // get a feature from the large set of features
       CvGaborFeature *feature = m_features->getfeature(j);
+      
+      // train a weak learner with respect to the feature
       double error = TrainWeaklearner( feature, m_learner_type);
       assert(error >= 0.0 && error <= 1.0);
       feature->seterror( error );
     }
+    // find the significant feature with minimal error
     CvGaborFeature *sfeature = FindSignificantFeature( m_features );
+    
+    // save the selected feature
     m_selectedfeatures->add( sfeature );
+    
+    //save weights
     SaveWeights( i );
+    
+    //update weights
     UpdateWeights( sfeature );
     delete sfeature;
+    
     printf("\n");
     // display time consumed
     time (&end);
