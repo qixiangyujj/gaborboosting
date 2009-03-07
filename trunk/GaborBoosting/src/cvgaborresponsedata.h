@@ -44,7 +44,7 @@ public:
     void loadData(const char* datapath);
     double getfeaturefrominstance(const CvGaborFeature *feature, int client_index, int picture_index) const;
     CvMat* getfeaturefromall(const CvGaborFeature *feature) const;
-     CvGaborResponseData(CvFaceDB *db, CvPoolParams *param, const char *saved_data_path);
+    CvGaborResponseData(CvFaceDB *db, CvPoolParams *param, const char *saved_data_path);
     CvFaceDB* getDB() const;
     enum { XM2VTS = 0,FERET = 1};
 

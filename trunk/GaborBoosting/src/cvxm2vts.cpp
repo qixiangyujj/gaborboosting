@@ -51,6 +51,16 @@ CvXm2vts::~CvXm2vts()
   isPic = false;
   name = new char[10];
   pathname = new char[50];
+  // check it is a valid path
+  DIR *pdir = NULL;
+  pdir = opendir (where); 
+  if (pdir == NULL) 
+  { 
+    printf ("\nERROR! %s is not a valid path!\n", where);
+    exit (-1);
+  }
+  closedir( pdir );
+  
   strcpy(name, "XM2VTS");
   strcpy(pathname, where);
   setNumPic(MAXPIC);
