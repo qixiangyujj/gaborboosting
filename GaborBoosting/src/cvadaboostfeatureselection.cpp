@@ -103,50 +103,60 @@ void CvAdaBoostFeatureSelection::NormalizeWeights()
  */
 CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
 {
-  
-  printf("\n");
-  assert(numfeatures > 0);
-  for(int i = 0; i < numfeatures; i++)
+  if(isResume())
   {
-    time_t start, end;
-    double dif;
-    time (&start);
-    printf("Training in the iteration %d:\n", i);
-    NormalizeWeights();
-    for(int j = 0; j < m_features->getSize(); j++)
-    //for(int j = 0; j < 30; j++)
+    Resume();
+  }
+  else
+  {
+    m_total_iter = numfeatures;
+    printf("\n");
+    assert(m_total_iter > 0);
+    for(int i = 0; i < m_total_iter; i++)
     {
-      std::cout << "Learning a weak learner on the feature: " << j<< "\r" << std::flush;
-      
-      // get a feature from the large set of features
-      CvGaborFeature *feature = m_features->getfeature(j);
-      
-      // train a weak learner with respect to the feature
-      double error = TrainWeaklearner( feature, m_learner_type);
-      assert(error >= 0.0 && error <= 1.0);
-      feature->seterror( error );
-    }
-    // find the significant feature with minimal error
-    CvGaborFeature *sfeature = FindSignificantFeature( m_features );
-    sfeature->write(SIGN_FILE);
-    // save the selected feature
-    m_selectedfeatures->add( sfeature );
+      m_current_iter = i;
+    
+      OutputState( STATE_FILE );
     
     //save weights
-    SaveWeights( i );
+      SaveWeights( m_current_iter );
+      time_t start, end;
+      double dif;
+      time (&start);
+      printf("Training in the iteration %d:\n", m_current_iter);
+      NormalizeWeights();
+      for(int j = 0; j < m_features->getSize(); j++)
+    //for(int j = 0; j < 30; j++)
+      {
+        std::cout << "Learning a weak learner on the feature: " << j<< "\r" << std::flush;
+      
+      // get a feature from the large set of features
+        CvGaborFeature *feature = m_features->getfeature(j);
+      
+      // train a weak learner with respect to the feature
+        double error = TrainWeaklearner( feature, m_learner_type);
+        assert(error >= 0.0 && error <= 1.0);
+        feature->seterror( error );
+      }
+    // find the significant feature with minimal error
+      CvGaborFeature *sfeature = FindSignificantFeature( m_features );
+      sfeature->write(SIGN_FILE);
+    // save the selected feature
+      m_selectedfeatures->add( sfeature );
     
     //update weights
-    UpdateWeights( sfeature );
-    delete sfeature;
+      UpdateWeights( sfeature );
+      delete sfeature;
     
-    printf("\n");
+      printf("\n");
     // display time consumed
-    time (&end);
-    dif = difftime (end,start);
-    if(dif >= 3600) printf("The iteration takes %.2lf hours.\n", dif/3600);
-    else if(dif >= 60) printf("The iteration takes %.2lf minutes.\n", dif/60);
-    else if(dif < 60) printf("The iteration takes %.2lf seconds.\n", dif);
-    printf("\n");
+      time (&end);
+      dif = difftime (end,start);
+      if(dif >= 3600) printf("The iteration takes %.2lf hours.\n", dif/3600);
+      else if(dif >= 60) printf("The iteration takes %.2lf minutes.\n", dif/60);
+      else if(dif < 60) printf("The iteration takes %.2lf seconds.\n", dif);
+      printf("\n");
+    }
   }
   CvGaborFeaturePool *seletedfeatures = m_selectedfeatures->clone();
   return seletedfeatures;
@@ -250,6 +260,7 @@ void CvAdaBoostFeatureSelection::clear()
   delete m_selectedfeatures;
   cvReleaseMat(&m_labels);
   cvReleaseMat(&m_weights);
+  remove( STATE_FILE );
 }
 
 
@@ -277,10 +288,184 @@ void CvAdaBoostFeatureSelection::SaveWeights(int Iter) const
 
 
 /*!
-    \fn CvAdaBoostFeatureSelection::isResume()
+    \fn CvAdaBoostFeatureSelection::isResume() const
  */
-int CvAdaBoostFeatureSelection::isResume()
+bool CvAdaBoostFeatureSelection::isResume() const
 {
-  CvGaborFeaturePool tmp_list;
+  bool result = false;
+  FILE * file = fopen( STATE_FILE, "r");
+  if( file != NULL)
+  {
+    int iter, alliter, type;
+    while (!feof(file))
+    {
+      if (fscanf(file, "Current Iteration = %d\n", &iter) == EOF) break;
+      if (fscanf(file, "Total Iteration = %d\n", &alliter) == EOF) break;
+      if (fscanf(file, "Learner Type = %d\n", &type) == EOF) break;
+    }
+    if(iter > 0)
+      result = true;
+  }
+  fclose(file);
+  return result;
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::OutputState(const char * filename) const
+ */
+void CvAdaBoostFeatureSelection::OutputState(const char * filename) const
+{
+  assert(filename != NULL);
+  FILE *file = fopen(filename, "w");
+  if(file == NULL)
+  {
+    printf("ERROR: The file: %s can not be created!\n", filename);
+    exit(-1);
+  }
+  fprintf( file, "Current Iteration = %d\n", m_current_iter);
+  fprintf( file, "Total Iteration = %d\n", m_total_iter);
+  fprintf( file, "Learner Type = %d\n", m_learner_type);
+  fclose(file);
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::Resume()
+ */
+void CvAdaBoostFeatureSelection::Resume()
+{
+  ReadState( STATE_FILE );
   
+  // load the selected features
+  m_selectedfeatures->load( SIGN_FILE );
+  
+  // load the weights
+  LoadWeights( m_current_iter );
+  
+  // Remove selected features from the original list
+  for(int i = 0; i < m_selectedfeatures->getSize(); i++)
+  {
+    CvGaborFeature *feature = m_selectedfeatures->getfeature( i );
+    m_features->remove( feature );
+  }
+  
+  // start the selection
+  for(int i = m_current_iter; i < m_total_iter; i++)
+  {
+    m_current_iter = i;
+    
+    OutputState( STATE_FILE );
+    
+    //save weights
+    SaveWeights( m_current_iter );
+    time_t start, end;
+    double dif;
+    time (&start);
+    printf("Training in the iteration %d:\n", m_current_iter);
+    NormalizeWeights();
+    for(int j = 0; j < m_features->getSize(); j++)
+    //for(int j = 0; j < 30; j++)
+    {
+      std::cout << "Learning a weak learner on the feature: " << j<< "\r" << std::flush;
+      
+      // get a feature from the large set of features
+      CvGaborFeature *feature = m_features->getfeature(j);
+      
+      // train a weak learner with respect to the feature
+      double error = TrainWeaklearner( feature, m_learner_type);
+      assert(error >= 0.0 && error <= 1.0);
+      feature->seterror( error );
+    }
+    // find the significant feature with minimal error
+    CvGaborFeature *sfeature = FindSignificantFeature( m_features );
+    sfeature->write(SIGN_FILE);
+    // save the selected feature
+    m_selectedfeatures->add( sfeature );
+    
+    //update weights
+    UpdateWeights( sfeature );
+    delete sfeature;
+    
+    printf("\n");
+    // display time consumed
+    time (&end);
+    dif = difftime (end,start);
+    if(dif >= 3600) printf("The iteration takes %.2lf hours.\n", dif/3600);
+    else if(dif >= 60) printf("The iteration takes %.2lf minutes.\n", dif/60);
+    else if(dif < 60) printf("The iteration takes %.2lf seconds.\n", dif);
+    printf("\n");
+  }
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::ReadState(const char *filename)
+ */
+void CvAdaBoostFeatureSelection::ReadState(const char *filename)
+{
+  FILE * file = fopen( STATE_FILE, "r");
+  if(file == NULL)
+  {
+    printf("ERROR: The file: %s does not exist!\n", STATE_FILE);
+    exit(-1);
+  }
+  
+  int iter, alliter, type;
+  while (!feof(file))
+  {
+    if (fscanf(file, "Current Iteration = %d\n", &iter) == EOF) break;
+    if (fscanf(file, "Total Iteration = %d\n", &alliter) == EOF) break;
+    if (fscanf(file, "Learner Type = %d\n", &type) == EOF) break;
+  }
+  assert(iter > 0);
+  m_current_iter = iter;
+  
+  assert(alliter > iter);
+  m_total_iter = alliter;
+  
+  switch(type)
+  {
+    case CvWeakLearner::ANN:
+      m_learner_type = CvWeakLearner::ANN;
+      printf("The type of weak learner is CvWeakLearner::ANN.\n");
+      break;
+    case CvWeakLearner::POTSU:
+      m_learner_type = CvWeakLearner::POTSU;
+      printf("The type of weak learner is CvWeakLearner::POTSU.\n");
+      break;
+    case CvWeakLearner::FLD:
+      m_learner_type = CvWeakLearner::FLD;
+      printf("The type of weak learner is CvWeakLearner::FLD.\n");
+      break;
+    case CvWeakLearner::SVM:
+      m_learner_type = CvWeakLearner::SVM;
+      printf("The type of weak learner is CvWeakLearner::SVM.\n");
+      break;
+  }
+  fclose(file);
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::LoadWeights(int Iter)
+ */
+void CvAdaBoostFeatureSelection::LoadWeights(int Iter)
+{
+  assert(Iter >= 0);
+  char *filename = new char[200];
+  sprintf(filename, "weights_%d.xml", Iter);
+  LoadWeights(filename);
+  delete [] filename;
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::LoadWeights(const char *filename)
+ */
+void CvAdaBoostFeatureSelection::LoadWeights(const char *filename)
+{
+  assert(filename!=NULL);
+  cvReleaseMat( &m_weights );
+  m_weights = (CvMat*)cvLoad( filename, NULL);
 }
