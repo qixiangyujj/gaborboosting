@@ -53,6 +53,7 @@ public:
     void addfile(const char *filename);
     bool isIn(CvGaborFeature *feature);
     void load_a(const char* filename);
+    bool remove(CvGaborFeature *feature);
     vector<CvGaborFeature> features;
     vector<CvGaborFeature>::iterator pos;
 

@@ -26,6 +26,8 @@
 #include "cvgabordifferencedatamaker.h"
 
 #define SIGN_FILE	"significant.txt"
+#define STATE_FILE	"state.txt"
+
 
 using namespace PrepareData;
 
@@ -50,7 +52,11 @@ public:
     void clear();
     void SaveWeights(const char *filename) const;
     void SaveWeights(int Iter) const;
-    int isResume();
+    bool isResume() const;
+    void Resume();
+    void LoadWeights(const char *filename);
+    void LoadWeights(int Iter);
+    
 
 protected:
     CvMat *m_labels;
@@ -59,6 +65,10 @@ protected:
     CvGaborFeaturePool *m_selectedfeatures;
     CvMat* m_weights;
     int m_learner_type;
+    int m_current_iter;
+    int m_total_iter;
+    void OutputState(const char * filename) const;
+    void ReadState(const char *filename);
 };
 
 #endif

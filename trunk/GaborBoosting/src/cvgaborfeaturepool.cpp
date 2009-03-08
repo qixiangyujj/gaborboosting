@@ -611,3 +611,27 @@ void CvGaborFeaturePool::load_a(const char* filename)
   printf(" %d features been loaded\n", n);
   fclose(file);
 }
+
+
+/*!
+    \fn CvGaborFeaturePool::remove(CvGaborFeature *feature)
+ */
+bool CvGaborFeaturePool::remove(CvGaborFeature *feature)
+{
+  bool in = false;
+  for(int i = 0; i < getSize(); i++)
+  {
+    CvGaborFeature *mfeature = getfeature( i );
+    
+    if((feature->getx()==mfeature->getx())
+        &&(feature->gety()==mfeature->gety())
+        &&(feature->getMu()==mfeature->getMu())
+        &&(feature->getNu()==mfeature->getNu()))
+    {
+      in = true;
+      remove( i );
+      break;
+    }
+  }
+  return in;
+}
