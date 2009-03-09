@@ -27,6 +27,7 @@
 
 #define SIGN_FILE	"significant.txt"
 #define STATE_FILE	"state.txt"
+#define DISCARD_FILE	"discard.txt"
 
 
 using namespace PrepareData;
@@ -56,6 +57,10 @@ public:
     void Resume();
     void LoadWeights(const char *filename);
     void LoadWeights(int Iter);
+    void CreateDiscardFile( const char * filename ) const;
+    void WriteDiscardFile( const char * filename, CvGaborFeature *feature, double error) const;
+    void WriteDiscardFile( const char * filename, int Iter ) const;
+    void ReadDiscardFile(const char * filename);
     
 
 protected:
