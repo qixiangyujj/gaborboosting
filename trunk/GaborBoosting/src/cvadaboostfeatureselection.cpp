@@ -112,13 +112,19 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
     m_total_iter = numfeatures;
     printf("\n");
     assert(m_total_iter > 0);
+    
+    // create a discard file
+    CreateDiscardFile( DISCARD_FILE );
+    
     for(int i = 0; i < m_total_iter; i++)
     {
       m_current_iter = i;
+      
+      WriteDiscardFile( DISCARD_FILE, m_current_iter );
     
       OutputState( STATE_FILE );
     
-    //save weights
+      //save weights
       SaveWeights( m_current_iter );
       time_t start, end;
       double dif;
@@ -126,30 +132,39 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
       printf("Training in the iteration %d:\n", m_current_iter);
       NormalizeWeights();
       for(int j = 0; j < m_features->getSize(); j++)
-    //for(int j = 0; j < 30; j++)
+      //for(int j = 0; j < 30; j++)
       {
         std::cout << "Learning a weak learner on the feature: " << j<< "\r" << std::flush;
       
-      // get a feature from the large set of features
+        // get a feature from the large set of features
         CvGaborFeature *feature = m_features->getfeature(j);
       
-      // train a weak learner with respect to the feature
+        // train a weak learner with respect to the feature
         double error = TrainWeaklearner( feature, m_learner_type);
         assert(error >= 0.0 && error <= 1.0);
         feature->seterror( error );
+        
+        if(error > 0.5)
+        {
+          WriteDiscardFile( DISCARD_FILE, feature, error );
+          m_features->remove(i);
+          i--;
+        }
+        
+        
       }
-    // find the significant feature with minimal error
+      // find the significant feature with minimal error
       CvGaborFeature *sfeature = FindSignificantFeature( m_features );
       sfeature->write(SIGN_FILE);
-    // save the selected feature
+      // save the selected feature
       m_selectedfeatures->add( sfeature );
     
-    //update weights
+      //update weights
       UpdateWeights( sfeature );
       delete sfeature;
     
       printf("\n");
-    // display time consumed
+      // display time consumed
       time (&end);
       dif = difftime (end,start);
       if(dif >= 3600) printf("The iteration takes %.2lf hours.\n", dif/3600);
@@ -158,6 +173,7 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
       printf("\n");
     }
   }
+
   CvGaborFeaturePool *seletedfeatures = m_selectedfeatures->clone();
   return seletedfeatures;
 }
@@ -183,7 +199,7 @@ void CvAdaBoostFeatureSelection::UpdateWeights(CvGaborFeature *feature)
   CvTrainingData *data = GetDataforWeak( feature, m_memdata );
   CvWeakLearner weak( data, m_learner_type);
   weak.update( data );
-  CvMat *newWeights = data->getresponse();
+  CvMat *newWeights = data->getweights();
   cvCopy( newWeights, m_weights, NULL );
   delete data;
   cvReleaseMat(&newWeights);
@@ -248,6 +264,7 @@ CvTrainingData* CvAdaBoostFeatureSelection::GetDataforWeak(CvGaborFeature *featu
   SetFeatures( param );
   SetType(learner_type);
   InitializeWeights(labels);
+  
 }
 
 
@@ -350,6 +367,11 @@ void CvAdaBoostFeatureSelection::Resume()
     m_features->remove( feature );
   }
   
+  // remove discard features
+  ReadDiscardFile( DISCARD_FILE );
+  
+  
+  
   // start the selection
   for(int i = m_current_iter; i < m_total_iter; i++)
   {
@@ -404,10 +426,11 @@ void CvAdaBoostFeatureSelection::Resume()
  */
 void CvAdaBoostFeatureSelection::ReadState(const char *filename)
 {
-  FILE * file = fopen( STATE_FILE, "r");
+  assert( filename != NULL );
+  FILE * file = fopen( filename, "r");
   if(file == NULL)
   {
-    printf("ERROR: The file: %s does not exist!\n", STATE_FILE);
+    printf("ERROR: The file: %s does not exist!\n", filename);
     exit(-1);
   }
   
@@ -468,4 +491,103 @@ void CvAdaBoostFeatureSelection::LoadWeights(const char *filename)
   assert(filename!=NULL);
   cvReleaseMat( &m_weights );
   m_weights = (CvMat*)cvLoad( filename, NULL);
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::CreateDiscardFile( const char * filename ) const
+ */
+void CvAdaBoostFeatureSelection::CreateDiscardFile( const char * filename ) const
+{
+  assert( filename != NULL );
+  FILE *file = fopen( filename, "w" );
+  if(file == NULL)
+  {
+    printf("ERROR: The file: %s can not be created!\n", filename);
+    exit(-1);
+  }
+  fclose( file );
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::WriteDiscardFile( const char * filename, CvGaborFeature *feature, double error) const
+ */
+void CvAdaBoostFeatureSelection::WriteDiscardFile( const char * filename, CvGaborFeature *feature, double error) const
+{
+  assert( filename != NULL );
+  FILE *file = fopen(filename, "a+");
+  if(file == NULL)
+  {
+    printf("ERROR: The file: %s does not exist!\n", filename);
+    exit(-1);
+  }
+  int x = feature->getx();
+  int y = feature->gety();
+  int Mu = feature->getMu();
+  int Nu = feature->getNu();
+  
+  fprintf (file, "%d %d %d %d %f\n",x, y, Mu, Nu, error);
+  fclose( file );
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::WriteDiscardFile( const char * filename, int Iter ) const
+ */
+void CvAdaBoostFeatureSelection::WriteDiscardFile( const char * filename, int Iter ) const
+{
+  assert( filename != NULL );
+  FILE *file = fopen(filename, "a+");
+  if(file == NULL)
+  {
+    printf("ERROR: The file: %s does not exist!\n", filename);
+    exit(-1);
+  }
+  
+  fprintf( file, "----------------------- %d -----------------------\n", Iter);
+  fclose( file );
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::ReadDiscardFile(const char * filename)
+ */
+void CvAdaBoostFeatureSelection::ReadDiscardFile(const char * filename)
+{
+  assert( filename != NULL );
+  FILE *file = fopen(filename, "r+");
+  if(file == NULL)
+  {
+    printf("ERROR: Cannot read file %s.\n", filename);
+    exit(-1);
+  }
+  
+  int nIter, x, y, Mu, Nu;
+  double merror;
+  int n = 0;
+  while (!feof(file))
+  {
+    if (fscanf(file, "----------------------- %d -----------------------\n", &nIter) == EOF)
+      break;
+    if (nIter == m_current_iter)
+      break;
+    if (fscanf(file, " %d", &x) == EOF)
+      break;
+    if (fscanf(file, " %d", &y) == EOF)
+      break;
+    if (fscanf(file, " %d", &Mu) == EOF)
+      break;
+    if (fscanf(file, " %d", &Nu) == EOF)
+      break;
+    if (fscanf(file, " %f\n", &merror) == EOF)
+      break;
+    
+    CvGaborFeature feature(x,y,Mu,Nu);
+    m_features->remove( &feature );
+    n++;
+  }
+  
+  printf("\n %d features are discard from the original feature list.\n");
+  fclose( file );
 }
