@@ -45,6 +45,26 @@ int main(int argc, char *argv[])
   int bound = 0;
   bool reduced = false;
 
+  int nweaks = 500;
+  int weak_type = CvWeakLearner::POTSU;
+  for(int i = 1; i < argc; i++ )
+  {
+    if( !strcmp( argv[i], "-n" ) )
+    {
+      nweaks= atoi( argv[++i] );
+    }
+    else if ( !strcmp( argv[i], "-type" ) )
+    {
+      if ( !strcmp( "fld", argv[++i] )) 
+        weak_type = CvWeakLearner::FLD;
+      else if ( !strcmp("svm", argv[i] )) 
+        weak_type = CvWeakLearner::SVM;
+      else if ( !strcmp("potsu", argv[i] )) 
+        weak_type = CvWeakLearner::POTSU;
+      else if ( !strcmp("ann", argv[i] )) 
+        weak_type = CvWeakLearner::ANN;
+    }
+  }
 
   CvXm2vts xm2vts( srcpath );
   xm2vts.setNumSub( 200 );
@@ -67,8 +87,8 @@ int main(int argc, char *argv[])
 
 
 
-  CvAdaBoostFeatureSelection fs( &GaborData, labels, &param, CvWeakLearner::POTSU );
-  CvGaborFeaturePool *newfeatures = fs.Select( 500 );
+  CvAdaBoostFeatureSelection fs( &GaborData, labels, &param, weak_type );
+  CvGaborFeaturePool *newfeatures = fs.Select( nweaks );
   newfeatures->write("newfeatures.txt");
   delete newfeatures;
 
