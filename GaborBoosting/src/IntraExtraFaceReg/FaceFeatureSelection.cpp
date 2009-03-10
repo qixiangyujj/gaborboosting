@@ -35,7 +35,13 @@ using namespace PrepareData;
 
 int main(int argc, char *argv[])
 {
-  const char *srcpath = "/home/sir02mz/XM2VTS/";
+  char dbpath[100];
+  char datapath[100];
+  
+  // default setting
+  strcpy( dbpath, "/home/sir02mz/XM2VTS");
+  strcpy( datapath, "/home/sir02mz/OUTPUT");
+  
   int height = 0;
   int width = 0;
   int minscale = -1;
@@ -53,6 +59,14 @@ int main(int argc, char *argv[])
     {
       nweaks= atoi( argv[++i] );
     }
+    else if ( !strcmp( argv[i], "-dbpath" ) )
+    {
+      strcpy( dbpath, argv[++i] );
+    }
+    else if ( !strcmp( argv[i], "-datapath" ) )
+    {
+      strcpy( datapath, argv[++i] );
+    }
     else if ( !strcmp( argv[i], "-type" ) )
     {
       if ( !strcmp( "fld", argv[++i] )) 
@@ -66,7 +80,7 @@ int main(int argc, char *argv[])
     }
   }
 
-  CvXm2vts xm2vts( srcpath );
+  CvXm2vts xm2vts( dbpath );
   xm2vts.setNumSub( 200 );
   xm2vts.setNumPic( 4 );
   CvSize size = xm2vts.getSize();
@@ -78,7 +92,7 @@ int main(int argc, char *argv[])
   //const CvGaborResponseData GaborData( &xm2vts, &param );
   
 
-  CvGaborResponseData GaborData( &xm2vts, &param, "/home/sir02mz/OUTPUT" );
+  CvGaborResponseData GaborData( &xm2vts, &param, datapath );
 
   // get the labels of the training data
   CvGaborFeature feature(1,1,1,1);
