@@ -3,10 +3,10 @@
 <KDevPrjSession>
  <DocsAndViews NumberOfDocuments="3" >
   <Doc0 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/Gaborboosting/src/cvbinarytrainingdata.h" >
-   <View0 Encoding="" line="27" Type="Source" />
+   <View0 Encoding="" Type="Source" />
   </Doc0>
   <Doc1 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/Gaborboosting/src/IntraExtraFaceReg/FaceFeatureSelection.cpp" >
-   <View0 Encoding="" line="90" Type="Source" />
+   <View0 Encoding="" Type="Source" />
   </Doc1>
   <Doc2 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/Gaborboosting/src/cvadaboostfeatureselection.cpp" >
    <View0 Encoding="" line="140" Type="Source" />
