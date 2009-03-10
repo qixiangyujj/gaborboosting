@@ -322,8 +322,9 @@ bool CvAdaBoostFeatureSelection::isResume() const
     }
     if(iter > 0)
       result = true;
+    fclose(file);
   }
-  fclose(file);
+
   return result;
 }
 
