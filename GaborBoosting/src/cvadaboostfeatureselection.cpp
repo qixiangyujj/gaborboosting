@@ -147,8 +147,8 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
         if(error > 0.5)
         {
           WriteDiscardFile( DISCARD_FILE, feature, error );
-          m_features->remove(i);
-          i--;
+          m_features->remove(j);
+          j--;
         }
         
         
