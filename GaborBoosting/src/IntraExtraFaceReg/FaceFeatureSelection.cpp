@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
   bool reduced = false;
 
   int nweaks = 500;
-  int weak_type = CvWeakLearner::POTSU;
+  int weak_type = CvWeakLearner::SVM;
   for(int i = 1; i < argc; i++ )
   {
     if( !strcmp( argv[i], "-n" ) )
@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     }
     else if ( !strcmp( argv[i], "-type" ) )
     {
-      if ( !strcmp( "fld", argv[++i] )) 
+      if ( !strcmp("fld", argv[++i])) 
         weak_type = CvWeakLearner::FLD;
       else if ( !strcmp("svm", argv[i] )) 
         weak_type = CvWeakLearner::SVM;

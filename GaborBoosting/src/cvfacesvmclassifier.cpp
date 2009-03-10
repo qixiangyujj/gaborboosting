@@ -80,7 +80,8 @@ void CvFaceSVMClassifier::Train(CvGaborResponseData & gabordata, CvGaborFeatureP
   // prepare for CvParamGrid
   
   //initilize the grid parameters
-  CvParamGrid C_grid = CvSVM::get_default_grid(CvSVM::C);                                    CvParamGrid gamma_grid = CvSVM::get_default_grid(CvSVM::GAMMA);
+  CvParamGrid C_grid = CvSVM::get_default_grid(CvSVM::C);
+  CvParamGrid gamma_grid = CvSVM::get_default_grid(CvSVM::GAMMA);
   CvParamGrid p_grid = CvSVM::get_default_grid(CvSVM::P);
   CvParamGrid nu_grid = CvSVM::get_default_grid(CvSVM::NU);
   CvParamGrid coef_grid = CvSVM::get_default_grid(CvSVM::COEF);
