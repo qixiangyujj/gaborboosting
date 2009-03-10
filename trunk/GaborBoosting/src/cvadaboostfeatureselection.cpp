@@ -200,6 +200,18 @@ void CvAdaBoostFeatureSelection::UpdateWeights(CvGaborFeature *feature)
   CvWeakLearner weak( data, m_learner_type);
   weak.update( data );
   CvMat *newWeights = data->getweights();
+  
+
+  CvSize size1 = cvGetSize(newWeights);
+  CvSize size2 = cvGetSize(m_weights);
+  
+  assert(size1.width*size1.height == size2.width*size2.height);
+  if((size1.width != size2.width)||(size1.height != size2.height))
+  {
+    cvTranspose(newWeights, newWeights);
+  }
+
+
   cvCopy( newWeights, m_weights, NULL );
   delete data;
   cvReleaseMat(&newWeights);
