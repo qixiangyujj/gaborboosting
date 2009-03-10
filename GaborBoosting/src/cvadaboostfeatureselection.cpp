@@ -115,7 +115,6 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
     
     // create a discard file
     CreateDiscardFile( DISCARD_FILE );
-    
     for(int i = 0; i < m_total_iter; i++)
     {
       m_current_iter = i;
@@ -131,10 +130,11 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
       time (&start);
       printf("Training in the iteration %d:\n", m_current_iter);
       NormalizeWeights();
+      int count = 0;
       for(int j = 0; j < m_features->getSize(); j++)
       //for(int j = 0; j < 30; j++)
       {
-        std::cout << "Learning a weak learner on the feature: " << j<< "\r" << std::flush;
+        std::cout << "Learning a weak learner on the feature: " << count << "\r" << std::flush;
       
         // get a feature from the large set of features
         CvGaborFeature *feature = m_features->getfeature(j);
@@ -151,7 +151,7 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
           j--;
         }
         
-        
+        count++;
       }
       // find the significant feature with minimal error
       CvGaborFeature *sfeature = FindSignificantFeature( m_features );
@@ -260,6 +260,7 @@ CvTrainingData* CvAdaBoostFeatureSelection::GetDataforWeak(CvGaborFeature *featu
   CvGaborDifferenceDataMaker maker( memdata, feature, database );
   CvTrainingData *data = maker.getDifference(m_labels);
   data->setweights(m_weights);
+  data->statclsdist();
   return data;
 }
 

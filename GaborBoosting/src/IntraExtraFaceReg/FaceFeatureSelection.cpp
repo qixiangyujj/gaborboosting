@@ -67,6 +67,10 @@ int main(int argc, char *argv[])
     {
       strcpy( datapath, argv[++i] );
     }
+    else if ( !strcmp( argv[i], "-interval" ) )
+    {
+      interval = atoi( argv[++i] );
+    }
     else if ( !strcmp( argv[i], "-type" ) )
     {
       if ( !strcmp( "fld", argv[++i] )) 
