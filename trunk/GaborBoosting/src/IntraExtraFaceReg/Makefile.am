@@ -8,4 +8,3 @@ Training_LDADD = $(top_builddir)/src/libAdaGabor.a -lcv -lcxcore -lhighgui -lml
 Selection_SOURCES = FaceFeatureSelection.cpp
 Selection_LDADD = $(top_builddir)/src/libAdaGabor.a -lml -lhighgui -lcxcore \
 	-lcv
-Testing_LDADD = $(top_builddir)/src/libAdaGabor.a
