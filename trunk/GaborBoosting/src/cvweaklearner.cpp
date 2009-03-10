@@ -1020,7 +1020,7 @@ void CvWeakLearner::svmlearning(CvTrainingData *data)
     CvSVM::ONE_CLASS - one-class SVM. All the training data are from the same class, SVM builds a boundary that separates the class from the rest of the feature space.
     CvSVM::EPS_SVR - regression. The distance between feature vectors from the training set and the fitting hyperplane must be less than p. For outliers the penalty multiplier C is used.
     CvSVM::NU_SVR - regression; nu is used instead of p. */
-  int _svm_type = CvSVM::NU_SVC;
+  int _svm_type = CvSVM::C_SVC;
   /*The kernel type, one of the following types:
     CvSVM::LINEAR - no mapping is done, linear discrimination (or regression) is done in the original feature space. It is the fastest option. d(x,y) = x•y == (x,y)
     CvSVM::POLY - polynomial kernel: d(x,y) = (gamma*(x•y)+coef0)degree
@@ -1028,6 +1028,7 @@ void CvWeakLearner::svmlearning(CvTrainingData *data)
     CvSVM::SIGMOID - sigmoid function is used as a kernel: d(x,y) = tanh(gamma*(x•y)+coef0) */
   
   int _kernel_type = CvSVM::LINEAR;
+  //int _kernel_type = CvSVM::POLY;
   
   double _degree = 3.0;
   double _gamma = 1.0;
@@ -1036,8 +1037,50 @@ void CvWeakLearner::svmlearning(CvTrainingData *data)
   double _nu = 1.0;
   double _p = 1.0;
   
-  CvSVMParams  params( CvSVM::C_SVC, CvSVM::POLY, _degree, _gamma, _coef0, _C, _nu, _p,
+  CvSVMParams  params( _svm_type, _kernel_type, _degree, _gamma, _coef0, _C, _nu, _p,
                        0, term_crit );
+
+  
+//   {
+//       // prepare for CvParamGrid
+//   
+//      //initilize the grid parameters
+//     CvParamGrid C_grid = CvSVM::get_default_grid(CvSVM::C);
+//     CvParamGrid gamma_grid = CvSVM::get_default_grid(CvSVM::GAMMA);
+//     CvParamGrid p_grid = CvSVM::get_default_grid(CvSVM::P);
+//     CvParamGrid nu_grid = CvSVM::get_default_grid(CvSVM::NU);
+//     CvParamGrid coef_grid = CvSVM::get_default_grid(CvSVM::COEF);
+//     CvParamGrid degree_grid = CvSVM::get_default_grid(CvSVM::DEGREE);
+//   
+//     // The number of class C is 2, no need to optimise
+//     C_grid.step = 0;
+//   
+//     // no need to regression
+//     p_grid.step = 0;
+// 
+//     // set the grid for different case
+//     switch(params.kernel_type)
+//     {
+//       case CvSVM::POLY:
+//         break;
+//       case CvSVM::RBF:
+//         coef_grid.step = 0;
+//         degree_grid.step = 0;
+//         break;
+//       case CvSVM::SIGMOID:
+//         degree_grid.step = 0;
+//         break;
+//     }
+//   
+//     int k_fold = 10;
+//   // train an svm
+//     svm->train_auto( trainData, trainClasses, 0, 0, 
+//                     params, k_fold, 
+//                     C_grid, gamma_grid, p_grid, nu_grid, coef_grid, degree_grid);
+//   }
+  
+  
+  // Training an svm
   svm->train( trainData, trainClasses, 0, 0, params );
 
     // computing error
