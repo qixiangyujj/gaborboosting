@@ -1,31 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="8" >
-  <Doc0 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/GaborBoosting/src/cvfacesvmclassifier.h" >
-   <View0 Encoding="" Type="Source" />
+ <DocsAndViews NumberOfDocuments="3" >
+  <Doc0 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/Gaborboosting/src/cvbinarytrainingdata.h" >
+   <View0 Encoding="" line="27" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/GaborBoosting/src/cvfacesvmclassifier.cpp" >
-   <View0 Encoding="" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/Gaborboosting/src/IntraExtraFaceReg/FaceFeatureSelection.cpp" >
+   <View0 Encoding="" line="90" Type="Source" />
   </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/GaborBoosting/src/cvbingabadafeatureselect.cpp" >
-   <View0 Encoding="" Type="Source" />
+  <Doc2 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/Gaborboosting/src/cvadaboostfeatureselection.cpp" >
+   <View0 Encoding="" line="140" Type="Source" />
   </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/GaborBoosting/src/IntraExtraFaceReg/FaceFeatureSelection.cpp" >
-   <View0 Encoding="" line="0" Type="Source" />
-  </Doc3>
-  <Doc4 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/GaborBoosting/src/IntraExtraFaceReg/FaceTraining.cpp" >
-   <View0 Encoding="" Type="Source" />
-  </Doc4>
-  <Doc5 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/GaborBoosting/src/cvadaboostfeatureselection.cpp" >
-   <View0 Encoding="" Type="Source" />
-  </Doc5>
-  <Doc6 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/GaborBoosting/src/cvgaborfeaturepool.cpp" >
-   <View0 Encoding="" Type="Source" />
-  </Doc6>
-  <Doc7 NumberOfViews="1" URL="file:///home/sir02mz/CWorks/GaborBoosting/src/cvgaborfeaturepool.h" >
-   <View0 Encoding="" line="0" Type="Source" />
-  </Doc7>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>
@@ -33,6 +18,9 @@
     <breakpoint0 location="/home/sir02mz/CWorks/gaborboosting/src/cvadaboostfeatureselection.cpp:107" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
      <tracedExpressions/>
     </breakpoint0>
+    <breakpoint1 location="/home/sir02mz/CWorks/Gaborboosting/src/IntraExtraFaceReg/FaceFeatureSelection.cpp:90" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint1>
    </breakpointList>
    <showInternalCommands value="0" />
   </kdevdebugger>
