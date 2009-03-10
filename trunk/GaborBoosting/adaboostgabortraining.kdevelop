@@ -20,7 +20,7 @@
   </general>
   <kdevautoproject>
     <general>
-      <activetarget>src/IntraExtraFaceReg/Training</activetarget>
+      <activetarget>src/IntraExtraFaceReg/Selection</activetarget>
       <useconfiguration>debug</useconfiguration>
     </general>
     <run>
