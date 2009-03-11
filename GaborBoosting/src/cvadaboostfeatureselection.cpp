@@ -144,12 +144,12 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
         assert(error >= 0.0 && error <= 1.0);
         feature->seterror( error );
         
-        if((error > 0.5)&&(m_learner_type != CvWeakLearner::SVM))
-        {
-          WriteDiscardFile( DISCARD_FILE, feature, error );
-          m_features->remove(j);
-          j--;
-        }
+//         if((error > 0.5)&&(m_learner_type != CvWeakLearner::SVM))
+//         {
+//           WriteDiscardFile( DISCARD_FILE, feature, error );
+//           m_features->remove(j);
+//           j--;
+//         }
         
         count++;
       }

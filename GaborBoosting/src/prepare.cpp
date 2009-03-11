@@ -118,8 +118,8 @@ int main(int argc, char *argv[])
    
   //srcpath = "/local/FaceDB/XM2VTS/NEW/";
   //dstpath = "/local/D/Data/rexm2vts/";
-  preparefolder( dstpath, XM2VTS );
-  makeMetas( srcpath, dstpath, XM2VTS );
+  preparefolder( dstpath, CvGaborResponseData::XM2VTS );
+  makeMetas( srcpath, dstpath, CvGaborResponseData::XM2VTS );
 
   
   //const char *srcpath = "/mnt/export/xm2vts/";
