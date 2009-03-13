@@ -1,0 +1,177 @@
+\begin{thebibliography}{10}
+
+\bibitem{Daugman1993}
+J.~Daugman.
+\newblock High confidence visual recognition of persons by a test of
+  statistical independence.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  15:1148--1160, November 1993.
+
+\bibitem{Fan2004}
+W.~Fan, Y.H. Wang, W.~Liu, and T.N. Tan.
+\newblock Combining null space-based gabor features for face recognition.
+\newblock In {\em Proceedings of International Conference on Pattern
+  Recognition}, 2004.
+
+\bibitem{Freund1996}
+Y.~Freund and R.~Schapire.
+\newblock Experiments with a new boosting algorithm.
+\newblock In {\em Proceedings of the Thirteenth International Conference on
+  Machine Learning}, 1996.
+
+\bibitem{Freund1995}
+Yoav Freund and Robert~E. Schapire.
+\newblock A decision-theoretic generalization of on-line learning and an
+  application to boosting.
+\newblock In {\em Computational Learning Theory: Eurocolt â?5}, pages
+  23--37. Springer-Verlag, 1995.
+
+\bibitem{Friedman2000}
+J.~Friedman, T.~Hastie, and R.~Tibshirani.
+\newblock Additive logistic regression: A statistical view of boosting.
+\newblock {\em The Annals of Statistics}, 28(2):337--374, 2000.
+
+\bibitem{Gallant1990}
+S.~I. Gallant.
+\newblock Perceptron-based learning algorithms.
+\newblock {\em IEEE Transactions on Neural Networks}, 1(2):179--191, 1990.
+
+\bibitem{Grove1998}
+A.~J. Grove and D.~Schuurmans.
+\newblock Boosting in the limit: Maximizing the margin of learned ensembles.
+\newblock In {\em Proceedings of the Fifteenth National Conference on
+  Artificial Intelligence}, 1998.
+
+\bibitem{Hubel1978}
+D.~Hubel and T.~Wiesel.
+\newblock Functional architecture of macaque monkey visual cortex.
+\newblock {\em Proceedings of Royal Society on Biology (London)}, 198:1--59,
+  1978.
+
+\bibitem{Jain2000}
+A.K. Jain, P.W. Robert, and J.~Mao.
+\newblock Statistical pattern recognition: A review.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  22(1):4--37, 2000.
+
+\bibitem{Lades1993}
+M.~Lades, J.~Vorbruggen, J.~Buhmann, J.~Lange, C.V.D. Malsburg, and R.~Wurtz.
+\newblock Distortion invariant object recognition on the dynamic link
+  architecture.
+\newblock {\em IEEE Transactions on Computers}, 42:300--311, 1993.
+
+\bibitem{LiStan2004}
+Stan~Z. Li and ZhenQiu Zhang.
+\newblock {FloatBoost} learning and statistical face detection.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Learning},
+  26(9):1112--1123, 2004.
+
+\bibitem{Liu2004}
+C.~Liu.
+\newblock Gabor-based kernel pca with fractional power polynomial models for
+  face recognition.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  26:572--581, 2004.
+
+\bibitem{Liu2002}
+C.~Liu and H.~Wechsler.
+\newblock Gabor feature based classification using enhanced fisher linear
+  discriminant model for face recognition.
+\newblock {\em IEEE Transactions on Image Processing}, 11:467--476, 2002.
+
+\bibitem{Ma2001}
+J.~Ma, Y.~Zhao, S.~Ahalt, and D.~Eads.
+\newblock {OSU} {SVM}: A support vector machine toolbox for {M}atlab.
+\newblock Online, 2001.
+
+\bibitem{Mason1999}
+L.~Mason, J.~Baxter, P.~Bartlett, and M.~Frean.
+\newblock Boosting algorithm as gradient descent in function space.
+\newblock Technical report, Department of Systems Engineering, Australian
+  National Univeristy, 1999.
+
+\bibitem{Olshausen1996}
+B.~Olshausen and D.~Field.
+\newblock Emergence of simple-cell receptive field properties by learning a
+  sparse code for natural images.
+\newblock {\em Nature}, 381:607--609, 1996.
+
+\bibitem{Opitz1999}
+David Opitz and Richard Maclin.
+\newblock Popular ensemble methods: An empirical study.
+\newblock {\em Journal of Artificial Intelligence Research}, 11:169--198, 1999.
+
+\bibitem{Phillips2000}
+P.~Jonathon Phillips, Hyeonjoon Moon, Syed~A. Rizvi, and Patrick J.Rauss.
+\newblock The {FERET} evaluation methodology for face-recognition algorithms.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  22(10):1090--1104, October 2000.
+
+\bibitem{Rao1995}
+R.~Rao and D.~Ballard.
+\newblock An active vision architecture based on iconic representations.
+\newblock {\em Artificial Intelligence}, 78:461--505, 1995.
+
+\bibitem{Schapire1997}
+R.~Schapire, Y.~Freund, P.~Bartlett, and W.~Lee.
+\newblock Boosting the margin: A new explanation for the effectiveness of
+  voting methods.
+\newblock In {\em Proceedings of the Fourteenth International Conference on
+  Machine Learning}, 1997.
+
+\bibitem{Schapire1998}
+R.E. Schapire and Y.~Singer.
+\newblock Improved boosting algorithms using confidence-rated predictions.
+\newblock In {\em Proceedings of The 11th Annal Conference on Computational
+  Learning Theory}, number 80-91, 1998.
+
+\bibitem{Schiele2000}
+B.~Schiele and J.~Crowley.
+\newblock Recognition without correspondence using multi-dimensional receptive
+  field histograms.
+\newblock {\em International Journal on Computer Vision}, 36:31--52, 2000.
+
+\bibitem{Sollich1995}
+P.~Sollich and A.~Krogh.
+\newblock Learning with ensembles: How over-fitting can be useful.
+\newblock In D.~Touretsky, M.~Mozer, and M.~Hasselmo, editors, {\em Advances in
+  Neural Information Processing Systems}, volume~8, pages 190--196. MIT Press,
+  1995.
+
+\bibitem{Taylor2004}
+John~Shawe Taylor and Nello Cristianini.
+\newblock {\em Kernel Methods for Pattern Analysis}.
+\newblock Cambridge University Press, 2004.
+
+\bibitem{Viola2001}
+P.~Viola and M.~Jones.
+\newblock Rapid object detection using a boosted cascade of simple features.
+\newblock In {\em Proceedings of IEEE Conference on Computer Vision and Pattern
+  Recognition}, volume~1, pages 511--518, 2001.
+
+\bibitem{Viola2004}
+P.~Viola and M.~Jones.
+\newblock Robust real-time object detection.
+\newblock {\em International Journal of Computer Vision}, 57(2):137--154, May
+  2004.
+
+\bibitem{Wiskott1997}
+L.~Wiskott, J.M. Fellous, N.~Kruger, and C.~Malsburg.
+\newblock Face recognition by elastic bunch graph matching.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  19:775--779, 1997.
+
+\bibitem{Wu2004}
+X.J. Wu, J.~Kittler, J.Y. Yang, K.~Messer, and S.T. Wang.
+\newblock A new direct {LDA} ({D-LDA}) algorithm for feature extraction in face
+  recognition.
+\newblock In {\em Proceedings of International Conference on Pattern
+  Recognition}, 2004.
+
+\bibitem{zhou2006icpr}
+Mian Zhou and Hong Wei.
+\newblock Face verification using gabor wavelets and {A}daboost.
+\newblock In {\em Proceedings of 18th International Conference on Pattern
+  Recognition}, 2006.
+
+\end{thebibliography}
