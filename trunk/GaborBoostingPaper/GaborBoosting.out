@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Gabor Wavelet Feature Extraction}{}
+\BOOKMARK [2][-]{subsection.2.1}{Background of Gabor Wavelet}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Gabor Wavelets}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{Gabor Wavelet Transform}{section.2}
+\BOOKMARK [1][-]{section.3}{Feature Selection by AdaBoost}{}
+\BOOKMARK [2][-]{subsection.3.1}{AdaBoost}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Weak learners in AdaBoost}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{Potsu weak learner}{section.3}
+\BOOKMARK [2][-]{subsection.3.4}{Boosting Feature Selection}{section.3}
+\BOOKMARK [1][-]{section.4}{Classification}{}
+\BOOKMARK [2][-]{subsection.4.1}{Ensemble classification}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{SVM classification}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{Summary}{section.4}
+\BOOKMARK [1][-]{section.5}{Conclusion}{}

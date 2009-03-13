@@ -1,0 +1,47 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.6)
+The top-level auxiliary file: GaborBoosting.aux
+The style file: plain.bst
+Database file #1: GaborBoosting.bib
+Warning--there's a number but no series in Schapire1998
+You've used 29 entries,
+            2118 wiz_defined-function locations,
+            684 strings with 8725 characters,
+and the built_in function-call counts, 9715 in all, are:
+= -- 915
+> -- 475
+< -- 6
++ -- 188
+- -- 155
+* -- 669
+:= -- 1627
+add.period$ -- 89
+call.type$ -- 29
+change.case$ -- 163
+chr.to.int$ -- 0
+cite$ -- 30
+duplicate$ -- 369
+empty$ -- 797
+format.name$ -- 155
+if$ -- 2058
+int.to.chr$ -- 0
+int.to.str$ -- 29
+missing$ -- 28
+newline$ -- 148
+num.names$ -- 60
+pop$ -- 170
+preamble$ -- 1
+purify$ -- 134
+quote$ -- 0
+skip$ -- 250
+stack$ -- 0
+substring$ -- 555
+swap$ -- 65
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 114
+warning$ -- 1
+while$ -- 81
+width$ -- 31
+write$ -- 317
+(There was 1 warning)
