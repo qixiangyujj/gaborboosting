@@ -1,0 +1,2430 @@
+% This file was created with JabRef 2.3.1.
+% Encoding: UTF8
+
+@ARTICLE{Adini1997,
+  author = {Y. Adini and Y. Moses and S. Ullman},
+  title = {Face recognition: The problem of compensating for changes in illumination
+	direction},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1997},
+  volume = {19},
+  pages = {721-732},
+  number = {7}
+}
+
+@ARTICLE{Ahonen2006,
+  author = {Timo Ahonen and Abdenour Hadid and Matti Pietikainen},
+  title = {Face Description with Local Binary Patterns: Application to Face
+	Recognition},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2006},
+  volume = {28},
+  pages = {2037-2041},
+  owner = {Mian},
+  timestamp = {2008.08.15}
+}
+
+@CONFERENCE{Ahonen2004,
+  author = {Ahonen, Timo and Hadid, Abdenour and Pietikainen, Matti},
+  title = {Face Recognition with Local Binary Patterns},
+  booktitle = {Proceedings of European Conference on Computer Vision},
+  year = {2004},
+  owner = {Mian},
+  timestamp = {2008.08.15}
+}
+
+@CONFERENCE{Aloni2004,
+  author = {Dan Aloni},
+  title = {Cooperative Linux},
+  booktitle = {Proceedings of the Linux Symposium},
+  year = {2004}
+}
+
+@INPROCEEDINGS{Alsabti1998,
+  author = {K. Alsabti and S. Ranka and V. Singh},
+  title = {An Efficient k-means Clustering Algorithm},
+  booktitle = {Proceedings of International Parallel Processing Symposium},
+  year = {1998}
+}
+
+@ARTICLE{Anderson2002,
+  author = {David P. Anderson and Jeff Cobb and Eric Korpela and Matt Lebofsky
+	and Dan Werthimer},
+  title = {{SETI@home}: An Experiment in Public-Resource Computing},
+  journal = {Communications of the ACM},
+  year = {2002},
+  volume = {45},
+  pages = {56-61},
+  number = {11},
+  month = {November},
+  abstract = {SETI@home uses computers in homes and offices around the world to
+	analyze radio telescope signals. This approach, though it presents
+	some difficulties, has provided unprecedented computing power and
+	has led to a unique public involvement in science. We describe SETI@home's
+	design and implementation, and discuss its relevance to future distributed
+	systems.}
+}
+
+@ARTICLE{Anderson1935,
+  author = {Edgar Anderson},
+  title = {The irises of the Gaspe Peninsula},
+  journal = {Bulletin of the American Iris Society},
+  year = {1935},
+  volume = {59},
+  pages = {2-5}
+}
+
+@CONFERENCE{Asami2005,
+  author = {Taichi Asami and Koji Iwano and Sadaoki Furui},
+  title = {Stream-Weight Optimization by {LDA} and {A}daboost for Multi-Stream
+	Speaker Verification},
+  booktitle = {Proceedings of International Conference on Speech Communication and
+	Technology (Interspeech 2005)},
+  year = {2005},
+  pages = {2185-2188},
+  address = {Lisbon, Portugal}
+}
+
+@INPROCEEDINGS{Augusteijn1993,
+  author = {M.F. Augusteijn and T.L. Skufca},
+  title = {Identification of human faces through texture-based featurerecognition
+	andneural network technology},
+  booktitle = {IEEE International Conference on Neural Networks},
+  year = {1993},
+  pages = {392-398},
+  month = {March}
+}
+
+@ARTICLE{Bach2002,
+  author = {F.R. Bach and M.I. Jordan},
+  title = {Kernel Independent Component Analysis},
+  journal = {Journal of Machine Learning Research},
+  year = {2002},
+  volume = {3},
+  pages = {1-48}
+}
+
+@CONFERENCE{Baek2002,
+  author = {Kyungim Baek and Bruce A. Draper and J. Ross Beveridge and Kai She},
+  title = {{PCA} vs. {ICA}: A comparison on the {FERET} data set},
+  booktitle = {In Proceedings of Joint Conference on Information Sciences},
+  year = {2002}
+}
+
+@MISC{Ballard1939,
+  author = {Randall C. Ballard},
+  title = {TELEVISION SYSTEM},
+  howpublished = {Patent},
+  month = {3},
+  year = {1939},
+  note = {Patent number: 2152234},
+  owner = {Radio Corporation of America},
+  url = {http://www.google.com/patents?id=H49TAAAAEBAJ&dq=patent:2152234}
+}
+
+@ARTICLE{Bartlett1998,
+  author = {M.S. Bartlett and H.M. Lades and T.J. Sejnowski},
+  title = {Independent Component Representations for Face Recognition},
+  journal = {Proceedings of SPIE},
+  year = {1998},
+  volume = {3299},
+  pages = {528-539}
+}
+
+@ARTICLE{Bartlett2002,
+  author = {M.S. Bartlett and J.R. Movellan and T.J. Sejnowski},
+  title = {Face recognition by Independent component analysis},
+  journal = {IEEE Transactions on Neural Networks},
+  year = {2002},
+  volume = {13},
+  pages = {1450-1464}
+}
+
+@ARTICLE{Belhumeur1997,
+  author = {P.N. Belhumeur and J.P. Hespanha and D.J. Kriegman},
+  title = {{E}igenfaces vs. {F}isherfaces: Recognition Using Class Specific
+	Linear Projection},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1997},
+  volume = {19},
+  pages = {711-720},
+  number = {7},
+  month = {July}
+}
+
+@ARTICLE{Bell1995,
+  author = {A. J. Bell and T. J. Sejnowski},
+  title = {An information-maximization approach to blind separation and blind
+	deconvolution},
+  journal = {Neural Computation},
+  year = {1995},
+  volume = {7},
+  pages = {1129-1159},
+  number = {6}
+}
+
+@MISC{Bell2001,
+  author = {B. Bell and L. Mass},
+  title = {Firms Forge Alliance to Enhance},
+  howpublished = {Businessworld},
+  month = {29 Dec},
+  year = {2001}
+}
+
+@TECHREPORT{Bergen1990,
+  author = {J.R. Bergen and R. Hingorani},
+  title = {Hierarchical Motion-Based Frame Rate Conversion},
+  institution = {David Sarnoff Research Center, Princeton},
+  year = {1990},
+  owner = {sir02mz},
+  timestamp = {2008.04.13}
+}
+
+@TECHREPORT{Bilmes1998,
+  author = {J. Bilmes},
+  title = {A gentle tutorial on the {EM} algorithm and its application to parameter
+	estimation for {G}aussian mixture and hidden {M}arkov models},
+  institution = {University of Berkeley, CA},
+  year = {1998},
+  number = {ICSI-TR-97-021}
+}
+
+@ARTICLE{Blanz2003,
+  author = {Volker Blanz and Thomas Vetter},
+  title = {Face Recognition Based on Fitting a {3D} Morphable Model},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2003},
+  volume = {25},
+  pages = {1063-1074},
+  number = {9},
+  month = {September},
+  owner = {sir02mz},
+  timestamp = {2008.04.14}
+}
+
+@CONFERENCE{Blanz1999,
+  author = {V. Blanz and T. Vetter},
+  title = {A Morphable Model for the Synthesis of {3D} Faces},
+  booktitle = {Proceedings of the SIGGRAPH'99},
+  year = {1999},
+  pages = {187-194},
+  month = {August}
+}
+
+@TECHREPORT{Bledsoe1964,
+  author = {W.W. Bledsoe},
+  title = {The Model Method in Facial Recognition},
+  institution = {Panoramic Research Inc.},
+  year = {1964},
+  number = {PRI:15},
+  address = {Palo Alto, CA}
+}
+
+@ARTICLE{Bovik1990,
+  author = {A. C. Bovik and M. Clark and W. S. Geisler},
+  title = {Multichannel texture analysis using localized spatial filters},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1990},
+  volume = {12},
+  pages = {55-73}
+}
+
+@ARTICLE{Breiman1996,
+  author = {L. Breiman},
+  title = {Bagging predictors},
+  journal = {Machine Learning},
+  year = {1996},
+  volume = {24},
+  pages = {123-140},
+  number = {2},
+  owner = {Mian},
+  timestamp = {2008.07.25}
+}
+
+@CONFERENCE{Bylander2006,
+  author = {Tom Bylander and Lisa Tate},
+  title = {Using Validation Sets to Avoid Overfitting in {AdaBoost}},
+  booktitle = {Proceedings of the Nineteenth International Florida Artificial Intelligence
+	Research Society Conference},
+  year = {2006},
+  pages = {544-549}
+}
+
+@ARTICLE{Cardoso1996,
+  author = {Jean-Francois Cardoso and Antoine Souloumiac},
+  title = {Jacobi angles for simultaneous diagonalization},
+  journal = {SIAM},
+  year = {1996},
+  volume = {17},
+  pages = {161-164},
+  number = {1}
+}
+
+@CONFERENCE{Cevikalp2004,
+  author = {H. Cevikalp and M. Wilkes},
+  title = {Face Recogntion by Using Discriminative Common Vectors},
+  booktitle = {Proceedings of International Conference on Pattern Recognition},
+  year = {2004}
+}
+
+@INPROCEEDINGS{Chai1998,
+  author = {D. Chai and K.N. Ngan},
+  title = {Locating Facial Region of a Head-and-Shoulders Color Image},
+  booktitle = {3rd. International Conference on Face \& Gesture Recognition},
+  year = {1998},
+  pages = {124-129}
+}
+
+@ARTICLE{Chen2000,
+  author = {L.F. Chen and H.Y.M. Liao and J.C. Lin and M.T. Ko and G.J. Yu},
+  title = {A New {LDA}-based Face Recognition System which can solve the small
+	sample size problem},
+  journal = {Pattern Recognition},
+  year = {2000},
+  volume = {33},
+  pages = {1713-1726}
+}
+
+@INPROCEEDINGS{Cheng1991,
+  author = {Y. Cheng and K. Liu and J. Yang and Y. Zhuang and N. Gu},
+  title = {Human Face Recognition Method Based on the Statistical Model of Small
+	Sample Size},
+  booktitle = {SPIE Proceedings on Intelligent Robots and Computer Vision X: Algorithms
+	and Technology},
+  year = {1991},
+  pages = {85-95}
+}
+
+@INPROCEEDINGS{Collobert1996,
+  author = {M. Collobert and R. Feraud and G. Le Tourneur and O. Benier and J.E.
+	Viallet and Y.Mahieux and D. Collobert},
+  title = {{LISTEN}: A System for Locating and Tracking Individual Speaker},
+  booktitle = {Proceedings of IEEE Conference on Automatic Face and Gesture Recognition},
+  year = {1996}
+}
+
+@ARTICLE{Cootes2001,
+  author = {T.F. Cootes and G.J. Edwards and C.J. Taylor},
+  title = {Active Appearance Models},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2001},
+  volume = {23},
+  pages = {681-685},
+  number = {6}
+}
+
+@TECHREPORT{Cootes2000,
+  author = {T.F. Cootes and C.J. Taylor},
+  title = {Statistical Models of Appearance for Computer Vision},
+  institution = {University of Manchester},
+  year = {2000}
+}
+
+@INPROCEEDINGS{Cootes1996,
+  author = {T.F. Cootes and C.J. Taylor},
+  title = {Locating Faces Using Statistical Features},
+  booktitle = {Proceedings of Second International Conference on Automatic Face
+	and Gesture Recognition},
+  year = {1996},
+  pages = {204-209}
+}
+
+@ARTICLE{Dai1996,
+  author = {Y. Dai and Y. Nakano},
+  title = {Face-texture model-based on {SGLD} and its application in face detection
+	in a color scene},
+  journal = {Pattern Recognition},
+  year = {1996},
+  volume = {29},
+  pages = {1007--1017},
+  month = {June}
+}
+
+@ARTICLE{Daugman1993,
+  author = {J. Daugman},
+  title = {High Confidence Visual Recognition of Persons by a Test of Statistical
+	Independence},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1993},
+  volume = {15},
+  pages = {1148-1160},
+  month = {November}
+}
+
+@ARTICLE{Daugman1985,
+  author = {J. Daugman},
+  title = {Uncertainty Relation for Resolution in Space, Spatial Frequency and
+	Orientation Optimized by Two-dimensional Visual Cortical Filters},
+  journal = {Journey of the Optical Society of American A},
+  year = {1985},
+  volume = {2},
+  pages = {1160-1169},
+  month = {July},
+  abstract = {Two-dimensional spatial linear filters are constrained by general
+	uncertaintyrelations that limit their attainable information resolution
+	for orientation,spatial frequency, and two-dimensional (2D) spatial
+	position. The theoreticallower limit for the joint entropy, or uncertainty,
+	of these variables is achieved by an optimal 2D filter family whose
+	spatial weighting functionsare generated by exponentiated bivariate
+	second-order polynomials withcomplex coefficients, the elliptic generalization
+	of the one-dimensionalelementary functions proposed in Gabor's famous
+	theory of communication[J. Inst. Electr. Eng. 93, 429 (1946)]. The
+	set includes filters with variousorientation bandwidths, spatial-frequency
+	bandwidths, and spatial dimensions,favoring the extraction of various
+	kinds of information from an image.Each such filter occupies an irreducible
+	quantal volume (correspondingto an independent datum) in a four-dimensional
+	information hyperspace whoseaxes are interpretable as 2D visual space,
+	orientation, and spatial frequency,and thus such a filter set could
+	subserve an optimally efficient samplingof these variables. Evidence
+	is presented that the 2D receptive-field profiles of simple cells
+	in mammalian visual cortex are well described by members of this optimal
+	2D filter family, and thus such visual neurons could be said to optimize
+	the general uncertainty relations for joint 2D-spatial-2D-spectralinformation
+	resolution. The variety of their receptive-field dimensionsand orientation
+	and spatial-frequency bandwidths, and the correlationsamong these,
+	reveal several underlying constraints, particularly in width/lengthaspect
+	ratio and principal axis organization, suggesting a polar division of
+	lab or in occupying the quantal volumes of information hyperspace}
+}
+
+@ARTICLE{Daugman1988,
+  author = {John G Daugman},
+  title = {Complete Discrete {2-D} Gabor Transforms by Neural Networks for Image
+	Analysis and Compression},
+  journal = {IEEE Transactions on Acoustics, Speech, and Signal Processing},
+  year = {1988},
+  volume = {36},
+  pages = {1169-1179}
+}
+
+@BOOK{Davies1990,
+  title = {Machine Vision: Theory, Algorithms, Practicalities},
+  publisher = {Academic Press},
+  year = {1990},
+  author = {E. R. Davies}
+}
+
+@BOOK{Devijver1982,
+  title = {Pattern Recognition: A Statistical Approach},
+  publisher = {Prentice-Hall},
+  year = {1982},
+  editor = {P.A. Devijver and J. Kittler},
+  author = {P.A. Devijver and J. Kittler}
+}
+
+@ARTICLE{Domingos1997,
+  author = {Pedro Domingos and Michael Pazzani},
+  title = {On the optimality of the simple Bayesian classifier under zero-one
+	loss},
+  journal = {Machine Learning},
+  year = {1997},
+  volume = {29},
+  pages = {103-137}
+}
+
+@ARTICLE{Drucker1993,
+  author = {H. Drucker and R.E. Schapire and P. Y. Simard},
+  title = {Boosting Performance in Neural Networks},
+  journal = {International Journal of Pattern Recognition and Artificial Intelligence},
+  year = {1993},
+  volume = {7},
+  pages = {705-719}
+}
+
+@ARTICLE{Dunn1995,
+  author = {D. Dunn and W. Higgins},
+  title = {Optimal Gabor filters for texture segmentation},
+  journal = {IEEE Transactions on Image Processing},
+  year = {1995},
+  volume = {4},
+  pages = {947--964},
+  number = {7},
+  month = {July}
+}
+
+@ARTICLE{Dunn1994,
+  author = {Dennis Dunn and William E. Higgins and Joseph Wakeley},
+  title = {Texture Segmentation Using {2-D} {G}abor Elementary Functions},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1994},
+  volume = {16},
+  pages = {130-149}
+}
+
+@INPROCEEDINGS{Edwards1998,
+  author = {G.J. Edwards and T.F. Cootes and C.J. Taylor},
+  title = {Face Recognition using active appearance models},
+  booktitle = {Proceedings of European Conference on Computer Vision},
+  year = {1998}
+}
+
+@BOOK{Efron1993,
+  title = {An Introduction to the Bootstrap},
+  publisher = {Chapman and Hall},
+  year = {1993},
+  author = {B. Efron and K. McKusick},
+  owner = {Mian},
+  timestamp = {2008.07.25}
+}
+
+@CONFERENCE{Fan2004,
+  author = {W. Fan and Y.H. Wang and W. Liu and T.N. Tan},
+  title = {Combining Null Space-based Gabor Features For Face Recognition},
+  booktitle = {Proceedings of International Conference on Pattern Recognition},
+  year = {2004}
+}
+
+@MISC{Fell2002,
+  author = {N. Fell and P. Dempsey},
+  title = {Whitehall Dithers on Airport Security},
+  howpublished = {Times},
+  month = {14 Jan},
+  year = {2002}
+}
+
+@ARTICLE{Fisher1936,
+  author = {R. A. Fisher},
+  title = {The Use of Multiple Measurements in Taxonomic Problems},
+  journal = {Annals of Eugenics},
+  year = {1936},
+  volume = {7},
+  pages = {179-188}
+}
+
+@ARTICLE{Fleuret2004,
+  author = {Francois Fleuret},
+  title = {Fast Binary Feature Selection with Conditional Mutual Information},
+  journal = {Journal of Machine Learning Research},
+  year = {2004},
+  volume = {5},
+  pages = {1531-1555}
+}
+
+@INPROCEEDINGS{Foresti2003,
+  author = {G.L. Foresti and C. Micheloni and L. Snidaro and C. Marchiol},
+  title = {Face Detection for Visual Surveillance},
+  booktitle = {12th International Conference on Image Analysis and Processing},
+  year = {2003},
+  pages = {115},
+  abstract = {In this paper, a real-time face detection system for color image sequencesis
+	presented. The system applies three different face detection methodsand
+	integrates the obtained results to achieve a greater location accuracy.The
+	first method localizes the human head through outline analysis, focusingthe
+	attention of the system on a small image area. The second, a skin
+	color method, is applied to the blobs to find skin regions (e.g.,
+	faces, hands,etc.). The third, principal component analysis, is used
+	to reduce the dimensionality of the data set and to detect face patterns.
+	Finally, the obtained facelocations are fused to increase the detection
+	reliability and to avoidfalse detections due to occlusions or unfavourable
+	human poses. The proposedapproach is used by a video-based surveillance
+	system for monitoring indoorscenes. }
+}
+
+@BOOK{Forsyth2003,
+  title = {Computer Vision A Modern Approach},
+  publisher = {Prentice Hall},
+  year = {2003},
+  author = {D.A. Forsyth and J. Ponce}
+}
+
+@TECHREPORT{Frankel1996,
+  author = {C. Frankel and M.J. Swain and V. Athitsos},
+  title = {{WebSeer}: An Image Search Engine for the World Wide Web},
+  institution = {Computer Science Department, University of Chicago},
+  year = {1996},
+  number = {TR 96-14}
+}
+
+@CONFERENCE{Freund1996,
+  author = {Y. Freund and R. Schapire},
+  title = {Experiments with a new boosting algorithm},
+  booktitle = {Proceedings of the Thirteenth International Conference on Machine
+	Learning},
+  year = {1996},
+  owner = {sir02mz},
+  timestamp = {2008.06.06}
+}
+
+@ARTICLE{Freund1999,
+  author = {Yoav Freund and Robert E. Schapire},
+  title = {A Short Introduction to Boosting},
+  journal = {Journal of Japanese Society for Artificial Intelligence},
+  year = {1999},
+  volume = {14},
+  pages = {771-780}
+}
+
+@INPROCEEDINGS{Freund1995,
+  author = {Yoav Freund and Robert E. Schapire},
+  title = {A Decision-theoretic Generalization of On-line Learning and An Application
+	to Boosting},
+  booktitle = {Computational Learning Theory: Eurocolt â?5},
+  year = {1995},
+  pages = {23-37},
+  publisher = {Springer-Verlag}
+}
+
+@ARTICLE{Friedman2000,
+  author = {J. Friedman and T. Hastie and R. Tibshirani},
+  title = {Additive Logistic Regression: A Statistical View of Boosting},
+  journal = {The Annals of Statistics},
+  year = {2000},
+  volume = {28},
+  pages = {337-374},
+  number = {2}
+}
+
+@TECHREPORT{Friedman1998,
+  author = {J. Friedman and T. Hastie and R. Tibshirani},
+  title = {Additive logistic regression: a statistical view of boosting},
+  institution = {Stanford University},
+  year = {1998}
+}
+
+@BOOK{Fukunaga1990,
+  title = {Introduction to Statistical Pattern Recognition},
+  publisher = {New York: Academic Press},
+  year = {1990},
+  author = {K. Fukunaga}
+}
+
+@BOOK{Fukunaga1972,
+  title = {Introduction to Statistical Pattern Recognition},
+  publisher = {New York: Academic},
+  year = {1972},
+  author = {K. Fukunaga}
+}
+
+@ARTICLE{Gallant1990,
+  author = {S. I. Gallant},
+  title = {Perceptron-based learning algorithms},
+  journal = {IEEE Transactions on Neural Networks},
+  year = {1990},
+  volume = {1},
+  pages = {179-191},
+  number = {2}
+}
+
+@ARTICLE{Galton1888,
+  author = {Francis Galton},
+  title = {Personal Identification and description},
+  journal = {Nature},
+  year = {1888},
+  volume = {21},
+  pages = {173-177},
+  month = {June}
+}
+
+@ARTICLE{Gauthier2001,
+  author = {I. Gauthier and C.A. Nelson},
+  title = {The Development of Face Expertise},
+  journal = {Cognitive Neuroscience},
+  year = {2001},
+  volume = {11},
+  pages = {219-224}
+}
+
+@ARTICLE{Georghiades2001,
+  author = {Georghiades, A.S. and Belhumeur, P.N. and Kriegman, D.J.},
+  title = {From Few to Many: Illumination Cone Models for Face Recognition under
+	Variable Lighting and Pose},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2001},
+  volume = {23},
+  pages = {643-660}
+}
+
+@ARTICLE{Goodall1991,
+  author = {C. Goodall},
+  title = {Procrustes methods in the statistical analysis of shape},
+  journal = {Journal of the Royal Statistical Society B},
+  year = {1991},
+  volume = {53},
+  pages = {285-339},
+  number = {2}
+}
+
+@MISC{Gorsuch22001,
+  author = {John Gorsuch},
+  title = {Improved Security Through Technology},
+  howpublished = {Overhaul \& Maintenance},
+  month = {20 Nov},
+  year = {2001}
+}
+
+@BOOK{Gough2004,
+  title = {An Introduction to {GCC}},
+  publisher = {Network Theory Limited},
+  year = {2004},
+  author = {Brian J. Gough}
+}
+
+@INCOLLECTION{Graham1998,
+  author = {Daniel B. Graham and Nigel M. Allinson},
+  title = {Characterizing Virtual Eigen signatures for General Purpose Face Recognition},
+  booktitle = {Face Recognition: From Theory to Applications},
+  publisher = {NATO ASI Series F, Computer and Systems Sciences},
+  year = {1998},
+  editor = {H. Wechsler and P. J. Phillips and V. Bruce and F. Fogelman-Soulie
+	and T. S. Huang},
+  volume = {163},
+  pages = {446-456}
+}
+
+@INCOLLECTION{Gross2005,
+  author = {Ralph Gross},
+  title = {Face Databases},
+  booktitle = {Handbook of Face Recognition},
+  publisher = {Springer},
+  year = {2005},
+  editor = {S. Li and A.K. Jain},
+  address = {New York},
+  month = {February}
+}
+
+@INPROCEEDINGS{Grove1998,
+  author = {A. J. Grove and D. Schuurmans},
+  title = {Boosting in the Limit: Maximizing the Margin of Learned Ensembles},
+  booktitle = {Proceedings of the Fifteenth National Conference on Artificial Intelligence},
+  year = {1998}
+}
+
+@PHDTHESIS{Hallinan1995,
+  author = {P. Hallinan},
+  title = {A Deformable Model for Face Recognition Under Arbitrary Lighting
+	Conditions},
+  school = {Harvard University},
+  year = {1995}
+}
+
+@ARTICLE{Hancock2000,
+  author = {P.J. Hancock and V. Bruce and A.M. Burton},
+  title = {Recognition of Unfamiliar Faces},
+  journal = {Trends in Cognitive Sciences},
+  year = {2000},
+  volume = {4},
+  pages = {330-337}
+}
+
+@BOOK{Haralick1992,
+  title = {Computer and Robot Vision},
+  publisher = {Addison-Wesley},
+  year = {1992},
+  author = {R.M. Haralick and L.G. Shapiro},
+  volume = {2},
+  owner = {sir02mz},
+  timestamp = {2008.04.13}
+}
+
+@INPROCEEDINGS{Herpers1999,
+  author = {R. Herpers and G. Verghese and K.-H. Lichtenauer and G. Sommer},
+  title = {Edge and Keypoint Detection in Facial Regions},
+  booktitle = {Proceedings of IEEE International Workshop on Recognition, Analysis,
+	and Tracking of Faces and Gestures in Real-Time Systems},
+  year = {1999}
+}
+
+@ARTICLE{Hjelms2001,
+  author = {E. Hjelms and B.K. Low},
+  title = {Face Detection: A Survey},
+  journal = {Computer Vision and Image Understanding},
+  year = {2001},
+  volume = {83},
+  pages = {236-274},
+  number = {3}
+}
+
+@INPROCEEDINGS{Hong1998,
+  author = {H. Hong and H. Neven and C. von der Malsburg},
+  title = {Online Facial Expression Recognition Based on Personalized Galleries},
+  booktitle = {Proceedings of International Conference on Automatic Face and Gesture
+	Recognition},
+  year = {1998}
+}
+
+@BOOK{Horn1986,
+  title = {Robot Vision},
+  publisher = {MIT Press},
+  year = {1986},
+  author = {B. Horn}
+}
+
+@ARTICLE{Horn1981,
+  author = {B.K.P. Horn and B.G. Schunck},
+  title = {Determing Optical Flow},
+  journal = {Artificial Intelligence},
+  year = {1981},
+  volume = {17},
+  pages = {185-203},
+  owner = {sir02mz},
+  timestamp = {2008.04.13}
+}
+
+@INPROCEEDINGS{Huang2004,
+  author = {Chang Huang and Haizhou Ai and Bo Wu and Shihong Lao},
+  title = {Boosting nested cascade detector for multi-view face detection},
+  booktitle = {In Proceedings of International Conference on Pattern Recognition
+	2004},
+  year = {2004}
+}
+
+@CONFERENCE{Huang2003,
+  author = {J. Huang and B. Heisele and V. Blanz},
+  title = {Component-based Face Recognition with {3D} Morphable Models},
+  booktitle = {Proceedings of the 4th International Conference on Audio- and Video-Based
+	Biometric Person Authentication, AVBPA 2003},
+  year = {2003},
+  pages = {27-34},
+  address = {Guildford, UK},
+  month = {June}
+}
+
+@CONFERENCE{Huang2002,
+  author = {Rui Huang and Qingshan Liu and Hanqing Lu and Songde Ma},
+  title = {Solving the Small Sample Size Problem of {LDA}},
+  booktitle = {Proceedings of the 16th International Conference on Pattern Recognition},
+  year = {2002},
+  volume = {3}
+}
+
+@ARTICLE{Hubel1978,
+  author = {D. Hubel and T. Wiesel},
+  title = {Functional Architecture of Macaque Monkey Visual Cortex},
+  journal = {Proceedings of Royal Society on Biology (London)},
+  year = {1978},
+  volume = {198},
+  pages = {1-59}
+}
+
+@BOOK{Hunt2006,
+  title = {A Guide to {MATLAB}: For Beginners and Experienced Users},
+  publisher = {Cambridge University Press},
+  year = {2006},
+  author = {Brian R. Hunt and Ronald L. Lipsman and Jonathan M. Rosenberg and
+	Kevin R. Coombes and John E. Osborn and Garrett J. Stuck},
+  month = {July}
+}
+
+@ARTICLE{Hyvarinen1999,
+  author = {A. Hyvarinen},
+  title = {Fast and robust fixed-point algorithms for independent component
+	analysis},
+  journal = {IEEE Transactions on Neural Networks},
+  year = {1999},
+  volume = {10},
+  pages = {626-634}
+}
+
+@BOOK{Hyvarinen2001,
+  title = {Independent Component Analysis},
+  publisher = {John Wiley \& Sons},
+  year = {2001},
+  author = {A. Hyvarinen and J Karhunen and E. Oja}
+}
+
+@CONFERENCE{Ichikawa2006,
+  author = {K. Ichikawa and T. Mita and O. Hori},
+  title = {Component-based robust face detection using {A}daBoost and decision
+	tree},
+  booktitle = {Proceedings of the 7th International Conference on Automatic Face
+	and Gesture Recognition, FGR 2006},
+  year = {2006},
+  abstract = {We present a robust frontal face detection method that enables the
+	identification of face positions in images by combining the results
+	of a low-resolution whole face and individual face parts classifiers.
+	Our approach is to use face parts information and change the identification
+	strategy based on the results from individual face parts classifiers.
+	These classifiers were implemented based on AdaBoost. Moreover, we
+	propose a novel method based on a decision tree to improve performance
+	of face detectors for occluded faces. The proposed decision tree
+	method distinguishes partially occluded faces based on the results
+	from the individual classifies. Preliminarily experiments on a test
+	sample set containing non-occluded faces and occluded faces indicated
+	that our method achieved better results than conventional methods.
+	Actual experimental results containing general images also showed
+	better results.}
+}
+
+@BOOK{Jain1989,
+  title = {Fundamentals of Digital Image Processing},
+  publisher = {Prentice-Hall},
+  year = {1989},
+  author = {A. Jain}
+}
+
+@ARTICLE{Jain2000,
+  author = {A.K. Jain and P.W. Robert and J. Mao},
+  title = {Statistical Pattern Recognition: A Review},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2000},
+  volume = {22},
+  pages = {4-37},
+  number = {1}
+}
+
+@ARTICLE{Jain2004,
+  author = {A.K. Jain and A. Ross and S. Prabhakar},
+  title = {An Introduction to Biometric Recognition},
+  journal = {IEEE Transactions on Circuits and Systems for Video Technology},
+  year = {2004},
+  volume = {14},
+  pages = {4-20}
+}
+
+@ARTICLE{Jain1991,
+  author = {Anil K. Jain and Farshid Farrokhnia},
+  title = {Unsupervised texture segmentation using Gabor filters},
+  journal = {Pattern Recognition},
+  year = {1991},
+  volume = {4},
+  pages = {1167 - 1186},
+  month = {December}
+}
+
+@CONFERENCE{Jesorsky2001,
+  author = {O. Jesorsky and K. Kirchberg and R. Frischholz.},
+  title = {Robust Face Detection Using the {H}ausdorff Distance},
+  booktitle = {Proceedings of Third International Conference on Audio- and Video-based
+	Biometric Person Authentication},
+  year = {2001}
+}
+
+@ARTICLE{Jones1987,
+  author = {J. Jones and L. Palmer},
+  title = {An evaluation of two-dimensional Gabor filter model of simple receptive
+	fields in cat strait cortex},
+  journal = {Journal of Neurophysiology},
+  year = {1987},
+  volume = {58},
+  pages = {1233-1258}
+}
+
+@INPROCEEDINGS{Jones1999,
+  author = {Michael J. Jones and James M. Rehg},
+  title = {Statistical Color Models with Application to Skin Detection},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition},
+  year = {1999},
+  pages = {274-280}
+}
+
+@ARTICLE{Kadyrov2001,
+  author = {A. Kadyrov and M. Petrou},
+  title = {The Trace Transform and Its Applications},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2001},
+  volume = {23},
+  pages = {811-828},
+  number = {8},
+  month = {August}
+}
+
+@ARTICLE{Kanade1977,
+  author = {Takeo Kanade},
+  title = {Computer Recognition of Human Faces},
+  journal = {Interdisciplinary Systems Research},
+  year = {1977},
+  volume = {47},
+  pages = {1-106},
+  abstract = {Pictures o f human faces are successfully analyzed by a computer program
+	which extracts face-feature points, such as nose, mouth, eyes and
+	so on. The program was tested with more than 800 photographs. Emphasis
+	is put on the flexible picture analysis scheme with feedback which
+	was first employed in the picture analysis program with remarkable
+	success. The program consists of a collection of rather simple subroutines,
+	each of which works on the specific part of the picture, and elaborate
+	combination of them with backup procedures makes the whole process
+	flexible and adaptive. An experiment on face identification of 20
+	people was also conducted.}
+}
+
+@ARTICLE{Kass1988,
+  author = {M. Kass and A. Witkin and D. Terzopoulos},
+  title = {Snakes: Active contour models},
+  journal = {International Journal of Computer Vision},
+  year = {1988},
+  volume = {1},
+  pages = {321-331},
+  number = {4},
+  month = {January},
+  abstract = {A snake is an energy-minimizing spline guided by external constraint
+	forces and influenced by image forces that pull it toward features
+	such as lines and edges. Snakes are active contour models: they lock
+	onto nearby edges, localizing them accurately. Scale-space continuation
+	can be used to enlarge the capture region surrounding a feature.
+	Snakes provide a unified account of a number of visual problems,
+	including detection of edges, lines, and subjective contours; motion
+	tracking; and stereo matching. We have used snakes successfully for
+	interactive interpretation, in which user-imposed constraint forces
+	guide the snake near features of interest.}
+}
+
+@INPROCEEDINGS{Kaya1972,
+  author = {Y. Kaya and K. Kobayashi},
+  title = {A Basic Study on Human Face Recognition},
+  booktitle = {Frontiers of Pattern Recognition},
+  year = {1972},
+  editor = {S. Wantanabe},
+  pages = {265-289},
+  publisher = {New York: Academic}
+}
+
+@ARTICLE{Kearns1994,
+  author = {Michael Kearns and Leslie G. Valiant},
+  title = {Cryptographic Limitations on Learning Boolean Formula and Finite
+	Automata},
+  journal = {Journal of the Association for Computing Machinery},
+  year = {1994},
+  volume = {41},
+  pages = {67-95}
+}
+
+@TECHREPORT{Kelly1970,
+  author = {M.D. Kelly},
+  title = {Visual Identification of People by Computer},
+  institution = {Stanford University},
+  year = {1970},
+  type = {Stanford AI Project},
+  number = {AI-130}
+}
+
+@ARTICLE{Keys1981,
+  author = {R. Keys},
+  title = {Cubic convolution interpolation for digital image processing},
+  journal = {IEEE Transactions on Signal Processing, Acoustics, Speech, and Signal
+	Processing},
+  year = {1981},
+  volume = {29},
+  pages = {1153-1160},
+  number = {6},
+  month = {December}
+}
+
+@ARTICLE{Kirby1990,
+  author = {M. Kirby and L. Sirovich},
+  title = {Application of the Karhunen-Loeve procedure for the characterization
+	of human faces},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1990},
+  volume = {12},
+  pages = {103-108},
+  number = {1},
+  month = {Jan}
+}
+
+@INPROCEEDINGS{Kohavi1995,
+  author = {Ron Kohavi},
+  title = {A study of cross-validation and bootstrap for accuracy estimation
+	and model selection},
+  booktitle = {Proceedings of the Fourteenth International Joint Conference on Artificial
+	Intelligence},
+  year = {1995}
+}
+
+@CONFERENCE{Kong2006,
+  author = {Hui Kong and Xuchun Li and Jian-Gang Wang and Chandra Kambhamettu},
+  title = {Ensemble {LDA} for Face Recognition},
+  booktitle = {Proceedings of the International Conference on Biometrics Authentication
+	(ICBA)},
+  year = {2006}
+}
+
+@CONFERENCE{Kong2005,
+  author = {H. Kong and L. Wang and E. Teoh and J. Wang and R. Venkateswarlu},
+  title = {A framework of {2D} Fisher discriminant analysis: Application to
+	face recognition with small number of training samples},
+  booktitle = {Proceedings of IEEE Conference on Computer Vision and Pattern Recognition},
+  year = {2005}
+}
+
+@PHDTHESIS{Krueger2001,
+  author = {Volker Krueger},
+  title = {Gabor Wavelet Networks for Object Representation},
+  school = {Christian-Albrechts University, Kiel, Germany},
+  year = {2001}
+}
+
+@INPROCEEDINGS{Kruger2000,
+  author = {V. Kruger},
+  title = {Gabor wavelet network for Object representation},
+  booktitle = {Proceedings of International Dagstuhl Workshop},
+  year = {2000}
+}
+
+@INPROCEEDINGS{Kumar2000,
+  author = {V. Kumar and T. Poggio},
+  title = {Learning-based Approach to Real Time Tracking and Analysis of Faces},
+  booktitle = {Proceedings of Fourth IEEE International Conference on Automatic
+	Face and Gesture Recognition},
+  year = {2000},
+  pages = {96 - 101},
+  month = {March},
+  abstract = {This paper describes a trainable system capable of tracking faces
+	and facial features like eyes and nostrils and estimating basic mouth
+	features such as degrees of openness and smile in real time. In developing
+	this system, we have addressed the twin issues of image representation
+	and algorithms for learning. We have used the invariance properties
+	of image representations based on Haar wavelets to robustly capture
+	various facial features. Similarly, unlike previous approaches this
+	system is entirely trained using examples and does not rely on a
+	priori (hand-crafted) models of facial features based on an optical
+	flow or facial musculature. The system works in several stages that
+	begin with face detection, followed by localization of facial features
+	and estimation of mouth parameters. Each of these stages is formulated
+	as a problem in supervised learning from examples. We apply the new
+	and robust technique of support vector machines (SVM) for classification
+	in the stage of skin segmentation, face detection and eye detection.
+	Estimation of mouth parameters is modeled as a regression from a
+	sparse subset of coefficients (basis functions) of an overcomplete
+	dictionary of Haar wavelets}
+}
+
+@INPROCEEDINGS{Kwon1994,
+  author = {Y. Kwon and N. Da Vitoria Lobo},
+  title = {Face detection using templates},
+  booktitle = {International Conference on Pattern Recognition},
+  year = {1994},
+  pages = {764-767}
+}
+
+@ARTICLE{Lades1993,
+  author = {M. Lades and J. Vorbruggen and J. Buhmann and J. Lange and C.V.D.
+	Malsburg and R. Wurtz},
+  title = {Distortion Invariant Object Recognition on the Dynamic Link Architecture},
+  journal = {IEEE Transactions on Computers},
+  year = {1993},
+  volume = {42},
+  pages = {300-311}
+}
+
+@TECHREPORT{Landre2003,
+  author = {Jerome Landre},
+  title = {Programming with {I}ntel {IPP} and {Intel} {OpenCV} under {GNU} {L}inux:
+	A Beginner's Tutorial},
+  institution = {Universite de Bourgogne},
+  year = {2003}
+}
+
+@ARTICLE{Lanitis1995,
+  author = {A. Lanitis and C.J. Taylor, and T.F. Cootes},
+  title = {An Automatic Face Identification System Using Flexible Appearance
+	Models},
+  journal = {Image and Vision Computing},
+  year = {1995},
+  volume = {13},
+  pages = {393-401},
+  number = {5},
+  month = {June}
+}
+
+@ARTICLE{Lanitis1997,
+  author = {A. Lanitis and C.J. Taylor and T.F. Cootes},
+  title = {Automatic Interpretation and Coding of Face Images Using Flexible
+	Models},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1997},
+  volume = {19},
+  pages = {743-756},
+  number = {7}
+}
+
+@ARTICLE{Lee1996a,
+  author = {C.H. Lee and J.S. Kim and K.H. Park},
+  title = {Automatic Human Face Location in A Complex Background},
+  journal = {Pattern Recognition},
+  year = {1996},
+  volume = {29},
+  pages = {1877-1889}
+}
+
+@ARTICLE{Lee1996,
+  author = {T. Lee},
+  title = {Image Representation using {2D} Gabor wavelets},
+  journal = {IEEE Transaction on Pattern Analysis and Machine Intelligence},
+  year = {1996},
+  volume = {18},
+  pages = {959-971}
+}
+
+@INPROCEEDINGS{Leung1995,
+  author = {T.K. Leung and M. C. Burl and P. Perona},
+  title = {Finding faces in cluttered scenes using random labelled graph matching},
+  booktitle = {Fifth International Conference on Computer Vision},
+  year = {1995},
+  pages = {637-644},
+  month = {June},
+  key = {BuLePe295}
+}
+
+@ARTICLE{LiStan2004,
+  author = {Stan Z. Li and ZhenQiu Zhang},
+  title = {{FloatBoost} Learning and Statistical Face Detection},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Learning},
+  year = {2004},
+  volume = {26},
+  pages = {1112-1123},
+  number = {9}
+}
+
+@ARTICLE{Li1990,
+  author = {Wentian Li},
+  title = {Mutual Information Functions Versus Correlation Functions},
+  journal = {Journal of Statistical Physics},
+  year = {1990},
+  volume = {60},
+  pages = {823-837}
+}
+
+@INPROCEEDINGS{Li2004,
+  author = {Z. Li and X. Tang},
+  title = {Bayesian Face Recognition Using Support Vector Machine and Face Clustering},
+  booktitle = {Proceedings of IEEE Conference on Computer Vision and Pattern Recognition},
+  year = {2004},
+  pages = {374-380}
+}
+
+@ARTICLE{Liao2001,
+  author = {Ping Sung Liao and Tse Sheng Chen and Pau Choo Chung},
+  title = {A Fast Algorithm for Multilevel Thresholding},
+  journal = {Journal of Information Science and Engineering},
+  year = {2001},
+  volume = {17},
+  pages = {713-727}
+}
+
+@ARTICLE{Liu2004,
+  author = {C. Liu},
+  title = {Gabor-Based Kernel PCA with Fractional Power Polynomial Models for
+	Face Recognition},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2004},
+  volume = {26},
+  pages = {572-581}
+}
+
+@ARTICLE{Liu2004smc,
+  author = {C. Liu},
+  title = {Enhanced Independent Component Analysis and Its Application to Content
+	Based Face Image Retrieval},
+  journal = {IEEE Transactions on Systems, Man, and Cybernetics- Part B: Cybernetics},
+  year = {2004},
+  volume = {34},
+  pages = {1117-1127},
+  number = {2},
+  month = {April}
+}
+
+@ARTICLE{Liu2003,
+  author = {C. Liu and H. Wechsler},
+  title = {Independent Component Analysis of Gabor Features for Face Recognition},
+  journal = {IEEE Transactions on Neural Networks},
+  year = {2003},
+  volume = {14},
+  pages = {919-928}
+}
+
+@ARTICLE{Liu2002,
+  author = {C. Liu and H. Wechsler},
+  title = {Gabor Feature Based Classification Using Enhanced Fisher Linear Discriminant
+	Model for Face Recognition},
+  journal = {IEEE Transactions on Image Processing},
+  year = {2002},
+  volume = {11},
+  pages = {467-476}
+}
+
+@CONFERENCE{Liu2001,
+  author = {Chengjun Liu and Harry Wechsler},
+  title = {A Gabor Feature Classifier for Face Recognition},
+  booktitle = {Proceedings of the Eighth International Conference on Computer Vision
+	(ICCV'01)},
+  year = {2001},
+  volume = {2}
+}
+
+@BOOK{Loeve1955,
+  title = {Probability Theory},
+  publisher = {Princeton N.J},
+  year = {1955},
+  editor = {Van Nostrand},
+  author = {M. M. Loeve}
+}
+
+@ARTICLE{Lu2003,
+  author = {J. Lu and K.N. Plataniotis and A.N. Venetsanopoulos},
+  title = {Face Recognition Using {LDA}-Based Algorithms},
+  journal = {IEEE Transactions on Neural Networks},
+  year = {2003},
+  volume = {14},
+  pages = {195-200},
+  number = {1},
+  month = {January}
+}
+
+@PHDTHESIS{Lu2006,
+  author = {Xiaoguang Lu},
+  title = {{3D} Face Recognition across Pose and Expression},
+  school = {Michigan State University},
+  year = {2006}
+}
+
+@CONFERENCE{Lu2003fusion,
+  author = {X.G. Lu and Y.H. Wang and A.K. Jain},
+  title = {Combining Classifiers for Face Recognition},
+  booktitle = {Proceedings of IEEE International Conference on Multimedia and Expo},
+  year = {2003},
+  volume = {3},
+  pages = {13-16}
+}
+
+@ARTICLE{Lyons1999,
+  author = {M.J. Lyons and J. Budynek and S. Akamatsu},
+  title = {Automatic Classification of Single Facial Image},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1999},
+  volume = {21},
+  pages = {1357-1362}
+}
+
+@MISC{Ma2001,
+  author = {J. Ma and Y. Zhao and S. Ahalt and D. Eads},
+  title = {{OSU} {SVM}: A Support Vector Machine Toolbox for {M}atlab},
+  howpublished = {Online},
+  year = {2001},
+  timestamp = {2008.01.31},
+  url = {http://svm.sourceforge.net/license.shtml}
+}
+
+@ARTICLE{Manjunath1996,
+  author = {B.S. Manjunath and W.Y. Ma},
+  title = {Texture Features For Browsing and Retrieval of Image Data},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1996},
+  volume = {18},
+  pages = {837-842},
+  number = {8},
+  month = {August}
+}
+
+@ARTICLE{Martinez2001,
+  author = {Aleix Martinez and Avinash Kak},
+  title = {{PCA} versus {LDA}},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2001},
+  volume = {23},
+  pages = {228-233}
+}
+
+@TECHREPORT{Mason1999,
+  author = {L. Mason and J. Baxter and P. Bartlett and M. Frean},
+  title = {Boosting algorithm as gradient descent in function space},
+  institution = {Department of Systems Engineering, Australian National Univeristy},
+  year = {1999},
+  owner = {sir02mz},
+  timestamp = {2008.06.06}
+}
+
+@CONFERENCE{Matas2000,
+  author = {J. Matas and M. Hamous and K. Jonsson},
+  title = {Comparison of Face Verification Results on the XM2VTS Database},
+  booktitle = {Proceedings of the International Conference on Pattern Recognition},
+  year = {2000}
+}
+
+@TECHREPORT{Matas2004,
+  author = {Jiri Matas and Jan Sochman},
+  title = {AdaBoost},
+  institution = {Centre for Machine Perception, Czech Technical University, Prague},
+  year = {2004}
+}
+
+@ARTICLE{Maybank2004,
+  author = {S.J. Maybank},
+  title = {Detection of Image Structure using the Fisher Information and the
+	Rao Metric},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2004},
+  volume = {26},
+  pages = {1579- 1589},
+  number = {12},
+  month = {December}
+}
+
+@ARTICLE{McKenna1998,
+  author = {S. McKenna and S. Gong and Y. Raja},
+  title = {Modelling facial colour and identity with gaussian mixtures},
+  journal = {Pattern Recognition},
+  year = {1998},
+  volume = {31},
+  pages = {1883-1892},
+  number = {12}
+}
+
+@INPROCEEDINGS{Messer1999,
+  author = {K. Messer and J. Matas and J. Kittler and K. Jonsson},
+  title = {{XM2VTSDB}: The Extended {M2VTS} Database},
+  booktitle = {Audio- and Video-based Biometric Person Authentication, AVBPA'99},
+  year = {1999},
+  pages = {72-77},
+  address = {Washington, D.C.},
+  month = {March},
+  note = {16 IDIAP--RR 99-02}
+}
+
+@BOOK{Michel1963,
+  title = {Probability Theory },
+  publisher = {D. Van Nostrand Company, Inc},
+  year = {1963},
+  author = {Loeve Michel}
+}
+
+@BOOK{Michie1994,
+  title = {Machine Learning, Neural and Statistical Classification},
+  publisher = {Ellis Horwood Upper Saddle River},
+  year = {1994},
+  author = {D Michie and D.J. Spiegelhalter and C.C. Taylor},
+  address = {NJ, USA}
+}
+
+@INPROCEEDINGS{Ming2000,
+  author = {Hsuan Yang Ming and N. Abuja and D. Kriegman},
+  title = {Face detection using mixtures of linear subspaces},
+  booktitle = {Fourth {IEEE} International Conference on Automatic Face and Gesture
+	Recognition},
+  year = {2000},
+  pages = {70-76}
+}
+
+@ARTICLE{Moghaddam2002,
+  author = {B. Moghaddam},
+  title = {Principal Manifolds and Probabilistic Subspaces for Visual Recognition},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2002},
+  volume = {24},
+  pages = {780-788}
+}
+
+@ARTICLE{Moghaddam2000,
+  author = {B. Moghaddam and T. Jebara and A. Pentland},
+  title = {Bayesian Face Recognition},
+  journal = {Pattern Recognition},
+  year = {2000},
+  volume = {33},
+  pages = {1771-1782},
+  month = {November}
+}
+
+@ARTICLE{Moghaddam1997,
+  author = {B. Moghaddam and A. Pentland},
+  title = {Probabilistic Visual Learning for Object Representation},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1997},
+  volume = {19},
+  pages = {696-710},
+  number = {7},
+  month = {July},
+  abstract = {We present an unsupervised technique for visual learning, which is
+	based on density estimation in high-dimensional spaces using an eigenspace
+	decomposition. Two types of density estimates are derived for modeling
+	the training data: a multivariate Gaussian (for unimodal distributions)
+	and a mixture-of-Gaussians model (for multimodal distributions).
+	Those probability densities are then used to formulate a maximum-likelihood
+	estimation framework for visual search and target detection for automatic
+	object recognition and coding. Our learning technique is applied
+	to the probabilistic visual modeling, detection, recognition, and
+	coding of human faces and nonrigid objects, such as hands}
+}
+
+@BOOK{Morrison1990,
+  title = {Multivariate Statistical Methods},
+  publisher = {McGraw-Hill, New York},
+  year = {1990},
+  author = {D.F. Morrison}
+}
+
+@CONFERENCE{Nefian2000,
+  author = {A. Nefian and M. Hayes},
+  title = {Maximum likelihood training of the embedded {HMM} for face detection
+	and recognition},
+  booktitle = {Proceedings of the IEEE International Conference on Image Processing,
+	ICIP 2000},
+  year = {2000},
+  volume = {1},
+  pages = {33-36},
+  address = {Vancouver, BC, Canada},
+  month = {September}
+}
+
+@CONFERENCE{Nefian1998,
+  author = {A. Nefian and M. Hayes},
+  title = {Hidden Markov Models for Face Recognition},
+  booktitle = {Proceedings of the IEEE International Conference on Acoustics, Speech,
+	and Signal Processing, ICASSP'98},
+  year = {1998},
+  volume = {5},
+  pages = {2721-2724},
+  month = {May}
+}
+
+@ARTICLE{Ojala2002,
+  author = {Timo Ojala and Matti Pietikainen and Topi Maenpaa},
+  title = {Multiresolution Gray-Scale and Rotation Invariant Texture Classification
+	with Local Binary Patterns},
+  journal = {IEEE Transcations on Pattern Analysis and Machine Intelligence},
+  year = {2002},
+  volume = {24},
+  pages = {971-987},
+  owner = {Mian},
+  timestamp = {2008.08.15}
+}
+
+@ARTICLE{Oliver2000,
+  author = {N. Oliver and A. Pentland and F. Berard},
+  title = {{LAFTER}: a real-time face and lips tracker with facial expression
+	recognitio},
+  journal = {Pattern Recognition},
+  year = {2000},
+  volume = {33},
+  pages = {1369--1382}
+}
+
+@ARTICLE{Olshausen1996,
+  author = {B. Olshausen and D. Field},
+  title = {Emergence of Simple-cell Receptive Field Properties by Learning a
+	Sparse Code for Natural Images},
+  journal = {Nature},
+  year = {1996},
+  volume = {381},
+  pages = {607-609}
+}
+
+@ARTICLE{Opitz1999,
+  author = {David Opitz and Richard Maclin},
+  title = {Popular Ensemble Methods: An Empirical Study},
+  journal = {Journal of Artificail Intelligance Research},
+  year = {1999},
+  volume = {11},
+  pages = {169-198},
+  owner = {sir02mz},
+  timestamp = {2008.06.06}
+}
+
+@INPROCEEDINGS{Osuna1997,
+  author = {E. Osuna and R. Freund and F. Girosi},
+  title = {Training Support Vector Machines: An Application to Face Detection},
+  booktitle = {Proceedings of IEEE Conference on Computer Vision and Pattern Recognition},
+  year = {1997},
+  pages = {130-136},
+  month = {June},
+  abstract = {We investigate the application of Support Vector Machines (SVMs) in
+	computer vision. SVM is a learning technique developed by V. Vapnik
+	and his team (AT&T Bell Labs., 1985) that can be seen as a new method
+	for training polynomial, neural network, or Radial Basis Functions
+	classifiers. The decision surfaces are found by solving a linearly
+	constrained quadratic programming problem. This optimization problem
+	is challenging because the quadratic form is completely dense and
+	the memory requirements grow with the square of the number of data
+	points. We present a decomposition algorithm that guarantees global
+	optimality, and can be used to train SVM's over very large data sets.
+	The main idea behind the decomposition is the iterative solution
+	of sub-problems and the evaluation of optimality conditions which
+	are used both to generate improved iterative values, and also establish
+	the stopping criteria for the algorithm. We present experimental
+	results of our implementation of SVM, and demonstrate the feasibility
+	of our approach on a face detection problem that involves a data
+	set of 50,000 data points}
+}
+
+@ARTICLE{Otsu1979,
+  author = {N. Otsu},
+  title = {A threshold selection method from gray level histograms},
+  journal = {IEEE Transactions on Systems, Man and Cybernetics},
+  year = {1979},
+  volume = {9},
+  pages = {62-66},
+  month = {March},
+  note = {minimize inter class variance},
+  keywords = {threshold selection}
+}
+
+@INPROCEEDINGS{Pelleg2000,
+  author = {D. Pelleg and A. Moore},
+  title = {X-means: Extending {K}-means with efficient estimation of the number
+	of the clusters},
+  booktitle = {Proceedings of International Conference on Machine Learning},
+  year = {2000}
+}
+
+@ARTICLE{Penev1996,
+  author = {P. S. Penev and J. J. Atick},
+  title = {Local feature analysis: A general statistical theory for object representation},
+  journal = {Neural Systems},
+  year = {1996},
+  volume = {7},
+  pages = {477-500}
+}
+
+@ARTICLE{Peng2005,
+  author = {Hanchuan Peng and Fuhui Long and Chris Ding},
+  title = {Feature Selection Based on Mutual Information: Criteria of Max-Dependency,
+	Max-Relevance, and Min-Redundancy},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2005},
+  volume = {27},
+  pages = {1226-1238}
+}
+
+@INPROCEEDINGS{Pentland1994,
+  author = {A. Pentland and B. Moghaddam and T. Starner},
+  title = {View-based and Modular Eigenspaces for Face Recognition},
+  booktitle = {In Proceedings of IEEE Conference on Computer Vision and Pattern
+	Recognition},
+  year = {1994}
+}
+
+@CONFERENCE{Phillips1997,
+  author = {P.J. Phillips and H. Moon and P. Rauss and S.A. Rizvi},
+  title = {The {FERET} Methodology for Face Recognition Algorithm},
+  booktitle = {Proceedings of the International Conference on Computer Vision and
+	Pattern Recognition},
+  year = {1997},
+  pages = {137-143}
+}
+
+@ARTICLE{Phillips1998,
+  author = {P.J. Phillips and H. Wechsler and J. Huang and P.J. Rauss},
+  title = {The {FERET} Database and Evaluation Procedure for Face Recognition
+	Algorithm},
+  journal = {Image and Vision Computing},
+  year = {1998},
+  volume = {16},
+  pages = {295-306},
+  number = {5}
+}
+
+@ARTICLE{Phillips2000,
+  author = {P. Jonathon Phillips and Hyeonjoon Moon and Syed A. Rizvi and Patrick
+	J.Rauss},
+  title = {The {FERET} Evaluation Methodology for Face-Recognition Algorithms},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2000},
+  volume = {22},
+  pages = {1090-1104},
+  number = {10},
+  month = {October}
+}
+
+@TECHREPORT{Phillips1996,
+  author = {P. Jonathon Phillips and Patrick J. Rauss and Sandor Z. Der},
+  title = {{FERET} (Face Recognition Technology) Recognition Algorithm Development
+	and Test Results},
+  institution = {Army Research Lab},
+  year = {1996}
+}
+
+@ARTICLE{Pope2001,
+  author = {Chris Pope},
+  title = {Ways to Keep the Terrorist Grounded},
+  journal = {Professional Engineering},
+  year = {2001},
+  volume = {14},
+  pages = {20-21}
+}
+
+@BOOK{Press1992,
+  title = {Numerical Recipes in {C}},
+  publisher = {Cambridge University Press},
+  year = {1992},
+  author = {W.H. Press and S.A. Teukolsky and W.T. Vetterling and B.P. Flannery},
+  owner = {sir02mz},
+  timestamp = {2008.04.13}
+}
+
+@ARTICLE{Pudil1994,
+  author = {P. Pudil and J. Novovicova and J. Kittler},
+  title = {Floating Search methods in feature selection},
+  journal = {Pattern Recognition Letters},
+  year = {1994},
+  volume = {11},
+  pages = {1119-1125},
+  owner = {Mian},
+  timestamp = {2008.08.15}
+}
+
+@TECHREPORT{Martinez1998,
+  author = {A. R.Martinez and R. Benavente},
+  title = {The {AR} face database},
+  institution = {Computer Vision Center},
+  year = {1998},
+  number = {24}
+}
+
+@ARTICLE{Rao1995,
+  author = {R. Rao and D. Ballard},
+  title = {An Active Vision Architecture based on Iconic Representations},
+  journal = {Artificail Intelligance},
+  year = {1995},
+  volume = {78},
+  pages = {461-505}
+}
+
+@ARTICLE{Ratsch2002,
+  author = {Gunnar Ratsch and Sebastian Mika and Bernhard Scholkopf and Klaus-Robert
+	Muller},
+  title = {Constructing Boosting Algorithms from {SVMs}: An Application to One-Class
+	Classification},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2002},
+  volume = {24},
+  pages = {1184 - 1199}
+}
+
+@ARTICLE{Raudys1991,
+  author = {S. Raudys and A. Jain},
+  title = {Small Sample Size Effects in Statistical Pattern Recognition: Recommendations
+	for Practitioners},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1991},
+  volume = {13},
+  pages = {252-264},
+  number = {3}
+}
+
+@CONFERENCE{Riedmiller1993,
+  author = {M. Riedmiller and H. Braun},
+  title = {A Direct Adaptive Method for Faster Backpropagation Learning: The
+	{RPROP} Algorithm},
+  booktitle = {Proceeding of International Conference on Neural Network},
+  year = {1993}
+}
+
+@BOOK{Ripley1996,
+  title = {Pattern Recognition and Neural Networks},
+  publisher = {Cambridge University Press},
+  year = {1996},
+  author = {B. Ripley}
+}
+
+@CONFERENCE{Rizvi1998,
+  author = {S.A. Rizvi and P.J. Phillips and H. Moon},
+  title = {A Verification Protocol and Statistical Performance Analysis for
+	Face Recognition Algorithm},
+  booktitle = {Proceedings of the International Conference on Computer Vision and
+	Pattern Recognition},
+  year = {1998},
+  pages = {833-838}
+}
+
+@CONFERENCE{Rizvi1998fg,
+  author = {S.A. Rizvi and P.J. Phillips and H. Moon},
+  title = {The {FERET} Verification Testing Protocol for Face Recognition Algorithm},
+  booktitle = {Proceedings of the International Conference on Automatic Face and
+	Gesture Recognition},
+  year = {1998},
+  number = {48-53}
+}
+
+@ARTICLE{Rosenblatt1958,
+  author = {Frank Rosenblatt},
+  title = {The Perceptron: A Probabilistic Model for Information Storage and
+	Organization in the Brain},
+  journal = {Psychological Review},
+  year = {1958},
+  volume = {65},
+  pages = {3860408}
+}
+
+@INPROCEEDINGS{Rowley1998,
+  author = {H. Rowley and S. Baluja and T. Kanade},
+  title = {Rotation Invariant Neural Network-Based Face Detection},
+  booktitle = {Proceedings of IEEE Conference on Computer Vision and Pattern Recognition},
+  year = {1998},
+  pages = {38-44},
+  month = {June}
+}
+
+@ARTICLE{Rowley1998a,
+  author = {H. Rowley and S. Baluja and T. Kanade},
+  title = {Neural network-based face detection},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1998},
+  volume = {20},
+  pages = {23-38},
+  month = {Jan},
+  abstract = {We present a neural network-based upright frontal face detection system.
+	A retinally connected neural network examines small windows of an
+	image and decides whether each window contains a face. The system
+	arbitrates between multiple networks to improve performance over
+	a single network. We present a straightforward procedure for aligning
+	positive face examples for training. To collect negative examples,
+	we use a bootstrap algorithm, which adds false detections into the
+	training set as training progresses. This eliminates the difficult
+	task of manually selecting nonface training examples, which must
+	be chosen to span the entire space of nonface images. Simple heuristics,
+	such as using the fact that faces rarely overlap in images, can further
+	improve the accuracy. Comparisons with several other state-of-the-art
+	face detection systems are presented, showing that our system has
+	comparable performance in terms of detection and false-positive rates}
+}
+
+@ARTICLE{Sahoo1988,
+  author = {P.K. Sahoo and S. Soltani and A.K. Wong and Y.C. Chan},
+  title = {A survey of thresholding techniques},
+  journal = {Computer Vision, Graphics and Image Processing},
+  year = {1988},
+  volume = {41},
+  pages = {233-260}
+}
+
+@INPROCEEDINGS{Sakai1972,
+  author = {T. Sakai and M. Nagao and T. Kanade},
+  title = {Computer Analysis and Classification of Photographs of Human Faces},
+  booktitle = {First USA-JAPAN Computer Conference},
+  year = {1972},
+  pages = {55-62}
+}
+
+@PHDTHESIS{samaria94face,
+  author = {F.S. Samaria},
+  title = {Face Recognition Using Hidden Markov Models},
+  school = {University of Cambridge},
+  year = {1994}
+}
+
+@INPROCEEDINGS{Samaria1994,
+  author = {Ferdinando S. Samaria and Andy C. Harter},
+  title = {Parameterisation of a Stochastic Model for human Face Identification},
+  booktitle = {IEEE 2nd Workshop on Applications of Computer Vision},
+  year = {1994},
+  pages = {138{\"i}142},
+  address = {Sarasota (Florida)},
+  month = {December}
+}
+
+@ARTICLE{Satoh1999,
+  author = {S. Satoh and Y. Nakamura and T. Kanade},
+  title = {{Name-It}: Naming and Detecting Faces in News Videos},
+  journal = {IEEE Multimedia},
+  year = {1999},
+  volume = {6},
+  pages = {22-35},
+  number = {6},
+  month = {Jan-Mar},
+  abstract = {We developed Name-It, a system that associates faces and names in
+	news videos. It processes information from the videos and can infer
+	possible name candidates for a given face or locate a face in news
+	videos by name. To accomplish this task, the system takes a multimodal
+	video analysis approach: face sequence extraction and similarity
+	evaluation from videos, name extraction from transcripts, and video-caption
+	recognition}
+}
+
+@INPROCEEDINGS{Saxe1996a,
+  author = {D. Saxe and R. Foulds},
+  title = {Toward Robust Skin Identification in Video Images},
+  booktitle = {Proceedings of Second International Conference on Automatic Face
+	and Gesture Recognition},
+  year = {1996},
+  pages = {379-384}
+}
+
+@ARTICLE{Schapire1990,
+  author = {R.E. Schapire},
+  title = {The strength of weak learnability},
+  journal = {Machine Learning},
+  year = {1990},
+  volume = {5},
+  pages = {197-227},
+  number = {2}
+}
+
+@CONFERENCE{Schapire1997,
+  author = {R. Schapire and Y. Freund and P. Bartlett and W. Lee},
+  title = {Boosting the margin: A new explanation for the effectiveness of voting
+	methods},
+  booktitle = {Proceedings of the Fourteenth International Conference on Machine
+	Learning},
+  year = {1997},
+  owner = {sir02mz},
+  timestamp = {2008.06.06}
+}
+
+@INPROCEEDINGS{Schapire1998,
+  author = {R.E. Schapire and Y. Singer},
+  title = {Improved Boosting Algorithms Using Confidence-Rated Predictions},
+  booktitle = {Proceedings of The 11th Annal Conference on Computational Learning
+	Theory},
+  year = {1998},
+  number = {80-91}
+}
+
+@INPROCEEDINGS{Schapire1999,
+  author = {Robert E. Schapire},
+  title = {A Brieft Introduction to Boosting},
+  booktitle = {Proceedings of the Sixteenth International Joint Conference on Artificial
+	Intelligence},
+  year = {1999}
+}
+
+@ARTICLE{Schapire1999ml,
+  author = {R. E. Schapire and Y. Singer},
+  title = {Improved Boosting Algorithm using Confidence-rated Predictions},
+  journal = {Machine Learning},
+  year = {1999},
+  volume = {37},
+  pages = {297-336},
+  owner = {Mian},
+  timestamp = {2008.08.15}
+}
+
+@ARTICLE{Schiele2000,
+  author = {B. Schiele and J. Crowley},
+  title = {Recognition without Correspondence using Multi-dimensional Receptive
+	Field Histograms},
+  journal = {International Journal on Computer Vision},
+  year = {2000},
+  volume = {36},
+  pages = {31-52}
+}
+
+@INPROCEEDINGS{Schneiderman2000,
+  author = {H. Schneiderman and T. Kanade},
+  title = {A Statistical Method for {3D} Object Detection Applied to Faces and
+	Cars},
+  booktitle = {Proceedings of IEEE Conference on Computer Vision and Pattern Recognition},
+  year = {2000},
+  volume = {1},
+  pages = {746-751}
+}
+
+@INPROCEEDINGS{Schneiderman1998,
+  author = {H. Schneiderman and T. Kanade},
+  title = {Probabilistic Modeling of Local Appearance and Spatial Relationship
+	for Object Recognition},
+  booktitle = {Proceedings of IEEE Conference on Computer Vision and Pattern Recognition},
+  year = {1998},
+  pages = {45-51}
+}
+
+@ARTICLE{Scholkopf1998,
+  author = {B. Scholkopf and A. Smola and K.R. Muller},
+  title = {Nonlinear Component Analysis as a Kernel Eigenvalue Problem},
+  journal = {Neural Computation},
+  year = {1998},
+  volume = {10},
+  pages = {1299-1319}
+}
+
+@CONFERENCE{Shan2005,
+  author = {Caifeng Shan and Shaogang Gong and Peter W. McOwan},
+  title = {Conditional Mutual Information Based Boosting for Facial Expression
+	Recognition},
+  booktitle = {Proccedings of British Machine Vision Conference},
+  year = {2005}
+}
+
+@PHDTHESIS{Shashua1994,
+  author = {A. Shashua},
+  title = {Geometry and Photometry in {3D} Visual Recognition},
+  school = {Massachusetts Institute of Technology},
+  year = {1994}
+}
+
+@ARTICLE{Shen2006,
+  author = {Linlin Shen and Li Bai},
+  title = {{MutualBoost} learning for selecting Gabor features for face recognition},
+  journal = {Pattern Recognition Letters},
+  year = {2006},
+  volume = {27},
+  pages = {1758-1767}
+}
+
+@CONFERENCE{Shen2005,
+  author = {Linlin Shen and Li Bai and Bardsley Daniel and Yangsheng Wang},
+  title = {Gabor Feature Selection for Face Recognition using Improved {A}daBooost
+	Learning},
+  booktitle = {Proceedings of International workshop on biometric recognition systems},
+  year = {2005},
+  owner = {Mian},
+  timestamp = {2008.08.15}
+}
+
+@ARTICLE{Sim2003,
+  author = {T. Sim and S. Baker and M. Bsat},
+  title = {The {CMU} Pose, Illumination, and Expression Database},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2003},
+  volume = {25},
+  pages = {1615-1618},
+  number = {12},
+  month = {December}
+}
+
+@ARTICLE{Sinha2006,
+  author = {Pawan Sinha and Benjamin Balas and Yuri Ostrovsky and Richard Russell},
+  title = {Face Recognition by Humans: Nineteen Results All Computer Vision
+	Researchers Should Know About},
+  journal = {Proceedings of The IEEE},
+  year = {2006},
+  volume = {94},
+  pages = {1948-1962},
+  number = {11},
+  month = {November}
+}
+
+@TECHREPORT{Sirohey1993,
+  author = {Saad Ahmed Sirohey},
+  title = {Human Face Segmentation and Identification},
+  institution = {University of Maryland},
+  year = {1993},
+  number = {CS-TR-317}
+}
+
+@ARTICLE{Snow2002,
+  author = {C. Snow and H. Nguyen and V. S. Pande and M. Gruebele},
+  title = {Absolute comparison of simulated and experimental protein-folding
+	dynamics},
+  journal = {Nature},
+  year = {2002},
+  volume = {420},
+  pages = {102-106},
+  number = {6911}
+}
+
+@INCOLLECTION{Sollich1995,
+  author = {P. Sollich and A. Krogh},
+  title = {Learning with ensembles: How over-fitting can be useful},
+  booktitle = {Advances in Neural Information Processing Systems},
+  publisher = {MIT Press},
+  year = {1995},
+  editor = {D. Touretsky and M. Mozer and M. Hasselmo},
+  volume = {8},
+  pages = {190-196}
+}
+
+@BOOK{Sonka1998,
+  title = {Image Processing, Analysis, and Machine Vision},
+  publisher = {Thomson-Engineering},
+  year = {1998},
+  author = {Milan Sonka and Vaclav Hlavac and Roger Boyle},
+  month = {September}
+}
+
+@CONFERENCE{Srisuk2003EE,
+  author = {S. Srisuk and W. Kurutach},
+  title = {Face Recognition using a New Texture Representation of Face Images},
+  booktitle = {Proceedings of Electrical Engineering Conference},
+  year = {2003},
+  pages = {1097-1102},
+  address = {Cha-am, Thailand},
+  month = {November}
+}
+
+@CONFERENCE{Srisuk2003,
+  author = {S. Srisuk and M. Petrou and W. Kurutach and A. Kadyrov},
+  title = {Face Authentication using the Trace Transform},
+  booktitle = {Proceedings of the IEEE Computer Society Conference on Computer Vision
+	and Pattern Recognition (CVPR'03)},
+  year = {2003},
+  pages = {305-312},
+  address = {Madison, Wisconsin, USA},
+  month = {June}
+}
+
+@ARTICLE{Sung1996,
+  author = {K. -K. Sung and T. Poggio},
+  title = {Example-Based Learning for View-Based Human Face Detection},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1996},
+  volume = {20},
+  pages = {39 - 51},
+  number = {1},
+  month = {Jan},
+  abstract = {We present an example-based learning approach for locating vertical
+	frontal views of human faces in complex scenes. The technique models
+	the distribution of human face patterns by means of a few view-based
+	"face" and "nonface" model clusters. At each image location, a difference
+	feature vector is computed between the local image pattern and the
+	distribution-based model. A trained classifier determines, based
+	on the difference feature vector measurements, whether or not a human
+	face exists at the current image location. We show empirically that
+	the distance metric we adopt for computing difference feature vectors,
+	and the "nonface" clusters we include in our distribution-based model,
+	are both critical for the success of our system.}
+}
+
+@ARTICLE{Swet1996,
+  author = {D.L. Swet and J. Weng},
+  title = {Using Discriminant Eigenfeatures for Image Retrieval},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1996},
+  volume = {18},
+  pages = {831-836}
+}
+
+@BOOK{Taylor2004,
+  title = {Kernel Methods for Pattern Analysis},
+  publisher = {Cambridge University Press},
+  year = {2004},
+  author = {John Shawe Taylor and Nello Cristianini},
+  timestamp = {2008.01.31}
+}
+
+@ARTICLE{Tefas2001,
+  author = {A. Tefas and C. Kotropoulos and I. Pitas},
+  title = {Using Support Vector Machines to Enhance the Performance of Elastic
+	Graph Matching for Frontal Face Authentication},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2001},
+  volume = {23},
+  pages = {735-746},
+  number = {7},
+  month = {July}
+}
+
+@ARTICLE{Tenenbaum2000,
+  author = {Joshua B. Tenenbaum and Vin de Silva and John C. Langford},
+  title = {A Global Geometric Framework for Nonlinear Dimensionality Reduction},
+  journal = {SCIENCE},
+  year = {2000},
+  volume = {290},
+  pages = {2319-2323}
+}
+
+@INPROCEEDINGS{Terrillon2000,
+  author = {T. Terrillon and M. Shirazi and M.Sadek and H. Fukamachi and S. Akamatsu},
+  title = {Invariant Face Detection with Support Vector Machines},
+  booktitle = {Proceedings of the 15th International Conference on Pattern Recognition},
+  year = {2000},
+  volume = {4},
+  pages = {210-217},
+  month = {September},
+  abstract = {This paper present an analysis of the performance of support vector
+	machines (SVMs) for automatic detection of human faces in static
+	color images of complex scenes. Skin color-based image segmentations
+	initially performed for several different chrominance spaces by use
+	of the single Gaussian chrominance model and a Gaussian mixture density
+	model. Feature extraction in the segmented images is then implemented
+	by use of invariant orthogonal Fourier-Mellin moments. For all chrominance
+	spaces, the application of SVMs to the invariant moments obtained
+	from a set of 100 test images yields a higher face detection performance
+	than when applying a 3-layer perceptron neural network (NN), depending
+	on a suitable selection of the kernel function used to train the
+	SVM and of the value of its associated parameter(s). The training
+	of SVMs is easier and faster than that of a NN, always finds a global
+	minimum, and SVMs have a better generalization ability}
+}
+
+@ARTICLE{Teuner1995,
+  author = {Andreas Teuner and Olaf Pichler and Bedrich J. Hosticka},
+  title = {Unsupervised Texture Segmentation of Image Using Tuned Matched Gabor
+	Filters},
+  journal = {IEEE Transactions on Image Processing},
+  year = {1995},
+  volume = {4},
+  pages = {863-870},
+  number = {6}
+}
+
+@INCOLLECTION{Thain2002,
+  author = {Douglas Thain and Todd Tannenbaum and Miron Livny},
+  title = {{C}ondor and the {G}rid},
+  booktitle = {Grid Computing: Making the Global Infrastructure a Reality},
+  publisher = {John Wiley \& Sons Inc.},
+  year = {2002},
+  editor = {Fran Berman and Geoffrey Fox and Tony Hey},
+  month = {December}
+}
+
+@ARTICLE{Turk1991,
+  author = {M. Turk and A. Pentland},
+  title = {Eigenfaces for Recognition},
+  journal = {Journey of Cognitive Neuroscience},
+  year = {1991},
+  volume = {3},
+  pages = {71-86},
+  number = {1}
+}
+
+@ARTICLE{Valiant1984,
+  author = {L. G. Valiant},
+  title = {A Theory of the Learnable},
+  journal = {Communications of the ACM},
+  year = {1984},
+  volume = {27},
+  pages = {1134-1142}
+}
+
+@BOOK{Vapnik1995,
+  title = {The Nature of Statistical Learning Theory},
+  publisher = {Springer-Verlag},
+  year = {1995},
+  editor = {New York},
+  author = {V. Vapnik}
+}
+
+@ARTICLE{Viola2004,
+  author = {P. Viola and M. Jones},
+  title = {Robust Real-time Object Detection},
+  journal = {International Journal of Computer Vision},
+  year = {2004},
+  volume = {57},
+  pages = {137-154},
+  number = {2},
+  month = {May},
+  abstract = {This paper describes a face detection framework that is capable of
+	processing images extremely rapidly while achieving high detection
+	rates. There are three key contributions. The first is the introduction
+	of a new image representation called the ldquoIntegral Imagerdquo
+	which allows the features used by our detector to be computed very
+	quickly. The second is a simple and efficient classifier which is
+	built using the AdaBoost learning algorithm (Freund and Schapire,
+	1995) to select a small number of critical visual features from a
+	very large set of potential features. The third contribution is a
+	method for combining classifiers in a ldquocascaderdquo which allows
+	background regions of the image to be quickly discarded while spending
+	more computation on promising face-like regions. A set of experiments
+	in the domain of face detection is presented. The system yields face
+	detection performance comparable to the best previous systems (Sung
+	and Poggio, 1998; Rowley et al., 1998; Schneiderman and Kanade, 2000;
+	Roth et al., 2000). Implemented on a conventional desktop, face detection
+	proceeds at 15 frames per second.}
+}
+
+@INPROCEEDINGS{Viola2001,
+  author = {P. Viola and M. Jones},
+  title = {Rapid Object Detection using a Boosted Cascade of Simple Features},
+  booktitle = {Proceedings of IEEE Conference on Computer Vision and Pattern Recognition},
+  year = {2001},
+  volume = {1},
+  pages = {511-518}
+}
+
+@ARTICLE{Wactlar1996,
+  author = {H.D. Wactlar and T. Kanade and M.A. Smith and S.M. Stevens},
+  title = {Intelligent Access to Digital Video: Informedia Project},
+  journal = {IEEE Computing},
+  year = {1996},
+  volume = {29},
+  pages = {46-52},
+  number = {5}
+}
+
+@INPROCEEDINGS{Wang2000,
+  author = {C. Wang and S.M. Griebel and M.S. Brandstein},
+  title = {Robust Automatic Video-Conferencing with Multiple Cameras and Microphones},
+  booktitle = {Proceedings of IEEE international Conference on Multimedia and Expo},
+  year = {2000}
+}
+
+@CONFERENCE{Wang2006,
+  author = {H. Wang and J. Yin and J. Pei and P. S. Yu and J. X. Yu},
+  title = {Suppressing Model Overfitting in Mining Concept-Drifting Data Streams},
+  booktitle = {Proceedings of the 12th ACM SIGKDD International Conference on Knowledge
+	Discovery and Data Mining (KDD'06)},
+  year = {2006},
+  owner = {sir02mz},
+  timestamp = {2008.06.06}
+}
+
+@CONFERENCE{Weyrauch2004,
+  author = {B. Weyrauch and J. Huang and B. Heisele and V. Blanz},
+  title = {Component-based face recognition with {3D} morphable models},
+  booktitle = {Proceedings of CVPR Workshop on Face Processing in Video (FPIV'04)},
+  year = {2004}
+}
+
+@MISC{wiki:LUT,
+  author = {Wikipedia},
+  title = {Lookup table --- Wikipedia{,} The Free Encyclopedia},
+  year = {2008},
+  note = {[Online; accessed 9-May-2008]},
+  url = {\url{http://en.wikipedia.org/w/index.php?title=Lookup_table&oldid=208031351}}
+}
+
+@MISC{wiki:ppm,
+  author = {Wikipedia},
+  title = {Netpbm format --- Wikipedia{,} The Free Encyclopedia},
+  year = {2008},
+  note = {[Online; accessed 21-April-2008]},
+  url = {http://en.wikipedia.org/w/index.php?title=Netpbm_format&oldid=201875818}
+}
+
+@INPROCEEDINGS{Wiskott1999,
+  author = {L. Wiskott and J.M. Fellous and N. Kruger and C. Malsburg},
+  title = {Face Recognition by Elastic Bunch Graph Matching},
+  booktitle = {Intelligent Biometric Techniques in Fingerprint and Face Recognition},
+  year = {1999},
+  editor = {L.C. Jain et al},
+  pages = {355-396},
+  publisher = {CRC Press}
+}
+
+@ARTICLE{Wiskott1997,
+  author = {L. Wiskott and J.M. Fellous and N. Kruger and C. Malsburg},
+  title = {Face Recognition by Elastic Bunch Graph Matching},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {1997},
+  volume = {19},
+  pages = {775-779}
+}
+
+@CONFERENCE{Wu2004glasses,
+  author = {Bo Wu and Haizhou Ai and Ran Liu},
+  title = {Glasses Detection by Boosting Simple Wavelet Features},
+  booktitle = {ICPR '04: Proceedings of the Pattern Recognition, 17th International
+	Conference on (ICPR'04) Volume 1},
+  year = {2004},
+  pages = {292--295},
+  organization = {Washington, DC, USA},
+  publisher = {IEEE Computer Society},
+  doi = {http://dx.doi.org/10.1109/ICPR.2004.416}
+}
+
+@CONFERENCE{Wu2004,
+  author = {X.J. Wu and J. Kittler and J.Y. Yang and K. Messer and S.T. Wang},
+  title = {A new Direct {LDA} ({D-LDA}) Algorithm for Feature Extraction in
+	Face Recognition.},
+  booktitle = {Proceedings of International Conference on Pattern Recognition},
+  year = {2004}
+}
+
+@INPROCEEDINGS{Xu1998,
+  author = {G. Xu and T. Sugimoto},
+  title = {Rits eye: A Software-based System for Realtime Face Detection and
+	Tracking using Pan-tilt-zoom Controllable Camera},
+  booktitle = {Proceedings of International Conference on Pattern Recognition},
+  year = {1998}
+}
+
+@ARTICLE{Yang2004,
+  author = {J. Yang and D. Zhang and A.F. Frangi and J. Yang},
+  title = {Two-dimensional {PCA}: a new approach to appearance-based face representation
+	and recognition},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2004},
+  volume = {26},
+  pages = {131-137}
+}
+
+@CONFERENCE{Yang2002,
+  author = {M.H. Yang},
+  title = {Kernel Eigenfaces vs. Kernel Fisherfaces: Face Recognition Using
+	Kernel Methods},
+  booktitle = {Proceedings of the Fifth IEEE International Conference on Automatic
+	Face and Gesture Recognition},
+  year = {2002}
+}
+
+@CONFERENCE{Yang2002ICIP,
+  author = {Ming-Hsuan Yang},
+  title = {Face recognition using extended isomap},
+  booktitle = {Proceedings of Image Processing. 2002. Proceedings. 2002 International
+	Conference on},
+  year = {2002}
+}
+
+@CONFERENCE{Yang2004fg,
+  author = {Peng Yang and Shiguang Shan and Wen Gao and Stan Li and Dong Zhang},
+  title = {Face Recognition Using {Ada-Boosted} Gabor Features},
+  booktitle = {Proceedings of the 6th IEEE International Conference on Automatic
+	Face and Gesture Recognition},
+  year = {2004}
+}
+
+@CONFERENCE{Young2005,
+  author = {David Young and James Ferryman},
+  title = {Faster learning via optimised {A}daboost},
+  booktitle = {IEEE Conference on Advanced Video and Signal Based Surveillance,
+	2005. AVSS 2005.},
+  year = {2005}
+}
+
+@ARTICLE{Yow1997,
+  author = {K. Yow and R. Cipolla},
+  title = {Feature-based human face detection},
+  journal = {Image and Vision Computing},
+  year = {1997},
+  volume = {15},
+  pages = {713-735},
+  number = {9}
+}
+
+@INPROCEEDINGS{Zhang1998,
+  author = {Z. Zhang and M. Lyons and M. Schuster and S. Akamastsu},
+  title = {Comparison between Geometry-Based and Gabor Wavelets-Based Facial
+	Expression Recognition Using Multi-Layer Perceptron},
+  booktitle = {Proceeding of International Conference on Automatic Face and Gesture
+	Recognition},
+  year = {1998},
+  volume = {1},
+  pages = {454-457}
+}
+
+@CONFERENCE{Zhao2000,
+  author = {W. Zhao and R. Chellappa},
+  title = {{SFS} based view synthesis for robust face recognition},
+  booktitle = {Proceedings of IEEE International Conference on Automatic Face and
+	Gesture Recognition},
+  year = {2000},
+  pages = {285-292}
+}
+
+@INPROCEEDINGS{Zhao1998,
+  author = {W. Zhao and R. Chellappa and A. Krishnaswamy},
+  title = {Discriminant Analysis of Principal Components for Face Recognition},
+  booktitle = {Proceedings of the 3rd IEEE International Conference on Face and
+	Gesture Recognition, FG'98},
+  year = {1998}
+}
+
+@ARTICLE{Zhao2003,
+  author = {W. Zhao and R. Chellappa and A. Rosenfeld and P.J. Phillips},
+  title = {Face Recognition: A Literature Survey},
+  journal = {ACM Computing Surveys},
+  year = {2003},
+  volume = {1},
+  pages = {399-458}
+}
+
+@CONFERENCE{zhou2006icpr,
+  author = {Mian Zhou and Hong Wei},
+  title = {Face Verification Using Gabor Wavelets and {A}daBoost},
+  booktitle = {Proceedings of 18th International Conference on Pattern Recognition},
+  year = {2006}
+}
+
+@CONFERENCE{zhou2006acv,
+  author = {Mian Zhou and Hong Wei and Stephen J. Maybank},
+  title = {Gabor Wavelets and {A}daBoost in Feature Selection for Face Verification},
+  booktitle = {Proceedings of Applications of Computer Vision 2006 workshop in conjunction
+	with ECCV2006},
+  year = {2006},
+  pages = {101-109},
+  month = {May}
+}
+
+@CONFERENCE{Zhou2004,
+  author = {S. Zhou and R. Chellappa and B. Moghaddam},
+  title = {Intra-personal kernel space for face recognition},
+  booktitle = {Proceedings of the 6th International Conference on Automatic Face
+	and Gesture Recognition, FGR2004,},
+  year = {2004}
+}
+
+@UNPUBLISHED{Zhu2006,
+  author = {Ji Zhu and Saharon Rosset and Hui Zhou and Trevor Hastie},
+  title = {Multi-class {A}daBoost},
+  note = {A multiclass generalization of the Adaboost algorithm, based on a
+	generalization of the exponential loss},
+  year = {2006}
+}
+
+@MISC{biomcons,
+  title = {Biometric {C}onsortium, http://www.biometrics.org},
+  url = {http://www.biometrics.org/}
+}
+
+@MISC{intlbiogroup,
+  title = {International Biometrics Group, http://www.biometricgroup.com}
+}
+

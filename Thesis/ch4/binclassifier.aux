@@ -1,0 +1,285 @@
+\relax 
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Gabor Boosting Binary Classification}{16}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:bin}{{4}{16}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Gabor Wavelet and AdaBoost on Face Verification}{16}}
+\newlabel{sec:faceveri}{{4.1}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Face Verification}{16}}
+\@writefile{toc}{\contentsline {paragraph}{Inspiration}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Gabor Wavelet}{16}}
+\newlabel{sec:faceveri:gabor}{{4.1.2}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{Gabor Wavelet Introduction}{16}}
+\citation{Dunn1994}
+\citation{Dunn1995}
+\citation{Jain1991}
+\citation{Daugman1985}
+\citation{Daugman1988}
+\citation{Daugman1988}
+\citation{Daugman1993}
+\citation{Lades1993}
+\citation{Wiskott1997}
+\citation{Wiskott1999}
+\citation{Phillips2000}
+\citation{Liu2002}
+\citation{Liu2004}
+\citation{Fan2004}
+\@writefile{toc}{\contentsline {subsubsection}{Gabor Wavelet Background}{17}}
+\citation{Hong1998}
+\citation{Wiskott1997}
+\citation{Wiskott1999}
+\citation{Zhang1998}
+\citation{Lyons1999}
+\citation{Daugman1988}
+\citation{Dunn1994}
+\@writefile{toc}{\contentsline {subsubsection}{The Definition of Gabor Wavelet}{18}}
+\citation{Krueger2001}
+\newlabel{eq:kernel}{{4.1}{19}}
+\newlabel{eq:wavevector}{{4.2}{19}}
+\@writefile{toc}{\contentsline {paragraph}{Why becomes Wavelets}{19}}
+\newlabel{eq:gaussian}{{4.3}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces The real part of the $5\times 8$ Gabor wavelets. These Gabor wavelets share 5 scales and 8 orientations. These orientations from left to right are $0,{\begingroup \pi \endgroup \over 8},{\begingroup \pi \endgroup \over 4},{\begingroup 3\pi \endgroup \over 8},{\begingroup \pi \endgroup \over 2},{\begingroup 5\pi \endgroup \over 8},{\begingroup 3\pi \endgroup \over 4},$ and ${\begingroup 7\pi \endgroup \over 8},$. The scales from top to bottom are $0$, $1$, $2$, $3$, $4$.}}{20}}
+\newlabel{fig:realgabor}{{4.1}{20}}
+\newlabel{eq:real}{{4.4}{20}}
+\newlabel{eq:imag}{{4.5}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces The imaginary part of the $5\times 8$ Gabor wavelets.}}{21}}
+\newlabel{fig:imaggabor}{{4.2}{21}}
+\@writefile{toc}{\contentsline {subsubsection}{Gabor Wavelet Transform}{21}}
+\@writefile{toc}{\contentsline {paragraph}{Why Gabor is important for Face Recognition}{21}}
+\@writefile{toc}{\contentsline {paragraph}{Convolution}{21}}
+\citation{Davies1990}
+\newlabel{eq:conv2}{{4.6}{22}}
+\@writefile{toc}{\contentsline {paragraph}{2D discrete convolution}{22}}
+\citation{Dunn1995}
+\@writefile{toc}{\contentsline {paragraph}{The Size of Mask}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces When the orientation is ${\begingroup 3\pi \endgroup \over 8}$, the corresponding Gabor filtering convolution masks with the five different spatial frequencies $\nu \in \{-1,\dots  ,3\}$.}}{24}}
+\newlabel{fig:fivemasks}{{4.1.2}{24}}
+\@writefile{toc}{\contentsline {paragraph}{Magnitude Response}{24}}
+\newlabel{eq:conv}{{4.10}{24}}
+\citation{Bovik1990}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces A face image selected from the \textbf  {FERET} database}}{25}}
+\newlabel{fig:afaceimage}{{4.4}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces The 40 real response images. The face image shown in \unhbox \voidb@x \hbox {Figure} 4.4\hbox {} is convolved with the real unit of these 40 Gabor wavelets.}}{25}}
+\newlabel{fig:realresponses}{{4.5}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces The 40 imaginary responses}}{26}}
+\newlabel{fig:imagresponses}{{4.6}{26}}
+\@writefile{toc}{\contentsline {subsubsection}{Gabor Wavelet Feature}{26}}
+\newlabel{sec:gaborwaveletfeature}{{4.1.2}{26}}
+\citation{Freund1995}
+\citation{Freund1999}
+\citation{Schapire1999}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces }}{27}}
+\newlabel{fig:magresponses}{{4.1.2}{27}}
+\newlabel{eq:gaborfeature}{{4.14}{27}}
+\citation{Valiant1984}
+\citation{Kearns1994}
+\citation{Drucker1993}
+\citation{Freund1995}
+\citation{Freund1999}
+\citation{Schapire1999}
+\citation{Grove1998}
+\citation{Friedman1998}
+\citation{Zhu2006}
+\citation{Ratsch2002}
+\citation{Drucker1993}
+\citation{Viola2001}
+\citation{Freund1995}
+\citation{Freund1999}
+\citation{Schapire1999}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}AdaBoost}{28}}
+\newlabel{sec:faceveri:adaboost}{{4.1.3}{28}}
+\@writefile{toc}{\contentsline {subsubsection}{Basic Idea}{28}}
+\@writefile{toc}{\contentsline {paragraph}{Background}{28}}
+\@writefile{toc}{\contentsline {paragraph}{Horse-racing analogy}{28}}
+\@writefile{toc}{\contentsline {paragraph}{AdaBoost}{29}}
+\citation{Domingos1997}
+\citation{Rosenblatt1958}
+\citation{Martinez2001}
+\citation{Riedmiller1993}
+\@writefile{toc}{\contentsline {paragraph}{Training Data}{30}}
+\newlabel{eq:distribution}{{4.15}{30}}
+\@writefile{toc}{\contentsline {paragraph}{Weak Learner}{30}}
+\@writefile{toc}{\contentsline {paragraph}{Importance}{31}}
+\@writefile{toc}{\contentsline {paragraph}{Updating}{31}}
+\@writefile{toc}{\contentsline {paragraph}{Normalisation}{32}}
+\@writefile{toc}{\contentsline {paragraph}{Final classifier}{32}}
+\@writefile{toc}{\contentsline {paragraph}{Training error}{32}}
+\newlabel{eq:trainingerror}{{4.20}{32}}
+\@writefile{toc}{\contentsline {subsubsection}{Constructing a strong classifier}{32}}
+\newlabel{eq:error}{{4.16}{33}}
+\newlabel{eq:update}{{4.17}{33}}
+\newlabel{eq:normalisation}{{4.18}{33}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces The AdaBoost algorithm}}{33}}
+\newlabel{tab:adaboost}{{4.1}{33}}
+\citation{Riedmiller1993}
+\@writefile{toc}{\contentsline {subsubsection}{Weak Learner}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces The summary of AdaBoost}}{36}}
+\newlabel{fig:howtostrongclassifier}{{4.8}{36}}
+\citation{Riedmiller1993}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Classification error converge}}{37}}
+\newlabel{fig:errorconverge}{{4.9}{37}}
+\@writefile{toc}{\contentsline {paragraph}{Weak Learner: ANN:RPROP}{37}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces }}{39}}
+\newlabel{fig:annstructure}{{4.10}{39}}
+\@writefile{toc}{\contentsline {paragraph}{Weak Learner: Naive Bayes}{39}}
+\newlabel{eq:newnumofexamples}{{4.21}{41}}
+\@writefile{toc}{\contentsline {subsubsection}{A small experiment}{42}}
+\@writefile{toc}{\contentsline {paragraph}{Iris flower data set}{42}}
+\@writefile{toc}{\contentsline {paragraph}{Some Other Data}{42}}
+\@writefile{toc}{\contentsline {paragraph}{Results}{42}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces The plot of Iris flower data set}}{43}}
+\newlabel{fig:irisdata}{{4.11}{43}}
+\newlabel{tab:erririsann}{{4.1.3}{45}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces The error rate on different iteration with ANN weak learner}}{45}}
+\newlabel{tab:erririsbayes}{{4.1.3}{45}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces The error rate on different iteration with Navie Bayes weak learner}}{45}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Face Verification}{45}}
+\citation{Viola2001}
+\@writefile{toc}{\contentsline {paragraph}{Inspriation}{47}}
+\@writefile{toc}{\contentsline {paragraph}{Use Gabor wavelet feature not Haar feature}{48}}
+\@writefile{toc}{\contentsline {subparagraph}{short}{48}}
+\@writefile{toc}{\contentsline {subparagraph}{short}{48}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}For Feature Selection}{48}}
+\citation{Ballard1939}
+\newlabel{fig:lowandhighscalesface}{{4.12(a)}{50}}
+\newlabel{sub@fig:lowandhighscalesface}{{(a)}{50}}
+\newlabel{fig:lowandhighscales-1}{{4.12(b)}{50}}
+\newlabel{sub@fig:lowandhighscales-1}{{(b)}{50}}
+\newlabel{fig:lowandhighscales0}{{4.12(c)}{50}}
+\newlabel{sub@fig:lowandhighscales0}{{(c)}{50}}
+\newlabel{fig:lowandhighscales1}{{4.12(d)}{50}}
+\newlabel{sub@fig:lowandhighscales1}{{(d)}{50}}
+\newlabel{fig:lowandhighscales2}{{4.12(e)}{50}}
+\newlabel{sub@fig:lowandhighscales2}{{(e)}{50}}
+\newlabel{fig:lowandhighscales3}{{4.12(f)}{50}}
+\newlabel{sub@fig:lowandhighscales3}{{(f)}{50}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces The reponse images from low spatial frequency to higher frequncy.}}{50}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{50}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{50}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{50}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {}}}{50}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {}}}{50}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {}}}{50}}
+\newlabel{fig:lowandhighscales}{{4.12}{50}}
+\newlabel{fig:responsehalf1}{{4.13(a)}{51}}
+\newlabel{sub@fig:responsehalf1}{{(a)}{51}}
+\newlabel{fig:responsehalf2}{{4.13(b)}{51}}
+\newlabel{sub@fig:responsehalf2}{{(b)}{51}}
+\newlabel{fig:responsehalf3}{{4.13(c)}{51}}
+\newlabel{sub@fig:responsehalf3}{{(c)}{51}}
+\newlabel{fig:halfresponse-1}{{4.13(d)}{51}}
+\newlabel{sub@fig:halfresponse-1}{{(d)}{51}}
+\newlabel{fig:halfresponse0}{{4.13(e)}{51}}
+\newlabel{sub@fig:halfresponse0}{{(e)}{51}}
+\newlabel{fig:halfresponse1}{{4.13(f)}{51}}
+\newlabel{sub@fig:halfresponse1}{{(f)}{51}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.13}{\ignorespaces Comparison between response images after convolving with high frequency Gabor wavelet and after convolving with low frequency Gabor wavelet.}}{51}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{51}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{51}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{51}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {}}}{51}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {}}}{51}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {}}}{51}}
+\newlabel{fig:conv2scaledown}{{4.13}{51}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}AdaBoost algorithm for Feature Selection}{51}}
+\@writefile{toc}{\contentsline {paragraph}{feature selection}{51}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Weak Learner: Fisher Linear Discriminant}{54}}
+\newlabel{sec:faceveri:fld}{{4.2.3}{54}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces The variant algorithm of AdaBoost for feature selection}}{55}}
+\newlabel{tab:adaboostfs}{{4.4}{55}}
+\citation{Fisher1936}
+\@writefile{toc}{\contentsline {paragraph}{Fisher Linear Discriminant}{56}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.4}Reduce Computational Time}{58}}
+\newlabel{sec:faceveri:time}{{4.2.4}{58}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.14}{\ignorespaces The distribution of the error of all weak learners}}{60}}
+\newlabel{fig:disterrors}{{4.14}{60}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.5}{\ignorespaces The improved algorithm of AdaBoost for feature selection}}{61}}
+\newlabel{tab:retimeadaboostfs}{{4.5}{61}}
+\citation{Messer1999}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.15}{\ignorespaces The comparison of the improved algorithm and the original algorithm on computational time}}{62}}
+\newlabel{fig:comparison}{{4.15}{62}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.5}XM2VTS Face Database}{62}}
+\newlabel{sec:faceveri:xm2vts}{{4.2.5}{62}}
+\citation{Messer1999}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.16}{\ignorespaces The speaking head shot and rotating head shots from XM2VTS}}{63}}
+\newlabel{fig:XM2VTS}{{4.16}{63}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.6}Feature Selection Results}{64}}
+\newlabel{sec:faceveri:result1}{{4.2.6}{64}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.17}{\ignorespaces The XM2VTS images after rotation, segmentation and scaling}}{65}}
+\newlabel{fig:XM2VTSface}{{4.17}{65}}
+\citation{Penev1996}
+\@writefile{toc}{\contentsline {paragraph}{Dealing with more than one minimum errors}{66}}
+\@writefile{toc}{\contentsline {paragraph}{Result on small training set}{66}}
+\newlabel{fig:20featureson1stsmall}{{4.18(a)}{67}}
+\newlabel{sub@fig:20featureson1stsmall}{{(a)}{67}}
+\newlabel{fig:20featureson4thsmall}{{4.18(b)}{67}}
+\newlabel{sub@fig:20featureson4thsmall}{{(b)}{67}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.18}{\ignorespaces The Gabor wavelet features selected in the first group experiment.}}{67}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{67}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{67}}
+\newlabel{fig:resultssmall}{{4.18}{67}}
+\@writefile{toc}{\contentsline {paragraph}{Result on large training set}{67}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.19}{\ignorespaces The Gabor wavelet features selected after AdaBoost training in the second group experiment}}{68}}
+\newlabel{fig:resultlarge}{{4.19}{68}}
+\newlabel{fig:1stgaborson1stlarge}{{4.20(a)}{68}}
+\newlabel{sub@fig:1stgaborson1stlarge}{{(a)}{68}}
+\newlabel{fig:1stgaborson4thlarge}{{4.20(b)}{68}}
+\newlabel{sub@fig:1stgaborson4thlarge}{{(b)}{68}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.20}{\ignorespaces Common features selected in both the large and small training set }}{68}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{68}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{68}}
+\newlabel{fig:resultslarge14}{{4.20}{68}}
+\citation{Penev1996}
+\@writefile{lot}{\contentsline {table}{\numberline {4.6}{\ignorespaces The top 20 features selected by the AdaBoost for the first client in XM2VTS.}}{69}}
+\newlabel{tab:1stclient}{{4.6}{69}}
+\citation{Osuna1997}
+\citation{Taylor2004}
+\citation{Ma2001}
+\@writefile{lot}{\contentsline {table}{\numberline {4.7}{\ignorespaces The top 20 features selected by the AdaBoost for the fourth client in XM2VTS.}}{70}}
+\newlabel{tab:4thclient}{{4.7}{70}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.7}SVM Classification Results}{70}}
+\newlabel{sec:faceveri:result2}{{4.2.7}{70}}
+\@writefile{toc}{\contentsline {paragraph}{SVM}{70}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.8}Discussion}{72}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.8}{\ignorespaces The classification results from client 1 to client 8 (C1 to C8) in XM2VTS.}}{73}}
+\newlabel{tab:SVMResults}{{4.8}{73}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.21}{\ignorespaces The hypothesis on the SVM classification results}}{74}}
+\newlabel{fig:hypothesisSVM}{{4.21}{74}}
+\@writefile{toc}{\contentsline {paragraph}{Size for training data}{74}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Binary Gabor Boosting Face Recognition}{75}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Constructing a strong classifier}{75}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Ostu like Weak Learner}{77}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Classification on XM2VTS}{77}}
+\@writefile{toc}{\contentsline {subsubsection}{Normal Results}{77}}
+\@writefile{toc}{\contentsline {subsubsection}{Cross Validation}{77}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Classification on FERET}{77}}
+\@writefile{toc}{\contentsline {subsubsection}{FERET Database}{77}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Summary}{77}}
+\@setckpt{ch4/binclassifier}{
+\setcounter{page}{78}
+\setcounter{equation}{31}
+\setcounter{enumi}{4}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{4}
+\setcounter{section}{4}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{21}
+\setcounter{table}{8}
+\setcounter{ALC@line}{16}
+\setcounter{ALC@rem}{0}
+\setcounter{ALC@depth}{0}
+\setcounter{lstlisting}{0}
+\setcounter{lstnumber}{2}
+\setcounter{subfigure}{0}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{lotdepth}{1}
+}

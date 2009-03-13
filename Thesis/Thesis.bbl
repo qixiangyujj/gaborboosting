@@ -1,0 +1,1075 @@
+\begin{thebibliography}{100}
+
+\bibitem{biomcons}
+Biometric {C}onsortium, http://www.biometrics.org.
+
+\bibitem{intlbiogroup}
+International biometrics group, http://www.biometricgroup.com.
+
+\bibitem{Adini1997}
+Y.~Adini, Y.~Moses, and S.~Ullman.
+\newblock Face recognition: The problem of compensating for changes in
+  illumination direction.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  19(7):721--732, 1997.
+
+\bibitem{Ahonen2004}
+Timo Ahonen, Abdenour Hadid, and Matti Pietikainen.
+\newblock Face recognition with local binary patterns.
+\newblock In {\em Proceedings of European Conference on Computer Vision}, 2004.
+
+\bibitem{Ahonen2006}
+Timo Ahonen, Abdenour Hadid, and Matti Pietikainen.
+\newblock Face description with local binary patterns: Application to face
+  recognition.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  28:2037--2041, 2006.
+
+\bibitem{Aloni2004}
+Dan Aloni.
+\newblock Cooperative linux.
+\newblock In {\em Proceedings of the Linux Symposium}, 2004.
+
+\bibitem{Anderson2002}
+David~P. Anderson, Jeff Cobb, Eric Korpela, Matt Lebofsky, and Dan Werthimer.
+\newblock {SETI@home}: An experiment in public-resource computing.
+\newblock {\em Communications of the ACM}, 45(11):56--61, November 2002.
+
+\bibitem{Anderson1935}
+Edgar Anderson.
+\newblock The irises of the gaspe peninsula.
+\newblock {\em Bulletin of the American Iris Society}, 59:2--5, 1935.
+
+\bibitem{Asami2005}
+Taichi Asami, Koji Iwano, and Sadaoki Furui.
+\newblock Stream-weight optimization by {LDA} and {A}daboost for multi-stream
+  speaker verification.
+\newblock In {\em Proceedings of International Conference on Speech
+  Communication and Technology (Interspeech 2005)}, pages 2185--2188, Lisbon,
+  Portugal, 2005.
+
+\bibitem{Bach2002}
+F.R. Bach and M.I. Jordan.
+\newblock Kernel independent component analysis.
+\newblock {\em Journal of Machine Learning Research}, 3:1--48, 2002.
+
+\bibitem{Baek2002}
+Kyungim Baek, Bruce~A. Draper, J.~Ross Beveridge, and Kai She.
+\newblock {PCA} vs. {ICA}: A comparison on the {FERET} data set.
+\newblock In {\em In Proceedings of Joint Conference on Information Sciences},
+  2002.
+
+\bibitem{Ballard1939}
+Randall~C. Ballard.
+\newblock Television system.
+\newblock Patent, 3 1939.
+\newblock Patent number: 2152234.
+
+\bibitem{Bartlett1998}
+M.S. Bartlett, H.M. Lades, and T.J. Sejnowski.
+\newblock Independent component representations for face recognition.
+\newblock {\em Proceedings of SPIE}, 3299:528--539, 1998.
+
+\bibitem{Bartlett2002}
+M.S. Bartlett, J.R. Movellan, and T.J. Sejnowski.
+\newblock Face recognition by independent component analysis.
+\newblock {\em IEEE Transactions on Neural Networks}, 13:1450--1464, 2002.
+
+\bibitem{Belhumeur1997}
+P.N. Belhumeur, J.P. Hespanha, and D.J. Kriegman.
+\newblock {E}igenfaces vs. {F}isherfaces: Recognition using class specific
+  linear projection.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  19(7):711--720, July 1997.
+
+\bibitem{Bell1995}
+A.~J. Bell and T.~J. Sejnowski.
+\newblock An information-maximization approach to blind separation and blind
+  deconvolution.
+\newblock {\em Neural Computation}, 7(6):1129--1159, 1995.
+
+\bibitem{Bell2001}
+B.~Bell and L.~Mass.
+\newblock Firms forge alliance to enhance.
+\newblock Businessworld, 29 Dec 2001.
+
+\bibitem{Bergen1990}
+J.R. Bergen and R.~Hingorani.
+\newblock Hierarchical motion-based frame rate conversion.
+\newblock Technical report, David Sarnoff Research Center, Princeton, 1990.
+
+\bibitem{Blanz1999}
+V.~Blanz and T.~Vetter.
+\newblock A morphable model for the synthesis of {3D} faces.
+\newblock In {\em Proceedings of the SIGGRAPH'99}, pages 187--194, August 1999.
+
+\bibitem{Blanz2003}
+Volker Blanz and Thomas Vetter.
+\newblock Face recognition based on fitting a {3D} morphable model.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  25(9):1063--1074, September 2003.
+
+\bibitem{Bledsoe1964}
+W.W. Bledsoe.
+\newblock The model method in facial recognition.
+\newblock Technical Report PRI:15, Panoramic Research Inc., Palo Alto, CA,
+  1964.
+
+\bibitem{Bovik1990}
+A.~C. Bovik, M.~Clark, and W.~S. Geisler.
+\newblock Multichannel texture analysis using localized spatial filters.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  12:55--73, 1990.
+
+\bibitem{Breiman1996}
+L.~Breiman.
+\newblock Bagging predictors.
+\newblock {\em Machine Learning}, 24(2):123--140, 1996.
+
+\bibitem{Bylander2006}
+Tom Bylander and Lisa Tate.
+\newblock Using validation sets to avoid overfitting in {AdaBoost}.
+\newblock In {\em Proceedings of the Nineteenth International Florida
+  Artificial Intelligence Research Society Conference}, pages 544--549, 2006.
+
+\bibitem{Cardoso1996}
+Jean-Francois Cardoso and Antoine Souloumiac.
+\newblock Jacobi angles for simultaneous diagonalization.
+\newblock {\em SIAM}, 17(1):161--164, 1996.
+
+\bibitem{Cevikalp2004}
+H.~Cevikalp and M.~Wilkes.
+\newblock Face recogntion by using discriminative common vectors.
+\newblock In {\em Proceedings of International Conference on Pattern
+  Recognition}, 2004.
+
+\bibitem{Chen2000}
+L.F. Chen, H.Y.M. Liao, J.C. Lin, M.T. Ko, and G.J. Yu.
+\newblock A new {LDA}-based face recognition system which can solve the small
+  sample size problem.
+\newblock {\em Pattern Recognition}, 33:1713--1726, 2000.
+
+\bibitem{Cootes2001}
+T.F. Cootes, G.J. Edwards, and C.J. Taylor.
+\newblock Active appearance models.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  23(6):681--685, 2001.
+
+\bibitem{Cootes1996}
+T.F. Cootes and C.J. Taylor.
+\newblock Locating faces using statistical features.
+\newblock In {\em Proceedings of Second International Conference on Automatic
+  Face and Gesture Recognition}, pages 204--209, 1996.
+
+\bibitem{Cootes2000}
+T.F. Cootes and C.J. Taylor.
+\newblock Statistical models of appearance for computer vision.
+\newblock Technical report, University of Manchester, 2000.
+
+\bibitem{Daugman1985}
+J.~Daugman.
+\newblock Uncertainty relation for resolution in space, spatial frequency and
+  orientation optimized by two-dimensional visual cortical filters.
+\newblock {\em Journey of the Optical Society of American A}, 2:1160--1169,
+  July 1985.
+
+\bibitem{Daugman1993}
+J.~Daugman.
+\newblock High confidence visual recognition of persons by a test of
+  statistical independence.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  15:1148--1160, November 1993.
+
+\bibitem{Daugman1988}
+John~G Daugman.
+\newblock Complete discrete {2-D} gabor transforms by neural networks for image
+  analysis and compression.
+\newblock {\em IEEE Transactions on Acoustics, Speech, and Signal Processing},
+  36:1169--1179, 1988.
+
+\bibitem{Davies1990}
+E.~R. Davies.
+\newblock {\em Machine Vision: Theory, Algorithms, Practicalities}.
+\newblock Academic Press, 1990.
+
+\bibitem{Devijver1982}
+P.A. Devijver and J.~Kittler.
+\newblock {\em Pattern Recognition: A Statistical Approach}.
+\newblock Prentice-Hall, 1982.
+
+\bibitem{Domingos1997}
+Pedro Domingos and Michael Pazzani.
+\newblock On the optimality of the simple bayesian classifier under zero-one
+  loss.
+\newblock {\em Machine Learning}, 29:103--137, 1997.
+
+\bibitem{Drucker1993}
+H.~Drucker, R.E. Schapire, and P.~Y. Simard.
+\newblock Boosting performance in neural networks.
+\newblock {\em International Journal of Pattern Recognition and Artificial
+  Intelligence}, 7:705--719, 1993.
+
+\bibitem{Dunn1995}
+D.~Dunn and W.~Higgins.
+\newblock Optimal gabor filters for texture segmentation.
+\newblock {\em IEEE Transactions on Image Processing}, 4(7):947--964, July
+  1995.
+
+\bibitem{Dunn1994}
+Dennis Dunn, William~E. Higgins, and Joseph Wakeley.
+\newblock Texture segmentation using {2-D} {G}abor elementary functions.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  16:130--149, 1994.
+
+\bibitem{Edwards1998}
+G.J. Edwards, T.F. Cootes, and C.J. Taylor.
+\newblock Face recognition using active appearance models.
+\newblock In {\em Proceedings of European Conference on Computer Vision}, 1998.
+
+\bibitem{Efron1993}
+B.~Efron and K.~McKusick.
+\newblock {\em An Introduction to the Bootstrap}.
+\newblock Chapman and Hall, 1993.
+
+\bibitem{Fan2004}
+W.~Fan, Y.H. Wang, W.~Liu, and T.N. Tan.
+\newblock Combining null space-based gabor features for face recognition.
+\newblock In {\em Proceedings of International Conference on Pattern
+  Recognition}, 2004.
+
+\bibitem{Fell2002}
+N.~Fell and P.~Dempsey.
+\newblock Whitehall dithers on airport security.
+\newblock Times, 14 Jan 2002.
+
+\bibitem{Fisher1936}
+R.~A. Fisher.
+\newblock The use of multiple measurements in taxonomic problems.
+\newblock {\em Annals of Eugenics}, 7:179--188, 1936.
+
+\bibitem{Forsyth2003}
+D.A. Forsyth and J.~Ponce.
+\newblock {\em Computer Vision A Modern Approach}.
+\newblock Prentice Hall, 2003.
+
+\bibitem{Freund1996}
+Y.~Freund and R.~Schapire.
+\newblock Experiments with a new boosting algorithm.
+\newblock In {\em Proceedings of the Thirteenth International Conference on
+  Machine Learning}, 1996.
+
+\bibitem{Freund1995}
+Yoav Freund and Robert~E. Schapire.
+\newblock A decision-theoretic generalization of on-line learning and an
+  application to boosting.
+\newblock In {\em Computational Learning Theory: Eurocolt â?5}, pages
+  23--37. Springer-Verlag, 1995.
+
+\bibitem{Freund1999}
+Yoav Freund and Robert~E. Schapire.
+\newblock A short introduction to boosting.
+\newblock {\em Journal of Japanese Society for Artificial Intelligence},
+  14:771--780, 1999.
+
+\bibitem{Friedman1998}
+J.~Friedman, T.~Hastie, and R.~Tibshirani.
+\newblock Additive logistic regression: a statistical view of boosting.
+\newblock Technical report, Stanford University, 1998.
+
+\bibitem{Friedman2000}
+J.~Friedman, T.~Hastie, and R.~Tibshirani.
+\newblock Additive logistic regression: A statistical view of boosting.
+\newblock {\em The Annals of Statistics}, 28(2):337--374, 2000.
+
+\bibitem{Fukunaga1990}
+K.~Fukunaga.
+\newblock {\em Introduction to Statistical Pattern Recognition}.
+\newblock New York: Academic Press, 1990.
+
+\bibitem{Gallant1990}
+S.~I. Gallant.
+\newblock Perceptron-based learning algorithms.
+\newblock {\em IEEE Transactions on Neural Networks}, 1(2):179--191, 1990.
+
+\bibitem{Galton1888}
+Francis Galton.
+\newblock Personal identification and description.
+\newblock {\em Nature}, 21:173--177, June 1888.
+
+\bibitem{Gauthier2001}
+I.~Gauthier and C.A. Nelson.
+\newblock The development of face expertise.
+\newblock {\em Cognitive Neuroscience}, 11:219--224, 2001.
+
+\bibitem{Georghiades2001}
+A.S. Georghiades, P.N. Belhumeur, and D.J. Kriegman.
+\newblock From few to many: Illumination cone models for face recognition under
+  variable lighting and pose.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  23:643--660, 2001.
+
+\bibitem{Goodall1991}
+C.~Goodall.
+\newblock Procrustes methods in the statistical analysis of shape.
+\newblock {\em Journal of the Royal Statistical Society B}, 53(2):285--339,
+  1991.
+
+\bibitem{Gorsuch22001}
+John Gorsuch.
+\newblock Improved security through technology.
+\newblock Overhaul \& Maintenance, 20 Nov 2001.
+
+\bibitem{Gough2004}
+Brian~J. Gough.
+\newblock {\em An Introduction to {GCC}}.
+\newblock Network Theory Limited, 2004.
+
+\bibitem{Graham1998}
+Daniel~B. Graham and Nigel~M. Allinson.
+\newblock Characterizing virtual eigen signatures for general purpose face
+  recognition.
+\newblock In H.~Wechsler, P.~J. Phillips, V.~Bruce, F.~Fogelman-Soulie, and
+  T.~S. Huang, editors, {\em Face Recognition: From Theory to Applications},
+  volume 163, pages 446--456. NATO ASI Series F, Computer and Systems Sciences,
+  1998.
+
+\bibitem{Gross2005}
+Ralph Gross.
+\newblock Face databases.
+\newblock In S.~Li and A.K. Jain, editors, {\em Handbook of Face Recognition}.
+  Springer, New York, February 2005.
+
+\bibitem{Grove1998}
+A.~J. Grove and D.~Schuurmans.
+\newblock Boosting in the limit: Maximizing the margin of learned ensembles.
+\newblock In {\em Proceedings of the Fifteenth National Conference on
+  Artificial Intelligence}, 1998.
+
+\bibitem{Hallinan1995}
+P.~Hallinan.
+\newblock {\em A Deformable Model for Face Recognition Under Arbitrary Lighting
+  Conditions}.
+\newblock PhD thesis, Harvard University, 1995.
+
+\bibitem{Hancock2000}
+P.J. Hancock, V.~Bruce, and A.M. Burton.
+\newblock Recognition of unfamiliar faces.
+\newblock {\em Trends in Cognitive Sciences}, 4:330--337, 2000.
+
+\bibitem{Haralick1992}
+R.M. Haralick and L.G. Shapiro.
+\newblock {\em Computer and Robot Vision}, volume~2.
+\newblock Addison-Wesley, 1992.
+
+\bibitem{Hong1998}
+H.~Hong, H.~Neven, and C.~von~der Malsburg.
+\newblock Online facial expression recognition based on personalized galleries.
+\newblock In {\em Proceedings of International Conference on Automatic Face and
+  Gesture Recognition}, 1998.
+
+\bibitem{Horn1986}
+B.~Horn.
+\newblock {\em Robot Vision}.
+\newblock MIT Press, 1986.
+
+\bibitem{Horn1981}
+B.K.P. Horn and B.G. Schunck.
+\newblock Determing optical flow.
+\newblock {\em Artificial Intelligence}, 17:185--203, 1981.
+
+\bibitem{Huang2004}
+Chang Huang, Haizhou Ai, Bo~Wu, and Shihong Lao.
+\newblock Boosting nested cascade detector for multi-view face detection.
+\newblock In {\em In Proceedings of International Conference on Pattern
+  Recognition 2004}, 2004.
+
+\bibitem{Huang2003}
+J.~Huang, B.~Heisele, and V.~Blanz.
+\newblock Component-based face recognition with {3D} morphable models.
+\newblock In {\em Proceedings of the 4th International Conference on Audio- and
+  Video-Based Biometric Person Authentication, AVBPA 2003}, pages 27--34,
+  Guildford, UK, June 2003.
+
+\bibitem{Huang2002}
+Rui Huang, Qingshan Liu, Hanqing Lu, and Songde Ma.
+\newblock Solving the small sample size problem of {LDA}.
+\newblock In {\em Proceedings of the 16th International Conference on Pattern
+  Recognition}, volume~3, 2002.
+
+\bibitem{Hyvarinen1999}
+A.~Hyvarinen.
+\newblock Fast and robust fixed-point algorithms for independent component
+  analysis.
+\newblock {\em IEEE Transactions on Neural Networks}, 10:626--634, 1999.
+
+\bibitem{Hyvarinen2001}
+A.~Hyvarinen, J~Karhunen, and E.~Oja.
+\newblock {\em Independent Component Analysis}.
+\newblock John Wiley \& Sons, 2001.
+
+\bibitem{Ichikawa2006}
+K.~Ichikawa, T.~Mita, and O.~Hori.
+\newblock Component-based robust face detection using {A}daboost and decision
+  tree.
+\newblock In {\em Proceedings of the 7th International Conference on Automatic
+  Face and Gesture Recognition, FGR 2006}, 2006.
+
+\bibitem{Jain1989}
+A.~Jain.
+\newblock {\em Fundamentals of Digital Image Processing}.
+\newblock Prentice-Hall, 1989.
+
+\bibitem{Jain2000}
+A.K. Jain, P.W. Robert, and J.~Mao.
+\newblock Statistical pattern recognition: A review.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  22(1):4--37, 2000.
+
+\bibitem{Jain2004}
+A.K. Jain, A.~Ross, and S.~Prabhakar.
+\newblock An introduction to biometric recognition.
+\newblock {\em IEEE Transactions on Circuits and Systems for Video Technology},
+  14:4--20, 2004.
+
+\bibitem{Jain1991}
+Anil~K. Jain and Farshid Farrokhnia.
+\newblock Unsupervised texture segmentation using gabor filters.
+\newblock {\em Pattern Recognition}, 4:1167 -- 1186, December 1991.
+
+\bibitem{Jones1987}
+J.~Jones and L.~Palmer.
+\newblock An evaluation of two-dimensional gabor filter model of simple
+  receptive fields in cat strait cortex.
+\newblock {\em Journal of Neurophysiology}, 58:1233--1258, 1987.
+
+\bibitem{Kadyrov2001}
+A.~Kadyrov and M.~Petrou.
+\newblock The trace transform and its applications.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  23(8):811--828, August 2001.
+
+\bibitem{Kanade1977}
+Takeo Kanade.
+\newblock Computer recognition of human faces.
+\newblock {\em Interdisciplinary Systems Research}, 47:1--106, 1977.
+
+\bibitem{Kearns1994}
+Michael Kearns and Leslie~G. Valiant.
+\newblock Cryptographic limitations on learning boolean formula and finite
+  automata.
+\newblock {\em Journal of the Association for Computing Machinery}, 41:67--95,
+  1994.
+
+\bibitem{Kelly1970}
+M.D. Kelly.
+\newblock Visual identification of people by computer.
+\newblock Stanford AI Project AI-130, Stanford University, 1970.
+
+\bibitem{Keys1981}
+R.~Keys.
+\newblock Cubic convolution interpolation for digital image processing.
+\newblock {\em IEEE Transactions on Signal Processing, Acoustics, Speech, and
+  Signal Processing}, 29(6):1153--1160, December 1981.
+
+\bibitem{Kirby1990}
+M.~Kirby and L.~Sirovich.
+\newblock Application of the karhunen-loeve procedure for the characterization
+  of human faces.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  12(1):103--108, Jan 1990.
+
+\bibitem{Kohavi1995}
+Ron Kohavi.
+\newblock A study of cross-validation and bootstrap for accuracy estimation and
+  model selection.
+\newblock In {\em Proceedings of the Fourteenth International Joint Conference
+  on Artificial Intelligence}, 1995.
+
+\bibitem{Kong2005}
+H.~Kong, L.~Wang, E.~Teoh, J.~Wang, and R.~Venkateswarlu.
+\newblock A framework of {2D} fisher discriminant analysis: Application to face
+  recognition with small number of training samples.
+\newblock In {\em Proceedings of IEEE Conference on Computer Vision and Pattern
+  Recognition}, 2005.
+
+\bibitem{Kong2006}
+Hui Kong, Xuchun Li, Jian-Gang Wang, and Chandra Kambhamettu.
+\newblock Ensemble {LDA} for face recognition.
+\newblock In {\em Proceedings of the International Conference on Biometrics
+  Authentication (ICBA)}, 2006.
+
+\bibitem{Krueger2001}
+Volker Krueger.
+\newblock {\em Gabor Wavelet Networks for Object Representation}.
+\newblock PhD thesis, Christian-Albrechts University, Kiel, Germany, 2001.
+
+\bibitem{Lades1993}
+M.~Lades, J.~Vorbruggen, J.~Buhmann, J.~Lange, C.V.D. Malsburg, and R.~Wurtz.
+\newblock Distortion invariant object recognition on the dynamic link
+  architecture.
+\newblock {\em IEEE Transactions on Computers}, 42:300--311, 1993.
+
+\bibitem{Landre2003}
+Jerome Landre.
+\newblock Programming with {I}ntel {IPP} and {Intel} {OpenCV} under {GNU}
+  {L}inux: A beginner's tutorial.
+\newblock Technical report, Universite de Bourgogne, 2003.
+
+\bibitem{Lanitis1997}
+A.~Lanitis, C.J. Taylor, and T.F. Cootes.
+\newblock Automatic interpretation and coding of face images using flexible
+  models.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  19(7):743--756, 1997.
+
+\bibitem{LiStan2004}
+Stan~Z. Li and ZhenQiu Zhang.
+\newblock {FloatBoost} learning and statistical face detection.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Learning},
+  26(9):1112--1123, 2004.
+
+\bibitem{Liao2001}
+Ping~Sung Liao, Tse~Sheng Chen, and Pau~Choo Chung.
+\newblock A fast algorithm for multilevel thresholding.
+\newblock {\em Journal of Information Science and Engineering}, 17:713--727,
+  2001.
+
+\bibitem{Liu2004smc}
+C.~Liu.
+\newblock Enhanced independent component analysis and its application to
+  content based face image retrieval.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics- Part B:
+  Cybernetics}, 34(2):1117--1127, April 2004.
+
+\bibitem{Liu2004}
+C.~Liu.
+\newblock Gabor-based kernel pca with fractional power polynomial models for
+  face recognition.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  26:572--581, 2004.
+
+\bibitem{Liu2002}
+C.~Liu and H.~Wechsler.
+\newblock Gabor feature based classification using enhanced fisher linear
+  discriminant model for face recognition.
+\newblock {\em IEEE Transactions on Image Processing}, 11:467--476, 2002.
+
+\bibitem{Liu2003}
+C.~Liu and H.~Wechsler.
+\newblock Independent component analysis of gabor features for face
+  recognition.
+\newblock {\em IEEE Transactions on Neural Networks}, 14:919--928, 2003.
+
+\bibitem{Liu2001}
+Chengjun Liu and Harry Wechsler.
+\newblock A gabor feature classifier for face recognition.
+\newblock In {\em Proceedings of the Eighth International Conference on
+  Computer Vision (ICCV'01)}, volume~2, 2001.
+
+\bibitem{Loeve1955}
+M.~M. Loeve.
+\newblock {\em Probability Theory}.
+\newblock Princeton N.J, 1955.
+
+\bibitem{Lu2003}
+J.~Lu, K.N. Plataniotis, and A.N. Venetsanopoulos.
+\newblock Face recognition using {LDA}-based algorithms.
+\newblock {\em IEEE Transactions on Neural Networks}, 14(1):195--200, January
+  2003.
+
+\bibitem{Lu2003fusion}
+X.G. Lu, Y.H. Wang, and A.K. Jain.
+\newblock Combining classifiers for face recognition.
+\newblock In {\em Proceedings of IEEE International Conference on Multimedia
+  and Expo}, volume~3, pages 13--16, 2003.
+
+\bibitem{Lu2006}
+Xiaoguang Lu.
+\newblock {\em {3D} Face Recognition across Pose and Expression}.
+\newblock PhD thesis, Michigan State University, 2006.
+
+\bibitem{Lyons1999}
+M.J. Lyons, J.~Budynek, and S.~Akamatsu.
+\newblock Automatic classification of single facial image.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  21:1357--1362, 1999.
+
+\bibitem{Ma2001}
+J.~Ma, Y.~Zhao, S.~Ahalt, and D.~Eads.
+\newblock {OSU} {SVM}: A support vector machine toolbox for {M}atlab.
+\newblock Online, 2001.
+
+\bibitem{Manjunath1996}
+B.S. Manjunath and W.Y. Ma.
+\newblock Texture features for browsing and retrieval of image data.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  18(8):837--842, August 1996.
+
+\bibitem{Martinez2001}
+Aleix Martinez and Avinash Kak.
+\newblock {PCA} versus {LDA}.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  23:228--233, 2001.
+
+\bibitem{Mason1999}
+L.~Mason, J.~Baxter, P.~Bartlett, and M.~Frean.
+\newblock Boosting algorithm as gradient descent in function space.
+\newblock Technical report, Department of Systems Engineering, Australian
+  National Univeristy, 1999.
+
+\bibitem{Matas2000}
+J.~Matas, M.~Hamous, and K.~Jonsson.
+\newblock Comparison of face verification results on the xm2vts database.
+\newblock In {\em Proceedings of the International Conference on Pattern
+  Recognition}, 2000.
+
+\bibitem{Matas2004}
+Jiri Matas and Jan Sochman.
+\newblock Adaboost.
+\newblock Technical report, Centre for Machine Perception, Czech Technical
+  University, Prague, 2004.
+
+\bibitem{Mavroforakis2006}
+M.E. Mavroforakis and S.~Theodoridis.
+\newblock A geometric approach to support vector machine ({SVM})
+  classification.
+\newblock {\em IEEE Transactions on Neural Networks}, 17:671--682, 2006.
+
+\bibitem{Messer1999}
+K.~Messer, J.~Matas, J.~Kittler, and K.~Jonsson.
+\newblock {XM2VTSDB}: The extended {M2VTS} database.
+\newblock In {\em Audio- and Video-based Biometric Person Authentication,
+  AVBPA'99}, pages 72--77, Washington, D.C., March 1999.
+\newblock 16 IDIAP--RR 99-02.
+
+\bibitem{Moghaddam2002}
+B.~Moghaddam.
+\newblock Principal manifolds and probabilistic subspaces for visual
+  recognition.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  24:780--788, 2002.
+
+\bibitem{Moghaddam2000}
+B.~Moghaddam, T.~Jebara, and A.~Pentland.
+\newblock Bayesian face recognition.
+\newblock {\em Pattern Recognition}, 33:1771--1782, November 2000.
+
+\bibitem{Moghaddam1997}
+B.~Moghaddam and A.~Pentland.
+\newblock Probabilistic visual learning for object representation.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  19(7):696--710, July 1997.
+
+\bibitem{Nefian1998}
+A.~Nefian and M.~Hayes.
+\newblock Hidden markov models for face recognition.
+\newblock In {\em Proceedings of the IEEE International Conference on
+  Acoustics, Speech, and Signal Processing, ICASSP'98}, volume~5, pages
+  2721--2724, May 1998.
+
+\bibitem{Nefian2000}
+A.~Nefian and M.~Hayes.
+\newblock Maximum likelihood training of the embedded {HMM} for face detection
+  and recognition.
+\newblock In {\em Proceedings of the IEEE International Conference on Image
+  Processing, ICIP 2000}, volume~1, pages 33--36, Vancouver, BC, Canada,
+  September 2000.
+
+\bibitem{Ojala2002}
+Timo Ojala, Matti Pietikainen, and Topi Maenpaa.
+\newblock Multiresolution gray-scale and rotation invariant texture
+  classification with local binary patterns.
+\newblock {\em IEEE Transcations on Pattern Analysis and Machine Intelligence},
+  24:971--987, 2002.
+
+\bibitem{Opitz1999}
+David Opitz and Richard Maclin.
+\newblock Popular ensemble methods: An empirical study.
+\newblock {\em Journal of Artificial Intelligence Research}, 11:169--198, 1999.
+
+\bibitem{Osuna1997}
+E.~Osuna, R.~Freund, and F.~Girosi.
+\newblock Training support vector machines: An application to face detection.
+\newblock In {\em Proceedings of IEEE Conference on Computer Vision and Pattern
+  Recognition}, pages 130--136, June 1997.
+
+\bibitem{Otsu1979}
+N.~Otsu.
+\newblock A threshold selection method from gray level histograms.
+\newblock {\em IEEE Transactions on Systems, Man and Cybernetics}, 9:62--66,
+  March 1979.
+\newblock minimize inter class variance.
+
+\bibitem{Penev1996}
+P.~S. Penev and J.~J. Atick.
+\newblock Local feature analysis: A general statistical theory for object
+  representation.
+\newblock {\em Neural Systems}, 7:477--500, 1996.
+
+\bibitem{Pentland1994}
+A.~Pentland, B.~Moghaddam, and T.~Starner.
+\newblock View-based and modular eigenspaces for face recognition.
+\newblock In {\em In Proceedings of IEEE Conference on Computer Vision and
+  Pattern Recognition}, 1994.
+
+\bibitem{Phillips2000}
+P.~Jonathon Phillips, Hyeonjoon Moon, Syed~A. Rizvi, and Patrick J.Rauss.
+\newblock The {FERET} evaluation methodology for face-recognition algorithms.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  22(10):1090--1104, October 2000.
+
+\bibitem{Phillips1996}
+P.~Jonathon Phillips, Patrick~J. Rauss, and Sandor~Z. Der.
+\newblock {FERET} (face recognition technology) recognition algorithm
+  development and test results.
+\newblock Technical report, Army Research Lab, 1996.
+
+\bibitem{Phillips1997}
+P.J. Phillips, H.~Moon, P.~Rauss, and S.A. Rizvi.
+\newblock The {FERET} methodology for face recognition algorithm.
+\newblock In {\em Proceedings of the International Conference on Computer
+  Vision and Pattern Recognition}, pages 137--143, 1997.
+
+\bibitem{Phillips1998}
+P.J. Phillips, H.~Wechsler, J.~Huang, and P.J. Rauss.
+\newblock The {FERET} database and evaluation procedure for face recognition
+  algorithm.
+\newblock {\em Image and Vision Computing}, 16(5):295--306, 1998.
+
+\bibitem{Pope2001}
+Chris Pope.
+\newblock Ways to keep the terrorist grounded.
+\newblock {\em Professional Engineering}, 14:20--21, 2001.
+
+\bibitem{Press1992}
+W.H. Press, S.A. Teukolsky, W.T. Vetterling, and B.P. Flannery.
+\newblock {\em Numerical Recipes in {C}}.
+\newblock Cambridge University Press, 1992.
+
+\bibitem{Pudil1994}
+P.~Pudil, J.~Novovicova, and J.~Kittler.
+\newblock Floating search methods in feature selection.
+\newblock {\em Pattern Recognition Letters}, 11:1119--1125, 1994.
+
+\bibitem{Ratsch2002}
+Gunnar Ratsch, Sebastian Mika, Bernhard Scholkopf, and Klaus-Robert Muller.
+\newblock Constructing boosting algorithms from {SVMs}: An application to
+  one-class classification.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  24:1184 -- 1199, 2002.
+
+\bibitem{Riedmiller1993}
+M.~Riedmiller and H.~Braun.
+\newblock A direct adaptive method for faster backpropagation learning: The
+  {RPROP} algorithm.
+\newblock In {\em Proceeding of International Conference on Neural Network},
+  1993.
+
+\bibitem{Rizvi1998fg}
+S.A. Rizvi, P.J. Phillips, and H.~Moon.
+\newblock The {FERET} verification testing protocol for face recognition
+  algorithm.
+\newblock In {\em Proceedings of the International Conference on Automatic Face
+  and Gesture Recognition}, number 48-53, 1998.
+
+\bibitem{Rizvi1998}
+S.A. Rizvi, P.J. Phillips, and H.~Moon.
+\newblock A verification protocol and statistical performance analysis for face
+  recognition algorithm.
+\newblock In {\em Proceedings of the International Conference on Computer
+  Vision and Pattern Recognition}, pages 833--838, 1998.
+
+\bibitem{Martinez1998}
+A.~R.Martinez and R.~Benavente.
+\newblock The {AR} face database.
+\newblock Technical Report~24, Computer Vision Center, 1998.
+
+\bibitem{Rosenblatt1958}
+Frank Rosenblatt.
+\newblock The perceptron: A probabilistic model for information storage and
+  organization in the brain.
+\newblock {\em Psychological Review}, 65:3860408, 1958.
+
+\bibitem{Sahoo1988}
+P.K. Sahoo, S.~Soltani, A.K. Wong, and Y.C. Chan.
+\newblock A survey of thresholding techniques.
+\newblock {\em Computer Vision, Graphics and Image Processing}, 41:233--260,
+  1988.
+
+\bibitem{Samaria1994}
+Ferdinando~S. Samaria and Andy~C. Harter.
+\newblock Parameterisation of a stochastic model for human face identification.
+\newblock In {\em IEEE 2nd Workshop on Applications of Computer Vision}, page
+  138{\"i}142, Sarasota (Florida), December 1994.
+
+\bibitem{Schapire1997}
+R.~Schapire, Y.~Freund, P.~Bartlett, and W.~Lee.
+\newblock Boosting the margin: A new explanation for the effectiveness of
+  voting methods.
+\newblock In {\em Proceedings of the Fourteenth International Conference on
+  Machine Learning}, 1997.
+
+\bibitem{Schapire1999ml}
+R.~E. Schapire and Y.~Singer.
+\newblock Improved boosting algorithm using confidence-rated predictions.
+\newblock {\em Machine Learning}, 37:297--336, 1999.
+
+\bibitem{Schapire1990}
+R.E. Schapire.
+\newblock The strength of weak learnability.
+\newblock {\em Machine Learning}, 5(2):197--227, 1990.
+
+\bibitem{Schapire1998}
+R.E. Schapire and Y.~Singer.
+\newblock Improved boosting algorithms using confidence-rated predictions.
+\newblock In {\em Proceedings of The 11th Annal Conference on Computational
+  Learning Theory}, number 80-91, 1998.
+
+\bibitem{Schapire1999}
+Robert~E. Schapire.
+\newblock A brief introduction to boosting.
+\newblock In {\em Proceedings of the Sixteenth International Joint Conference
+  on Artificial Intelligence}, 1999.
+
+\bibitem{Scholkopf1998}
+B.~Scholkopf, A.~Smola, and K.R. Muller.
+\newblock Nonlinear component analysis as a kernel eigenvalue problem.
+\newblock {\em Neural Computation}, 10:1299--1319, 1998.
+
+\bibitem{Shashua1994}
+A.~Shashua.
+\newblock {\em Geometry and Photometry in {3D} Visual Recognition}.
+\newblock PhD thesis, Massachusetts Institute of Technology, 1994.
+
+\bibitem{Shen2006}
+Linlin Shen and Li~Bai.
+\newblock {MutualBoost} learning for selecting gabor features for face
+  recognition.
+\newblock {\em Pattern Recognition Letters}, 27:1758--1767, 2006.
+
+\bibitem{Shen2005}
+Linlin Shen, Li~Bai, Bardsley Daniel, and Yangsheng Wang.
+\newblock Gabor feature selection for face recognition using improved
+  {A}dabooost learning.
+\newblock In {\em Proceedings of International workshop on biometric
+  recognition systems}, 2005.
+
+\bibitem{Sim2003}
+T.~Sim, S.~Baker, and M.~Bsat.
+\newblock The {CMU} pose, illumination, and expression database.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  25(12):1615--1618, December 2003.
+
+\bibitem{Sinha2006}
+Pawan Sinha, Benjamin Balas, Yuri Ostrovsky, and Richard Russell.
+\newblock Face recognition by humans: Nineteen results all computer vision
+  researchers should know about.
+\newblock {\em Proceedings of The IEEE}, 94(11):1948--1962, November 2006.
+
+\bibitem{Sollich1995}
+P.~Sollich and A.~Krogh.
+\newblock Learning with ensembles: How over-fitting can be useful.
+\newblock In D.~Touretsky, M.~Mozer, and M.~Hasselmo, editors, {\em Advances in
+  Neural Information Processing Systems}, volume~8, pages 190--196. MIT Press,
+  1995.
+
+\bibitem{Sonka1998}
+Milan Sonka, Vaclav Hlavac, and Roger Boyle.
+\newblock {\em Image Processing, Analysis, and Machine Vision}.
+\newblock Thomson-Engineering, September 1998.
+
+\bibitem{Srisuk2003EE}
+S.~Srisuk and W.~Kurutach.
+\newblock Face recognition using a new texture representation of face images.
+\newblock In {\em Proceedings of Electrical Engineering Conference}, pages
+  1097--1102, Cha-am, Thailand, November 2003.
+
+\bibitem{Srisuk2003}
+S.~Srisuk, M.~Petrou, W.~Kurutach, and A.~Kadyrov.
+\newblock Face authentication using the trace transform.
+\newblock In {\em Proceedings of the IEEE Computer Society Conference on
+  Computer Vision and Pattern Recognition (CVPR'03)}, pages 305--312, Madison,
+  Wisconsin, USA, June 2003.
+
+\bibitem{Swet1996}
+D.L. Swet and J.~Weng.
+\newblock Using discriminant eigenfeatures for image retrieval.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  18:831--836, 1996.
+
+\bibitem{Taylor2004}
+John~Shawe Taylor and Nello Cristianini.
+\newblock {\em Kernel Methods for Pattern Analysis}.
+\newblock Cambridge University Press, 2004.
+
+\bibitem{Tefas2001}
+A.~Tefas, C.~Kotropoulos, and I.~Pitas.
+\newblock Using support vector machines to enhance the performance of elastic
+  graph matching for frontal face authentication.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  23(7):735--746, July 2001.
+
+\bibitem{Tenenbaum2000}
+Joshua~B. Tenenbaum, Vin de~Silva, and John~C. Langford.
+\newblock A global geometric framework for nonlinear dimensionality reduction.
+\newblock {\em SCIENCE}, 290:2319--2323, 2000.
+
+\bibitem{Teuner1995}
+Andreas Teuner, Olaf Pichler, and Bedrich~J. Hosticka.
+\newblock Unsupervised texture segmentation of image using tuned matched gabor
+  filters.
+\newblock {\em IEEE Transactions on Image Processing}, 4(6):863--870, 1995.
+
+\bibitem{Thain2002}
+Douglas Thain, Todd Tannenbaum, and Miron Livny.
+\newblock {C}ondor and the {G}rid.
+\newblock In Fran Berman, Geoffrey Fox, and Tony Hey, editors, {\em Grid
+  Computing: Making the Global Infrastructure a Reality}. John Wiley \& Sons
+  Inc., December 2002.
+
+\bibitem{Turk1991}
+M.~Turk and A.~Pentland.
+\newblock Eigenfaces for recognition.
+\newblock {\em Journey of Cognitive Neuroscience}, 3(1):71--86, 1991.
+
+\bibitem{Valiant1984}
+L.~G. Valiant.
+\newblock A theory of the learnable.
+\newblock {\em Communications of the ACM}, 27:1134--1142, 1984.
+
+\bibitem{Vapnik1995}
+V.~Vapnik.
+\newblock {\em The Nature of Statistical Learning Theory}.
+\newblock Springer-Verlag, 1995.
+
+\bibitem{Viola2001}
+P.~Viola and M.~Jones.
+\newblock Rapid object detection using a boosted cascade of simple features.
+\newblock In {\em Proceedings of IEEE Conference on Computer Vision and Pattern
+  Recognition}, volume~1, pages 511--518, 2001.
+
+\bibitem{Viola2004}
+P.~Viola and M.~Jones.
+\newblock Robust real-time object detection.
+\newblock {\em International Journal of Computer Vision}, 57(2):137--154, May
+  2004.
+
+\bibitem{Wang2006}
+H.~Wang, J.~Yin, J.~Pei, P.~S. Yu, and J.~X. Yu.
+\newblock Suppressing model overfitting in mining concept-drifting data
+  streams.
+\newblock In {\em Proceedings of the 12th ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining (KDD'06)}, 2006.
+
+\bibitem{Weyrauch2004}
+B.~Weyrauch, J.~Huang, B.~Heisele, and V.~Blanz.
+\newblock Component-based face recognition with {3D} morphable models.
+\newblock In {\em Proceedings of CVPR Workshop on Face Processing in Video
+  (FPIV'04)}, 2004.
+
+\bibitem{wiki:ppm}
+Wikipedia.
+\newblock Netpbm format --- wikipedia{,} the free encyclopedia, 2008.
+\newblock [Online; accessed 21-April-2008].
+
+\bibitem{Wiskott1997}
+L.~Wiskott, J.M. Fellous, N.~Kruger, and C.~Malsburg.
+\newblock Face recognition by elastic bunch graph matching.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  19:775--779, 1997.
+
+\bibitem{Wiskott1999}
+L.~Wiskott, J.M. Fellous, N.~Kruger, and C.~Malsburg.
+\newblock Face recognition by elastic bunch graph matching.
+\newblock In L.C.~Jain et~al, editor, {\em Intelligent Biometric Techniques in
+  Fingerprint and Face Recognition}, pages 355--396. CRC Press, 1999.
+
+\bibitem{Wu2004glasses}
+Bo~Wu, Haizhou Ai, and Ran Liu.
+\newblock Glasses detection by boosting simple wavelet features.
+\newblock In {\em ICPR '04: Proceedings of the Pattern Recognition, 17th
+  International Conference on (ICPR'04) Volume 1}, pages 292--295. Washington,
+  DC, USA, IEEE Computer Society, 2004.
+
+\bibitem{Wu2004}
+X.J. Wu, J.~Kittler, J.Y. Yang, K.~Messer, and S.T. Wang.
+\newblock A new direct {LDA} ({D-LDA}) algorithm for feature extraction in face
+  recognition.
+\newblock In {\em Proceedings of International Conference on Pattern
+  Recognition}, 2004.
+
+\bibitem{Yang2004}
+J.~Yang, D.~Zhang, A.F. Frangi, and J.~Yang.
+\newblock Two-dimensional {PCA}: a new approach to appearance-based face
+  representation and recognition.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  26:131--137, 2004.
+
+\bibitem{Yang2002}
+M.H. Yang.
+\newblock Kernel eigenfaces vs. kernel fisherfaces: Face recognition using
+  kernel methods.
+\newblock In {\em Proceedings of the Fifth IEEE International Conference on
+  Automatic Face and Gesture Recognition}, 2002.
+
+\bibitem{Yang2002ICIP}
+Ming-Hsuan Yang.
+\newblock Face recognition using extended isomap.
+\newblock In {\em Proceedings of Image Processing. 2002. Proceedings. 2002
+  International Conference on}, 2002.
+
+\bibitem{Yang2004fg}
+Peng Yang, Shiguang Shan, Wen Gao, Stan Li, and Dong Zhang.
+\newblock Face recognition using {Ada-Boosted} gabor features.
+\newblock In {\em Proceedings of the 6th IEEE International Conference on
+  Automatic Face and Gesture Recognition}, 2004.
+
+\bibitem{Young2005}
+David Young and James Ferryman.
+\newblock Faster learning via optimised {A}daboost.
+\newblock In {\em IEEE Conference on Advanced Video and Signal Based
+  Surveillance, 2005. AVSS 2005.}, 2005.
+
+\bibitem{Zhang1998}
+Z.~Zhang, M.~Lyons, M.~Schuster, and S.~Akamastsu.
+\newblock Comparison between geometry-based and gabor wavelets-based facial
+  expression recognition using multi-layer perceptron.
+\newblock In {\em Proceeding of International Conference on Automatic Face and
+  Gesture Recognition}, volume~1, pages 454--457, 1998.
+
+\bibitem{Zhao2000}
+W.~Zhao and R.~Chellappa.
+\newblock {SFS} based view synthesis for robust face recognition.
+\newblock In {\em Proceedings of IEEE International Conference on Automatic
+  Face and Gesture Recognition}, pages 285--292, 2000.
+
+\bibitem{Zhao1998}
+W.~Zhao, R.~Chellappa, and A.~Krishnaswamy.
+\newblock Discriminant analysis of principal components for face recognition.
+\newblock In {\em Proceedings of the 3rd IEEE International Conference on Face
+  and Gesture Recognition, FG'98}, 1998.
+
+\bibitem{Zhao2003}
+W.~Zhao, R.~Chellappa, A.~Rosenfeld, and P.J. Phillips.
+\newblock Face recognition: A literature survey.
+\newblock {\em ACM Computing Surveys}, 1:399--458, 2003.
+
+\bibitem{zhou2006icpr}
+Mian Zhou and Hong Wei.
+\newblock Face verification using gabor wavelets and {A}daboost.
+\newblock In {\em Proceedings of 18th International Conference on Pattern
+  Recognition}, 2006.
+
+\bibitem{Zhou2004}
+S.~Zhou, R.~Chellappa, and B.~Moghaddam.
+\newblock Intra-personal kernel space for face recognition.
+\newblock In {\em Proceedings of the 6th International Conference on Automatic
+  Face and Gesture Recognition, FGR2004,}, 2004.
+
+\bibitem{Zhu2006}
+Ji~Zhu, Saharon Rosset, Hui Zhou, and Trevor Hastie.
+\newblock Multi-class {A}daboost.
+\newblock A multiclass generalization of the Adaboost algorithm, based on a
+  generalization of the exponential loss, 2006.
+
+\end{thebibliography}

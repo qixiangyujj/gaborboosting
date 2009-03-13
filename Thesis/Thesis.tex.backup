@@ -1,0 +1,49 @@
+ \documentclass[a4paper,oneside,12pt]{report}
+ \usepackage{graphicx}
+ \usepackage{algorithmic}
+ \usepackage{listings}
+ \usepackage{setspace} 
+ \onehalfspacing
+ \usepackage{fancyhdr}
+ \chaptermark
+%\documentclass[oneside,12pt]{Classes/CUEDthesisPSnPDF}
+
+
+
+\begin{document}
+
+\title{A PhD Thesis}
+\author{Mian Zhou}
+\date{Jan 2007}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter*{Acknowledgements}
+
+\begin{abstract}
+\end{abstract}
+
+\pagenumbering{arabic}
+
+\include{intro}
+
+\include{back}
+
+\include{preworks}
+
+\include{ch4/binclassifier}
+
+\include{multiclassifier}
+
+\include{conclusion}
+
+\bibliographystyle{plain}
+\bibliography{Thesis}
+
+
+\end{document}

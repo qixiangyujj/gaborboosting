@@ -1,0 +1,36 @@
+\chapter{Gabor Boosting Binary Classification}
+\label{ch:bin}
+
+\section{Gabor Wavelet and AdaBoosting on Face Verification}
+\label{sec:faceveri}
+\subsection{Gabor Wavelet}
+\label{sec:faceveri:gabor}
+\subsection{Feature Selection}
+\label{sec:faceveri:selection}
+\subsection{AdaBoosting}
+\label{sec:faceveri:adaboosting}
+\subsection{Weak Learner: Fisher Linear Discriminant}
+\label{sec:faceveri:fld}
+\subsection{Reduce Computational Time}
+\label{sec:faceveri:time}
+\subsection{XM2VTS Face Database}
+\label{sec:faceveri:xm2vts}
+\subsection{Feature Selection Results}
+\label{sec:faceveri:result1}
+\subsection{SVM Classification Results}
+\label{sec:faceveri:result2}
+
+\section{Binary Gabor Boosting Face Recognition}
+\subsection{Gabor Wavelet}
+
+\subsection{Feature Selection}
+\subsection{AdaBoosting}
+\subsection{Reduce number of Gabor Features}
+\subsection{Ostu like Weak Learner}
+\subsection{AdaBoosting: Constructing a strong classifier}
+\subsection{Classification on XM2VTS}
+\subsubsection{Normal Results}
+\subsubsection{Cross Validation}
+\subsection{Classification on FERET}
+\subsubsection{FERET Database}
+\section{Summary}
