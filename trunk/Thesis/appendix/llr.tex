@@ -1,0 +1,39 @@
+\chapter{Weak learner using LLR}
+\label{apx:LLR}
+Some weak learners are designed to minimise the error $\varepsilon$. In \cite{Schapire1998,Friedman2000}, the weak learner is derived as
+\begin{equation}
+ h(x)=\frac{1}{2}\log \frac{P(y=+1|x,\omega)}{P(y=-1|x,\omega)}
+\label{eq:ratiolog}
+\end{equation}
+where positive examples are labelled as $y=+1$, and negative examples are labelled as $y=-1$. In this thesis, the positive class is $y=1$ and the negative class is $y=0$. The \mbox{Equation} \ref{eq:ratiolog} is changed to
+\begin{equation}
+h(x)=\left\{
+		 \begin{array}{ll}
+		  1 & \textrm{when}\quad \frac{1}{2}\log \frac{P(y=1|x,\omega)}{P(y=0|x,\omega)} > 0\\
+		  0 & \textrm{otherwise}
+		 \end{array}
+		\right. 
+\end{equation}
+To train a weak learner, the posterior probabilities $P(y=+1|x,\omega)$ and $P(y=-1|x,\omega)$ are obtained according to Bayes' theorem, which is
+\begin{equation}
+ P(y|x,\omega)=\frac{p(x|y,\omega)P(y)}{p(x|\omega)}
+\end{equation}
+The likelihood $p(x|y,\omega)$ is learnt from the training examples. The prior $P(y)$ and the evidence $p(x|\omega)$ are also learnt.
+In \cite{LiStan2004}, a boosted approach using backtrack mechanism, called \textit{FloatBoost}, is proposed. The weak learner is expressed as
+\begin{equation}
+ h(x)=L(x)+T
+\end{equation}
+where
+\begin{equation}
+ L(x)=\frac{1}{2}\log\frac{p(x|y=+1,\omega)}{p(x|y=-1.\omega)}\\
+\end{equation}
+\begin{equation}
+  T=\frac{1}{2}\log\frac{P(y=+1)}{P(y=-1)}
+\end{equation}
+Here the positive and negative examples are labelled as $y=+1$ and $y=-1$, respectively. The log likelihood ratio (LLR) $L(x)$ is trained from the training examples of two classes. The threshold $T$ is the log ratio of prior probabilities. 
+
+In \cite{Huang2004}, the weak learner is implemented with a Look-Up Table (LUT), which also requires the likelihood from the training examples.
+
+From the above description, it can be seen that, to build an optimal weak learner, the likelihood $p(x|y,\omega)$ is required to construct the posterior probability in a probability model. Histogram search is a simple way to build a probability model for a classifier \cite{Forsyth2003}. If a histogram is divided by a number of bins, a representation of the class-conditional probability density is obtained. When the size of training set gets larger and the bins gets smaller, the histogram will almost certainly converge to the probability density function. Since the size of the training set is normally fixed, the only way to increase similarity between the histogram and the probability density function is to increase the number of bins.
+
+There are two variables $x$ and $\omega$ to mapping, \textit{i.e.}, a 2D space. If the number of bins is $b$ in each variable, the number of two-dimensional bins will be $b^2$ in the 2D feature space. The computational cost will be quadratically increased. Therefore, the histogram search needs to balance between the accuracy of computed model and the computational cost. A faster and more precise method is needed for the learning of weak learners rather than the LLR concept is used in training weak learners.

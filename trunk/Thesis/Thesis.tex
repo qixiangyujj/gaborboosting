@@ -1,0 +1,80 @@
+ \documentclass[a4paper,oneside,12pt]{report}
+  %\documentclass[oneside,12pt]{Classes/CUEDthesisPSnPDF}
+ \usepackage{graphicx}
+ \usepackage{algorithmic}
+ \usepackage{listings}
+ \usepackage{setspace}
+ \onehalfspacing
+ \usepackage{fancyhdr}
+ \usepackage{subfigure}
+ \usepackage{amsmath}
+ \usepackage{url}
+ \usepackage{appendix}
+ \usepackage{hyperref}
+ %\usepackage[none]{hyphenat}
+ %\usepackage[print=true,copy=true,edit=true,annotate=true]{pdfcrypt}
+
+
+
+\begin{document}
+
+%\pagestyle{plain}
+%\setlength{\parskip}{2mm}
+%\setlength{\parindent}{6mm}
+
+
+%\title{Gabor-Boosting Face Recognition}
+%\author{Mian Zhou}
+%\date{May 2008}
+
+%
+\include{frontalpage}
+%\maketitle
+\pagenumbering{roman}
+\include{declaration}
+\include{acknowledgments}
+\include{abstract}
+
+
+\tableofcontents
+\newpage
+\listoffigures
+\listoftables
+
+
+
+\newpage
+%\setlength{\parskip}{2mm}
+%\raggedright
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\addtolength{\headheight}{3pt}
+\fancyhead{}
+\fancyhead[RO,RE]{\rm\leftmark}
+\fancyfoot[CO,CE]{\rm\thepage}
+
+\include{intro}
+\include{ch2/review}
+\include{ch4/GaborAdaBoostBG}
+\include{ch5/facerecognition}
+\include{conclusion}
+
+
+
+\appendix
+\appendixpage
+%\addappheadtotoc
+%\include{preworks}
+\include{appendix/pcaca}
+\include{appendix/llr}
+\include{appendix/investoverfit}
+\include{appendix/grid}
+
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{plain}
+\renewcommand{\bibname}{References}
+\bibliography{Thesis}
+
+
+\end{document}
