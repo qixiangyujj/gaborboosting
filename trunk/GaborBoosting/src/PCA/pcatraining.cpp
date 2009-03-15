@@ -31,11 +31,11 @@ int main(int argc, char *argv[])
 {
 
 
-  int client_no = 8;
-  int nfeatures = 75;
+  int client_no = 7;
+  int nfeatures = 799;
   
   
-  const char *srcpath = "/local/FaceDB/XM2VTS/NEW/";
+  const char *srcpath = "/home/sir02mz/XM2VTS";
   CvXm2vts xm2vts( srcpath );
   xm2vts.setNumSub( 200 );
   xm2vts.setNumPic( 4 );
@@ -44,10 +44,15 @@ int main(int argc, char *argv[])
   CvPCAFaceReg facereg;
   facereg.setDB( &xm2vts );
   
-  facereg.loadTrainingData( "/local/BinEXP/PCA/eigen.xml" );
+  //facereg.pca();
+  //facereg.storeTrainingData("/home/sir02mz/eigen.xml");
+  
+  
+  facereg.loadTrainingData( "/home/sir02mz/eigen.xml" );
   
   facereg.svmlearning( client_no, nfeatures);
-  facereg.svmtesting( "/local/FaceDB/XM2VTS/imglist.txt", nfeatures);
+
+  facereg.svmtesting( "/home/sir02mz/XM2VTS/imglist.txt", nfeatures);
   //pca.showAvgImage( );
   //for (int i = 0; i < 70; i++)
   //{

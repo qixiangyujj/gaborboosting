@@ -602,6 +602,6 @@ void CvAdaBoostFeatureSelection::ReadDiscardFile(const char * filename)
     n++;
   }
   
-  printf("\n %d features are discard from the original feature list.\n");
+  printf("\n %d features are discard from the original feature list.\n", n);
   fclose( file );
 }

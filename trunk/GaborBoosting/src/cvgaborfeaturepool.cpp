@@ -302,7 +302,7 @@ void CvGaborFeaturePool::load(const char *filename)
        if (fscanf(file, " %d", &Nu) == EOF) break;
        if (fscanf(file, " %d", &Mu) == EOF) break;
        if (fscanf(file, " %f", &merror) == EOF) break;
-       if (fscanf(file, " %f\n", &alpha) == EOF) break;
+       //if (fscanf(file, " %f\n", &alpha) == EOF) break;
        
       //if (merror < 0.25) 
        {
