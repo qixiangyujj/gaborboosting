@@ -142,7 +142,7 @@ CvTrainingData* CvGaborDifferenceDataMaker::getDifference() const
     }
     else
     {
-      v = cvGetReal1D(extra_mat, i);
+      v = cvGetReal1D(extra_mat, i-nIntraDiff);
       cvSetReal1D(mat, i, v);
       bindata->setclsidxofsample(2, i);
     }

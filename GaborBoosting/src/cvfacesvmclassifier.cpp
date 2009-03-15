@@ -66,7 +66,7 @@ void CvFaceSVMClassifier::Train(CvGaborResponseData & gabordata, CvGaborFeatureP
     
     // copy the feature values to training data for SVM
     CvSize size = cvGetSize(featurevalues);
-    assert(iNumFeatures == (size.width*size.height));
+    assert(iNumExamples == (size.width*size.height));
     for(int j = 0; j < iNumExamples; j++)
     {
       value = cvGetReal1D(featurevalues,j);
@@ -94,7 +94,7 @@ void CvFaceSVMClassifier::Train(CvGaborResponseData & gabordata, CvGaborFeatureP
   p_grid.step = 0;
 
   // set the grid for different case
-  switch(params.svm_type)
+  switch(params.kernel_type)
   {
     case CvSVM::POLY:
       break;
@@ -112,6 +112,10 @@ void CvFaceSVMClassifier::Train(CvGaborResponseData & gabordata, CvGaborFeatureP
   svm.train_auto( train_data, labels, 0, 0, 
                   params, k_fold, 
                   C_grid, gamma_grid, p_grid, nu_grid, coef_grid, degree_grid);
+  
+ // svm.train( train_data, labels, 0, 0, params);
+  CvSVMParams params1 = svm.get_params();
+  cvCopy(&params1, &params, NULL);
 }
 
 
@@ -162,6 +166,8 @@ void CvFaceSVMClassifier::SetKernel(int kernel_type)
   params.C = numclass;
   params.kernel_type = kernel;
   params.class_weights = 0;
+  params.degree = 3;
+  params.nu = 0.9;
   if((max_iter > 0) && (epsilon < 1.0) && (epsilon > 0.0))
   {
     params.term_crit.type = CV_TERMCRIT_ITER+CV_TERMCRIT_EPS;

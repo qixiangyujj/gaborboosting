@@ -28,6 +28,7 @@
 #include "cvgaborresponsedata.h"
 #include "cvbindiffgabadafeatureselect.h"
 #include "cvadaboostfeatureselection.h"
+#include "cvfacesvmclassifier.h"
 //#include "GaborBoosting.h"
 
 using namespace std;
@@ -36,7 +37,7 @@ using namespace PrepareData;
 int main(int argc, char *argv[])
 {
   const char *srcpath = "/home/sir02mz/XM2VTS/";
-  const char *selectfeaturefilename = "";
+  const char *selectfeaturefilename = "/home/sir02mz/EXP/ANN_D/significant.txt";
   int height = 0;
   int width = 0;
   int minscale = -1;
@@ -59,12 +60,14 @@ int main(int argc, char *argv[])
 
   
 
-  CvGaborResponseData GaborData( &xm2vts, &param );
+  CvGaborResponseData GaborData( &xm2vts, &param, "/home/sir02mz/OUTPUT" );
 
   CvGaborFeaturePool selected_features;
   selected_features.load(selectfeaturefilename);
   
-  
+  CvFaceSVMClassifier svm( CvSVM::POLY, 2, 200, 0.98 );
+  svm.Train( GaborData, selected_features );
+  svm.Save("svm.xml");
 
 
 
