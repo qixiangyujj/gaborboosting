@@ -75,7 +75,8 @@ am_libAdaGabor_a_OBJECTS = MatUsage.$(OBJEXT) cv2bins.$(OBJEXT) \
 	cvgaborfeaturepairpool.$(OBJEXT) \
 	cvgaborfeaturepairselect.$(OBJEXT) \
 	cvgaborfeaturepool.$(OBJEXT) cvlookuptable.$(OBJEXT) \
-	cvgaborresponsedata.$(OBJEXT) cvknnweaklearner.$(OBJEXT) \
+	cvgaborresponsedata.$(OBJEXT) cvirisdata.$(OBJEXT) \
+	cvknnweaklearner.$(OBJEXT) \
 	cvmultigabadafeatureselect.$(OBJEXT) \
 	cvmultigabadafsm1.$(OBJEXT) cvmultitrainingdata.$(OBJEXT) \
 	cvmutinf.$(OBJEXT) cvmweaklearner.$(OBJEXT) \
@@ -290,9 +291,9 @@ noinst_HEADERS = CommonCVFunction.h GaborBoosting.h MatUsage.h PrepareData.h \
 	cvbinarytrainingdata.h cvbindiffgabadafeatureselect.h cvbingabadafeatureselect.h cventropy.h \
 	cvfaceclassifier.h cvfacedb.h cvfacesvmclassifier.h cvferet.h cvgabadafeatureselect.h \
 	cvgabor.h cvgabordifferencedatamaker.h cvgaborfeature.h cvgaborfeaturepair.h \
-	cvgaborfeaturepairpool.h cvgaborfeaturepairselect.h cvgaborfeaturepool.h cvknnweaklearner.h \
-	cvlookuptable.h cvmultigabadafeatureselect.h cvmultigabadafsm1.h cvmultitrainingdata.h \
-	cvmutinf.h cvmweaklearner.h cvpcafacereg.h cvpoolparams.h cvsubject.h \
+	cvgaborfeaturepairpool.h cvgaborfeaturepairselect.h cvgaborfeaturepool.h cvirisdata.h \
+	cvknnweaklearner.h cvlookuptable.h cvmultigabadafeatureselect.h cvmultigabadafsm1.h \
+	cvmultitrainingdata.h cvmutinf.h cvmweaklearner.h cvpcafacereg.h cvpoolparams.h cvsubject.h \
 	cvtestingdata.h cvtrainingdata.h cvweaklearner.h cvxm2vts.h makingfeaturedata.h
 
 adaboostgabortraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lcvaux -lcv \
@@ -305,10 +306,10 @@ libAdaGabor_a_SOURCES = MatUsage.cpp cv2bins.cpp cvadaboost.cpp \
 	cvfacesvmclassifier.cpp cvferet.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
 	cvgabordifferencedatamaker.cpp cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp \
 	cvgaborfeaturepairselect.cpp cvgaborfeaturepool.cpp	cvlookuptable.cpp cvgaborresponsedata.cpp \
-	cvknnweaklearner.cpp cvmultigabadafeatureselect.cpp cvmultigabadafsm1.cpp \
-	cvmultitrainingdata.cpp cvmutinf.cpp cvmweaklearner.cpp cvpcafacereg.cpp cvpoolparams.cpp \
-	cvsubject.cpp cvtestingdata.cpp	cvtrainingdata.cpp cvweaklearner.cpp cvxm2vts.cpp \
-	makingfeaturedata.cpp
+	cvirisdata.cpp cvknnweaklearner.cpp cvmultigabadafeatureselect.cpp \
+	cvmultigabadafsm1.cpp cvmultitrainingdata.cpp cvmutinf.cpp cvmweaklearner.cpp \
+	cvpcafacereg.cpp cvpoolparams.cpp cvsubject.cpp cvtestingdata.cpp	cvtrainingdata.cpp \
+	cvweaklearner.cpp cvxm2vts.cpp makingfeaturedata.cpp
 
 MutInf_SOURCES = MutInformation.cpp
 MutInf_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui -lml \
@@ -335,8 +336,8 @@ adaboostgabortraining_M1_SOURCES = adaboostgabor.M1.cpp
 adaboostgabortraining_M1_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui \
 	-L/usr/local/lib -lcv -lml -lcxcore
 
-SUBDIRS = ClientBasedFaceReg Gender IntraExtraFaceReg MultiClassification PCA \
-	Segmentation
+SUBDIRS = AdaBoost ClientBasedFaceReg Gender IntraExtraFaceReg \
+	MultiClassification PCA Segmentation
 
 PairPoolPartition_LDADD = $(top_builddir)/src/libAdaGabor.a -L/usr/local/lib \
 	-lhighgui -lcxcore -lcv
@@ -523,6 +524,7 @@ include ./$(DEPDIR)/cvgaborfeaturepairpool.Po
 include ./$(DEPDIR)/cvgaborfeaturepairselect.Po
 include ./$(DEPDIR)/cvgaborfeaturepool.Po
 include ./$(DEPDIR)/cvgaborresponsedata.Po
+include ./$(DEPDIR)/cvirisdata.Po
 include ./$(DEPDIR)/cvknnweaklearner.Po
 include ./$(DEPDIR)/cvlookuptable.Po
 include ./$(DEPDIR)/cvmultigabadafeatureselect.Po
