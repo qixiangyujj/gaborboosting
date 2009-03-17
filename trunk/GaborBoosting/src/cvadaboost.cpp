@@ -56,7 +56,7 @@ bool CvAdaBoost::train(CvTrainingData *data, int numweak, int learner_type)
       {
         CvWeakLearner *weak = new CvWeakLearner;
         printf("\n");
-        printf("--------- The Iteration %d/%d ----------\n", i+1, niteration);
+        printf("--------- The Iteration %d/%d ----------\n", i, niteration);
 
         //char filename[80];
         //sprintf(filename,"/local/%d_weight.xml",i); 
@@ -71,17 +71,20 @@ bool CvAdaBoost::train(CvTrainingData *data, int numweak, int learner_type)
         */
         weaks.push_back(*weak);
 
+        
         alpha = weak->importance();
         alphas.push_back(alpha);
         normalize();
-        perform();
-        if (error == 0.0)
+        double total_error = perform();
+        if((error == 0.0)||(total_error == 0.0))
         {
           printf("Learning finished at the %d th round, due to the error is zero.\n", nweak);
           break;
         }
+        weak->update(tdata);
+
         nweak++;
-        
+        //delete weak;
       }
       return true;
 
@@ -147,11 +150,11 @@ int CvAdaBoost::predict(CvTestingData *testing)
       perror("The number of element for each sample in the testing data is not same as in the training data!\n");
       exit(-1);
     }
-    CvMat *data = cvCreateMat(numsample, numelement, CV_32FC1);
+    CvMat *data;
     data = testing->getdata();
     CvMat *sample = cvCreateMat(1, nelement, CV_32FC1);
 
-    int clsidx;
+    int clsidx, preclsidx;
     for (int i = 0; i < numsample; i++)
     {
       /* filling the sample */
@@ -172,7 +175,8 @@ int CvAdaBoost::predict(CvTestingData *testing)
       else clsidx = 0;
       */
       clsidx = predict(sample);
-      testing->setclsidxofsample(clsidx, i);
+      preclsidx = testing->getclsidxofsample(i);
+
     }
     cvReleaseMat(&sample);
     cvReleaseMat(&data);
@@ -188,6 +192,7 @@ int CvAdaBoost::predict(CvMat* sample)
     double result = 0.0;
     int clsidx;
    
+    int num = weaks.size();
     for (int i = 0; i < weaks.size(); i++)
     {
        label = weaks[i].predict(sample); 

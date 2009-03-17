@@ -64,6 +64,10 @@ public:
     CvMat* getweights() const;
     void setweights(const CvMat *wmat);
     CvTrainingData* split(int clsidx1, int clsidx2) const;
+    CvTrainingData* getsubset(int start, int end) const;
+    CvTrainingData* getTestingSubset(int start, int end);
+    CvTrainingData* getTrainingSubset(int start, int end);
+
   
     
 

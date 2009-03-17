@@ -71,6 +71,7 @@ public:
     double svmpredict(double value);
     double svmpredict( CvMat *sample );
     CvMat* sampling(CvMat *data, int numsamples, int dist_type);
+    CvWeakLearner & operator=(const CvWeakLearner& weak);
     enum { BAYES = 0, KNEAR = 1, SVM = 2, ANN = 3, FLD = 4, POTSU = 5};
  
 protected:
