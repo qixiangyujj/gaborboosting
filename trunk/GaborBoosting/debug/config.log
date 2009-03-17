@@ -497,6 +497,7 @@ config.status:671: creating src/MultiClassification/Makefile
 config.status:671: creating src/PCA/Makefile
 config.status:671: creating src/Segmentation/Makefile
 config.status:671: creating config.h
+config.status:891: config.h is unchanged
 config.status:938: executing depfiles commands
 
 ## ---------------- ##
