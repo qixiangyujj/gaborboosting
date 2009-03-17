@@ -50,7 +50,7 @@ Selection_OBJECTS = $(am_Selection_OBJECTS)
 Selection_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 Testing_SOURCES = Testing.c
 Testing_OBJECTS = Testing.$(OBJEXT)
-Testing_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
+Testing_LDADD = $(LDADD)
 am_Training_OBJECTS = FaceTraining.$(OBJEXT)
 Training_OBJECTS = $(am_Training_OBJECTS)
 Training_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
@@ -199,7 +199,6 @@ Selection_SOURCES = FaceFeatureSelection.cpp
 Selection_LDADD = $(top_builddir)/src/libAdaGabor.a -lml -lhighgui -lcxcore \
 	-lcv
 
-Testing_LDADD = $(top_builddir)/src/libAdaGabor.a
 all: all-am
 
 .SUFFIXES:
