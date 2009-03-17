@@ -41,6 +41,7 @@ public:
     int predict(CvMat* sample);
     double perform();
     void clear();
+    int predict(CvMat* sample, double bias);
 
 protected:
     CvMat* weight;
