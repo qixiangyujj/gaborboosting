@@ -26,7 +26,7 @@ CvWeakLearner::CvWeakLearner()
 
 CvWeakLearner::~CvWeakLearner()
 {
-  clear();
+  //clear();
 }
 
 
@@ -972,29 +972,58 @@ double CvWeakLearner::fldpredict( double value )
  */
 void CvWeakLearner::update(CvTrainingData *data)
 {
-if (error > 0.0)
-{
+  assert(error > 0.0);
+
   double label1, label2, ve, dwei;
   
   CvMat* trainData = data->getdata();
   CvMat *trainClasses = data->getresponse();
-  
-  for (int i = 0; i < nsample; i++)
+  nelement = data->getnumelement();
+  nsample = data->getnumsample();
+
+  CvMat *sample = cvCreateMat(1, nelement, CV_32FC1);
+  if(nelement == 1)
   {
-    ve = cvGetReal1D(trainData,i);
-    label1 = cvGetReal1D(trainClasses, i);
-    label2 = predict( ve );
-    if ( label1 != label2 )
-      dwei = exp(alpha)*data->getweightofsample( i );
-    else 
-      dwei = exp(-1*alpha)*data->getweightofsample( i );
-    assert(dwei > 0.0);
-    data->setweightofsample( dwei, i );
+    for (int i = 0; i < nsample; i++)
+    {
+      ve = cvGetReal1D(trainData,i);
+      label1 = cvGetReal1D(trainClasses, i);
+      label2 = predict( ve );
+      if ( label1 != label2 )
+        dwei = exp(alpha)*data->getweightofsample( i );
+      else 
+        dwei = exp(-1*alpha)*data->getweightofsample( i );
+      assert(dwei > 0.0);
+      data->setweightofsample( dwei, i );
+    }
   }
-  
+  else if(nelement > 1)
+  {
+    
+    for (int i = 0; i < nsample; i++)
+    {
+      label1 = data->getclsidxofsample(i);
+      for (int j = 0; j < nelement; j++)
+      {
+        sample->data.fl[j] = cvGetReal2D(trainData, i, j);
+      }
+      label2 = predict(sample);
+      if (label1 != label2)
+      {
+        dwei = exp(alpha)*data->getweightofsample( i );
+      }
+      else
+      {
+        dwei = exp(-1*alpha)*data->getweightofsample( i );
+      }
+      assert(dwei > 0.0);
+      data->setweightofsample( dwei, i );
+    }
+  }
+  cvReleaseMat( &sample );
   cvReleaseMat( &trainClasses );
   cvReleaseMat( &trainData );
-}
+
 }
 
 
@@ -1187,4 +1216,29 @@ CvMat* CvWeakLearner::sampling(CvMat *data, int numsamples, int dist_type)
   {
   }
   return subdata;
+}
+
+
+/*!
+    \fn CvWeakLearner::operator=(const CvWeakLearner& weak)
+ */
+CvWeakLearner & CvWeakLearner::operator=(const CvWeakLearner& weak)
+{
+  this->alpha = weak.alpha;
+  this->b = weak.b;
+  this->error = weak.error;
+  this->fn = weak.fn;
+  this->fp = weak.fp;
+  this->fprate = weak.fprate;
+  this->IsTrained = weak.IsTrained;
+  this->nelement = weak.nelement;
+  this->nsample = weak.nsample;
+  this->num_pos = weak.num_pos;
+  this->num_neg = weak.num_neg;
+  this->parity = weak.parity;
+  this->thresholding = weak.thresholding;
+  this->type = weak.type;
+  this->w = weak.w;
+  CvANN_MLP *annc = weak.ann;
+  CvANN_MLP anncc = *annc;
 }

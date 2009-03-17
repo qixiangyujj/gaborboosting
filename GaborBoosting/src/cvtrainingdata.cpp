@@ -84,64 +84,128 @@ void CvTrainingData::setnumcls(int num)
  */
 bool CvTrainingData::loadIris(const char *filename)
 {
-    float e1,e2,e3,e4;
-    char clsname[20];
-    char buffer[80];
-    int n = 0;
-    int nclsdist;
-    /*Initialsed 3 classes, 150 samples and 8 elements per sample*/
-    init(3, 150, 4);   
-    
+//     float e1,e2,e3,e4;
+//     char clsname[20];
+//     char buffer[80];
+//     int n = 0;
+//     int nclsdist;
+//     /*Initialsed 3 classes, 150 samples and 8 elements per sample*/
+//     init(3, 150, 4);   
+//     
+// 
+// 
+//     ifstream irisfile;
+//     irisfile.open(filename, ios::out);
+//     if(irisfile.is_open())
+//     {
+//       while(!irisfile.eof())
+//       {
+//         irisfile >> buffer;
+//         //printf("%s\n",buffer);
+// 
+//         sscanf(buffer,"%f,%f,%f,%f,%s",&e1,&e2,&e3,&e4,clsname);
+// 
+//         if (!strcmp(clsname, "Iris-setosa"))
+//         {
+//           cls[n] = 1;
+//           //printf("Sample No. %d is Iris-setosa.\n",n+1);
+//           nclsdist = clsdist[0];
+//           nclsdist++;
+//           clsdist[0] = nclsdist;
+//         }
+//         else if (!strcmp(clsname, "Iris-versicolor"))
+//         {
+//           cls[n] = 2;
+//           //printf("Sample No. %d is Iris-versicolor.\n",n+1);
+//           nclsdist = clsdist[1];
+//           nclsdist++;
+//           clsdist[1] = nclsdist;
+//         }
+//         else if (!strcmp(clsname, "Iris-virginica"))
+//         {
+//           cls[n] = 3;
+//           //printf("Sample No. %d is Iris-virginica.\n",n+1);
+//           nclsdist = clsdist[2];
+//           nclsdist++; 
+//           clsdist[2] = nclsdist;
+//         }
+//         
+//         weight[n] = 0.0;
+//         cvSetReal2D( (CvMat*)Valcache, n, 0, (float)e1 );
+//         cvSetReal2D( (CvMat*)Valcache, n, 1, (float)e2 );
+//         cvSetReal2D( (CvMat*)Valcache, n, 2, (float)e3 );
+//         cvSetReal2D( (CvMat*)Valcache, n, 3, (float)e4 );
+//         n++;
+//       }
+//     }
+// 
+//     
+//     irisfile.close(); 
+  
+  assert(filename != NULL );
+  FILE *file = fopen( filename, "r");
+  if(file == NULL)
+  {
+    printf("ERROR: Can not open the file %s.\n", filename);
+    exit(-1);
+  }
+  
+  int fpos;
+  float feature1, feature2, feature3, feature4;
+  char * name = new char[50];
 
-
-    ifstream irisfile;
-    irisfile.open(filename, ios::out);
-    if(irisfile.is_open())
+  init(3, 150, 4);
+  
+  int n = 0;
+  int nclsdist;
+  while (!feof(file))
+  {
+    if (fscanf(file, "%3f,%3f,%3f,%3f,%s", &feature1, &feature2, &feature3, &feature4, name) == EOF) break;
+    if(!strcmp( name, "Iris-setosa"))
     {
-      while(!irisfile.eof())
-      {
-        irisfile >> buffer;
-        //printf("%s\n",buffer);
-
-        sscanf(buffer,"%f,%f,%f,%f,%s",&e1,&e2,&e3,&e4,clsname);
-
-        if (!strcmp(clsname, "Iris-setosa"))
-        {
-          cls[n] = 1;
-          //printf("Sample No. %d is Iris-setosa.\n",n+1);
-          nclsdist = clsdist[0];
-          nclsdist++;
-          clsdist[0] = nclsdist;
-        }
-        else if (!strcmp(clsname, "Iris-versicolor"))
-        {
-          cls[n] = 2;
-          //printf("Sample No. %d is Iris-versicolor.\n",n+1);
-          nclsdist = clsdist[1];
-          nclsdist++;
-          clsdist[1] = nclsdist;
-        }
-        else if (!strcmp(clsname, "Iris-virginica"))
-        {
-          cls[n] = 3;
-          //printf("Sample No. %d is Iris-virginica.\n",n+1);
-          nclsdist = clsdist[2];
-          nclsdist++; 
-          clsdist[2] = nclsdist;
-        }
-        
-        weight[n] = 0.0;
-        cvSetReal2D( (CvMat*)Valcache, n, 0, (float)e1 );
-        cvSetReal2D( (CvMat*)Valcache, n, 1, (float)e2 );
-        cvSetReal2D( (CvMat*)Valcache, n, 2, (float)e3 );
-        cvSetReal2D( (CvMat*)Valcache, n, 3, (float)e4 );
-        n++;
-      }
+      cls[n] = 1;
+      nclsdist = clsdist[0];
+      nclsdist++;
+      clsdist[0] = nclsdist;
     }
-
-    
-    irisfile.close(); 
+    else if(!strcmp( name, "Iris-versicolor"))
+    {
+      cls[n] = 2;
+      nclsdist = clsdist[1];
+      nclsdist++;
+      clsdist[1] = nclsdist;
+    }
+    else if(!strcmp( name, "Iris-virginica"))
+    {
+      cls[n] = 3;
+      nclsdist = clsdist[2];
+      nclsdist++; 
+      clsdist[2] = nclsdist;
+    }
+    	
+    weight[n] = 0.0;
+    cvSetReal2D( (CvMat*)Valcache, n, 0, feature1 );
+    cvSetReal2D( (CvMat*)Valcache, n, 1, feature2);
+    cvSetReal2D( (CvMat*)Valcache, n, 2, feature3 );
+    cvSetReal2D( (CvMat*)Valcache, n, 3, feature4 );
+    n++;
+  }
+  
+  
+  
+  delete [] name;
+  
+  fclose(file);
+  
 }
+
+
+
+
+
+
+
+
 
 
 /*!
@@ -255,7 +319,7 @@ CvTrainingData* CvTrainingData::clone() const
  */
 void CvTrainingData::setclsidxofsample(int clsidx, int sampleidx) const
 {
-    if ((clsidx <= 0) || (clsidx > ncls)) 
+    if (clsidx <= 0) 
     {
        perror("Class index exceeds the number of class or negative \n");
        //printf("ncls%d\n", clsidx);
@@ -340,7 +404,7 @@ void CvTrainingData::statclsdist()
     for (int i = 0; i < maxnum; i++)
     {
       clsidx = cls[i];
-      if ((clsidx <= 0) || (clsidx > ncls))
+      if (clsidx <= 0)
       {
         printf("%d      %d", clsidx, i);
         perror("Class index exceeds the number of class, or negative.\n");
@@ -417,9 +481,15 @@ CvTrainingData* CvTrainingData::merge(const CvTrainingData *data) const
       samplenum1 = maxnum;
       samplenum2 = data->getnumsample();
       samplenum = samplenum1 + samplenum2;
+      
       clsnum1 = ncls;
+      
+      
+      
       clsnum2 = data->getnumcls();
+      
       clsnum = clsnum1 + clsnum2;
+      
       elementnum = getnumelement();
       newdata->init(clsnum, samplenum, elementnum);
 
@@ -443,7 +513,7 @@ CvTrainingData* CvTrainingData::merge(const CvTrainingData *data) const
             v = cvGetReal2D(data->Valcache, (i-samplenum1), j);
             cvSetReal2D(newdata->Valcache, i, j, v);
           }
-          clsidx = data->getclsidxofsample(i-samplenum1) + clsnum1;
+          clsidx = data->getclsidxofsample(i-samplenum1)+clsnum1;
           dwei = data->getweightofsample(i - samplenum1);
         }
         /* Class index */
@@ -512,7 +582,8 @@ CvTrainingData* CvTrainingData::combine(CvTrainingData *data) const
       newdata->init(1, samplenum, elementnum);
       for (int i = 0; i < samplenum; i++)
       {
-        newdata->setclsidxofsample(1, i);
+        int clsidx = getclsidxofsample(i);
+        newdata->setclsidxofsample(clsidx, i);
         for (int j = 0; j < elementnum; j++)
         {
           if (j < elementnum1) v = cvGetReal2D(Valcache, i, j);
@@ -576,8 +647,14 @@ void CvTrainingData::setdata(const CvMat *mat)
     CvSize size2 = cvGetSize(Valcache);
     CvMat *tmat = cvCloneMat(Valcache);
     if(size1.width != size2.width)
+    {
       cvTranspose(mat, tmat);
-    cvCopy(tmat, Valcache);
+      cvCopy(tmat, Valcache);
+    }
+    else
+    {
+      cvCopy(mat, Valcache);
+    }
     cvReleaseMat(&tmat);
 }
 
@@ -735,8 +812,124 @@ CvTrainingData* CvTrainingData::split(int clsidx1, int clsidx2) const
   CvTrainingData * data1 = this->split(clsidx1);
   CvTrainingData * data2 = this->split(clsidx2);
   CvTrainingData * newdata = data1->merge( data2 );
-  
-  return newdata;
   delete data1;
   delete data2;
+  return newdata;
+
+}
+
+
+/*!
+    \fn CvTrainingData::getsubset(int start, int end) const
+ */
+CvTrainingData* CvTrainingData::getsubset(int start, int end) const
+{
+  int num_samples = end - start + 1;
+  int num_elements = getnumelement();
+  CvTrainingData *newdata = new CvTrainingData;
+  newdata->init(1, num_samples, num_elements);
+  
+  CvMat *omat = getdata();
+  CvMat *submat = cvCreateMat(num_samples, num_elements, CV_32FC1);
+  cvGetRows( omat, submat, start, end+1, 1);
+  //cvSave("data.xml", submat, NULL, NULL, cvAttrList(0,0) );
+  newdata->setdata( submat );
+  
+  for(int i = 0; i < num_samples; i++)
+  {
+    int clsidx = getclsidxofsample(start + i);
+    newdata->setclsidxofsample(clsidx, i);
+    newdata->setweightofsample( 0.0 , i);
+  }
+  cvReleaseMat( &submat );
+  cvReleaseMat( &omat );
+  return newdata;
+}
+
+
+
+
+
+/*!
+    \fn CvTrainingData::getTestingSubset(int start, int end)
+ */
+CvTrainingData* CvTrainingData::getTestingSubset(int start, int end)
+{
+  int start1 = start+50;;
+  int end1 = end+50;
+  int num_elements = getnumelement();
+  int num_samples = (end - start + 1)*2;
+  int num_class = getnumcls();
+  CvTrainingData *newdata = new CvTrainingData;
+  newdata->init(num_class, num_samples, num_elements);
+  
+  CvMat *submat = cvCreateMat(num_samples, num_elements, CV_32FC1);
+  
+  double v;
+  int clsidx, n = 0;
+  for(int i = 0; i < maxnum; i++)
+  {
+    if(((i >= start)&&(i <= end)) || ((i >= start1)&&(i <= end1)))
+    {
+      clsidx = getclsidxofsample(i);
+      newdata->setclsidxofsample(clsidx, n);
+      newdata->setweightofsample(0.0, n);
+      for(int j = 0; j < getnumelement(); j++)
+      {
+        v = cvGetReal2D(Valcache, i, j);
+        cvSetReal2D(submat, n, j, v);
+      }
+      n++;
+    }
+  }
+  
+  newdata->setdata( submat );
+  cvReleaseMat(&submat);
+  newdata->statclsdist();
+  return newdata;
+}
+
+
+/*!
+    \fn CvTrainingData::getTrainingSubset(int start, int end)
+ */
+CvTrainingData* CvTrainingData::getTrainingSubset(int start, int end)
+{
+  int start1 = start+50;;
+  int end1 = end+50;
+  
+  int num_elements = getnumelement();
+  int num_samples = maxnum - (end - start + 1)*2;
+  int num_class = getnumcls();
+  
+  CvTrainingData *newdata = new CvTrainingData;
+  newdata->init(num_class, num_samples, num_elements);
+  
+  CvMat *submat = cvCreateMat(num_samples, num_elements, CV_32FC1);
+  
+  double v;
+  int clsidx, n = 0;
+  for(int i = 0; i < maxnum; i++)
+  {
+    if(((i >= start)&&(i <= end)) || ((i >= start1)&&(i <= end1)))
+    {
+    }
+    else
+    {
+      clsidx = getclsidxofsample(i);
+      newdata->setclsidxofsample(clsidx, n);
+      newdata->setweightofsample(0.0, n);
+      for(int j = 0; j < getnumelement(); j++)
+      {
+        v = cvGetReal2D(Valcache, i, j);
+        cvSetReal2D(submat, n, j, v);
+      }
+      n++;
+    }
+  }
+  
+  newdata->setdata( submat );
+  cvReleaseMat(&submat);
+  newdata->statclsdist();
+  return newdata;
 }
