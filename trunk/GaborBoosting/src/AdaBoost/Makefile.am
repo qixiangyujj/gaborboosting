@@ -1,0 +1,9 @@
+INCLUDES = -I$(top_srcdir)/src $(all_includes) -I/usr/local/include/opencv
+METASOURCES = AUTO
+bin_PROGRAMS = IrisTest Roc SVM_test
+IrisTest_SOURCES = Iris_test.cpp
+IrisTest_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui -lml -lcxcore -lcv
+SVM_test_SOURCES = svm_test.cpp
+SVM_test_LDADD = $(top_builddir)/src/libAdaGabor.a -lml -lhighgui -lcv -lcxcore
+Roc_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui -lml -lcv -lcxcore
+Roc_SOURCES = roc.cpp
