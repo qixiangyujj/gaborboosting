@@ -74,7 +74,7 @@ bool CvAdaBoost::train(CvTrainingData *data, int numweak, int learner_type)
         
         alpha = weak->importance();
         alphas.push_back(alpha);
-        normalize();
+
         double total_error = perform();
         if((error == 0.0)||(total_error == 0.0))
         {
@@ -82,7 +82,7 @@ bool CvAdaBoost::train(CvTrainingData *data, int numweak, int learner_type)
           break;
         }
         weak->update(tdata);
-
+        normalize();
         nweak++;
         //delete weak;
       }
@@ -256,4 +256,33 @@ void CvAdaBoost::clear()
        delete tdata;
        
     }
+}
+
+
+/*!
+    \fn CvAdaBoost::predict(CvMat* sample, double bias)
+ */
+int CvAdaBoost::predict(CvMat* sample, double bias)
+{
+  double label,alpha;
+  double result = 0.0;
+  int clsidx;
+   
+  int num = weaks.size();
+  for (int i = 0; i < weaks.size(); i++)
+  {
+    label = weaks[i].predict(sample); 
+    label = label*2 -3;     /*  change the 1 ~ 2 scale to -1 ~ 1 scale */
+    alpha = alphas[i];
+    result = result + alpha*label;
+  }
+  result = result + bias;
+  
+  //printf("%f  ", result);
+  
+  if (result > 0) clsidx = 2;
+  else if (result < 0) clsidx = 1;
+  else clsidx = 0;
+ 
+  return clsidx;
 }
