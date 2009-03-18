@@ -15,7 +15,7 @@
 
 
 
-VPATH = /home/sir02mz/CWorks/Gaborboosting/src/Segmentation
+VPATH = /home/sir02mz/CWorks/GaborBoosting/src/Segmentation
 pkgdatadir = $(datadir)/adaboostgabortraining
 pkglibdir = $(libdir)/adaboostgabortraining
 pkgincludedir = $(includedir)/adaboostgabortraining
@@ -71,12 +71,12 @@ HEADERS = $(noinst_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/sir02mz/CWorks/Gaborboosting/missing --run aclocal-1.10
-AMTAR = ${SHELL} /home/sir02mz/CWorks/Gaborboosting/missing --run tar
+ACLOCAL = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run aclocal-1.10
+AMTAR = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /home/sir02mz/CWorks/Gaborboosting/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/sir02mz/CWorks/Gaborboosting/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/sir02mz/CWorks/Gaborboosting/missing --run automake-1.10
+AUTOCONF = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run automake-1.10
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -111,7 +111,7 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/sir02mz/CWorks/Gaborboosting/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/sir02mz/CWorks/GaborBoosting/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NMEDIT = 
 OBJEXT = o
@@ -128,10 +128,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.1
-abs_builddir = /home/sir02mz/CWorks/Gaborboosting/optimized/src/Segmentation
-abs_srcdir = /home/sir02mz/CWorks/Gaborboosting/src/Segmentation
-abs_top_builddir = /home/sir02mz/CWorks/Gaborboosting/optimized
-abs_top_srcdir = /home/sir02mz/CWorks/Gaborboosting
+abs_builddir = /home/sir02mz/CWorks/GaborBoosting/optimized/src/Segmentation
+abs_srcdir = /home/sir02mz/CWorks/GaborBoosting/src/Segmentation
+abs_top_builddir = /home/sir02mz/CWorks/GaborBoosting/optimized
+abs_top_srcdir = /home/sir02mz/CWorks/GaborBoosting
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_F77 = 
@@ -160,7 +160,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /home/sir02mz/CWorks/Gaborboosting/install-sh
+install_sh = $(SHELL) /home/sir02mz/CWorks/GaborBoosting/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -174,11 +174,11 @@ program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
-srcdir = /home/sir02mz/CWorks/Gaborboosting/src/Segmentation
+srcdir = /home/sir02mz/CWorks/GaborBoosting/src/Segmentation
 sysconfdir = ${prefix}/etc
 target_alias = 
 top_builddir = ../..
-top_srcdir = /home/sir02mz/CWorks/Gaborboosting
+top_srcdir = /home/sir02mz/CWorks/GaborBoosting
 INCLUDES = -I$(top_srcdir)/src -I$(top_srcdir)/src/Segmentation $(all_includes) \
 	-I/usr/local/include/opencv
 
