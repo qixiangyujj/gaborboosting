@@ -20,7 +20,7 @@
   </general>
   <kdevautoproject>
     <general>
-      <activetarget>src/IntraExtraFaceReg/Selection</activetarget>
+      <activetarget>src/AdaBoost/Roc</activetarget>
       <useconfiguration>debug</useconfiguration>
     </general>
     <run>
@@ -54,6 +54,9 @@
         <Training/>
         <Selection/>
         <Testing/>
+        <IrisTest/>
+        <SVM_test/>
+        <Roc/>
       </runarguments>
       <customdirectory>/home/sir/sir02mz/local/BinEXP/Gender/</customdirectory>
       <programargs/>
@@ -69,12 +72,18 @@
         <Training/>
         <Selection/>
         <Testing/>
+        <IrisTest/>
+        <SVM_test/>
+        <Roc/>
       </debugarguments>
       <cwd>
         <ClientFeatureSelec>/home/sir02mz/CppWorks/gaborboosting/debug/./src/IntraExtraFaceReg</ClientFeatureSelec>
         <Training>/home/sir02mz/CppWorks/gaborboosting/debug/./src/IntraExtraFaceReg</Training>
         <Selection>/home/sir02mz/CWorks/GaborBoosting/debug/./src/IntraExtraFaceReg</Selection>
         <Testing>/home/sir02mz/CWorks/GaborBoosting/debug/./src/IntraExtraFaceReg</Testing>
+        <IrisTest>/home/sir02mz/CWorks/GaborBoosting/debug/./src/AdaBoost</IrisTest>
+        <SVM_test>/home/sir02mz/CWorks/GaborBoosting/debug/./src/AdaBoost</SVM_test>
+        <Roc>/home/sir02mz/CWorks/GaborBoosting/debug/./src/AdaBoost</Roc>
       </cwd>
     </run>
     <configurations>
