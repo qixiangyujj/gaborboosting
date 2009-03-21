@@ -57,8 +57,10 @@ int main( int argc, char** argv )
   
   //CvTrainingData *data2 = odata.split(2);
   CvTrainingData *data2 = odata.split(2,3);
-  CvTrainingData *tedata = data2->getTestingSubset(start,end);
-  CvTrainingData *trdata = data2->getTrainingSubset(start,end);
+  //CvTrainingData *tedata = data2->getTestingSubset(start,end);
+  CvTrainingData *tedata = odata.split(2,3);
+  //CvTrainingData *trdata = data2->getTrainingSubset(start,end);
+  CvTrainingData *trdata = odata.split(2,3);
   
   
   

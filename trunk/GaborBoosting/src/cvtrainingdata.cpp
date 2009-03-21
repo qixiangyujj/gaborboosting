@@ -194,7 +194,7 @@ bool CvTrainingData::loadIris(const char *filename)
   
   
   delete [] name;
-  
+ 
   fclose(file);
   statclsdist();
 }
