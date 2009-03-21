@@ -52,7 +52,7 @@ int main( int argc, char** argv )
    
       
   CvAdaBoost AdaBoost;
-  AdaBoost.train( trainingdata, 200, CvWeakLearner::ANN);
+  AdaBoost.train( trainingdata, 200, CvWeakLearner::BAYES);
   
   
   

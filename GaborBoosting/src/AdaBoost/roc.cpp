@@ -26,7 +26,7 @@ int main( int argc, char** argv )
   
   double bias_start = -8;
   double bias_end = 8;
-  double interval = 0.00000001;
+  double interval = 0.000001;
   int weak_type = CvWeakLearner::ANN;
   
   char *filename = new char[100];
@@ -52,7 +52,7 @@ int main( int argc, char** argv )
   CvMat *testingData = testingdata->getdata();
   
 
-  FILE *file = fopen("/home/sir02mz/roc1.txt", "w");
+  FILE *file = fopen("roc.txt", "w");
   
   
   

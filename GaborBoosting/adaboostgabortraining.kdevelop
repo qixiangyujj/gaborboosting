@@ -20,7 +20,7 @@
   </general>
   <kdevautoproject>
     <general>
-      <activetarget>src/AdaBoost/Roc</activetarget>
+      <activetarget>src/AdaBoost/SVM_test</activetarget>
       <useconfiguration>debug</useconfiguration>
     </general>
     <run>
