@@ -20,8 +20,8 @@
   </general>
   <kdevautoproject>
     <general>
-      <activetarget>src/AdaBoost/SVM_test</activetarget>
-      <useconfiguration>debug</useconfiguration>
+      <activetarget>src/ClientBasedFaceReg/ClientFeatureSelec</activetarget>
+      <useconfiguration>optimized</useconfiguration>
     </general>
     <run>
       <mainprogram>/home/sir02mz/CWorks/Gaborboosting/debug</mainprogram>
@@ -29,11 +29,11 @@
       <directoryradio>build</directoryradio>
       <runarguments>
         <adaboostgabortraining/>
-        <MutInf>-src /mnt/export/rexm2vts/ -job 103 -o /home/sir/sir02mz/local/D/mutinf/job103.txt</MutInf>
+        <MutInf/>
         <GaborProcess/>
         <adaboostgabortesting/>
         <prepare/>
-        <adaboostgabortraining.M1>-src /mnt/export/rexm2vts/ -NumSub 200 -NumPic 4 -nofeatures 200</adaboostgabortraining.M1>
+        <adaboostgabortraining.M1/>
         <allfeaturetraining>-src /mnt/export/rexm2vts/ -job 24 -iter 1 -w weight_0.xml</allfeaturetraining>
         <update>-src /mnt/export/rexm2vts/ -iter 0 </update>
         <PairPoolPartition/>
@@ -75,6 +75,9 @@
         <IrisTest/>
         <SVM_test/>
         <Roc/>
+        <MutInf/>
+        <adaboostgabortesting/>
+        <adaboostgabortraining.M1/>
       </debugarguments>
       <cwd>
         <ClientFeatureSelec>/home/sir02mz/CppWorks/gaborboosting/debug/./src/IntraExtraFaceReg</ClientFeatureSelec>
@@ -84,6 +87,9 @@
         <IrisTest>/home/sir02mz/CWorks/GaborBoosting/debug/./src/AdaBoost</IrisTest>
         <SVM_test>/home/sir02mz/CWorks/GaborBoosting/debug/./src/AdaBoost</SVM_test>
         <Roc>/home/sir02mz/CWorks/GaborBoosting/debug/./src/AdaBoost</Roc>
+        <MutInf/>
+        <adaboostgabortesting/>
+        <adaboostgabortraining.M1/>
       </cwd>
     </run>
     <configurations>
@@ -289,7 +295,7 @@
   </kdevdebugger>
   <ctagspart>
     <customArguments/>
-    <customTagfilePath>/home/sir02mz/CppWorks/gaborboosting/tags</customTagfilePath>
+    <customTagfilePath>/home/sir02mz/CWorks/Gaborboosting/tags</customTagfilePath>
     <activeTagsFiles/>
   </ctagspart>
   <dist>
