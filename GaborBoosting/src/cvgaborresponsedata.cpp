@@ -260,27 +260,27 @@ double PrepareData::CvGaborResponseData::getfeaturefrominstance(const CvGaborFea
  */
 CvMat* PrepareData::CvGaborResponseData::getfeaturefromall(const CvGaborFeature *feature) const
 {
-	CvMat * Vvector = cvCreateMat(1, nImages, CV_32FC1);
-	int n = 0;
-	if(dbtype == XM2VTS)
-	{
-		int nClient = ((CvXm2vts*)database)->get_num_sub();
-		int nPicturePerClient = ((CvXm2vts*)database)->get_num_pic();
-		for(int i = 1; i <= nClient; i++)
-		{
-			for(int j = 1; j <= nPicturePerClient; j++)
-			{
-				double value = getfeaturefrominstance( feature, i, j );
-				cvSetReal1D( Vvector, n, value );
-				n++;
-			} 
-		}
-	}
-	else if(dbtype == FERET)
-	{
-	}
-	
-	return Vvector;
+  CvMat * Vvector = cvCreateMat(1, nImages, CV_32FC1);
+  int n = 0;
+  if(dbtype == XM2VTS)
+  {
+    int nClient = ((CvXm2vts*)database)->get_num_sub();
+    int nPicturePerClient = ((CvXm2vts*)database)->get_num_pic();
+    for(int i = 1; i <= nClient; i++)
+    {
+      for(int j = 1; j <= nPicturePerClient; j++)
+      {
+        double value = getfeaturefrominstance( feature, i, j );
+        cvSetReal1D( Vvector, n, value );
+        n++;
+      } 
+    }
+  }
+  else if(dbtype == FERET)
+  {
+  }
+          
+  return Vvector;
 }
 
 

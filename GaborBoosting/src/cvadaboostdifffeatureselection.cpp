@@ -17,37 +17,47 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CVGABORDIFFERENCEDATAMAKER_H
-#define CVGABORDIFFERENCEDATAMAKER_H
-#include "cvfacedb.h"
-#include "cvgaborfeature.h"
-#include "cvgaborresponsedata.h"
-#include "cvgabordatamaker.h"
-//#include "GaborBoosting.h"
-using namespace PrepareData;
-/**
-	@author Mian Zhou <M.Zhou@reading.ac.uk>
-*/
-class CvGaborDifferenceDataMaker : public CvGaborDataMaker{
-public:
-    CvGaborDifferenceDataMaker();
+#include "cvadaboostdifffeatureselection.h"
 
-    ~CvGaborDifferenceDataMaker();
-     CvGaborDifferenceDataMaker(CvGaborResponseData *data, CvGaborFeature *gaborfeature, CvFaceDB *db);
-    CvMat* getIntraDifference() const;
-    CvMat* getExtraDifference() const;
-    CvTrainingData* getDifference() const;
-    int getNumIntraDifference() const;
-    int getNumExtraDifference() const;
-    int getNumDifference() const;
-    CvTrainingData* getDifference(CvMat *labels) const;
-    CvMat* getLabels() const;
-    CvTrainingData* getData() const;
+CvAdaBoostDiffFeatureSelection::CvAdaBoostDiffFeatureSelection()
+ : CvAdaBoostFeatureSelection()
+{
+}
 
-protected:
-    //CvFaceDB *database;
-    //CvGaborFeature *feature;
-    //CvGaborResponseData *gabordata;
-};
 
-#endif
+CvAdaBoostDiffFeatureSelection::~CvAdaBoostDiffFeatureSelection()
+{
+}
+
+
+
+
+/*!
+    \fn CvAdaBoostDiffFeatureSelection::GetDataforWeak(CvGaborFeature *feature, CvGaborResponseData *memdata)
+ */
+CvTrainingData* CvAdaBoostDiffFeatureSelection::GetDataforWeak(CvGaborFeature *feature, CvGaborResponseData *memdata)
+{
+  assert(feature != NULL);
+  assert(memdata != NULL);
+  CvFaceDB *database = memdata->getDB();
+  CvGaborDifferenceDataMaker maker( memdata, feature, database );
+  //CvTrainingData *data = maker.getDifference(m_labels);
+  
+  CvTrainingData *data = maker.getData();
+  CvMat* labels = maker.getLabels();
+  data->setresponse(labels);
+  cvReleaseMat(&labels);
+  data->setweights(m_weights);
+  data->statclsdist();
+
+  return data;
+}
+
+
+/*!
+    \fn CvAdaBoostDiffFeatureSelection::CvAdaBoostDiffFeatureSelection(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type)
+ */
+ CvAdaBoostDiffFeatureSelection::CvAdaBoostDiffFeatureSelection(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type)
+{
+  init(memdata, labels, param, learner_type);
+}

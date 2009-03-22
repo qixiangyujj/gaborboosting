@@ -132,7 +132,7 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
       NormalizeWeights();
       int count = 0;
       for(int j = 0; j < m_features->getSize(); j++)
-      //for(int j = 0; j < 30; j++)
+      //for(int j = 0; j < 1; j++)
       {
         std::cout << "Learning a weak learner on the feature: " << count << "\r" << std::flush;
       
@@ -254,14 +254,6 @@ void CvAdaBoostFeatureSelection::SetType(int learner_type)
  */
 CvTrainingData* CvAdaBoostFeatureSelection::GetDataforWeak(CvGaborFeature *feature, CvGaborResponseData *memdata)
 {
-  assert(feature != NULL);
-  assert(memdata != NULL);
-  CvFaceDB *database = memdata->getDB();
-  CvGaborDifferenceDataMaker maker( memdata, feature, database );
-  CvTrainingData *data = maker.getDifference(m_labels);
-  data->setweights(m_weights);
-  data->statclsdist();
-  return data;
 }
 
 
@@ -270,14 +262,8 @@ CvTrainingData* CvAdaBoostFeatureSelection::GetDataforWeak(CvGaborFeature *featu
  */
  CvAdaBoostFeatureSelection::CvAdaBoostFeatureSelection(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type)
 {
-  m_features = new CvGaborFeaturePool;
-  m_selectedfeatures = new CvGaborFeaturePool;
-  m_memdata = memdata;
-  m_labels = cvCloneMat(labels);
-  SetFeatures( param );
-  SetType(learner_type);
-  InitializeWeights(labels);
   
+  init(memdata, labels, param, learner_type);
 }
 
 
@@ -604,4 +590,19 @@ void CvAdaBoostFeatureSelection::ReadDiscardFile(const char * filename)
   
   printf("\n %d features are discard from the original feature list.\n", n);
   fclose( file );
+}
+
+
+/*!
+    \fn CvAdaBoostFeatureSelection::init(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type)
+ */
+void CvAdaBoostFeatureSelection::init(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type)
+{
+  m_features = new CvGaborFeaturePool;
+  m_selectedfeatures = new CvGaborFeaturePool;
+  m_memdata = memdata;
+  m_labels = cvCloneMat(labels);
+  SetFeatures( param );
+  SetType(learner_type);
+  InitializeWeights(labels);
 }

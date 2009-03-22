@@ -17,37 +17,49 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CVGABORDIFFERENCEDATAMAKER_H
-#define CVGABORDIFFERENCEDATAMAKER_H
-#include "cvfacedb.h"
-#include "cvgaborfeature.h"
-#include "cvgaborresponsedata.h"
-#include "cvgabordatamaker.h"
-//#include "GaborBoosting.h"
-using namespace PrepareData;
-/**
-	@author Mian Zhou <M.Zhou@reading.ac.uk>
-*/
-class CvGaborDifferenceDataMaker : public CvGaborDataMaker{
-public:
-    CvGaborDifferenceDataMaker();
+#include "cvadaboostclientfeatureselection.h"
 
-    ~CvGaborDifferenceDataMaker();
-     CvGaborDifferenceDataMaker(CvGaborResponseData *data, CvGaborFeature *gaborfeature, CvFaceDB *db);
-    CvMat* getIntraDifference() const;
-    CvMat* getExtraDifference() const;
-    CvTrainingData* getDifference() const;
-    int getNumIntraDifference() const;
-    int getNumExtraDifference() const;
-    int getNumDifference() const;
-    CvTrainingData* getDifference(CvMat *labels) const;
-    CvMat* getLabels() const;
-    CvTrainingData* getData() const;
+CvAdaBoostClientFeatureSelection::CvAdaBoostClientFeatureSelection()
+ : CvAdaBoostFeatureSelection()
+{
+}
 
-protected:
-    //CvFaceDB *database;
-    //CvGaborFeature *feature;
-    //CvGaborResponseData *gabordata;
-};
 
-#endif
+CvAdaBoostClientFeatureSelection::~CvAdaBoostClientFeatureSelection()
+{
+}
+
+
+
+
+/*!
+    \fn CvAdaBoostClientFeatureSelection::CvAdaBoostClientFeatureSelection(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type)
+ */
+ CvAdaBoostClientFeatureSelection::CvAdaBoostClientFeatureSelection(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type, int client)
+{
+  init( memdata, labels, param, learner_type );
+  client_no = client;
+  
+}
+
+
+/*!
+    \fn CvAdaBoostClientFeatureSelection::GetDataforWeak(CvGaborFeature *feature, CvGaborResponseData *memdata)
+ */
+CvTrainingData* CvAdaBoostClientFeatureSelection::GetDataforWeak(CvGaborFeature *feature, CvGaborResponseData *memdata)
+{
+  assert(feature != NULL);
+  assert(memdata != NULL);
+  CvFaceDB *database = memdata->getDB();
+  CvGaborClientDataMaker maker( memdata, feature, database, client_no );
+  //CvTrainingData *data = maker.getDifference(m_labels);
+  
+  CvTrainingData *data = maker.getData();
+  CvMat* labels = maker.getLabels();
+  data->setresponse(labels);
+  cvReleaseMat(&labels);
+  data->setweights(m_weights);
+  data->statclsdist();
+
+  return data;
+}

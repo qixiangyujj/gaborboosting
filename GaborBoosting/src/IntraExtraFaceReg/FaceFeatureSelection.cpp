@@ -28,6 +28,7 @@
 #include "cvgaborresponsedata.h"
 #include "cvbindiffgabadafeatureselect.h"
 #include "cvadaboostfeatureselection.h"
+#include "cvadaboostdifffeatureselection.h"
 //#include "GaborBoosting.h"
 
 using namespace std;
@@ -105,7 +106,7 @@ int main(int argc, char *argv[])
 
 
 
-  CvAdaBoostFeatureSelection fs( &GaborData, labels, &param, weak_type );
+  CvAdaBoostDiffFeatureSelection fs( &GaborData, labels, &param, weak_type );
   CvGaborFeaturePool *newfeatures = fs.Select( nweaks );
   newfeatures->write("newfeatures.txt");
   delete newfeatures;

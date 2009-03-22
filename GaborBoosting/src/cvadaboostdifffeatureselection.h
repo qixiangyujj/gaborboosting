@@ -17,37 +17,23 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CVGABORDIFFERENCEDATAMAKER_H
-#define CVGABORDIFFERENCEDATAMAKER_H
-#include "cvfacedb.h"
-#include "cvgaborfeature.h"
-#include "cvgaborresponsedata.h"
-#include "cvgabordatamaker.h"
-//#include "GaborBoosting.h"
-using namespace PrepareData;
+#ifndef CVADABOOSTDIFFFEATURESELECTION_H
+#define CVADABOOSTDIFFFEATURESELECTION_H
+
+#include <cvadaboostfeatureselection.h>
+
 /**
 	@author Mian Zhou <M.Zhou@reading.ac.uk>
 */
-class CvGaborDifferenceDataMaker : public CvGaborDataMaker{
+class CvAdaBoostDiffFeatureSelection : public CvAdaBoostFeatureSelection
+{
 public:
-    CvGaborDifferenceDataMaker();
+    CvAdaBoostDiffFeatureSelection();
 
-    ~CvGaborDifferenceDataMaker();
-     CvGaborDifferenceDataMaker(CvGaborResponseData *data, CvGaborFeature *gaborfeature, CvFaceDB *db);
-    CvMat* getIntraDifference() const;
-    CvMat* getExtraDifference() const;
-    CvTrainingData* getDifference() const;
-    int getNumIntraDifference() const;
-    int getNumExtraDifference() const;
-    int getNumDifference() const;
-    CvTrainingData* getDifference(CvMat *labels) const;
-    CvMat* getLabels() const;
-    CvTrainingData* getData() const;
+    ~CvAdaBoostDiffFeatureSelection();
+    CvTrainingData* GetDataforWeak(CvGaborFeature *feature, CvGaborResponseData *memdata);
+     CvAdaBoostDiffFeatureSelection(CvGaborResponseData *memdata, CvMat *labels, CvPoolParams *param, int learner_type);
 
-protected:
-    //CvFaceDB *database;
-    //CvGaborFeature *feature;
-    //CvGaborResponseData *gabordata;
 };
 
 #endif

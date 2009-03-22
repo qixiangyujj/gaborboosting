@@ -26,7 +26,7 @@ CvWeakLearner::CvWeakLearner()
 
 CvWeakLearner::~CvWeakLearner()
 {
-  //clear();
+  clear();
 }
 
 
@@ -171,25 +171,25 @@ double CvWeakLearner::predict(CvMat* sample)
  */
 void CvWeakLearner::clear()
 {
-    switch(type)
-    {
-        case BAYES:
-          delete bayes;
-          break;
-        case KNEAR:
-          break;
-        case SVM:
-          delete svm;
-          break;
-        case ANN:
-      //ann->clear();
-          delete (CvANN_MLP *)ann;
-          break;
-        case FLD:
-      break;
-    case POTSU:
-      break;
-    }
+      switch(type)
+      {
+          case BAYES:
+            delete bayes;
+            break;
+          case KNEAR:
+            break;
+          case SVM:
+            delete svm;
+            break;
+          case ANN:
+        //ann->clear();
+            delete (CvANN_MLP *)ann;
+            break;
+          case FLD:
+            break;
+          case POTSU:
+            break;
+      }
 }
 
 

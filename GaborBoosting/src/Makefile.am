@@ -9,10 +9,11 @@ INCLUDES = $(all_includes) -I/usr/local/include/opencv
 # the library search path.
 adaboostgabortraining_LDFLAGS = $(all_libraries) 
 noinst_HEADERS = CommonCVFunction.h GaborBoosting.h MatUsage.h PrepareData.h \
-	cv2bins.h cvadaboost.h cvadaboostfeatureselection.h cvbin.h \
-	cvbinarytrainingdata.h cvbindiffgabadafeatureselect.h cvbingabadafeatureselect.h cventropy.h \
-	cvfaceclassifier.h cvfacedb.h cvfacesvmclassifier.h cvferet.h cvgabadafeatureselect.h \
-	cvgabor.h cvgabordifferencedatamaker.h cvgaborfeature.h cvgaborfeaturepair.h \
+	cv2bins.h cvadaboost.h cvadaboostclientfeatureselection.h \
+	cvadaboostdifffeatureselection.h cvadaboostfeatureselection.h cvbin.h cvbinarytrainingdata.h \
+	cvbindiffgabadafeatureselect.h cvbingabadafeatureselect.h cventropy.h cvfaceclassifier.h cvfacedb.h \
+	cvfacesvmclassifier.h cvferet.h cvgabadafeatureselect.h cvgabor.h cvgaborclientdatamaker.h \
+	cvgabordatamaker.h cvgabordifferencedatamaker.h cvgaborfeature.h cvgaborfeaturepair.h \
 	cvgaborfeaturepairpool.h cvgaborfeaturepairselect.h cvgaborfeaturepool.h cvirisdata.h \
 	cvknnweaklearner.h cvlookuptable.h cvmultigabadafeatureselect.h cvmultigabadafsm1.h \
 	cvmultitrainingdata.h cvmutinf.h cvmweaklearner.h cvpcafacereg.h cvpoolparams.h cvsubject.h \
@@ -24,9 +25,10 @@ adaboostgabortraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lcvaux -lcv \
 
 lib_LIBRARIES = libAdaGabor.a
 libAdaGabor_a_SOURCES = MatUsage.cpp cv2bins.cpp cvadaboost.cpp \
-	cvadaboostfeatureselection.cpp cvbin.cpp	cventropy.cpp cvbinarytrainingdata.cpp \
-	cvbindiffgabadafeatureselect.cpp cvbingabadafeatureselect.cpp cvfaceclassifier.cpp cvfacedb.cpp \
-	cvfacesvmclassifier.cpp cvferet.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
+	cvadaboostclientfeatureselection.cpp cvadaboostdifffeatureselection.cpp cvadaboostfeatureselection.cpp \
+	cvbin.cpp	cventropy.cpp cvbinarytrainingdata.cpp cvbindiffgabadafeatureselect.cpp \
+	cvbingabadafeatureselect.cpp cvfaceclassifier.cpp cvfacedb.cpp cvfacesvmclassifier.cpp cvferet.cpp \
+	cvgabadafeatureselect.cpp cvgabor.cpp cvgaborclientdatamaker.cpp cvgabordatamaker.cpp \
 	cvgabordifferencedatamaker.cpp cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp \
 	cvgaborfeaturepairselect.cpp cvgaborfeaturepool.cpp	cvlookuptable.cpp cvgaborresponsedata.cpp \
 	cvirisdata.cpp cvknnweaklearner.cpp cvmultigabadafeatureselect.cpp \

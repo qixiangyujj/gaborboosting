@@ -17,37 +17,32 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CVGABORDIFFERENCEDATAMAKER_H
-#define CVGABORDIFFERENCEDATAMAKER_H
-#include "cvfacedb.h"
-#include "cvgaborfeature.h"
-#include "cvgaborresponsedata.h"
 #include "cvgabordatamaker.h"
-//#include "GaborBoosting.h"
-using namespace PrepareData;
-/**
-	@author Mian Zhou <M.Zhou@reading.ac.uk>
-*/
-class CvGaborDifferenceDataMaker : public CvGaborDataMaker{
-public:
-    CvGaborDifferenceDataMaker();
 
-    ~CvGaborDifferenceDataMaker();
-     CvGaborDifferenceDataMaker(CvGaborResponseData *data, CvGaborFeature *gaborfeature, CvFaceDB *db);
-    CvMat* getIntraDifference() const;
-    CvMat* getExtraDifference() const;
-    CvTrainingData* getDifference() const;
-    int getNumIntraDifference() const;
-    int getNumExtraDifference() const;
-    int getNumDifference() const;
-    CvTrainingData* getDifference(CvMat *labels) const;
-    CvMat* getLabels() const;
-    CvTrainingData* getData() const;
+CvGaborDataMaker::CvGaborDataMaker()
+{
+}
 
-protected:
-    //CvFaceDB *database;
-    //CvGaborFeature *feature;
-    //CvGaborResponseData *gabordata;
-};
 
-#endif
+CvGaborDataMaker::~CvGaborDataMaker()
+{
+}
+
+
+
+/*!
+    \fn CvGaborDataMaker::getData() const
+ */
+CvTrainingData* CvGaborDataMaker::getData() const
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn CvGaborDataMaker::getLabels() const
+ */
+CvMat* CvGaborDataMaker::getLabels() const
+{
+    /// @todo implement me
+}
