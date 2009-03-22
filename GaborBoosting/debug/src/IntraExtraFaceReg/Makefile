@@ -14,7 +14,7 @@
 
 
 
-SOURCES = $(Selection_SOURCES) Testing.c $(Training_SOURCES)
+SOURCES = $(Selection_SOURCES) $(Testing_SOURCES) $(Training_SOURCES)
 
 srcdir = /home/sir02mz/CWorks/Gaborboosting/src/IntraExtraFaceReg
 top_srcdir = /home/sir02mz/CWorks/Gaborboosting
@@ -53,8 +53,8 @@ PROGRAMS = $(bin_PROGRAMS)
 am_Selection_OBJECTS = FaceFeatureSelection.$(OBJEXT)
 Selection_OBJECTS = $(am_Selection_OBJECTS)
 Selection_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
-Testing_SOURCES = Testing.c
-Testing_OBJECTS = Testing.$(OBJEXT)
+am_Testing_OBJECTS = FaceTesting.$(OBJEXT)
+Testing_OBJECTS = $(am_Testing_OBJECTS)
 Testing_LDADD = $(LDADD)
 am_Training_OBJECTS = FaceTraining.$(OBJEXT)
 Training_OBJECTS = $(am_Training_OBJECTS)
@@ -63,15 +63,8 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 DEP_FILES = ./$(DEPDIR)/FaceFeatureSelection.Po \
-	./$(DEPDIR)/FaceTraining.Po ./$(DEPDIR)/Testing.Po
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+	./$(DEPDIR)/FaceTesting.Po \
+	./$(DEPDIR)/FaceTraining.Po
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) \
@@ -80,8 +73,9 @@ LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) \
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(Selection_SOURCES) Testing.c $(Training_SOURCES)
-DIST_SOURCES = $(Selection_SOURCES) Testing.c $(Training_SOURCES)
+SOURCES = $(Selection_SOURCES) $(Testing_SOURCES) $(Training_SOURCES)
+DIST_SOURCES = $(Selection_SOURCES) $(Testing_SOURCES) \
+	$(Training_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -198,10 +192,11 @@ Selection_SOURCES = FaceFeatureSelection.cpp
 Selection_LDADD = $(top_builddir)/src/libAdaGabor.a -lml -lhighgui -lcxcore \
 	-lcv
 
+Testing_SOURCES = FaceTesting.cpp
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .cpp .lo .o .obj
+.SUFFIXES: .cpp .lo .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -264,7 +259,7 @@ Selection$(EXEEXT): $(Selection_OBJECTS) $(Selection_DEPENDENCIES)
 	$(CXXLINK) $(Selection_LDFLAGS) $(Selection_OBJECTS) $(Selection_LDADD) $(LIBS)
 Testing$(EXEEXT): $(Testing_OBJECTS) $(Testing_DEPENDENCIES) 
 	@rm -f Testing$(EXEEXT)
-	$(LINK) $(Testing_LDFLAGS) $(Testing_OBJECTS) $(Testing_LDADD) $(LIBS)
+	$(CXXLINK) $(Testing_LDFLAGS) $(Testing_OBJECTS) $(Testing_LDADD) $(LIBS)
 Training$(EXEEXT): $(Training_OBJECTS) $(Training_DEPENDENCIES) 
 	@rm -f Training$(EXEEXT)
 	$(CXXLINK) $(Training_LDFLAGS) $(Training_OBJECTS) $(Training_LDADD) $(LIBS)
@@ -276,32 +271,8 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/FaceFeatureSelection.Po
+include ./$(DEPDIR)/FaceTesting.Po
 include ./$(DEPDIR)/FaceTraining.Po
-include ./$(DEPDIR)/Testing.Po
-
-.c.o:
-	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
-	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Po"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
-#	source='$<' object='$@' libtool=no \
-#	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' \
-#	$(CCDEPMODE) $(depcomp) \
-#	$(COMPILE) -c $<
-
-.c.obj:
-	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ `$(CYGPATH_W) '$<'`; \
-	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Po"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
-#	source='$<' object='$@' libtool=no \
-#	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' \
-#	$(CCDEPMODE) $(depcomp) \
-#	$(COMPILE) -c `$(CYGPATH_W) '$<'`
-
-.c.lo:
-	if $(LTCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
-	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Plo"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
-#	source='$<' object='$@' libtool=yes \
-#	depfile='$(DEPDIR)/$*.Plo' tmpdepfile='$(DEPDIR)/$*.TPlo' \
-#	$(CCDEPMODE) $(depcomp) \
-#	$(LTCOMPILE) -c -o $@ $<
 
 .cpp.o:
 	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \

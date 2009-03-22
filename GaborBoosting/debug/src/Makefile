@@ -62,16 +62,19 @@ ARFLAGS = cru
 libAdaGabor_a_AR = $(AR) $(ARFLAGS)
 libAdaGabor_a_LIBADD =
 am_libAdaGabor_a_OBJECTS = MatUsage.$(OBJEXT) cv2bins.$(OBJEXT) \
-	cvadaboost.$(OBJEXT) cvadaboostfeatureselection.$(OBJEXT) \
-	cvbin.$(OBJEXT) cventropy.$(OBJEXT) \
-	cvbinarytrainingdata.$(OBJEXT) \
+	cvadaboost.$(OBJEXT) \
+	cvadaboostclientfeatureselection.$(OBJEXT) \
+	cvadaboostdifffeatureselection.$(OBJEXT) \
+	cvadaboostfeatureselection.$(OBJEXT) cvbin.$(OBJEXT) \
+	cventropy.$(OBJEXT) cvbinarytrainingdata.$(OBJEXT) \
 	cvbindiffgabadafeatureselect.$(OBJEXT) \
 	cvbingabadafeatureselect.$(OBJEXT) cvfaceclassifier.$(OBJEXT) \
 	cvfacedb.$(OBJEXT) cvfacesvmclassifier.$(OBJEXT) \
 	cvferet.$(OBJEXT) cvgabadafeatureselect.$(OBJEXT) \
-	cvgabor.$(OBJEXT) cvgabordifferencedatamaker.$(OBJEXT) \
-	cvgaborfeature.$(OBJEXT) cvgaborfeaturepair.$(OBJEXT) \
-	cvgaborfeaturepairpool.$(OBJEXT) \
+	cvgabor.$(OBJEXT) cvgaborclientdatamaker.$(OBJEXT) \
+	cvgabordatamaker.$(OBJEXT) \
+	cvgabordifferencedatamaker.$(OBJEXT) cvgaborfeature.$(OBJEXT) \
+	cvgaborfeaturepair.$(OBJEXT) cvgaborfeaturepairpool.$(OBJEXT) \
 	cvgaborfeaturepairselect.$(OBJEXT) \
 	cvgaborfeaturepool.$(OBJEXT) cvlookuptable.$(OBJEXT) \
 	cvgaborresponsedata.$(OBJEXT) cvirisdata.$(OBJEXT) \
@@ -136,6 +139,8 @@ DEP_FILES = ./$(DEPDIR)/DataGen.Po \
 	./$(DEPDIR)/adaboostgabortesting.Po \
 	./$(DEPDIR)/adaboostgabortraining.Po \
 	./$(DEPDIR)/cv2bins.Po ./$(DEPDIR)/cvadaboost.Po \
+	./$(DEPDIR)/cvadaboostclientfeatureselection.Po \
+	./$(DEPDIR)/cvadaboostdifffeatureselection.Po \
 	./$(DEPDIR)/cvadaboostfeatureselection.Po \
 	./$(DEPDIR)/cvbin.Po \
 	./$(DEPDIR)/cvbinarytrainingdata.Po \
@@ -148,6 +153,8 @@ DEP_FILES = ./$(DEPDIR)/DataGen.Po \
 	./$(DEPDIR)/cvferet.Po \
 	./$(DEPDIR)/cvgabadafeatureselect.Po \
 	./$(DEPDIR)/cvgabor.Po \
+	./$(DEPDIR)/cvgaborclientdatamaker.Po \
+	./$(DEPDIR)/cvgabordatamaker.Po \
 	./$(DEPDIR)/cvgabordifferencedatamaker.Po \
 	./$(DEPDIR)/cvgaborfeature.Po \
 	./$(DEPDIR)/cvgaborfeaturepair.Po \
@@ -320,10 +327,11 @@ INCLUDES = $(all_includes) -I/usr/local/include/opencv
 # the library search path.
 adaboostgabortraining_LDFLAGS = $(all_libraries) 
 noinst_HEADERS = CommonCVFunction.h GaborBoosting.h MatUsage.h PrepareData.h \
-	cv2bins.h cvadaboost.h cvadaboostfeatureselection.h cvbin.h \
-	cvbinarytrainingdata.h cvbindiffgabadafeatureselect.h cvbingabadafeatureselect.h cventropy.h \
-	cvfaceclassifier.h cvfacedb.h cvfacesvmclassifier.h cvferet.h cvgabadafeatureselect.h \
-	cvgabor.h cvgabordifferencedatamaker.h cvgaborfeature.h cvgaborfeaturepair.h \
+	cv2bins.h cvadaboost.h cvadaboostclientfeatureselection.h \
+	cvadaboostdifffeatureselection.h cvadaboostfeatureselection.h cvbin.h cvbinarytrainingdata.h \
+	cvbindiffgabadafeatureselect.h cvbingabadafeatureselect.h cventropy.h cvfaceclassifier.h cvfacedb.h \
+	cvfacesvmclassifier.h cvferet.h cvgabadafeatureselect.h cvgabor.h cvgaborclientdatamaker.h \
+	cvgabordatamaker.h cvgabordifferencedatamaker.h cvgaborfeature.h cvgaborfeaturepair.h \
 	cvgaborfeaturepairpool.h cvgaborfeaturepairselect.h cvgaborfeaturepool.h cvirisdata.h \
 	cvknnweaklearner.h cvlookuptable.h cvmultigabadafeatureselect.h cvmultigabadafsm1.h \
 	cvmultitrainingdata.h cvmutinf.h cvmweaklearner.h cvpcafacereg.h cvpoolparams.h cvsubject.h \
@@ -334,9 +342,10 @@ adaboostgabortraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lcvaux -lcv \
 
 lib_LIBRARIES = libAdaGabor.a
 libAdaGabor_a_SOURCES = MatUsage.cpp cv2bins.cpp cvadaboost.cpp \
-	cvadaboostfeatureselection.cpp cvbin.cpp	cventropy.cpp cvbinarytrainingdata.cpp \
-	cvbindiffgabadafeatureselect.cpp cvbingabadafeatureselect.cpp cvfaceclassifier.cpp cvfacedb.cpp \
-	cvfacesvmclassifier.cpp cvferet.cpp cvgabadafeatureselect.cpp cvgabor.cpp \
+	cvadaboostclientfeatureselection.cpp cvadaboostdifffeatureselection.cpp cvadaboostfeatureselection.cpp \
+	cvbin.cpp	cventropy.cpp cvbinarytrainingdata.cpp cvbindiffgabadafeatureselect.cpp \
+	cvbingabadafeatureselect.cpp cvfaceclassifier.cpp cvfacedb.cpp cvfacesvmclassifier.cpp cvferet.cpp \
+	cvgabadafeatureselect.cpp cvgabor.cpp cvgaborclientdatamaker.cpp cvgabordatamaker.cpp \
 	cvgabordifferencedatamaker.cpp cvgaborfeature.cpp	cvgaborfeaturepair.cpp cvgaborfeaturepairpool.cpp \
 	cvgaborfeaturepairselect.cpp cvgaborfeaturepool.cpp	cvlookuptable.cpp cvgaborresponsedata.cpp \
 	cvirisdata.cpp cvknnweaklearner.cpp cvmultigabadafeatureselect.cpp \
@@ -538,6 +547,8 @@ include ./$(DEPDIR)/adaboostgabortesting.Po
 include ./$(DEPDIR)/adaboostgabortraining.Po
 include ./$(DEPDIR)/cv2bins.Po
 include ./$(DEPDIR)/cvadaboost.Po
+include ./$(DEPDIR)/cvadaboostclientfeatureselection.Po
+include ./$(DEPDIR)/cvadaboostdifffeatureselection.Po
 include ./$(DEPDIR)/cvadaboostfeatureselection.Po
 include ./$(DEPDIR)/cvbin.Po
 include ./$(DEPDIR)/cvbinarytrainingdata.Po
@@ -550,6 +561,8 @@ include ./$(DEPDIR)/cvfacesvmclassifier.Po
 include ./$(DEPDIR)/cvferet.Po
 include ./$(DEPDIR)/cvgabadafeatureselect.Po
 include ./$(DEPDIR)/cvgabor.Po
+include ./$(DEPDIR)/cvgaborclientdatamaker.Po
+include ./$(DEPDIR)/cvgabordatamaker.Po
 include ./$(DEPDIR)/cvgabordifferencedatamaker.Po
 include ./$(DEPDIR)/cvgaborfeature.Po
 include ./$(DEPDIR)/cvgaborfeaturepair.Po
