@@ -285,3 +285,13 @@ CvMat* CvGaborDifferenceDataMaker::getLabels() const
   }
   return labels;
 }
+
+
+/*!
+    \fn CvGaborDifferenceDataMaker::getData() const
+ */
+CvTrainingData* CvGaborDifferenceDataMaker::getData() const
+{
+  CvTrainingData* data = getDifference();
+  return data;
+}

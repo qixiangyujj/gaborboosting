@@ -17,37 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CVGABORDIFFERENCEDATAMAKER_H
-#define CVGABORDIFFERENCEDATAMAKER_H
-#include "cvfacedb.h"
-#include "cvgaborfeature.h"
-#include "cvgaborresponsedata.h"
-#include "cvgabordatamaker.h"
-//#include "GaborBoosting.h"
-using namespace PrepareData;
+#ifndef CVGABORCLIENTDATAMAKER_H
+#define CVGABORCLIENTDATAMAKER_H
+
+#include <cvgabordatamaker.h>
+
 /**
 	@author Mian Zhou <M.Zhou@reading.ac.uk>
 */
-class CvGaborDifferenceDataMaker : public CvGaborDataMaker{
+class CvGaborClientDataMaker : public CvGaborDataMaker
+{
 public:
-    CvGaborDifferenceDataMaker();
+    CvGaborClientDataMaker();
+    CvGaborClientDataMaker(CvGaborResponseData *data, CvGaborFeature *gaborfeature, CvFaceDB *db, int client_no);
 
-    ~CvGaborDifferenceDataMaker();
-     CvGaborDifferenceDataMaker(CvGaborResponseData *data, CvGaborFeature *gaborfeature, CvFaceDB *db);
-    CvMat* getIntraDifference() const;
-    CvMat* getExtraDifference() const;
-    CvTrainingData* getDifference() const;
-    int getNumIntraDifference() const;
-    int getNumExtraDifference() const;
-    int getNumDifference() const;
-    CvTrainingData* getDifference(CvMat *labels) const;
+    ~CvGaborClientDataMaker();
+
     CvMat* getLabels() const;
     CvTrainingData* getData() const;
+    int getClientNo() const;
+     
 
 protected:
-    //CvFaceDB *database;
-    //CvGaborFeature *feature;
-    //CvGaborResponseData *gabordata;
+    int m_iClientNo;
 };
 
 #endif

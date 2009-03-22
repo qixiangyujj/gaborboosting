@@ -34,43 +34,60 @@
 #include "cvxm2vts.h"
 #include "cvpoolparams.h"
 #include "cvbingabadafeatureselect.h"
+#include <cvgaborclientdatamaker.h>
+#include <cvadaboostclientfeatureselection.h>
 
-using namespace std;
+
+using namespace PrepareData;
+
 
 int main(int argc, char *argv[])
 {
-  int width = 51;
-  int height = 55;
-  int bound = 0;
-  int interval = 1;
+  char dbpath[100];
+  char datapath[100];
   
-  int norientations = 8;
+  // default setting
+  strcpy( dbpath, "/home/sir02mz/XM2VTS");
+  strcpy( datapath, "/home/sir02mz/OUTPUT");
+  
+  int height = 0;
+  int width = 0;
   int minscale = -1;
   int maxscale = 3;
+  int norientations = 8;
+  int interval = 0;
+  int bound = 0;
   bool reduced = false;
+
+  int nweaks = 500;
+  int weak_type = CvWeakLearner::SVM;
   
-  int nweaks = 200;;
-  bool resume = false;
-  int weak_type = CvWeakLearner::POTSU;
-  int sub = 1;
-  
+  int client = 1;
   for(int i = 1; i < argc; i++ )
   {
-    if( !strcmp( argv[i], "-resume" ) )
-    {
-      resume = true;
-    }
-    else if( !strcmp( argv[i], "-n" ) )
+    if( !strcmp( argv[i], "-n" ) )
     {
       nweaks= atoi( argv[++i] );
     }
-    else if( !strcmp( argv[i], "-sub" ) )
+    else if ( !strcmp( argv[i], "-dbpath" ) )
     {
-      sub = atoi( argv[++i] );
+      strcpy( dbpath, argv[++i] );
+    }
+    else if ( !strcmp( argv[i], "-datapath" ) )
+    {
+      strcpy( datapath, argv[++i] );
+    }
+    else if ( !strcmp( argv[i], "-interval" ) )
+    {
+      interval = atoi( argv[++i] );
+    }
+    else if ( !strcmp( argv[i], "-client" ) )
+    {
+      client = atoi( argv[++i] );
     }
     else if ( !strcmp( argv[i], "-type" ) )
     {
-      if ( !strcmp( "fld", argv[++i] )) 
+      if ( !strcmp("fld", argv[++i])) 
         weak_type = CvWeakLearner::FLD;
       else if ( !strcmp("svm", argv[i] )) 
         weak_type = CvWeakLearner::SVM;
@@ -80,27 +97,33 @@ int main(int argc, char *argv[])
         weak_type = CvWeakLearner::ANN;
     }
   }
-  
-  const char *srcpath = "/windows/D/Data/xm2vts_feature/";
-  CvXm2vts xm2vts( srcpath );
+
+  CvXm2vts xm2vts( dbpath );
   xm2vts.setNumSub( 200 );
   xm2vts.setNumPic( 4 );
-  
-  //xm2vts.setGender( "/local/FaceDB/XM2VTS/gender.csv" );
-  
-  CvPoolParams param(height, width, minscale, maxscale, norientations, interval, bound, reduced);
-  
-  
-  char weakname[200];
-  sprintf( weakname, "weaks_%d.xml", sub);
-  CvBinGabAdaFeatureSelect FeatureSelec(&xm2vts, &param, sub, "weaks.xml");
-  
-  FeatureSelec.setTypeWeak(weak_type);
+  CvSize size = xm2vts.getSize();
 
-  if( !resume )
-    FeatureSelec.train( nweaks );
-  else
-    FeatureSelec.resume( );
+  height = size.height;
+  width = size.width;
+  CvPoolParams param(size, minscale, maxscale, norientations, interval, bound, reduced);
+  
+  //const CvGaborResponseData GaborData( &xm2vts, &param );
+  
+
+  CvGaborResponseData GaborData( &xm2vts, &param, datapath );
+
+  // get the labels of the training data
+  CvGaborFeature feature(1,1,1,1);
+  CvGaborClientDataMaker maker(&GaborData, &feature, &xm2vts, client);
+  CvMat* labels = maker.getLabels();
+
+
+
+  CvAdaBoostClientFeatureSelection fs( &GaborData, labels, &param, weak_type, client);
+  CvGaborFeaturePool *newfeatures = fs.Select( nweaks );
+  newfeatures->write("newfeatures.txt");
+  delete newfeatures;
+
 
   return EXIT_SUCCESS;
 }
