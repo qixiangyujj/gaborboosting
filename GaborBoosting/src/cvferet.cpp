@@ -124,13 +124,13 @@ void CvFeret::openPath(const char* pathname)
    
     if( sub.getnum() > 0 )
     {
-      printf("%d    %d", sub.getId(), sub.getnum());
+      //printf("%d    %d", sub.getId(), sub.getnum());
       for(int i = 0; i < sub.getnum(); i++)
       {
         string name = sub.getname(i);
-        printf("  %s", name.c_str());
+        //printf("  %s", name.c_str());
       }
-      printf("\n");
+      //printf("\n");
     }
     else 
     {
@@ -152,6 +152,7 @@ void CvFeret::openPath(const char* faname, const char* fbname)
 {
   openPath( faname );
   opentestingPath( fbname );
+
   
 }
 
@@ -167,6 +168,7 @@ void CvFeret::openPath(const char* faname, const char* fbname)
   fa_path = new char[30];
   fb_path = new char[30];
   setPath( mainpath, "", "" );
+  calc_stat();
 }
 
 
@@ -182,6 +184,7 @@ void CvFeret::openPath(const char* faname, const char* fbname)
   fb_path = new char[30];
   setPath( mainpath, fapath, fbpath );
   openPath( fa_path, fb_path );
+  calc_stat();
 }
 
 
@@ -197,6 +200,7 @@ void CvFeret::openPath(const char* faname, const char* fbname)
   fb_path = new char[30];
   setPath( mainpath, fapath, "" );
   openPath( fa_path );
+  calc_stat();
 }
 
 
@@ -211,6 +215,10 @@ void CvFeret::clear()
   delete [] fb_path;
   subjects.clear();
   testsubjects.clear();
+  cvReleaseMat(&fa_distrb);
+  cvReleaseMat(&fb_distrb);
+  cvReleaseMat(&fa_ID_index);
+  cvReleaseMat(&fb_ID_index);
 }
 
 
@@ -575,13 +583,13 @@ void CvFeret::opentestingPath(const char* pathname)
     
     if( sub.getnum() > 0 )
     {
-      printf("%d    %d", sub.getId(), sub.getnum());
+      //printf("%d    %d", sub.getId(), sub.getnum());
       for(int i = 0; i < sub.getnum(); i++)
       {
         string name = sub.getname(i);
-        printf("  %s", name.c_str());
+        //printf("  %s", name.c_str());
       }
-      printf("\n");
+      //printf("\n");
     }
     else 
     {
@@ -601,4 +609,217 @@ CvFeret* CvFeret::clone() const
 {
   CvFeret* db = new CvFeret(pathname, fa_path, fb_path);
   return db;
+}
+
+
+/*!
+    \fn CvFeret::getFbNum() const
+ */
+int CvFeret::getFbNum() const
+{
+  return testnumpic;
+}
+
+
+/*!
+    \fn CvFeret::getFbSub() const
+ */
+int CvFeret::getFbSub() const
+{
+  return testnumsub;
+}
+
+
+/*!
+    \fn CvFeret::getFbSubject(int index) const
+ */
+CvSubject CvFeret::getFbSubject(int index) const
+{
+  CvSubject sub = testsubjects[index];
+  return sub;
+}
+
+
+/*!
+    \fn CvFeret::getFaNum() const
+ */
+int  CvFeret::getFaNum() const
+{
+  return getNum();
+}
+
+
+/*!
+    \fn CvFeret::getFaSub() const
+ */
+int CvFeret::getFaSub() const
+{
+  return getSub();
+}
+
+
+/*!
+    \fn CvFeret::getFaSubject(int index) const
+ */
+CvSubject CvFeret::getFaSubject(int index) const
+{
+  return getSubject(index);
+}
+
+
+/*!
+    \fn CvFeret::calc_stat()
+ */
+void CvFeret::calc_stat()
+{
+  int num_fa_sub = getFaSub();
+  int sum = 0;
+  if(num_fa_sub > 0)
+  {
+    fa_distrb = cvCreateMat(1, num_fa_sub, CV_32SC1);
+    cvSetReal1D(fa_distrb, 0, 0);
+    fa_ID_index = cvCreateMat(1, num_fa_sub, CV_32SC1);
+    for(int i = 0; i < num_fa_sub; i++)
+    {
+      CvSubject subject = getFaSubject(i);
+      int num_fa_pic = subject.getnum();
+      int ID = subject.getId();
+      if( i < (num_fa_sub - 1) )
+        cvSetReal1D(fa_distrb, i+1, num_fa_pic);
+      cvSetReal1D(fa_ID_index, i, ID);
+    }
+  }
+ 
+  int num_fb_sub = getFbSub();
+  if(num_fb_sub > 0)
+  {
+    fb_distrb = cvCreateMat(1, num_fb_sub, CV_32SC1);
+    cvSetReal1D(fb_distrb, 0, 0);
+    fb_ID_index = cvCreateMat(1, num_fb_sub, CV_32SC1);
+    for(int i = 0; i < num_fb_sub; i++)
+    {
+      CvSubject subject = getFaSubject(i);
+      int num_fb_pic = subject.getnum();
+      int ID = subject.getId();
+      if( i < (num_fb_sub - 1) )
+        cvSetReal1D(fb_distrb, i, num_fb_pic);
+      cvSetReal1D(fb_ID_index, i, ID);
+    }
+  }
+}
+
+
+/*!
+    \fn CvFeret::getNumFaSubject(int ID) const
+ */
+int CvFeret::getNumFaSubject(int ID) const
+{
+  CvSize size = cvGetSize(fa_ID_index);
+  int numsamples = size.width*size.height;
+  int client_index;
+  for(int i = 0; i < numsamples; i++)
+  {
+    int id = cvGetReal1D(fa_ID_index, i);
+    if(id == ID)
+      client_index = i;
+  }
+  CvSubject subject = getFaSubject(client_index);
+  int num_fa_subject = subject.getnum();
+  return num_fa_subject;
+}
+
+
+/*!
+    \fn CvFeret::getNumFbSubject(int ID) const
+ */
+int CvFeret::getNumFbSubject(int ID) const
+{
+  CvSize size = cvGetSize(fb_ID_index);
+  int numsamples = size.width*size.height;
+  int client_index;
+  for(int i = 0; i < numsamples; i++)
+  {
+    int id = cvGetReal1D(fb_ID_index, i);
+    if(id == ID)
+      client_index = i;
+  }
+  CvSubject subject = getFbSubject(client_index);
+  int num_fb_subject = subject.getnum();
+  return num_fb_subject;
+}
+
+
+/*!
+    \fn CvFeret::getPosFaSubject(int ID) const
+ */
+int CvFeret::getPosFaSubject(int ID) const
+{
+  CvSize size = cvGetSize(fb_ID_index);
+  int numsamples = size.width*size.height;
+  int client_index;
+  for(int i = 0; i < numsamples; i++)
+  {
+    int id = cvGetReal1D(fb_ID_index, i);
+    if(id == ID)
+      client_index = i;
+  }
+  int pos = cvGetReal1D(fa_distrb, client_index);
+  return pos;
+}
+
+
+/*!
+    \fn CvFeret::getPosFbSubject(int ID) const
+ */
+int CvFeret::getPosFbSubject(int ID) const
+{
+  CvSize size = cvGetSize(fb_ID_index);
+  int numsamples = size.width*size.height;
+  int client_index;
+  for(int i = 0; i < numsamples; i++)
+  {
+    int id = cvGetReal1D(fb_ID_index, i);
+    if(id == ID)
+      client_index = i;
+  }
+  int pos = cvGetReal1D(fb_distrb, client_index);
+  return pos;
+}
+
+
+/*!
+    \fn CvFeret::getSize() const
+ */
+CvSize CvFeret::getSize() const
+{
+  string fapath = getFApath();
+  CvSubject subject = getFaSubject( 0 );
+  string name = subject.getname( 0 );
+  char filename[100];
+  sprintf(filename, "%s/%s", fapath.c_str(), name.c_str());
+  IplImage * img = cvLoadImage( filename, CV_LOAD_IMAGE_ANYCOLOR);
+  CvSize size = cvGetSize( img );
+  cvReleaseImage(&img);
+  
+  return size;
+}
+
+
+/*!
+    \fn CvFeret::getPosFaSubjectIND(int index) const
+ */
+int CvFeret::getPosFaSubjectIND(int index) const
+{
+  int pos = cvGetReal1D(fa_distrb, index);
+  return pos;
+}
+
+
+/*!
+    \fn CvFeret::getPosFbSubjectIND(int index) const
+ */
+int CvFeret::getPosFbSubjectIND(int index) const
+{
+  int pos = cvGetReal1D(fb_distrb, index);
+  return pos;
 }

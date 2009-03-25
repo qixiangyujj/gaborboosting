@@ -46,3 +46,12 @@ CvMat* CvGaborDataMaker::getLabels() const
 {
     /// @todo implement me
 }
+
+
+/*!
+    \fn CvGaborDataMaker::getNumExamples() const
+ */
+int CvGaborDataMaker::getNumExamples() const
+{
+    /// @todo implement me
+}

@@ -27,6 +27,7 @@
 #include <sys/stat.h>
 #include "cvgabor.h"
 #include "cvgaborresponsedata.h"
+#include <cvferet.h>
 
 
 //#define XM2VTS		0
@@ -42,6 +43,8 @@ void makeJPEGs(const char* source, const char* destination, int flag);
 void makeXM2VTSJPEGs(const char* source, const char* destination);
 void makeMetas(const char* source, const char* destination, int flag);
 void makeXM2VTSMetas(const char* source, const char* destination);
+void prepareFERETfolder(const char * pathname);
+void processGabors(const char * filename);
 }
 
 
@@ -56,6 +59,7 @@ void PrepareData::preparefolder(const char* pathname, int flag)
     }
   case CvGaborResponseData::FERET:
     {
+      prepareFERETfolder(pathname);
       break;
     }
   } 
@@ -149,6 +153,104 @@ void PrepareData::prepareXM2VTSfolder(const char* pathname)
   delete sub;
   delete pic; 
 }
+
+void PrepareData::prepareFERETfolder(const char * pathname)
+{
+  char * fa_path = new char[100];
+  char * fb_path = new char[100];
+  
+  sprintf(fa_path, "%s/FA", pathname);
+  sprintf(fb_path, "%s/FB", pathname);
+  int is;
+  
+  
+  const char * fapathname = "/home/sir02mz/FERET/FA/";
+  const char * fbpathname = "/home/sir02mz/FERET/FB/";
+  CvFeret feret( "", fapathname, fbpathname);
+  
+  
+  //make FA directory
+  
+//   is = mkdir (fa_path, S_IRWXU);
+//   if( is )
+//   {
+//     printf("ERROR: can not make %s\n", fa_path);
+//     exit(-1);
+//   }
+//   is = chdir(fa_path);
+//   int num_fa = feret.getSub();
+//   for(int i = 0; i < num_fa; i++)
+//   {
+//     CvSubject subject = feret.getSubject(i);
+//     int num_pic = subject.getnum();
+//     for(int j = 0; j < num_pic; j++)
+//     {
+//       string filename = subject.getname(j);
+//       char * filenamepath = new char[100];
+//       sprintf( filenamepath, "%s/%s",fa_path, filename.c_str());
+//       is = chdir( filenamepath );
+//       if (is != 0)
+//       {
+//         is = mkdir(filenamepath, S_IRWXU);
+//         if( is )
+//         {
+//           printf("ERROR: can not make %s\n", filenamepath);
+//           exit(-1);
+//         }
+//         chdir(filenamepath);
+//         char * imgfilename = new char[100];
+//         sprintf(imgfilename, "%s/%s", fapathname, filename.c_str() );
+//         processGabors( imgfilename);
+//         delete [] imgfilename;
+//       }
+//         
+//       delete [] filenamepath;
+//     }
+//   }
+
+  //make FB directory
+  is = mkdir (fb_path, S_IRWXU);
+  if( is )
+  {
+    printf("ERROR: can not make %s\n", fa_path);
+    exit(-1);
+  }
+  is = chdir(fb_path);
+  int num_fb = feret.getFbSub();
+  for(int i = 0; i < num_fb; i++)
+  {
+    CvSubject subject = feret.getFbSubject(i);
+    int num_pic = subject.getnum();
+    for(int j = 0; j < num_pic; j++)
+    {
+      string filename = subject.getname(j);
+      char * filenamepath = new char[100];
+      sprintf( filenamepath, "%s/%s",fb_path, filename.c_str());
+      is = chdir( filenamepath );
+      if (is != 0)
+      {
+        is = mkdir(filenamepath, S_IRWXU);
+        if( is )
+        {
+          printf("ERROR: can not make %s\n", filenamepath);
+          exit(-1);
+        }
+        chdir(filenamepath);
+        char * imgfilename = new char[100];
+        sprintf(imgfilename, "%s/%s", fbpathname, filename.c_str() );
+        processGabors( imgfilename);
+        delete [] imgfilename;
+      }
+        
+      delete [] filenamepath;
+    }
+  }
+  
+  
+  delete [] fa_path;
+  delete [] fb_path;
+}
+
 
 
 void PrepareData::makeXM2VTSJPEGs(const char* source, const char* destination)
@@ -307,5 +409,37 @@ void PrepareData::makeXM2VTSMetas(const char* source, const char* destination)
   delete Nu;
   delete inputfile;
   delete outputfile;
+}
+
+void PrepareData::processGabors(const char * filename)
+{
+  IplImage *img = cvLoadImage( filename, CV_LOAD_IMAGE_ANYCOLOR);
+  
+  if(img->nChannels == 3)
+  {
+    IplImage *grayimg = cvCreateImage(cvGetSize(img), IPL_DEPTH_8U, 1);
+    cvCvtColor( img, grayimg, CV_RGB2GRAY );
+    cvReleaseImage(&img);
+    img = grayimg;
+  }
+  
+  for (int iNu = -1; iNu <= 3; iNu++)
+  {
+    for(int iMu = 0; iMu < 8; iMu++)
+    {
+      CvGabor gabor(iMu, iNu);
+      IplImage *response = cvCreateImage( cvGetSize(img), IPL_DEPTH_32F, 1 );
+      gabor.conv_img( img, response, CV_GABOR_MAG );
+      
+      char * xmlname = new char[100];
+      sprintf(xmlname, "%d_%d.xml", iNu, iMu);
+      cvSave( xmlname, response, NULL, NULL, cvAttrList(0,0));
+      printf("Write %s %s\n", filename, xmlname);
+      cvReleaseImage(&response);
+      delete [] xmlname;
+    }
+  }
+
+  cvReleaseImage(&img);
 }
 

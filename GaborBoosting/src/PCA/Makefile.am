@@ -8,3 +8,4 @@ bin_PROGRAMS = PCAtesting PCAtraining
 PCAtraining_SOURCES = pcatraining.cpp
 PCAtraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lcvaux -L/usr/local/lib \
 	-lml -lhighgui -lcxcore -lcv
+PCAtesting_SOURCES = pcatesting.cpp

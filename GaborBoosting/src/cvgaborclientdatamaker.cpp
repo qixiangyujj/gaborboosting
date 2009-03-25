@@ -70,10 +70,29 @@ CvMat* CvGaborClientDataMaker::getLabels() const
   }
   else if(database->is_feret())
   {
-    /// @todo implement me
+    int n = 0;
+    int nsamples= ((CvFeret*)database)->getFaNum();
+    labels = cvCreateMat( 1, nsamples, CV_32FC1 );
+    int numsub = ((CvFeret*)database)->getFaSub();
+    for(int i = 0; i < numsub; i++)
+    {
+      CvSubject subject = ((CvFeret*)database)->getFaSubject(i);
+      int numpic = subject.getnum();
+      int ID = subject.getId();
+      for(int j = 0; j < numpic; j++)
+      {
+        if ( ID == m_iClientNo )
+          cvSetReal1D(labels, n, 1.0);
+        else
+          cvSetReal1D(labels, n, 2.0);
+        n++;
+      }
+    }
   }
   return labels;
 }
+
+
 
 CvTrainingData* CvGaborClientDataMaker::getData() const
 {
@@ -99,7 +118,18 @@ CvTrainingData* CvGaborClientDataMaker::getData() const
   }
   else if(database->is_feret())
   {
-    
+    nsamples = ((CvFeret*)database)->getFaNum();
+    nelements = 1;
+    int nclass = 2;
+    data = new CvTrainingData;
+    data->init( nclass, nsamples, nelements);
+    CvMat* mat = gabordata->getfeaturefromall( feature );
+    CvMat* labels = getLabels();
+    data->setdata( mat );
+    data->setresponse( labels );
+    data->statclsdist();
+    cvReleaseMat(&mat);
+    cvReleaseMat(&labels);
   }
 
   return data;
@@ -115,4 +145,17 @@ CvTrainingData* CvGaborClientDataMaker::getData() const
 int CvGaborClientDataMaker::getClientNo() const
 {
   return m_iClientNo;
+}
+
+
+/*!
+    \fn CvGaborClientDataMaker::getNumExamples() const
+ */
+int CvGaborClientDataMaker::getNumExamples() const
+{
+  CvMat * labels = getLabels();
+  CvSize size = cvGetSize( labels );
+  int num_examples = size.width * size.height;
+  
+  return num_examples;
 }

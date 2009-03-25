@@ -36,6 +36,7 @@ public:
     CvMat* getLabels() const;
     CvTrainingData* getData() const;
     int getClientNo() const;
+    int getNumExamples() const;
      
 
 protected:

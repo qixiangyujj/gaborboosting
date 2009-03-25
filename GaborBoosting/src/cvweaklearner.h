@@ -22,7 +22,7 @@
 #define RANDOM      0
 #define UNIFOR      1
 #define NORMAL      2
-#define MAX_NUM_EXAMPLES      800
+#define MAX_NUM_EXAMPLES      100
 
 #include <ml.h>
 #include <algorithm>

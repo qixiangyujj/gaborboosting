@@ -66,6 +66,20 @@ public:
     string getMainpath() const;
     void opentestingPath(const char* pathname);
     CvFeret* clone() const;
+    int getFbSub() const;
+    int getFbNum() const;
+    CvSubject getFbSubject(int index) const;
+    CvSubject getFaSubject(int index) const;
+    int getFaSub() const;
+    int  getFaNum() const;
+    void calc_stat();
+    int getNumFaSubject(int ID) const;
+    int getNumFbSubject(int ID) const;
+    int getPosFaSubject(int ID) const;
+    int getPosFbSubject(int ID) const;
+    CvSize getSize() const;
+    int getPosFaSubjectIND(int index) const;
+    int getPosFbSubjectIND(int index) const;
     
     
 
@@ -81,6 +95,10 @@ protected:
     vector<CvSubject> testsubjects;
     int testnumpic;
     int testnumsub;
+    CvMat* fa_distrb;
+    CvMat* fb_distrb;
+    CvMat* fa_ID_index;
+    CvMat* fb_ID_index;
 };
 
 #endif

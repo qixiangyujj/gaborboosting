@@ -37,6 +37,7 @@ public:
     ~CvGaborDataMaker();
     virtual CvTrainingData* getData() const;
     virtual CvMat* getLabels() const;
+    virtual int getNumExamples() const;
 
 
 protected:
