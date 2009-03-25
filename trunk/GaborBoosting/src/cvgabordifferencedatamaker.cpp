@@ -295,3 +295,12 @@ CvTrainingData* CvGaborDifferenceDataMaker::getData() const
   CvTrainingData* data = getDifference();
   return data;
 }
+
+
+/*!
+    \fn CvGaborDifferenceDataMaker::getNumExamples() const
+ */
+int CvGaborDifferenceDataMaker::getNumExamples() const
+{
+  return getNumDifference();
+}

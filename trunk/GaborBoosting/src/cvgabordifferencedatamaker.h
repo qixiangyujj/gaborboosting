@@ -43,6 +43,7 @@ public:
     CvTrainingData* getDifference(CvMat *labels) const;
     CvMat* getLabels() const;
     CvTrainingData* getData() const;
+    int getNumExamples() const;
 
 protected:
     //CvFaceDB *database;

@@ -121,7 +121,7 @@ void AdaGabor::CvGaborFeaturePairSelect::build()
     double v = mut->get();
     //printf("The mutural information of this pair is %f\n\n", v);
     
-    if(fmod((long double)i,1000.0) == 0)
+    if(fmod((double)i,1000.0) == 0)
     {
       time (&end);
       dif = difftime (end,start);

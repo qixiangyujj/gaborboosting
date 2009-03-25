@@ -132,7 +132,7 @@ CvGaborFeaturePool* CvAdaBoostFeatureSelection::Select(int numfeatures)
       NormalizeWeights();
       int count = 0;
       for(int j = 0; j < m_features->getSize(); j++)
-      //for(int j = 0; j < 1; j++)
+      //for(int j = 0; j < 10; j++)
       {
         std::cout << "Learning a weak learner on the feature: " << count << "\r" << std::flush;
       

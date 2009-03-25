@@ -40,12 +40,22 @@ public:
     CvFaceSVMClassifier();
 
     ~CvFaceSVMClassifier();
-    virtual void Train(CvGaborResponseData & gabordata, CvGaborFeaturePool & new_features);
-    virtual void clear();
-    virtual void Load(const char *filename);
-    virtual void Save(const char * filename);
+    void Train(CvGaborResponseData & gabordata, CvGaborFeaturePool & new_features);
+    void clear();
+    void Load(const char *filename);
+    void Save(const char * filename);
     void SetKernel(int kernel_type);
     CvFaceSVMClassifier( int kernel, int numclass, int max_iter, double epsilon);
+    virtual CvMat* GetDataFromFeatures(CvGaborResponseData & gabordata, CvGaborFeaturePool & new_features) const;
+    void train_svm_auto(CvMat *train_data, CvMat * labels);
+    void train_svm( CvMat * train_data, CvMat * labels);
+    virtual CvMat* GetLabelsFromFeatures(CvGaborResponseData & gabordata, CvGaborFeaturePool & new_features) const;
+    void AutoTrain(CvGaborResponseData & gabordata, CvGaborFeaturePool & new_features);
+    void SetParams(CvSVMParams svmParams);
+    void SetParams(int _svm_type, int _kernel_type, double _degree, double _gamma, double _coef0, double _C, double _nu, double _p, CvTermCriteria _term_crit);
+    double Predict( const CvMat * sample) const;
+    virtual CvScalar Training_error(CvGaborResponseData & gabordata, CvGaborFeaturePool & new_features) const;
+    virtual CvScalar Training_error(CvMat * train_data, CvMat * labels) const;
 
 protected:
     CvSVM svm;

@@ -21,30 +21,26 @@
 #include <config.h>
 #endif
 
-
-
 #include <iostream>
 #include <cstdlib>
-#include <cv.h>
+#include <cvgaborresponsedata.h>
+#include <cvfacedb.h>
 #include <cxcore.h>
-#include <highgui.h>
-#include <ml.h>
-#include <sys/stat.h>
-#include <vector>
-#include "cvxm2vts.h"
-#include "cvpoolparams.h"
-#include "cvbingabadafeatureselect.h"
-#include <cvgaborclientdatamaker.h>
-#include <cvadaboostclientfeatureselection.h>
+#include <cvfacesvmclientclassifier.h>
 
 
 using namespace PrepareData;
-
 
 int main(int argc, char *argv[])
 {
   char dbpath[100] = "";
   char datapath[100] = "";
+  char selectfeaturefilename[100] = "";
+  
+  strcpy( dbpath, "/home/sir02mz/FERET");
+  strcpy( datapath, "/home/sir02mz/Meta");
+  strcpy( selectfeaturefilename, "/home/sir02mz/EXP/FERET/29/significant.txt");
+  
   
   // default setting 
   int height = 0;
@@ -56,11 +52,29 @@ int main(int argc, char *argv[])
   int bound = 0;
   bool reduced = false;
 
-  int nweaks = 500;
-  int weak_type = CvWeakLearner::POTSU;
+  int nweaks = 100;
   int db_type = CvGaborResponseData::FERET;
   
+  int svm_type = CvSVM::NU_SVC;
+  double nu = 0.99;
+  
+  int kernel_type = CvSVM::POLY;
+  double degree = 3.0;
+  double gamma = 1.0;
+  double coef0 = 1.0;
+  
+  double C = 1.0;
+  double p = 1.0;
+  
+  CvTermCriteria term_crit;
+  term_crit.type = CV_TERMCRIT_ITER+CV_TERMCRIT_EPS;
+  term_crit.max_iter = 200;
+  term_crit.epsilon = 0.99;
+
+  
+  
   int client = 29;
+  
   for(int i = 1; i < argc; i++ )
   {
     if( !strcmp( argv[i], "-n" ) )
@@ -99,16 +113,9 @@ int main(int argc, char *argv[])
       if( !strcmp( datapath, "" ) )
         strcpy( datapath, "/home/sir02mz/Meta");
     }
-    else if ( !strcmp( argv[i], "-type" ) )
+    else if ( !strcmp( argv[i], "-features" ))
     {
-      if ( !strcmp("fld", argv[++i])) 
-        weak_type = CvWeakLearner::FLD;
-      else if ( !strcmp("svm", argv[i] )) 
-        weak_type = CvWeakLearner::SVM;
-      else if ( !strcmp("potsu", argv[i] )) 
-        weak_type = CvWeakLearner::POTSU;
-      else if ( !strcmp("ann", argv[i] )) 
-        weak_type = CvWeakLearner::ANN;
+      strcpy( selectfeaturefilename, argv[++i] );
     }
   }
 
@@ -143,25 +150,32 @@ int main(int argc, char *argv[])
   
   CvPoolParams param(size, minscale, maxscale, norientations, interval, bound, reduced);
   
- 
+  //CvGaborResponseData GaborData( database, &param, datapath );
   
+  CvGaborFeaturePool SelectFeatures;
+  SelectFeatures.load(selectfeaturefilename);
+  
+  CvFaceSVMClientClassifier classifier( client );
+  classifier.SetParams( svm_type, kernel_type, degree, gamma, coef0, C, nu, p, term_crit);
+  
+  //classifier.AutoTrain( GaborData, SelectFeatures );
+  
+  CvMat *train_data = (CvMat*)cvLoad( "/home/sir02mz/data.xml", NULL, NULL, NULL );
+  CvMat *labels = (CvMat*)cvLoad( "/home/sir02mz/labels.xml", NULL, NULL, NULL );
+  
+  classifier.train_svm( train_data, labels );
+  
+  CvScalar scalar = classifier.Training_error( train_data, labels );
+  
+  printf("The total error rate is %f.\n", scalar.val[0]);
+  printf("The true positive rate is %f.\n", scalar.val[1]);
+  printf("The false positive rate is %f.\n", scalar.val[2]);
 
-  CvGaborResponseData GaborData( database, &param, datapath );
-  //CvGaborResponseData GaborData( database, &param, "/home/sir02mz/Meta/FA");
 
-  // get the labels of the training data
-  CvGaborFeature feature(1,1,1,1);
-  CvGaborClientDataMaker maker(&GaborData, &feature, database, client);
-  CvMat* labels = maker.getLabels();
-
-
-
-  CvAdaBoostClientFeatureSelection fs( &GaborData, labels, &param, weak_type, client);
-  CvGaborFeaturePool *newfeatures = fs.Select( nweaks );
-  newfeatures->write("newfeatures.txt");
-  delete newfeatures;
-
-  delete database;
-  return EXIT_SUCCESS;
+  
+  
+  
+  return EXIT_SUCCESS; 
 }
+
 
