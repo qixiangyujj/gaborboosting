@@ -14,7 +14,7 @@
 
 
 
-SOURCES = PCAtesting.c $(PCAtraining_SOURCES)
+SOURCES = $(PCAtesting_SOURCES) $(PCAtraining_SOURCES)
 
 srcdir = /home/sir02mz/CWorks/Gaborboosting/src/PCA
 top_srcdir = /home/sir02mz/CWorks/Gaborboosting
@@ -50,8 +50,8 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-PCAtesting_SOURCES = PCAtesting.c
-PCAtesting_OBJECTS = PCAtesting.$(OBJEXT)
+am_PCAtesting_OBJECTS = pcatesting.$(OBJEXT)
+PCAtesting_OBJECTS = $(am_PCAtesting_OBJECTS)
 PCAtesting_LDADD = $(LDADD)
 am_PCAtraining_OBJECTS = pcatraining.$(OBJEXT)
 PCAtraining_OBJECTS = $(am_PCAtraining_OBJECTS)
@@ -59,16 +59,8 @@ PCAtraining_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
-DEP_FILES = ./$(DEPDIR)/PCAtesting.Po \
+DEP_FILES = ./$(DEPDIR)/pcatesting.Po \
 	./$(DEPDIR)/pcatraining.Po
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) \
@@ -77,8 +69,8 @@ LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) \
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = PCAtesting.c $(PCAtraining_SOURCES)
-DIST_SOURCES = PCAtesting.c $(PCAtraining_SOURCES)
+SOURCES = $(PCAtesting_SOURCES) $(PCAtraining_SOURCES)
+DIST_SOURCES = $(PCAtesting_SOURCES) $(PCAtraining_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -193,10 +185,11 @@ PCAtraining_SOURCES = pcatraining.cpp
 PCAtraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lcvaux -L/usr/local/lib \
 	-lml -lhighgui -lcxcore -lcv
 
+PCAtesting_SOURCES = pcatesting.cpp
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .cpp .lo .o .obj
+.SUFFIXES: .cpp .lo .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -256,7 +249,7 @@ clean-binPROGRAMS:
 	done
 PCAtesting$(EXEEXT): $(PCAtesting_OBJECTS) $(PCAtesting_DEPENDENCIES) 
 	@rm -f PCAtesting$(EXEEXT)
-	$(LINK) $(PCAtesting_LDFLAGS) $(PCAtesting_OBJECTS) $(PCAtesting_LDADD) $(LIBS)
+	$(CXXLINK) $(PCAtesting_LDFLAGS) $(PCAtesting_OBJECTS) $(PCAtesting_LDADD) $(LIBS)
 PCAtraining$(EXEEXT): $(PCAtraining_OBJECTS) $(PCAtraining_DEPENDENCIES) 
 	@rm -f PCAtraining$(EXEEXT)
 	$(CXXLINK) $(PCAtraining_LDFLAGS) $(PCAtraining_OBJECTS) $(PCAtraining_LDADD) $(LIBS)
@@ -267,32 +260,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/PCAtesting.Po
+include ./$(DEPDIR)/pcatesting.Po
 include ./$(DEPDIR)/pcatraining.Po
-
-.c.o:
-	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
-	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Po"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
-#	source='$<' object='$@' libtool=no \
-#	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' \
-#	$(CCDEPMODE) $(depcomp) \
-#	$(COMPILE) -c $<
-
-.c.obj:
-	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ `$(CYGPATH_W) '$<'`; \
-	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Po"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
-#	source='$<' object='$@' libtool=no \
-#	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' \
-#	$(CCDEPMODE) $(depcomp) \
-#	$(COMPILE) -c `$(CYGPATH_W) '$<'`
-
-.c.lo:
-	if $(LTCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
-	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Plo"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
-#	source='$<' object='$@' libtool=yes \
-#	depfile='$(DEPDIR)/$*.Plo' tmpdepfile='$(DEPDIR)/$*.TPlo' \
-#	$(CCDEPMODE) $(depcomp) \
-#	$(LTCOMPILE) -c -o $@ $<
 
 .cpp.o:
 	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \

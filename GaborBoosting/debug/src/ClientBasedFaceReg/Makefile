@@ -14,7 +14,7 @@
 
 
 
-SOURCES = $(ClientFeatureSelec_SOURCES)
+SOURCES = $(ClientFeatureSelec_SOURCES) $(ClientTraining_SOURCES)
 
 srcdir = /home/sir02mz/CWorks/Gaborboosting/src/ClientBasedFaceReg
 top_srcdir = /home/sir02mz/CWorks/Gaborboosting
@@ -37,7 +37,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 host_triplet = i686-pc-linux-gnu
-bin_PROGRAMS = ClientFeatureSelec$(EXEEXT)
+bin_PROGRAMS = ClientFeatureSelec$(EXEEXT) ClientTraining$(EXEEXT)
 subdir = src/ClientBasedFaceReg
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -53,10 +53,14 @@ PROGRAMS = $(bin_PROGRAMS)
 am_ClientFeatureSelec_OBJECTS = FeatureSelection.$(OBJEXT)
 ClientFeatureSelec_OBJECTS = $(am_ClientFeatureSelec_OBJECTS)
 ClientFeatureSelec_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
+am_ClientTraining_OBJECTS = Training.$(OBJEXT)
+ClientTraining_OBJECTS = $(am_ClientTraining_OBJECTS)
+ClientTraining_DEPENDENCIES = $(top_builddir)/src/libAdaGabor.a
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
-DEP_FILES = ./$(DEPDIR)/FeatureSelection.Po
+DEP_FILES = ./$(DEPDIR)/FeatureSelection.Po \
+	./$(DEPDIR)/Training.Po
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) \
@@ -65,8 +69,8 @@ LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) \
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(ClientFeatureSelec_SOURCES)
-DIST_SOURCES = $(ClientFeatureSelec_SOURCES)
+SOURCES = $(ClientFeatureSelec_SOURCES) $(ClientTraining_SOURCES)
+DIST_SOURCES = $(ClientFeatureSelec_SOURCES) $(ClientTraining_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -180,6 +184,10 @@ ClientFeatureSelec_SOURCES = FeatureSelection.cpp
 ClientFeatureSelec_LDADD = $(top_builddir)/src/libAdaGabor.a -lml -lhighgui \
 	-lcxcore -lcv -L/usr/local/lib
 
+ClientTraining_SOURCES = Training.cpp
+ClientTraining_LDADD = $(top_builddir)/src/libAdaGabor.a -lhighgui -lml \
+	-lcxcore -lcv
+
 all: all-am
 
 .SUFFIXES:
@@ -244,6 +252,9 @@ clean-binPROGRAMS:
 ClientFeatureSelec$(EXEEXT): $(ClientFeatureSelec_OBJECTS) $(ClientFeatureSelec_DEPENDENCIES) 
 	@rm -f ClientFeatureSelec$(EXEEXT)
 	$(CXXLINK) $(ClientFeatureSelec_LDFLAGS) $(ClientFeatureSelec_OBJECTS) $(ClientFeatureSelec_LDADD) $(LIBS)
+ClientTraining$(EXEEXT): $(ClientTraining_OBJECTS) $(ClientTraining_DEPENDENCIES) 
+	@rm -f ClientTraining$(EXEEXT)
+	$(CXXLINK) $(ClientTraining_LDFLAGS) $(ClientTraining_OBJECTS) $(ClientTraining_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -252,6 +263,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/FeatureSelection.Po
+include ./$(DEPDIR)/Training.Po
 
 .cpp.o:
 	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
