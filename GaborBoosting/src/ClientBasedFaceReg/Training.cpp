@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
   
   strcpy( dbpath, "/home/sir02mz/FERET");
   strcpy( datapath, "/home/sir02mz/Meta");
-  strcpy( selectfeaturefilename, "/home/sir02mz/EXP/FERET/29/significant.txt");
+  strcpy( selectfeaturefilename, "/home/sir02mz/EXP/FERET/FLD/29/significant.txt");
   
   
   // default setting 
@@ -55,21 +55,22 @@ int main(int argc, char *argv[])
   int nweaks = 100;
   int db_type = CvGaborResponseData::FERET;
   
-  int svm_type = CvSVM::NU_SVC;
-  double nu = 0.99;
+  int svm_type = CvSVM::C_SVC;
+  double nu = 1.641645417192150*pow(10.0, -12);
   
   int kernel_type = CvSVM::POLY;
-  double degree = 3.0;
+  double degree = 3;
   double gamma = 1.0;
-  double coef0 = 1.0;
+  double coef0 = 0.0;
   
-  double C = 1.0;
-  double p = 1.0;
+  double C = 1;
+  double p = 0.1;
   
   CvTermCriteria term_crit;
-  term_crit.type = CV_TERMCRIT_ITER+CV_TERMCRIT_EPS;
-  term_crit.max_iter = 200;
-  term_crit.epsilon = 0.99;
+  //term_crit.type = CV_TERMCRIT_ITER+CV_TERMCRIT_EPS;
+  term_crit.type = CV_TERMCRIT_EPS;
+  term_crit.max_iter = 100000;
+  term_crit.epsilon = pow(10.0, -3);
 
   
   
@@ -172,8 +173,26 @@ int main(int argc, char *argv[])
   printf("The false positive rate is %f.\n", scalar.val[2]);
 
 
-  
-  
+//   CvSize size_data = cvGetSize( train_data );
+//   CvSize size_labels = cvGetSize( labels );
+//   
+//   int numexamples = size_data.height;
+//   int numfeatures = size_data.width;
+//   FILE *file = fopen("/home/sir02mz/train_data", "w");
+//   
+//   for(int i = 0; i < numexamples; i++)
+//   {
+//     int label = (int)cvGetReal1D( labels, i );
+//     fprintf(file, "%d", label);
+//     for(int j = 0; j < numfeatures; j++)
+//     {
+//       double value = cvGetReal2D( train_data, i, j);
+//       fprintf( file, " %d:%f", j+1, value );
+//     }
+//     fprintf( file, "\n");
+//   }
+//   
+//   fclose( file );
   
   return EXIT_SUCCESS; 
 }
