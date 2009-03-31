@@ -195,7 +195,14 @@ void CvFaceSVMClassifier::train_svm_auto(CvMat *train_data, CvMat * labels)
  */
 void CvFaceSVMClassifier::train_svm( CvMat * train_data, CvMat * labels)
 {
+  //CvSize size = cvGetSize(train_data);
+  //CvMat* trainData = cvCreateMat( size.width, size.height, CV_32FC1);
+  
+  //cvTranspose( train_data, trainData );
+  
   bool is = svm.train( train_data, labels, 0, 0, params);
+  //bool is = svm.train( trainData, labels, 0, 0, params);
+  
   int num_sv = svm.get_support_vector_count();
   if( is )
     printf("An SVM is trained and %d support vectors are obtained.\n", num_sv);
@@ -384,11 +391,14 @@ CvScalar CvFaceSVMClassifier::Training_error(CvMat * train_data, CvMat * labels)
     if(pre_label != label)
     {
       if((pre_label == 1.0)&&(label == 2.0))
+      {
         numfalsepositive++;
+      }
+      //printf("%d   ", i);
       numerror++;
     }
   }
-  
+  printf("\n\n");
   double error = (double)numerror/(double)nsamples;
   double tp_rate = (double)numtruepositive/(double)numpositive;
   double fp_rate = (double)numfalsepositive/(double)numnegative;
